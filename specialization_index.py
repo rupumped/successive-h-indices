@@ -31,8 +31,9 @@ INST_CSV       = os.path.join(OUT_DIR, "h2_by_institution.csv")
 INST_FIELD_CSV = os.path.join(OUT_DIR, "h2_by_institution_field.csv")
 OUT_CSV        = os.path.join(OUT_DIR, "specialization_index.csv")
 
-TOP_N   = 20
-MIN_H2  = 60   # only show institutions with meaningful overall strength
+TOP_N          = 20
+MIN_H2         = 10   # only show institutions with meaningful overall strength
+MAX_FIELD_RANK = 5   # only show institutions that are elite in at least one field
 
 
 def main():
@@ -114,25 +115,27 @@ def main():
         for name, ov_rk, ov_h2, f_rk, f_name, f_h2, spec in rows:
             print(f"  {str(name)[:44]:<45} {ov_rk:>5} {ov_h2:>5}  {f_rk:>5} {f_h2:>5}  {str(f_name)[:37]:<38} {spec:>5}")
 
-    print(f"Top {TOP_N} most specialized (overall_h2 >= {MIN_H2}):")
+    print(f"Top {TOP_N} most specialized (overall_h2 >= {MIN_H2}, best_field_rank <= {MAX_FIELD_RANK}):")
     rows = con.execute(f"""
         SELECT institution_name, overall_rank, overall_h2,
                best_field_rank, best_field_name, best_field_h2,
                specialization_index
         FROM read_csv_auto('{OUT_CSV}')
         WHERE overall_h2 >= {MIN_H2}
+          AND best_field_rank <= {MAX_FIELD_RANK}
         ORDER BY specialization_index DESC, institution_name
         LIMIT {TOP_N}
     """).fetchall()
     print_table(rows)
 
-    print(f"\nTop {TOP_N} least specialized / broadest (overall_h2 >= {MIN_H2}):")
+    print(f"\nTop {TOP_N} least specialized / broadest (overall_h2 >= {MIN_H2}, best_field_rank <= {MAX_FIELD_RANK}):")
     rows = con.execute(f"""
         SELECT institution_name, overall_rank, overall_h2,
                best_field_rank, best_field_name, best_field_h2,
                specialization_index
         FROM read_csv_auto('{OUT_CSV}')
         WHERE overall_h2 >= {MIN_H2}
+          AND best_field_rank <= {MAX_FIELD_RANK}
         ORDER BY specialization_index ASC, institution_name
         LIMIT {TOP_N}
     """).fetchall()
