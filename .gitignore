@@ -1,0 +1,4 @@
+data/
+h2_by_field/
+*.csv
+*.duckdb
