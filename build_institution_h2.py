@@ -49,11 +49,12 @@ def main():
                 FROM authors
             ),
             h2_candidates AS (
-                SELECT institution_id, institution_name,
+                SELECT institution_id,
+                       arg_max(institution_name, rank_desc) AS institution_name,
                        MAX(rank_desc) AS h2
                 FROM ranked
                 WHERE h_index >= rank_desc
-                GROUP BY institution_id, institution_name
+                GROUP BY institution_id
             ),
             counts AS (
                 SELECT institution_id, COUNT(*) AS author_count

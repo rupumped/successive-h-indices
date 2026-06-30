@@ -46,11 +46,19 @@ def main():
 
     con.execute(f"""
         CREATE TABLE overall AS
+        WITH deduped AS (
+            SELECT institution_id,
+                   arg_max(institution_name, h2) AS institution_name,
+                   MAX(h2)           AS h2,
+                   MAX(author_count) AS author_count
+            FROM read_csv_auto('{INST_CSV}')
+            GROUP BY institution_id
+        )
         SELECT institution_id, institution_name,
                h2            AS overall_h2,
                author_count  AS overall_author_count,
                ROW_NUMBER() OVER (ORDER BY h2 DESC, institution_name) AS overall_rank
-        FROM read_csv_auto('{INST_CSV}')
+        FROM deduped
     """)
 
     # Rank every institution within each field.
@@ -58,16 +66,24 @@ def main():
     # exactly one best-field row.
     con.execute(f"""
         CREATE TABLE field_ranks AS
-        WITH ranked AS (
+        WITH deduped_field AS (
+            SELECT institution_id, field,
+                   arg_max(field_name, h2)    AS field_name,
+                   MAX(h2)                    AS h2,
+                   MAX(author_count)          AS author_count
+            FROM read_csv_auto('{INST_FIELD_CSV}')
+            GROUP BY institution_id, field
+        ),
+        ranked AS (
             SELECT institution_id,
                    field_name,
                    h2           AS field_h2,
                    author_count AS field_author_count,
                    ROW_NUMBER() OVER (
                        PARTITION BY field
-                       ORDER BY h2 DESC, institution_name
+                       ORDER BY h2 DESC, field_name
                    ) AS field_rank
-            FROM read_csv_auto('{INST_FIELD_CSV}')
+            FROM deduped_field
         ),
         best AS (
             SELECT institution_id,

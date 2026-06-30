@@ -160,13 +160,18 @@ def step4_compute_h2(con):
                 ) AS rank_desc
             FROM authors
         ),
-        -- H2 = largest rank where h_index >= rank (same algorithm as h-index itself)
+        -- H2 = largest rank where h_index >= rank (same algorithm as h-index itself).
+        -- Group by (institution_id, field) only — excluding institution_name/field_name
+        -- prevents name-variant strings across batches from splitting one institution
+        -- into multiple groups, each seeing only a subset of the ranked list.
         h2_candidates AS (
-            SELECT institution_id, institution_name, field, field_name,
+            SELECT institution_id, field,
+                   arg_max(institution_name, rank_desc) AS institution_name,
+                   arg_max(field_name,       rank_desc) AS field_name,
                    MAX(rank_desc) AS h2
             FROM ranked
             WHERE h_index >= rank_desc
-            GROUP BY institution_id, institution_name, field, field_name
+            GROUP BY institution_id, field
         ),
         author_counts AS (
             SELECT institution_id, field, COUNT(*) AS author_count

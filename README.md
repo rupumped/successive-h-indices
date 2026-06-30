@@ -103,47 +103,56 @@ Schubert and I rank my alma mater, Georgia Tech, 125th, whereas US News ranks it
 Field-specific results are more interesting.
 
 ### Harvard wins the overall ranking, but only dominates some fields
-Harvard tops Biochemistry, Health Professions, Immunology, Mathematics, Medicine, Neuroscience, and Psychology: basically the biomedical core plus math. But it doesn't appear in the top listings for Agricultural Sciences, Chemistry, Materials Science, Physics, Business, or Veterinary. Its overall #1 ranking is really a story about the breadth and depth of its medical school, not universal excellence.
+Harvard tops Biochemistry, Health Professions, Immunology, Mathematics, Medicine, Neuroscience, and Psychology: basically the biomedical core plus math. But it doesn't appear in the top listings for Agricultural Sciences, Chemistry, Materials Science, Physics, Business, or Veterinary. That said, even if you exclude Medicine, Biochemistry, Immunology, Neuroscience, and Health Professions, Harvard remains #1. It is genuinely excellent.
 
 ### The university-level ranking hides real specialist powerhouses
 - Wageningen University, not a famous "elite" name in the US News sense, is #1 globally in both Agricultural & Biological Sciences and Environmental Science. It's ranked 148th in the overall list because it's a specialized institution rather than a broad research university. The university-level H2 obscures genuine excellence that the field-level H2 reveals.
-- Shenyang Pharmaceutical University: 493rd overall, 1st in Pharmacology. A university you'd never see in a US News-style "Top 100" has the single deepest bench of high-impact pharmacology researchers on Earth by this measure.
-- East China University of Science and Technology: 314th overall, #1 in Chemical Engineering. Same pattern: a mid-tier-by-reputation institution with genuine world-leading depth in one discipline.
+- Shenyang Pharmaceutical University: 490th overall, 1st in Pharmacology. A university you'd never see in a US News-style "Top 100" has the single deepest bench of high-impact pharmacology researchers on Earth by this measure.
+- East China University of Science and Technology: 314th overall, but tied for 1st in Chemical Engineering. Same pattern: a mid-tier-by-reputation institution with genuine world-leading depth in one discipline.
 - Université Paris-Saclay is the opposite case: #16 overall and #1 in Physics. A broad powerhouse that also happens to be the best in a specific, non-biomedical field. That's the "everything-is-consistent" case, useful as a contrast.
 - Carnegie Mellon: 175th overall, #1 in Computer Science. CMU is famous for CS but is not a broad biomedical/everything powerhouse, so it sits outside the top 100 overall, yet it has the single deepest bench of high-impact CS researchers by this metric. This is the metric correctly capturing reputation that everyone already "knows" but that the broad ranking would never surface, since CMU lacks Harvard's massive medical school tail. In contrast, US News ranks CMU at 112th overall and 14th in CS.
 
 ### Decision Sciences is the weakest field by far.
-Northwestern's #1 score is h2=20 with only 82 authors total in the field. Compare to Medicine's h2=113 with 29,193 authors. Decision Sciences is clearly a thin OpenAlex topic category, not a deep, well-populated discipline. H2 isn't meaningfully comparable across fields, only within them, and Decision Sciences may be too sparse to be meaningful at all.
+Northwestern's #1 score is h2=20 with only 82 authors total in the field. Compare to Medicine's h2=113 with 29,159 authors. Decision Sciences is clearly a thin OpenAlex topic category, not a deep, well-populated discipline. H2 isn't meaningfully comparable across fields, only within them, and Decision Sciences may be too sparse to be meaningful at all.
 
 ### Universidade de São Paulo leads Dentistry, with a fellow Brazilian institution (UNICAMP) in 2nd.
 Brazil appears to have an outsized concentration of dental research talent, which is not something you'd intuit from any general-purpose ranking.
 
 ### Materials Science, Chemical Engineering, Energy, and Engineering are led by Chinese institutions
-University of Science and Technology of China and East China University of Science and Technology top those fields, not Western institutions, and not the usual US News top 10. This tracks with broader trends in Chinese investment in materials/engineering research, but it's notable that it shows up this cleanly in a depth-of-talent metric, not just a publication-count metric. USTC leads three of these fields while sitting at #31 overall. That's a different pattern from CMU: not a single specialty, but a cluster of related applied-science/engineering fields where one institution has built unusually deep strength across the board.
+University of Science and Technology of China and East China University of Science and Technology top those fields, not Western institutions, and not the usual US News top 10. This tracks with broader trends in Chinese investment in materials/engineering research, but it's notable that it shows up this cleanly in a depth-of-talent metric, not just a publication-count metric. USTC leads three of these fields while sitting at #31 overall. That's a different pattern from CMU: not a single specialty, but a cluster of related applied-science/engineering fields where one institution has built unusually deep strength across the board. If you exclude biomedical fields, USTC ranks 3rd in the world and the Chinese Academy of Sciences ranks 13th.
 
 ### The overall ranking is implicitly a biomedical ranking
 Because medical fields have by far the largest, most cited author pools (Medicine's h2=113 dwarfs every other field), they dominate any university-wide aggregate. A university like USTC or CMU, elite in non-medical fields, will structurally never reach the top of the overall list no matter how good they are, simply because they don't have a 29,000-author medical school. The field-level breakdown matters more than the university-level number.
 
+### Physics & Astronomy is dominated by a few institutions; Nursing is most distributed
+Physics & Astronomy is the most unequal field (Gini=0.60). Paris-Saclay dominates at 14.6× the field H2 mean. Nursing and Veterinary are the most distributed (Gini=0.41). Counter-intuitively, Medicine's Gini (0.55) is lower than Physics despite Harvard's 15.2× ratio, because Medicine has more institutions with meaningful H2.
+
+### Oxford has the greatest breadth
+Oxford appears in the top 50 across more fields (19 of 26) than anyone else, and they're in the top 10 in 7. In contrast, Harvard makes the top 10 in 10 of 26 fields (most of any institution) but has only 15 in the top 50.
+
+### The most efficient universities have very few authors
+H2 scales roughly as the square root of output. If doubling the number of researchers doubles their collective output, H2 grows as √(2N) (r<sup>2</sup>=0.82). So an institution twice the size would naturally have an H2 that's √2× larger. Germany's Center for Behavioral Brain Sciences, ranked 1,954th overall, has the greatest H2 per sqrt(author_count) of any university. Zero universities from the top 100 overall were in the top 100 when measured by efficiency. 
+
 ### H3: Acadmic Olympics
 | Country | H3 | Institutions |
 |---|---|---|
-| US | 66 | 4,180 |
-| CN | 53 | 1,084 |
-| DE | 47 | 512 |
+| US | 66 | 4,159 |
+| CN | 53 | 1,075 |
+| DE | 47 | 497 |
 | GB | 44 | 529 |
-| IT | 43 | 221 |
-| JP | 43 | 1,281 |
-| ES | 38 | 160 |
-| FR | 38 | 397 |
-| KR | 36 | 352 |
-| AU | 35 | 123 |
+| IT | 43 | 220 |
+| JP | 43 | 1,270 |
+| ES | 38 | 155 |
+| FR | 38 | 390 |
+| KR | 36 | 351 |
+| AU | 35 | 119 |
 
 A few things stand out:
 - **US wins 19 of 26 golds:** dominant across every humanities, social science, biomedical, and prestige-science field. Its only silvers are the six fields where China leads.
 - **China's 7 golds are in STEM:** Agricultural Sciences, Chemical Engineering, Chemistry, Energy, Engineering, Materials Science, and Pharmacology. A clean sweep of applied and materials sciences, with no medals in arts, humanities, social sciences, or business.
-- **GB gets 9 silvers and 0 golds:** consistent with the UK having world-class institutions but being outgunned by the US sheer depth everywhere.
+- **Great Britain gets 8 silvers and 1 shared gold:** consistent with the UK having world-class institutions but being outgunned by the US sheer depth everywhere. The one gold is Arts and Humanities, which it shares with the US.
 - **Germany (47) beats the UK (44)** despite a similar institution count, consistent with Germany's distributed research university system where excellence isn't concentrated in two flagship universities.
-- **Italy and Japan tie at 43**, but Italy achieves that with 221 institutions to Japan's 1,281. Japan has a very long tail of thin institutions that don't contribute to H3.
+- **Italy and Japan tie at 43**, but Italy achieves that with 221 institutions to Japan's 1,281. Across all countries, H3 scales roughly with the logarithm of the quantity of institutions in its borders (r<sup>2</sup>=0.75), and Italy is the most efficient country measured by H3/log2(institution_count).
 - **South Korea (36) outranks India (33)** with less than a third the institutions (352 vs 1,156). Same pattern as Italy/Japan.
 - **Saudi Arabia (H3=24, only 54 institutions)** ranks surprisingly high for its size, likely an artifact of high-h-index researchers listing Saudi affiliations as secondary appointments in exchange for grants.
 
