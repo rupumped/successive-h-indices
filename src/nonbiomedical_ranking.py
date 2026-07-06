@@ -20,10 +20,11 @@ Usage:
 import duckdb
 import os
 
-OUT_DIR     = os.path.dirname(os.path.abspath(__file__))
-AUTHORS_CSV = os.path.join(OUT_DIR, "authors.csv")
-INST_CSV    = os.path.join(OUT_DIR, "h2_by_institution.csv")
-OUT_CSV     = os.path.join(OUT_DIR, "nonbiomedical_h2.csv")
+ROOT_DIR    = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+INTERIM_DIR = os.path.join(ROOT_DIR, "data", "interim")
+AUTHORS_CSV = os.path.join(INTERIM_DIR, "authors.csv")
+INST_CSV    = os.path.join(INTERIM_DIR, "h2_by_institution.csv")
+OUT_CSV     = os.path.join(ROOT_DIR, "results", "nonbiomedical_h2.csv")
 
 TOP_N = 30
 

@@ -16,9 +16,10 @@ Usage:
 import duckdb
 import os
 
-OUT_DIR = os.path.dirname(os.path.abspath(__file__))
-AUTHORS_CSV = os.path.join(OUT_DIR, "authors.csv")
-OUT_CSV = os.path.join(OUT_DIR, "h2_by_institution.csv")
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+INTERIM_DIR = os.path.join(ROOT_DIR, "data", "interim")
+AUTHORS_CSV = os.path.join(INTERIM_DIR, "authors.csv")
+OUT_CSV = os.path.join(INTERIM_DIR, "h2_by_institution.csv")
 
 
 def main():

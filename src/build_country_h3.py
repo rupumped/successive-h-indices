@@ -18,9 +18,10 @@ Usage:
 import duckdb
 import os
 
-OUT_DIR   = os.path.dirname(os.path.abspath(__file__))
-INST_CSV  = os.path.join(OUT_DIR, "h2_by_institution.csv")
-OUT_CSV   = os.path.join(OUT_DIR, "h3_by_country.csv")
+ROOT_DIR  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+INTERIM_DIR = os.path.join(ROOT_DIR, "data", "interim")
+INST_CSV  = os.path.join(INTERIM_DIR, "h2_by_institution.csv")
+OUT_CSV   = os.path.join(INTERIM_DIR, "h3_by_country.csv")
 
 S3_INSTITUTIONS = "s3://openalex/data/parquet/institutions/*/*.parquet"
 TOP_N = 30

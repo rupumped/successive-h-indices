@@ -1,5 +1,13 @@
 data/
-h2_by_field/
-*.csv
-*.duckdb
-*.png
+results/
+
+paper/*.bst
+paper/*.cls
+paper/*.zip
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+
+src/__pycache__

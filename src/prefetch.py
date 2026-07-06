@@ -8,11 +8,15 @@ If interrupted, already-written partitions are skipped on the next run.
 
 Filters applied per partition:
   - summary_stats.h_index > 0
-  - last_known_institutions contains at least one entry with type = 'education'
+  - affiliations contains at least one entry with institution.type = 'education'
   - topics contains at least one entry with a non-null field.id
 
-Column pruning: only id, h_index, last_known_institutions, and topics are
-fetched from each remote file.
+Column pruning: only id, h_index, affiliations, and topics are fetched from
+each remote file. affiliations (not last_known_institutions) is pulled
+because it carries a years[] array per institution, which build.py uses to
+pick each author's most recent education affiliation; last_known_institutions
+has no per-entry recency information — its entries are just the affiliations
+listed on an author's single most recent work, in no meaningful order.
 
 Usage:
   python3 prefetch.py
@@ -45,20 +49,20 @@ def _handle_sigint(*_):
 signal.signal(signal.SIGINT, _handle_sigint)
 
 S3_BASE = "s3://openalex/data/parquet/authors"
-OUT_DIR = os.path.dirname(os.path.abspath(__file__))
-STAGING_DIR = os.path.join(OUT_DIR, "data", "authors_staging")
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STAGING_DIR = os.path.join(ROOT_DIR, "data", "authors_staging")
 
 FILTER_SQL = """
     summary_stats.h_index IS NOT NULL
     AND summary_stats.h_index > 0
-    AND list_count(list_filter(last_known_institutions, x -> x.type = 'education')) > 0
+    AND list_count(list_filter(affiliations, x -> x.institution.type = 'education')) > 0
     AND list_count(list_filter(topics, x -> x.field.id IS NOT NULL)) > 0
 """
 
 
 def make_con():
     con = duckdb.connect()
-    con.execute("SET threads=8; SET memory_limit='16GB';")
+    con.execute("SET threads=4; SET memory_limit='4GB';")
     con.execute("INSTALL httpfs; LOAD httpfs;")
     con.execute("SET s3_region='us-east-1';")
     con.execute("SET s3_access_key_id=''; SET s3_secret_access_key='';")
@@ -119,7 +123,7 @@ def process_partition(con, partition):
                 SELECT
                     id,
                     summary_stats.h_index           AS h_index,
-                    last_known_institutions,
+                    affiliations,
                     topics
                 FROM read_parquet('{s3_glob}')
                 WHERE {FILTER_SQL}

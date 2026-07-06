@@ -12,9 +12,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy import stats
 
-OUT_DIR  = os.path.dirname(os.path.abspath(__file__))
-H3_CSV   = os.path.join(OUT_DIR, "h3_by_country.csv")
-OUT_PNG  = os.path.join(OUT_DIR, "h3_vs_size_sqrt.png")
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+H3_CSV   = os.path.join(ROOT_DIR, "data", "interim", "h3_by_country.csv")
+OUT_PNG  = os.path.join(ROOT_DIR, "results", "h3_vs_size_sqrt.png")
 
 MIN_INST = 5
 

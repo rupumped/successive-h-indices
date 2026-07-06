@@ -1,15 +1,17 @@
 DOCNAME=main
+OPEN := $(shell grep -qi microsoft /proc/version 2>/dev/null && echo wslview || echo open)
 TEMPLATE_URL=https://cms-resources.apps.public.k8s.springernature.io/springer-cms/rest/v1/content/18782940/data/v12
 
 all: report
 
 .PHONY: clean distclean
 
-template.zip:
+sn-jnl.cls sn-apacite.bst:
 	curl -L -o template.zip $(TEMPLATE_URL)
-	unzip -jo template.zip 'sn-jnl.cls' 'sn-apacite.bst'
+	unzip -jo template.zip '*/sn-jnl.cls' '*/sn-apacite.bst'
+	rm -f template.zip
 
-report: template.zip
+report: sn-jnl.cls sn-apacite.bst
 	pdflatex $(DOCNAME).tex
 	bibtex $(DOCNAME).aux
 	pdflatex $(DOCNAME).tex
@@ -18,11 +20,10 @@ report: template.zip
 	detex $(DOCNAME).tex | wc -w
 
 view: report
-	open $(DOCNAME).pdf
+	$(OPEN) $(DOCNAME).pdf
 
 clean:
 	rm -f *.blg *.bbl *.aux *.log *.spl
 
 distclean: clean
-	rm -f elsarticle.zip elsarticle.cls elsarticle.ins elsarticle.dtx \
-	      elsarticle-harv.bst elsarticle-num.bst elsarticle-num-names.bst
+	rm -f template.zip sn-jnl.cls sn-apacite.bst

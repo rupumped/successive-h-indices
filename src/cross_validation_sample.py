@@ -23,14 +23,16 @@ author_id to a display name and affiliation history.
 
 import csv
 import json
+import os
 import sys
 import time
 import urllib.request
 
 import duckdb
 
-DB_PATH = "openalex.duckdb"
-OUT_CSV = "cross_validation_sample.csv"
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DB_PATH = os.path.join(ROOT_DIR, "data", "openalex.duckdb")
+OUT_CSV = os.path.join(ROOT_DIR, "results", "cross_validation_sample.csv")
 MAILTO = "nicholas.s.selby@gmail.com"  # OpenAlex polite pool
 
 # (bucket, institution_name, field_name_or_None, how_many_authors_at_threshold)

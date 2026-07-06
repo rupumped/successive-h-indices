@@ -26,10 +26,11 @@ Usage:
 import duckdb
 import os
 
-OUT_DIR        = os.path.dirname(os.path.abspath(__file__))
-INST_CSV       = os.path.join(OUT_DIR, "h2_by_institution.csv")
-INST_FIELD_CSV = os.path.join(OUT_DIR, "h2_by_institution_field.csv")
-OUT_CSV        = os.path.join(OUT_DIR, "specialization_index.csv")
+ROOT_DIR       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+INTERIM_DIR    = os.path.join(ROOT_DIR, "data", "interim")
+INST_CSV       = os.path.join(INTERIM_DIR, "h2_by_institution.csv")
+INST_FIELD_CSV = os.path.join(INTERIM_DIR, "h2_by_institution_field.csv")
+OUT_CSV        = os.path.join(ROOT_DIR, "results", "specialization_index.csv")
 
 TOP_N          = 20
 MIN_H2         = 10   # only show institutions with meaningful overall strength

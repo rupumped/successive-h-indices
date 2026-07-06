@@ -14,7 +14,8 @@ import csv
 import os
 from collections import defaultdict
 
-H3_FIELD_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "h3_by_field")
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+H3_FIELD_DIR = os.path.join(ROOT_DIR, "data", "interim", "h3_by_field")
 
 
 def field_name_from_path(path):

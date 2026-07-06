@@ -20,9 +20,10 @@ import duckdb
 import os
 import re
 
-OUT_DIR        = os.path.dirname(os.path.abspath(__file__))
-INST_FIELD_CSV = os.path.join(OUT_DIR, "h2_by_institution_field.csv")
-OUT_FIELD_DIR  = os.path.join(OUT_DIR, "h3_by_field")
+ROOT_DIR       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+INTERIM_DIR    = os.path.join(ROOT_DIR, "data", "interim")
+INST_FIELD_CSV = os.path.join(INTERIM_DIR, "h2_by_institution_field.csv")
+OUT_FIELD_DIR  = os.path.join(INTERIM_DIR, "h3_by_field")
 
 S3_INSTITUTIONS = "s3://openalex/data/parquet/institutions/*/*.parquet"
 

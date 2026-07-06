@@ -20,9 +20,9 @@ Usage:
 import duckdb
 import os
 
-OUT_DIR   = os.path.dirname(os.path.abspath(__file__))
-FIELD_CSV = os.path.join(OUT_DIR, "h2_by_institution_field.csv")
-OUT_CSV   = os.path.join(OUT_DIR, "field_gini.csv")
+ROOT_DIR  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FIELD_CSV = os.path.join(ROOT_DIR, "data", "interim", "h2_by_institution_field.csv")
+OUT_CSV   = os.path.join(ROOT_DIR, "results", "field_gini.csv")
 
 
 def main():

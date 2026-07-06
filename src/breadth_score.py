@@ -18,10 +18,11 @@ Usage:
 import duckdb
 import os
 
-OUT_DIR   = os.path.dirname(os.path.abspath(__file__))
-FIELD_CSV = os.path.join(OUT_DIR, "h2_by_institution_field.csv")
-INST_CSV  = os.path.join(OUT_DIR, "h2_by_institution.csv")
-OUT_CSV   = os.path.join(OUT_DIR, "breadth_score.csv")
+ROOT_DIR  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+INTERIM_DIR = os.path.join(ROOT_DIR, "data", "interim")
+FIELD_CSV = os.path.join(INTERIM_DIR, "h2_by_institution_field.csv")
+INST_CSV  = os.path.join(INTERIM_DIR, "h2_by_institution.csv")
+OUT_CSV   = os.path.join(ROOT_DIR, "results", "breadth_score.csv")
 
 TOP_N = 30
 

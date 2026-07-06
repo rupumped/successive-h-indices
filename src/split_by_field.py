@@ -11,8 +11,9 @@ import csv
 import os
 import re
 
-SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)), "h2_by_institution_field.csv")
-OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "h2_by_field")
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC = os.path.join(ROOT_DIR, "data", "interim", "h2_by_institution_field.csv")
+OUT_DIR = os.path.join(ROOT_DIR, "results", "h2_by_field")
 
 COLUMNS = ["institution_id", "institution_name", "h2", "author_count"]
 

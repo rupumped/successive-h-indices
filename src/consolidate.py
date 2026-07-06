@@ -14,9 +14,9 @@ import re
 import sys
 import time
 
-OUT_DIR = os.path.dirname(os.path.abspath(__file__))
-STAGING_DIR = os.path.join(OUT_DIR, "data", "authors_staging")
-FILTERED_PARQUET = os.path.join(OUT_DIR, "data", "authors_filtered.parquet")
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STAGING_DIR = os.path.join(ROOT_DIR, "data", "authors_staging")
+FILTERED_PARQUET = os.path.join(ROOT_DIR, "data", "authors_filtered.parquet")
 
 
 def main():

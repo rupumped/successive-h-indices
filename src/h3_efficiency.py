@@ -23,10 +23,11 @@ import csv
 import math
 import os
 
-OUT_DIR      = os.path.dirname(os.path.abspath(__file__))
-H3_CSV       = os.path.join(OUT_DIR, "h3_by_country.csv")
-H3_FIELD_DIR = os.path.join(OUT_DIR, "h3_by_field")
-OUT_CSV      = os.path.join(OUT_DIR, "h3_efficiency.csv")
+ROOT_DIR     = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+INTERIM_DIR  = os.path.join(ROOT_DIR, "data", "interim")
+H3_CSV       = os.path.join(INTERIM_DIR, "h3_by_country.csv")
+H3_FIELD_DIR = os.path.join(INTERIM_DIR, "h3_by_field")
+OUT_CSV      = os.path.join(ROOT_DIR, "results", "h3_efficiency.csv")
 
 TOP_N    = 30
 MIN_INST = 5   # countries with fewer institutions produce unstable H3
