@@ -1,8 +1,8 @@
 # Successive H-Indices
 ## Highlights
-1. The US News and World Report ranking (closely aligned with H2 on overall ranking) is a biomedical ranking in disguise. Harvard ranks #1 not because it's the best university in the world at everything, but because it has a 29,000-author medical school. CMU (#175), USTC (#31), and Wageningen (#148) are world leaders in their fields but structurally can't reach the top of the aggregate because they lack that medical tail. The overall number is measuring "how big is your medical school" more than it's measuring research excellence.
+1. The US News and World Report ranking (closely aligned with H2 on overall ranking) is a biomedical ranking in disguise. Harvard ranks #1 not because it's the best university in the world at everything, but because it has a 56,000-author medical school. CMU (#175), USTC (#39), and Wageningen (#172) are world leaders in their fields but structurally can't reach the top of the aggregate because they lack that medical tail. The overall number is measuring "how big is your medical school" more than it's measuring research excellence.
 2. China has already won STEM, not "catching up." Five gold medals (one shared with the US), all in applied science and engineering fields. Zero medals in arts, humanities, social sciences, or business. This is a present-tense fact buried under Western prestige rankings that weight the fields where the US still leads.
-3. Brazil is *really* good at dentistry. This is the most genuinely counterintuitive single finding. A country that appears nowhere in elite research rankings has quietly built the world's deepest bench of dental researchers.
+3. Brazil is *really* good at dentistry. This is the most genuinely counterintuitive single finding. A country that appears nowhere in elite research rankings has quietly built the university with the world's deepest bench of dental researchers.
 
 ## Introduction
 In 2007, András Schubert published a paper titled "Successive h-indices." It begins:
@@ -141,7 +141,7 @@ Because medical fields have by far the largest, most cited author pools (Medicin
 ### Physics & Astronomy is dominated by a few institutions; Veterinary is most distributed
 Physics & Astronomy is the most unequal field (Gini=0.60). University of Antwerp dominates at 16× the field H2 mean. Decision Science and Veterinary are the most distributed (Gini=0.42). Counter-intuitively, Medicine's Gini (0.53) is quite middle despite Harvard's 14× ratio, because Medicine has more institutions with meaningful H2.
 
-### Oxford has the greatest breadth
+### UCLA has the greatest breadth
 UCLA appears in the top 50 across more fields (20 of 26) than anyone else, and they're in the top 10 in 8. Harvard makes the top 10 in 13 of 26 fields (most of any institution) and has 19 in the top 50.
 
 ### The most efficient universities have very few authors
