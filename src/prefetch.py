@@ -11,12 +11,19 @@ Filters applied per partition:
   - affiliations contains at least one entry with institution.type = 'education'
   - topics contains at least one entry with a non-null field.id
 
-Column pruning: only id, h_index, affiliations, and topics are fetched from
-each remote file. affiliations (not last_known_institutions) is pulled
-because it carries a years[] array per institution, which build.py uses to
-pick each author's most recent education affiliation; last_known_institutions
+Column pruning: only id, h_index, works_count, affiliations, and topics are
+fetched from each remote file. affiliations (not last_known_institutions) is
+pulled because it carries a years[] array per institution, which build.py uses
+to pick each author's most recent education affiliation; last_known_institutions
 has no per-entry recency information — its entries are just the affiliations
 listed on an author's single most recent work, in no meaningful order.
+works_count (a top-level column, not part of summary_stats) is the T in Egghe's
+(2008) author-article IPP (his eq. 6): the number of articles credited to each
+author. Its Lotka tail exponent is alpha_1, used by estimate_alphas.py.
+
+Staging files are schema-checked as well as integrity-checked: files written
+before works_count was added to this query lack the column and are treated as
+missing, so a re-run backfills them rather than silently proceeding without it.
 
 Usage:
   python3 prefetch.py
@@ -88,12 +95,20 @@ def staging_path(partition):
     return os.path.join(STAGING_DIR, f"{partition}.parquet")
 
 
-def parquet_ok(path):
-    """True if the file has valid parquet magic bytes and a plausible footer length.
+EXPECTED_COLUMNS = {"id", "h_index", "works_count", "affiliations", "topics"}
+
+
+def parquet_ok(path, con=None):
+    """True if the file has valid parquet magic bytes, a plausible footer length,
+    and the columns the current process_partition() query produces.
 
     Parquet layout: [PAR1][...data...][footer bytes][footer_len: int32][PAR1]
     A truncated write typically leaves PAR1 at the end but a footer_length that
     points past the start of the file, which DuckDB rejects as corrupt.
+
+    The schema check catches staging files written before works_count was added
+    to the SELECT below: without it they'd pass the byte-level check and be
+    silently treated as done, leaving a hole in every downstream join.
     """
     try:
         size = os.path.getsize(path)
@@ -107,8 +122,19 @@ def parquet_ok(path):
             magic = f.read(4)
         if magic != b"PAR1":
             return False
-        return 0 < footer_len < size - 8
+        if not (0 < footer_len < size - 8):
+            return False
     except OSError:
+        return False
+
+    if con is None:
+        return True
+    try:
+        cols = {r[0] for r in con.execute(
+            f"SELECT * FROM read_parquet('{path}') LIMIT 0"
+        ).description}
+        return EXPECTED_COLUMNS <= cols
+    except duckdb.Error:
         return False
 
 
@@ -123,6 +149,7 @@ def process_partition(con, partition):
                 SELECT
                     id,
                     summary_stats.h_index           AS h_index,
+                    works_count,
                     affiliations,
                     topics
                 FROM read_parquet('{s3_glob}')
@@ -155,10 +182,10 @@ def main():
         path = staging_path(p)
         if not os.path.exists(path):
             continue
-        if parquet_ok(path):
+        if parquet_ok(path, con):
             done.add(p)
         else:
-            print(f"  Removing corrupt staging file: {path}")
+            print(f"  Removing corrupt or outdated-schema staging file: {path}")
             os.remove(path)
 
     remaining = [p for p in partitions if p not in done]

@@ -3,10 +3,14 @@
 Build the H2 dataset from the pre-filtered local parquet produced by prefetch.py.
 
 Steps:
-  3. Build per-author table (id, h_index, institution_id, institution_name, field)
+  3. Build per-author table (id, h_index, works_count, institution_id, institution_name, field)
   4. Compute H2 per (institution_id, field)
   5. Write authors.csv and h2_by_institution_field.csv
   6. Sanity checks
+
+works_count carries through from prefetch.py's top-level works_count column
+(the T in Egghe's 2008 author-article IPP) purely so estimate_alphas.py can
+fit alpha_1 later; it isn't used anywhere else in this script.
 
 Usage:
   python3 build.py
@@ -82,7 +86,7 @@ def _make_batches(files):
 
 def _read_expr(part):
     f, n_chunks, chunk_idx, _mb = part
-    expr = f"SELECT id, h_index, affiliations, topics FROM read_parquet('{f}')"
+    expr = f"SELECT id, h_index, works_count, affiliations, topics FROM read_parquet('{f}')"
     if chunk_idx is not None:
         expr += f" WHERE hash(id) % {n_chunks} = {chunk_idx}"
     return expr
@@ -122,7 +126,7 @@ def step3_build_authors(con):
         con.execute("""
             CREATE OR REPLACE TEMP TABLE _inst AS
             WITH edu AS (
-                SELECT id AS author_id, h_index,
+                SELECT id AS author_id, h_index, works_count,
                        aff.institution.id           AS institution_id,
                        aff.institution.display_name AS institution_name,
                        list_max(aff.years)          AS latest_year
@@ -138,7 +142,7 @@ def step3_build_authors(con):
                        ) AS rnk
                 FROM edu
             )
-            SELECT author_id, h_index, institution_id, institution_name
+            SELECT author_id, h_index, works_count, institution_id, institution_name
             FROM ranked
             WHERE rnk = 1
         """)
@@ -166,7 +170,7 @@ def step3_build_authors(con):
         print(f"{con.execute('SELECT COUNT(*) FROM _modal').fetchone()[0]:,} rows")
 
         batch_sql = """
-            SELECT i.author_id, i.h_index, i.institution_id, i.institution_name,
+            SELECT i.author_id, i.h_index, i.works_count, i.institution_id, i.institution_name,
                    m.field, m.field_name
             FROM _inst i JOIN _modal m USING (author_id)
         """

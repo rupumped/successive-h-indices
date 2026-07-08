@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 """
-H3 efficiency: H3 / log2(institution_count).
+H3 efficiency: H3 / institution_count^(1/beta_2).
 
 Raw H3 measures the depth of a national research system, but it rewards
 having many institutions. A country with 10,000 universities and H3=60 is
 less impressive than one with 100 universities and H3=50. Dividing by
-log2(institution_count) adjusts for scale and surfaces countries whose
+institution_count^(1/beta_2) adjusts for scale and surfaces countries whose
 research excellence is concentrated.
+
+beta_2 = alpha_0*alpha_1*alpha_2 is the compound Lotka exponent from Egghe
+(2008), eq. 18: h3 = institution_count^(1/(alpha_0*alpha_1*alpha_2)). It is
+fit empirically by estimate_alphas.py (the tail exponent of the h2
+distribution across institutions, his eq. 14) and read from
+results/lotka_exponents.json here. Run estimate_alphas.py first.
 
 Also shows the most efficient country per field.
 
@@ -16,17 +22,19 @@ this metric quantifies that gap.
 Output: h3_efficiency.csv
 
 Usage:
+  python3 estimate_alphas.py   # once, to produce lotka_exponents.json
   python3 h3_efficiency.py
 """
 
 import csv
-import math
+import json
 import os
 
 ROOT_DIR     = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INTERIM_DIR  = os.path.join(ROOT_DIR, "data", "interim")
 H3_CSV       = os.path.join(INTERIM_DIR, "h3_by_country.csv")
 H3_FIELD_DIR = os.path.join(INTERIM_DIR, "h3_by_field")
+ALPHAS_JSON  = os.path.join(ROOT_DIR, "results", "lotka_exponents.json")
 OUT_CSV      = os.path.join(ROOT_DIR, "results", "h3_efficiency.csv")
 
 TOP_N    = 30
@@ -41,6 +49,17 @@ def field_name_from_path(path):
 def main():
     if not os.path.exists(H3_CSV):
         raise SystemExit(f"ERROR: {H3_CSV} not found.")
+    if not os.path.exists(ALPHAS_JSON):
+        raise SystemExit(f"ERROR: {ALPHAS_JSON} not found. Run estimate_alphas.py first.")
+
+    with open(ALPHAS_JSON) as f:
+        beta_2 = json.load(f)["beta_2"]
+    inv_beta_2 = 1.0 / beta_2
+    print(f"Using beta_2 = alpha_0*alpha_1*alpha_2 = {beta_2:.4f}  "
+          f"(efficiency = h3 / institution_count^{inv_beta_2:.4f})\n")
+
+    def scale(institution_count):
+        return institution_count ** inv_beta_2
 
     with open(H3_CSV, newline="") as f:
         raw = [(r["country_code"], int(r["h3"]), int(r["institution_count"]))
@@ -53,7 +72,7 @@ def main():
     for cc, h3, ic in raw:
         if ic < MIN_INST:
             continue
-        eff = h3 / math.log2(ic)
+        eff = h3 / scale(ic)
         results.append((cc, h3, ic, eff, h3_rank_of[cc]))
 
     results.sort(key=lambda x: (-x[3], x[0]))
@@ -71,7 +90,7 @@ def main():
     hdr = f"  {'CC':>4} {'EffRk':>6} {'Eff':>6} {'H3':>4} {'H3Rk':>5} {'#Inst':>6} {'Δrank':>6}"
     sep = "  " + "-" * (len(hdr) - 2)
 
-    print(f"Top {TOP_N} by H3 efficiency (H3 / log₂(institution_count)):")
+    print(f"Top {TOP_N} by H3 efficiency (H3 / institution_count^{inv_beta_2:.3f}):")
     print(hdr); print(sep)
     for i, (cc, h3, ic, eff, h3_rank) in enumerate(results[:TOP_N], 1):
         delta = h3_rank - i
@@ -108,9 +127,9 @@ def main():
                 continue
             rows.sort(key=lambda x: (-x[1], x[0]))
             field_h3_rank = {cc: i + 1 for i, (cc, _, _) in enumerate(rows)}
-            best = max(rows, key=lambda x: x[1] / math.log2(x[2]))
+            best = max(rows, key=lambda x: x[1] / scale(x[2]))
             cc, h3, ic = best
-            eff = h3 / math.log2(ic)
+            eff = h3 / scale(ic)
             print(f"  {str(fname)[:44]:<45} {cc:>4} {h3:>4} {ic:>6,} {eff:>6.2f} {field_h3_rank[cc]:>6}")
 
 

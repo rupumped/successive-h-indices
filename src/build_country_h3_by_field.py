@@ -6,7 +6,7 @@ H3 = n means n institutions in that country have a field-specific H2 of at least
 
 Reads:
   h2_by_institution_field.csv     (local, from build.py)
-  s3://openalex/.../institutions  (anonymous, for country_code lookup)
+  institution_country_map.csv     (local, from fetch_country_codes.py)
 
 Output: h3_by_field/<field_name>.csv
   country_code, h3, institution_count
@@ -23,9 +23,8 @@ import re
 ROOT_DIR       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INTERIM_DIR    = os.path.join(ROOT_DIR, "data", "interim")
 INST_FIELD_CSV = os.path.join(INTERIM_DIR, "h2_by_institution_field.csv")
+COUNTRY_MAP_CSV = os.path.join(INTERIM_DIR, "institution_country_map.csv")
 OUT_FIELD_DIR  = os.path.join(INTERIM_DIR, "h3_by_field")
-
-S3_INSTITUTIONS = "s3://openalex/data/parquet/institutions/*/*.parquet"
 
 
 def safe_filename(field_name):
@@ -35,20 +34,19 @@ def safe_filename(field_name):
 def main():
     if not os.path.exists(INST_FIELD_CSV):
         raise SystemExit(f"ERROR: {INST_FIELD_CSV} not found. Run build.py first.")
+    if not os.path.exists(COUNTRY_MAP_CSV):
+        raise SystemExit(f"ERROR: {COUNTRY_MAP_CSV} not found. Run fetch_country_codes.py first.")
 
     os.makedirs(OUT_FIELD_DIR, exist_ok=True)
 
     con = duckdb.connect()
-    con.execute("INSTALL httpfs; LOAD httpfs;")
-    con.execute("SET s3_region='us-east-1'; SET s3_access_key_id=''; SET s3_secret_access_key='';")
     con.execute("SET threads=4; SET enable_progress_bar=true;")
 
-    print("Fetching country codes from S3...")
+    print("Loading country codes...")
     con.execute(f"""
         CREATE TABLE country_map AS
         SELECT id, country_code
-        FROM read_parquet('{S3_INSTITUTIONS}')
-        WHERE country_code IS NOT NULL
+        FROM read_csv_auto('{COUNTRY_MAP_CSV}')
     """)
     print(f"  {con.execute('SELECT COUNT(*) FROM country_map').fetchone()[0]:,} institutions")
 
