@@ -92,6 +92,31 @@ def _read_expr(part):
     return expr
 
 
+def _batch_sql(batch):
+    """Build SELECT SQL for a batch.
+
+    Unchunked files are passed as a list to a single read_parquet() call so
+    DuckDB opens them sequentially rather than all at once (avoiding EMFILE
+    when a batch contains hundreds of small files).  Chunked parts keep their
+    individual SELECT … WHERE hash(id) % n = i expressions and are UNION ALL'd
+    in the normal way.
+    """
+    unchunked = [p for p in batch if p[2] is None]
+    chunked   = [p for p in batch if p[2] is not None]
+
+    segments = []
+    if unchunked:
+        files_list = ", ".join(f"'{p[0]}'" for p in unchunked)
+        segments.append(
+            f"SELECT id, h_index, works_count, affiliations, topics"
+            f" FROM read_parquet([{files_list}])"
+        )
+    for p in chunked:
+        segments.append(_read_expr(p))
+
+    return "\n            UNION ALL\n            ".join(segments)
+
+
 def step3_build_authors(con):
     print("Step 3: Building per-author dataset...")
     t0 = time.time()
@@ -110,7 +135,7 @@ def step3_build_authors(con):
         print(f"  Batch {b+1}/{n_batches}  parts {start+1}–{start+len(batch)}  ({batch_mb:.0f} MB)  [{batch[0][0].split('=')[-1]} … {batch[-1][0].split('=')[-1]}]")
 
         print("    _raw...", end=" ", flush=True)
-        union_sql = "\n            UNION ALL\n            ".join(_read_expr(part) for part in batch)
+        union_sql = _batch_sql(batch)
         con.execute(f"""
             CREATE OR REPLACE TEMP TABLE _raw AS
             {union_sql}

@@ -58,6 +58,11 @@ Run the scripts in order (all from the repo root):
 #    Resumable — safe to interrupt and re-run.
 python3 src/prefetch.py
 
+# 1a. Optional: merge per-partition staging files into a single parquet for
+#     faster I/O in step 2. Writes data/authors_filtered.parquet.
+#     Skip this if disk space is tight; build.py reads staging files directly.
+python3 src/consolidate.py
+
 # 2. Build the per-author table and compute H2 by (institution, field).
 #    Writes data/interim/authors.csv, data/interim/h2_by_institution_field.csv,
 #    and data/openalex.duckdb.
@@ -94,25 +99,83 @@ python3 src/prefetch_citations.py
 python3 src/estimate_alphas.py
 
 # 10. Efficiency metrics, normalized by the fitted exponents from step 9.
+#     Writes results/h2_efficiency.csv and results/h3_efficiency.csv.
 python3 src/h2_efficiency.py
 python3 src/h3_efficiency.py
+
+# 11. Total author count per field.
+#     Writes results/authors_by_field.csv.
+python3 src/authors_by_field.py
+
+# 12. Gini coefficient of H2 within each field (inequality of research strength
+#     across institutions). Writes results/field_gini.csv.
+python3 src/field_gini.py
+
+# 13. Breadth score: for each institution, count its top-10/50/100 field
+#     placements. Writes results/breadth_score.csv.
+python3 src/breadth_score.py
+
+# 14. Re-rank institutions excluding the five core biomedical fields
+#     (Medicine, Biochemistry/Genetics/Molecular Biology, Immunology and
+#     Microbiology, Neuroscience, Health Professions).
+#     Writes results/nonbiomedical_h2.csv.
+python3 src/nonbiomedical_ranking.py
+
+# 15. Specialization index: how much higher an institution ranks in its best
+#     single field than it does in the overall list.
+#     Writes results/specialization_index.csv.
+python3 src/specialization_index.py
+
+# 16. Academic Olympics: gold/silver/bronze medals per country per field
+#     based on H3. Writes results/academic_olympics.png.
+python3 src/academic_olympics.py
+
+# 17. Country specialization index: overall H3 rank minus best-field H3 rank.
+#     Writes results/country_specialization.csv.
+python3 src/country_specialization.py
+
+# 18. World choropleth of H3 by country. Downloads the Natural Earth 50m
+#     shapefile on first run. Writes results/h3_choropleth.png.
+python3 src/plot_h3_choropleth.py
+
+# 19. Scatter plot of H2 vs author_count^(1/β₁) with linear trendline and R².
+#     Requires step 9. Writes results/h2_vs_size.png.
+python3 src/plot_h2_vs_size.py
+
+# 20. Scatter plot of H3 vs institution_count^(1/β₂) with linear trendline
+#     and R². Requires step 9. Writes results/h3_vs_size.png.
+python3 src/plot_h3_vs_size.py
+
+# 21. Same scatter but using √institution_count (the √N heuristic, for
+#     comparison with step 20). Writes results/h3_vs_size_sqrt.png.
+python3 src/plot_h3_vs_size_sqrt.py
+
+# 22. Histogram of works_count across authors — diagnostic for the
+#     disambiguation-artifact cap used in step 9.
+#     Writes results/works_count_histogram.png.
+python3 src/plot_works_count_hist.py
+
+# 23. Optional: build a stress-test sample of authors for manual cross-
+#     validation against Google Scholar. Requires OpenAlex API access.
+#     Writes results/cross_validation_sample.csv.
+python3 src/cross_validation_sample.py
 ```
 
 ### Requirements
 
-```
-duckdb
-boto3      # only needed indirectly; prefetch.py uses the AWS CLI (aws s3 ls)
-numpy
-powerlaw   # discrete power-law MLE fitting, used by estimate_alphas.py
+Install Python dependencies from the repo root:
+
+```bash
+pip install -r requirements.txt
 ```
 
-The AWS CLI must be installed and `aws s3 ls --no-sign-request` must work (no credentials needed).
+The AWS CLI must also be installed and `aws s3 ls --no-sign-request` must work (no credentials needed): [AWS CLI documentation](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
 ## Outputs
 
 | File | Description |
 |---|---|
+| `data/authors_filtered.parquet` | Consolidated single parquet (optional; created by `consolidate.py`) |
 | `data/interim/authors.csv` | 27.1M rows: author_id, h_index, works_count, institution_id, institution_name, field, field_name |
 | `data/interim/h2_by_institution_field.csv` | 328,500 (institution, field) pairs with H2 and author count |
 | `results/h2_by_field/` | One CSV per field, sorted by H2 descending |
@@ -123,6 +186,19 @@ The AWS CLI must be installed and `aws s3 ls --no-sign-request` must work (no cr
 | `results/lotka_exponents.json` | Fitted α<sub>1</sub>, α<sub>2</sub>, β<sub>1</sub>=α<sub>0</sub>α<sub>1</sub>, β<sub>2</sub>=α<sub>0</sub>α<sub>1</sub>α<sub>2</sub>, derived α<sub>0</sub>, and per-fit diagnostics |
 | `results/h2_efficiency.csv` | Institutions ranked by H2 / author_count^(1/β<sub>1</sub>) |
 | `results/h3_efficiency.csv` | Countries ranked by H3 / institution_count^(1/β<sub>2</sub>) |
+| `results/authors_by_field.csv` | Author count per field |
+| `results/field_gini.csv` | Gini coefficient of H2 across institutions within each field |
+| `results/breadth_score.csv` | Per-institution count of top-10/50/100 field placements |
+| `results/nonbiomedical_h2.csv` | Institution H2 recomputed excluding the five core biomedical fields |
+| `results/specialization_index.csv` | Institution specialization index (overall rank minus best single-field rank) |
+| `results/academic_olympics.png` | Medal table: gold/silver/bronze per country per field |
+| `results/country_specialization.csv` | Country specialization index (overall H3 rank minus best-field H3 rank) |
+| `results/h3_choropleth.png` | World choropleth of H3 by country |
+| `results/h2_vs_size.png` | Scatter plot of H2 vs author_count^(1/β<sub>1</sub>) with trendline and R² |
+| `results/h3_vs_size.png` | Scatter plot of H3 vs institution_count^(1/β<sub>2</sub>) with trendline and R² |
+| `results/h3_vs_size_sqrt.png` | Scatter plot of H3 vs √institution_count (√N heuristic baseline) |
+| `results/works_count_histogram.png` | works_count histogram, diagnostic for the disambiguation-artifact cap |
+| `results/cross_validation_sample.csv` | Sample of authors for manual Google Scholar cross-validation |
 
 ## Efficiency exponents
 
