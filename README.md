@@ -1,10 +1,10 @@
 # Successive H-Indices
 ## Highlights
-1. The US News and World Report ranking (closely aligned with H2 on overall ranking) is a biomedical ranking in disguise — so much so that even Harvard's own #1 spot doesn't survive excluding biomedical fields (it drops to #5, behind Cornell, Stanford, Berkeley, and UCLA). CMU (#80 overall), USTC (#270), and Wageningen (#137) are world leaders in their fields but structurally can't reach the top of the aggregate because they lack a large medical school. The overall number is measuring "how big is your medical school" more than it's measuring research excellence.
-2. China's applied-science strength is real but several of its head-to-head races with the US are razor-thin. In the current snapshot the US wins 24 of 26 Academic Olympics golds to China's 2 (Energy, Materials Science), but three of those races are decided by a single institution's worth of H3 (Chemical Engineering: US 10 vs. China 9; Materials Science: China 25 vs. US 24), and this picture has already flipped substantially once — an earlier pull of this same pipeline had China at 5 golds. Read the exact medal count as a snapshot, not a verdict; the underlying pattern (zero Chinese medals in arts, humanities, social sciences, or business) is more stable than the count itself.
-3. Brazil is *really* good at dentistry. This is the most genuinely counterintuitive single finding. A country that appears nowhere in elite research rankings has quietly built the university (Universidade de São Paulo) with the world's deepest bench of dental researchers.
+1. The overall institution-level ranking is, in substance, a ranking of medical school size: Medicine accounts for 44% of the global author pool and structurally dominates any university-wide aggregate. Harvard is the exception: it places #1 even after removing all five core biomedical fields. But the table below it reshuffles dramatically: Antwerp rises to 2nd (+12 places), Caltech to 3rd (+12), MIT to 6th (+19), USTC to 8th (+31), while Stanford barely moves (−2) and Cambridge falls to 10th (−7). CMU (175th overall), USTC (39th), and Wageningen (172nd) are world leaders in their fields but structurally can't reach the top of the aggregate because they lack large medical schools.
+2. China's applied-science strength is real. In the current snapshot the US wins 22 of 26 Academic Olympics golds; China wins 5 (Chemical Engineering, Energy, Engineering, Materials Science outright, plus a tied gold in Chemistry). China holds zero medals in arts, humanities, social sciences, or business.
+3. Brazil holds two of the world's six deepest dental-research benches. Universidade de São Paulo and UNICAMP give Brazil a concentration of dental talent you'd never find by looking at any general-purpose ranking.
 
-**A note on reproducibility:** `s3://openalex/data/parquet/authors/` is a live, continuously-updated snapshot, not a versioned release. Every number below reflects our most recent pull; re-running this pipeline today will not reproduce them exactly, and several field-level leaders in earlier versions of this analysis (University of Antwerp in Physics and Astronomy, the University of Chinese Academy of Sciences in Chemical Engineering) have already been overtaken between pulls. See the paper's Conclusion for more on the size of this effect.
+**A note on reproducibility:** `s3://openalex/data/parquet/authors/` is a live, continuously-updated snapshot, not a versioned release. Every number below reflects our most recent pull; re-running this pipeline today will not reproduce them exactly, and several field-level leaders in earlier versions of this analysis may have already been overtaken.
 
 ## Introduction
 In 2007, András Schubert published a paper titled "Successive h-indices." It begins:
@@ -20,10 +20,10 @@ Fifteen years later, OpenAlex launched a FOSS bibliographic catalogue complete w
 Compute successive h-indices up the researcher → institution → country hierarchy using [OpenAlex](https://openalex.org/).
 
 - **H1** (the ordinary h-index): *n* papers by an author have at least *n* citations.
-- **H2**: *n* authors at an institution (in a given field) have an H1 of at least *n*.
-- **H3**: *n* institutions in a country have an H2 of at least *n*.
+- **h<sub>2</sub>**: *n* authors at an institution (in a given field) have an H1 of at least *n*.
+- **h<sub>3</sub>**: *n* institutions in a country have an h<sub>2</sub> of at least *n*.
 
-H2 is computed per (institution, field) pair and also aggregated across all fields. H3 is computed per country.
+h<sub>2</sub> is computed per (institution, field) pair and also aggregated across all fields. h<sub>3</sub> is computed per country.
 
 ## Data source
 OpenAlex public snapshot on AWS S3 (`s3://openalex/data/parquet/authors/`, `us-east-1`). No credentials required. The snapshot is partitioned by `updated_date` into ~1,663 daily parquet files totalling ~53 GB.
@@ -33,9 +33,11 @@ Authors are filtered to those with:
 - at least one affiliation with `institution.type = "education"`
 - at least one OpenAlex topic with a non-null field classification
 
-This yields **27.1 million authors** across **20,907 institutions** and OpenAlex's current list of 26 fields. Each author's `works_count` is carried through as well, purely to fit the Lotka exponent α<sub>1</sub> (see "Efficiency exponents" below).
+This yields **17.1 million authors** across **20,669 institutions** and OpenAlex's current list of 26 fields. Each author's `works_count` is carried through as well, purely to fit the Lotka exponent α<sub>1</sub> (see "Efficiency exponents" below).
 
 Each author is assigned to a single institution: among their affiliations with `institution.type = "education"`, we pick the one with the latest publication year in that affiliation's `years[]` (OpenAlex's `affiliations` field lists an author's institutions together with the years they published while there). Ties are broken by the numerically smallest institution ID. We deliberately don't use `last_known_institutions` for this — despite the name, it's just the set of affiliations listed on an author's single most recent work, with no per-entry recency of its own, so it can't distinguish which of several co-affiliations is "most recent."
+
+Each author is also assigned to a single field: OpenAlex tags each author with a set of topics, each carrying a `count` (roughly, the number of the author's works classified under that topic) and a parent field. We sum `count` within each field and assign the author to whichever field carries the largest total weight — their modal field by publication volume, not simply their single most granular topic.
 
 ## Layout
 
@@ -63,31 +65,31 @@ python3 src/prefetch.py
 #     Skip this if disk space is tight; build.py reads staging files directly.
 python3 src/consolidate.py
 
-# 2. Build the per-author table and compute H2 by (institution, field).
-#    Writes data/interim/authors.csv, data/interim/h2_by_institution_field.csv,
+# 2. Build the per-author table and compute h<sub>2</sub> by (institution, field).
+#    Writes data/interim/authors.csv, data/interim/h<sub>2</sub>_by_institution_field.csv,
 #    and data/openalex.duckdb.
 python3 src/build.py
 
-# 3. Split h2_by_institution_field.csv into one file per field.
-#    Writes to results/h2_by_field/<field_name>.csv.
+# 3. Split h<sub>2</sub>_by_institution_field.csv into one file per field.
+#    Writes to results/h<sub>2</sub>_by_field/<field_name>.csv.
 python3 src/split_by_field.py
 
-# 4. Compute institution-level H2 (ignoring field).
-#    Writes data/interim/h2_by_institution.csv.
-python3 src/build_institution_h2.py
+# 4. Compute institution-level h<sub>2</sub> (ignoring field).
+#    Writes data/interim/h<sub>2</sub>_by_institution.csv.
+python3 src/build_institution_h<sub>2</sub>.py
 
 # 5. Download the institution id -> country_code lookup from the OpenAlex
 #    institutions snapshot on S3, once. Writes
 #    data/interim/institution_country_map.csv.
 python3 src/fetch_country_codes.py
 
-# 6. Compute H3 per country, using the local country map from step 5.
-#    Writes data/interim/h3_by_country.csv.
-python3 src/build_country_h3.py
+# 6. Compute h<sub>3</sub> per country, using the local country map from step 5.
+#    Writes data/interim/h<sub>3</sub>_by_country.csv.
+python3 src/build_country_h<sub>3</sub>.py
 
-# 7. Split h3_by_country.csv into one file per field.
-#    Writes to data/interim/h3_by_field/<field_name>.csv.
-python3 src/build_country_h3_by_field.py
+# 7. Split h<sub>3</sub>_by_country.csv into one file per field.
+#    Writes to data/interim/h<sub>3</sub>_by_field/<field_name>.csv.
+python3 src/build_country_h<sub>3</sub>_by_field.py
 
 # 8. Optional: sample cited_by_count from the OpenAlex works snapshot to
 #    enable a direct alpha_0 fit (step 9 falls back to an indirect estimate
@@ -99,15 +101,15 @@ python3 src/prefetch_citations.py
 python3 src/estimate_alphas.py
 
 # 10. Efficiency metrics, normalized by the fitted exponents from step 9.
-#     Writes results/h2_efficiency.csv and results/h3_efficiency.csv.
-python3 src/h2_efficiency.py
-python3 src/h3_efficiency.py
+#     Writes results/h<sub>2</sub>_efficiency.csv and results/h<sub>3</sub>_efficiency.csv.
+python3 src/h<sub>2</sub>_efficiency.py
+python3 src/h<sub>3</sub>_efficiency.py
 
 # 11. Total author count per field.
 #     Writes results/authors_by_field.csv.
 python3 src/authors_by_field.py
 
-# 12. Gini coefficient of H2 within each field (inequality of research strength
+# 12. Gini coefficient of h<sub>2</sub> within each field (inequality of research strength
 #     across institutions). Writes results/field_gini.csv.
 python3 src/field_gini.py
 
@@ -118,7 +120,7 @@ python3 src/breadth_score.py
 # 14. Re-rank institutions excluding the five core biomedical fields
 #     (Medicine, Biochemistry/Genetics/Molecular Biology, Immunology and
 #     Microbiology, Neuroscience, Health Professions).
-#     Writes results/nonbiomedical_h2.csv.
+#     Writes results/nonbiomedical_h<sub>2</sub>.csv.
 python3 src/nonbiomedical_ranking.py
 
 # 15. Specialization index: how much higher an institution ranks in its best
@@ -127,28 +129,28 @@ python3 src/nonbiomedical_ranking.py
 python3 src/specialization_index.py
 
 # 16. Academic Olympics: gold/silver/bronze medals per country per field
-#     based on H3. Writes results/academic_olympics.png.
+#     based on h<sub>3</sub>. Writes results/academic_olympics.png.
 python3 src/academic_olympics.py
 
-# 17. Country specialization index: overall H3 rank minus best-field H3 rank.
+# 17. Country specialization index: overall h<sub>3</sub> rank minus best-field h<sub>3</sub> rank.
 #     Writes results/country_specialization.csv.
 python3 src/country_specialization.py
 
-# 18. World choropleth of H3 by country. Downloads the Natural Earth 50m
-#     shapefile on first run. Writes results/h3_choropleth.png.
-python3 src/plot_h3_choropleth.py
+# 18. World choropleth of h<sub>3</sub> by country. Downloads the Natural Earth 50m
+#     shapefile on first run. Writes results/h<sub>3</sub>_choropleth.png.
+python3 src/plot_h<sub>3</sub>_choropleth.py
 
-# 19. Scatter plot of H2 vs author_count^(1/β₁) with linear trendline and R².
-#     Requires step 9. Writes results/h2_vs_size.png.
-python3 src/plot_h2_vs_size.py
+# 19. Scatter plot of h<sub>2</sub> vs author_count^(1/β₁) with linear trendline and R².
+#     Requires step 9. Writes results/h<sub>2</sub>_vs_size.png.
+python3 src/plot_h<sub>2</sub>_vs_size.py
 
-# 20. Scatter plot of H3 vs institution_count^(1/β₂) with linear trendline
-#     and R². Requires step 9. Writes results/h3_vs_size.png.
-python3 src/plot_h3_vs_size.py
+# 20. Scatter plot of h<sub>3</sub> vs institution_count^(1/β₂) with linear trendline
+#     and R². Requires step 9. Writes results/h<sub>3</sub>_vs_size.png.
+python3 src/plot_h<sub>3</sub>_vs_size.py
 
 # 21. Same scatter but using √institution_count (the √N heuristic, for
-#     comparison with step 20). Writes results/h3_vs_size_sqrt.png.
-python3 src/plot_h3_vs_size_sqrt.py
+#     comparison with step 20). Writes results/h<sub>3</sub>_vs_size_sqrt.png.
+python3 src/plot_h<sub>3</sub>_vs_size_sqrt.py
 
 # 22. Histogram of works_count across authors — diagnostic for the
 #     disambiguation-artifact cap used in step 9.
@@ -176,27 +178,27 @@ The AWS CLI must also be installed and `aws s3 ls --no-sign-request` must work (
 | File | Description |
 |---|---|
 | `data/authors_filtered.parquet` | Consolidated single parquet (optional; created by `consolidate.py`) |
-| `data/interim/authors.csv` | 27.1M rows: author_id, h_index, works_count, institution_id, institution_name, field, field_name |
-| `data/interim/h2_by_institution_field.csv` | 328,500 (institution, field) pairs with H2 and author count |
-| `results/h2_by_field/` | One CSV per field, sorted by H2 descending |
-| `data/interim/h2_by_institution.csv` | 20,907 institutions with institution-level H2 |
+| `data/interim/authors.csv` | 17.1M rows: author_id, h_index, works_count, institution_id, institution_name, field, field_name |
+| `data/interim/h<sub>2</sub>_by_institution_field.csv` | 288,300 (institution, field) pairs with h<sub>2</sub> and author count |
+| `results/h<sub>2</sub>_by_field/` | One CSV per field, sorted by h<sub>2</sub> descending |
+| `data/interim/h<sub>2</sub>_by_institution.csv` | 20,669 institutions with institution-level h<sub>2</sub> |
 | `data/interim/institution_country_map.csv` | institution_id → country_code lookup, downloaded once by `fetch_country_codes.py` |
-| `data/interim/h3_by_country.csv` | H3 index per country with institution count |
-| `data/interim/h3_by_field/` | One CSV per field, sorted by H3 descending |
-| `results/lotka_exponents.json` | Fitted α<sub>1</sub>, α<sub>2</sub>, β<sub>1</sub>=α<sub>0</sub>α<sub>1</sub>, β<sub>2</sub>=α<sub>0</sub>α<sub>1</sub>α<sub>2</sub>, derived α<sub>0</sub>, and per-fit diagnostics |
-| `results/h2_efficiency.csv` | Institutions ranked by H2 / author_count^(1/β<sub>1</sub>) |
-| `results/h3_efficiency.csv` | Countries ranked by H3 / institution_count^(1/β<sub>2</sub>) |
+| `data/interim/h<sub>3</sub>_by_country.csv` | h<sub>3</sub> index per country with institution count |
+| `data/interim/h<sub>3</sub>_by_field/` | One CSV per field, sorted by h<sub>3</sub> descending |
+| `results/lotka_exponents.json` | Fitted α<sub>1</sub>, α<sub>2</sub>, β<sub>1</sub>, β<sub>2</sub>, α<sub>0</sub>, and per-fit diagnostics |
+| `results/h<sub>2</sub>_efficiency.csv` | Institutions ranked by h<sub>2</sub> / author_count^(1/β<sub>1</sub>) |
+| `results/h<sub>3</sub>_efficiency.csv` | Countries ranked by h<sub>3</sub> / institution_count^(1/β<sub>2</sub>) |
 | `results/authors_by_field.csv` | Author count per field |
-| `results/field_gini.csv` | Gini coefficient of H2 across institutions within each field |
+| `results/field_gini.csv` | Gini coefficient of h<sub>2</sub> across institutions within each field |
 | `results/breadth_score.csv` | Per-institution count of top-10/50/100 field placements |
-| `results/nonbiomedical_h2.csv` | Institution H2 recomputed excluding the five core biomedical fields |
+| `results/nonbiomedical_h<sub>2</sub>.csv` | Institution h<sub>2</sub> recomputed excluding the five core biomedical fields |
 | `results/specialization_index.csv` | Institution specialization index (overall rank minus best single-field rank) |
 | `results/academic_olympics.png` | Medal table: gold/silver/bronze per country per field |
-| `results/country_specialization.csv` | Country specialization index (overall H3 rank minus best-field H3 rank) |
-| `results/h3_choropleth.png` | World choropleth of H3 by country |
-| `results/h2_vs_size.png` | Scatter plot of H2 vs author_count^(1/β<sub>1</sub>) with trendline and R² |
-| `results/h3_vs_size.png` | Scatter plot of H3 vs institution_count^(1/β<sub>2</sub>) with trendline and R² |
-| `results/h3_vs_size_sqrt.png` | Scatter plot of H3 vs √institution_count (√N heuristic baseline) |
+| `results/country_specialization.csv` | Country specialization index (overall h<sub>3</sub> rank minus best-field h<sub>3</sub> rank) |
+| `results/h<sub>3</sub>_choropleth.png` | World choropleth of h<sub>3</sub> by country |
+| `results/h<sub>2</sub>_vs_size.png` | Scatter plot of h<sub>2</sub> vs author_count^(1/β<sub>1</sub>) with trendline and R² |
+| `results/h<sub>3</sub>_vs_size.png` | Scatter plot of h<sub>3</sub> vs institution_count^(1/β<sub>2</sub>) with trendline and R² |
+| `results/h<sub>3</sub>_vs_size_sqrt.png` | Scatter plot of h<sub>3</sub> vs √institution_count (√N heuristic baseline) |
 | `results/works_count_histogram.png` | works_count histogram, diagnostic for the disambiguation-artifact cap |
 | `results/cross_validation_sample.csv` | Sample of authors for manual Google Scholar cross-validation |
 
@@ -209,84 +211,79 @@ Egghe (2008) models successive h-indices as a chain of Lotkaian (power-law) Info
 | Exponent | Fit from | Value |
 |---|---|---|
 | α<sub>1</sub> | `works_count` across authors (excluding 46 authors with works_count > 10,000 — an author-disambiguation artifact, see the script's docstring) | 2.996 |
-| α<sub>2</sub> | `author_count` across institutions | 2.021 |
-| β<sub>1</sub>=α<sub>0</sub>α<sub>1</sub> | `h1` (h_index) across authors | 1.833 |
-| β<sub>2</sub>=α<sub>0</sub>α<sub>1</sub>α<sub>2</sub> | `h2` across institutions | 2.917 |
+| α<sub>2</sub> | `author_count` across institutions | 1.994 |
+| β<sub>1</sub> | `h1` (h_index) across authors | 2.963 |
+| β<sub>2</sub> | `h<sub>2</sub>` across institutions | 2.998 |
 | α<sub>0</sub> | `cited_by_count` across a 718,299-work sample from `prefetch_citations.py` | 2.742 |
 
-Taken globally, these four exponents are inconsistent with Egghe's own model: β<sub>1</sub>/α<sub>1</sub> = 0.612 and β<sub>2</sub>/(α<sub>1</sub>α<sub>2</sub>) = 0.482 both imply α<sub>0</sub> < 1, impossible under his eq. 4. Refitting within a single field resolves most of this at the author level — implied α<sub>0</sub> rises to 0.890 within Medicine and 0.981 within Physics and Astronomy, essentially consistent with the required boundary once cross-field heterogeneity is controlled for — but the analogous β<sub>2</sub> ≈ β<sub>1</sub>·α<sub>2</sub> check does not improve within a field (off by 21% globally, 42% within Medicine, 45% within Physics and Astronomy), and the h<sub>2</sub>-across-institutions distribution is consistently better described by an exponential than a power law at every level tested. We read this as evidence that Egghe's compounding-exponent model holds at the author level once field heterogeneity is accounted for, but breaks down specifically at the institution-aggregation step. See the paper's Section "Testing the compounding-exponent model" for the full derivation.
+Egghe's functional form is empirically well-supported: S^(1/β<sub>1</sub>) alone explains 91% of the variance in h<sub>2</sub> (R²=0.911, no-intercept regression across all institutions with ≥10 authors), and R^(1/β<sub>2</sub>) explains 92% of the variance in h<sub>3</sub> across countries. The compounding-exponent cross-check fails sharply, however: α<sub>0</sub>α<sub>1</sub>=2.742×2.996=8.21, against the directly-measured β<sub>1</sub>=2.963 (a 177% discrepancy), and β<sub>1</sub>×α<sub>2</sub>=2.963×1.994=5.909 against the directly-measured β<sub>2</sub>=2.998 (a 97% discrepancy). The model is empirically useful; the underlying theory needs a different reading.
 
 ## Selected results
 
 ### Top institutions overall
 
-| Institution | H2 | Authors |
+| Institution | h<sub>2</sub> | Authors |
 |---|---|---|
-| Harvard University | 71 | 92,274 |
-| University of California, Los Angeles | 64 | 57,912 |
-| Stanford University | 63 | 55,761 |
-| University of California, San Francisco | 63 | 43,867 |
-| University of Washington | 63 | 62,319 |
+| Harvard University | 137 | 110,979 |
+| Stanford University | 107 | 65,197 |
+| University of Cambridge | 105 | 52,307 |
+| Cornell University | 104 | 70,718 |
+| Johns Hopkins University | 103 | 80,028 |
+| University of Oxford | 103 | 57,110 |
+| University of Washington | 102 | 71,270 |
+| University of North Carolina at Chapel Hill | 101 | 64,478 |
+| University College London | 100 | 77,482 |
+| University of California, San Francisco | 100 | 50,351 |
 
-Harvard's 1st place still matches the US News list, but the rest of the ordering has drifted further from it since an earlier pull of this pipeline: Stanford (3rd in US News) still places highly, but Cambridge (5th in US News) is now 26th in our ranking ($\mathrm{H2}=55$), outside our own top 10 entirely.
+This broadly tracks the US News and World Report ranking, where Harvard also places 1st, Stanford 3rd, and Cambridge 5th. The overall ranking is, however, a considerably less interesting object than it first appears.
 
-Schubert and I now rank my alma mater, Georgia Tech, 96th, whereas US News ranks it 94th — much closer agreement than an earlier pull of this pipeline showed (132nd vs. 94th).
-
-Field-specific results are more interesting.
-
-### Harvard wins the overall ranking, but only leads 5 of 26 fields outright
-Harvard tops Biochemistry/Genetics/Molecular Biology, Immunology and Microbiology, Health Professions, Economics/Econometrics/Finance, and Medicine. Unlike an earlier pull of this pipeline, Harvard does **not** remain #1 once you exclude the biomedical core (Medicine, Biochemistry/Genetics/Molecular Biology, Immunology and Microbiology, Neuroscience, Health Professions) — it drops to 5th, behind Cornell, Stanford, Berkeley, and UCLA. That's arguably a cleaner version of this section's point than a surviving #1 would have been: even Harvard's overall lead depends partly on medical-school scale.
+### Harvard wins the overall ranking, and leads 13 of 26 fields outright
+Harvard leads 13 of the 26 fields outright, more than any other institution, including Medicine, Biochemistry/Genetics/Molecular Biology, and Economics/Econometrics/Finance. Harvard remains #1 even after you exclude the biomedical core (Medicine, Biochemistry/Genetics/Molecular Biology, Immunology and Microbiology, Neuroscience, Health Professions). But the table below it reshuffles substantially: Antwerp rises to 2nd (+12), Caltech to 3rd (+12), MIT to 6th (+19), USTC to 8th (+31), ETH Zurich to 9th (+27), while Stanford falls slightly (−2) and Cambridge falls to 10th (−7). Harvard's overall lead reflects genuine breadth, not just medical-school scale.
 
 ### The university-level ranking hides real specialist powerhouses
-- Wageningen University, not a famous "elite" name in the US News sense, is #1 globally in Agricultural & Biological Sciences (H2=40 field-specific). It's ranked 137th in the overall list (H2=46) because it's a specialized institution rather than a broad research university.
-- University of Bologna: 153rd overall, 1st in Chemistry. A university outside any US News-style "Top 100" has the single deepest bench of high-impact chemistry researchers on Earth by this measure.
-- Tohoku University: 103rd overall, 1st in Materials Science.
-- University of Washington is the opposite case: #5 overall *and* #1 in Environmental Science. A broad powerhouse that also happens to be the best in a specific, non-biomedical field.
-- Carnegie Mellon: 80th overall, #1 in Computer Science. CMU is famous for CS but is not a broad biomedical/everything powerhouse, so it sits outside the top 50 overall, yet it has the single deepest bench of high-impact CS researchers by this metric.
+- Wageningen University (#172 overall, h<sub>2</sub>=71): #1 globally in both Agricultural & Biological Sciences and Environmental Science (field h<sub>2</sub>=56 in each). A specialized institution that never appears near the top of any broad ranking.
+- Shenyang Pharmaceutical University (#535 overall, h<sub>2</sub>=53): #1 globally in Pharmacology, Toxicology & Pharmaceutics (field h<sub>2</sub>=24).
+- Carnegie Mellon (#175 overall, h<sub>2</sub>=70): #1 in Computer Science (field h<sub>2</sub>=56). CMU is world-renowned for CS but lacks a large medical school, placing it outside the overall top 100.
+- University of Science and Technology of China (USTC, #39 overall, h<sub>2</sub>=89): leads three fields simultaneously — Materials Science (h<sub>2</sub>=59), Engineering (h<sub>2</sub>=62), and Energy (h<sub>2</sub>=52). Its sister institution, the University of Chinese Academy of Sciences (#97 overall, h<sub>2</sub>=80), leads Chemical Engineering (h<sub>2</sub>=23).
+- University of Antwerp (#14 overall, h<sub>2</sub>=98): #1 in Physics and Astronomy (field h<sub>2</sub>=96) is the counterexample that the rule holds both ways: a field leader that also ranks highly overall, because it is broadly excellent rather than narrowly specialized.
+- Universidade de São Paulo (#235 overall, h<sub>2</sub>=66): #1 in Dentistry (field h<sub>2</sub>=34), with UNICAMP placing 6th globally in the same field. Brazil holds two of the world's six deepest dental-research benches.
 
-Two of these leads are thin enough to be worth flagging: USTC's Energy lead (270th overall) is by a single institution over Jiangsu University, and this whole picture has shifted meaningfully since an earlier pull of this pipeline — University of Antwerp no longer leads Physics and Astronomy (Caltech and Cornell now tie there), and the University of Chinese Academy of Sciences no longer leads Chemical Engineering (Universidad de Zaragoza now does). Field leadership at these margins moves between snapshots.
-
-### Decision Sciences is the weakest field by far.
-The University of Southern California's #1 score is h2=17 on just 219 USC authors, out of only 131,012 authors in the field worldwide. Compare to Medicine's h2=63 with 6.8M authors. Decision Sciences is clearly a thin OpenAlex topic category, not a deep, well-populated discipline. H2 isn't meaningfully comparable across fields, only within them, and Decision Sciences may be too sparse to be meaningful at all.
-
-### Universidade de São Paulo leads Dentistry
-Brazil appears to have an outsized concentration of dental research talent (São Paulo: 231st overall, 1st in Dentistry, H2=27), which is not something you'd intuit from any general-purpose ranking. A second Brazilian institution, UNICAMP, places in Dentistry's global top 15 (H2=21) but no longer top 6 as an earlier pull of this pipeline showed.
+### Decision Sciences is the weakest field by far
+Stanford's #1 score is h<sub>2</sub>=22 on just 285 Stanford authors, out of only 139,954 authors in the field worldwide. Compare to Medicine's h<sub>2</sub>=119 built on 7.58 million authors. Decision Sciences is clearly a thin OpenAlex topic category, not a deep, well-populated discipline. h<sub>2</sub> isn't meaningfully comparable across fields, only within them, and Decision Sciences may be too sparse to be meaningful at all.
 
 ### The overall ranking is implicitly a biomedical ranking
-Because medical fields have by far the largest, most cited author pools (Medicine's h2=63 dwarfs every other field), they dominate any university-wide aggregate — strongly enough that even Harvard's own #1 position doesn't survive excluding them (see above). A university like USTC or CMU, elite in non-medical fields, will structurally never reach the top of the overall list no matter how good they are, simply because they don't have a large medical school. The field-level breakdown matters more than the university-level number.
+Medicine alone accounts for 7.58 million of the dataset's 17.1 million authors (44%), and together with Biochemistry/Genetics/Molecular Biology, Immunology and Microbiology, Neuroscience, and Health Professions, the five core biomedical fields dwarf every other field's author pool. A university like USTC or CMU, elite in non-medical fields, will structurally never reach the top of the overall list no matter how good it is, simply because it lacks a large medical school. Harvard is the exception: it ranks #1 even with biomedical fields removed, confirming genuine breadth. For almost every other institution, the field-level breakdown matters more than the university-level number.
 
-### Biochemistry is the most unequal field; Decision Sciences and Veterinary the most distributed
-Biochemistry, Genetics and Molecular Biology is now the most unequal field (Gini=0.534), narrowly ahead of Neuroscience and Physics and Astronomy. Harvard's field-leading H2=50 there is 9.5× the field mean of 5.29. Decision Science and Veterinary are (in either order) the most distributed (Gini≈0.39, essentially tied). Medicine's Gini (0.484) sits mid-table despite Harvard's field-leading H2=63 there too, because Medicine has thousands of institutions with meaningful H2 rather than one dominant outlier.
+### Physics and Astronomy is the most unequal field; Decision Sciences and Veterinary the most distributed
+Physics and Astronomy is the most concentrated field (Gini=0.605): University of Antwerp's field-leading h<sub>2</sub>=96 is 15.7× the field mean of 6.1. Biochemistry, Genetics and Molecular Biology is second (Gini=0.577), narrowly ahead of Neuroscience (0.574). Decision Sciences and Veterinary are the most evenly distributed (Gini≈0.42, essentially tied). Medicine's Gini (0.528) sits mid-table despite Harvard's field-leading h<sub>2</sub>=119, because Medicine has thousands of institutions with meaningful h<sub>2</sub> rather than one dominant outlier.
 
-### Minnesota and Wisconsin–Madison now have the greatest breadth
-Minnesota and Wisconsin–Madison tie for the most top-50 field placements (20 of 26 each), edging out Harvard's 19, though each leads only 4 fields outright — almost all of their breadth comes from being solidly good everywhere rather than dominant anywhere. Harvard still leads the most fields outright (5 of 26).
+### UCLA has the greatest breadth
+UCLA places in the global top 50 in 20 of 26 fields, more than any other institution, despite leading only 8 outright. Harvard places in 19 fields' global top 50 and leads 13 outright, the most of any institution. Oxford also has 19 top-50 placements; Toronto, Cornell, Michigan, UNC Chapel Hill, and Cambridge each have 17. At the other extreme, several high-ranked institutions achieve strong overall h<sub>2</sub> without ever leading a single field: UC San Diego (rank 17, h<sub>2</sub>=97), the University of Melbourne (rank 23, h<sub>2</sub>=95), and Boston University (rank 25, h<sub>2</sub>=94) all have zero top-10 field placements, achieving their overall strength through scale and consistency rather than fielding the single best group in any discipline.
 
 ### The most efficient universities have very few authors
-H2 scales as author_count^(1/β₁), with β₁=1.833 fit directly from the h1 (h-index) distribution's Lotka tail rather than assumed (see "Efficiency exponents" above) — noticeably below the √N (i.e. exponent-2) heuristic an earlier version of this analysis used, R²=0.809 against the institutions with ≥10 authors. Parkway School District — a K-12 district, not a research institution, which is itself a caution about this metric at low author counts — has the greatest H2 per this normalization of any institution (H2=19 on 142 authors). Zero universities from the top 100 overall were in the top 100 when measured by efficiency.
+h<sub>2</sub> scales as author_count^(1/β<sub>1</sub>), with β<sub>1</sub>=2.963 fit directly from the h<sub>1</sub> (h-index) distribution's Lotka tail (R²=0.911 among institutions with ≥10 authors). Among the 12,026 institutions with at least 100 authors, the most efficient are focused or specialized institutions: Bellevue University (ε<sub>2</sub>=6.27, h<sub>2</sub>=54, 590 authors), Augustana University (ε<sub>2</sub>=5.65), and Germany's Center for Behavioral Brain Sciences (ε<sub>2</sub>=5.50). Among the 1,317 institutions with at least 5,000 authors, the most efficient are Rockefeller University, the Institute of Cancer Research, and University of Antwerp. Zero universities from the top 50 overall appear in the top 50 when measured by efficiency.
 
-### H3: Academic Olympics
-| Country | H3 | Institutions |
+### h<sub>3</sub>: Academic Olympics
+| Country | h<sub>3</sub> | Institutions |
 |---|---|---|
-| US | 49 | 4,239 |
-| DE | 37 |   505 |
-| GB | 37 |   547 |
-| CN | 35 | 1,078 |
-| IT | 34 |   228 |
-| JP | 34 | 1,356 |
-| ES | 31 |   156 |
-| FR | 30 |   394 |
-| CA | 29 |   304 |
-| AU | 28 |   120 |
-| KR | 28 |   358 |
+| US | 70 | 4,242 |
+| CN | 55 | 1,078 |
+| DE | 49 |   505 |
+| GB | 47 |   548 |
+| JP | 46 | 1,358 |
+| IT | 45 |   229 |
+| FR | 41 |   394 |
+| ES | 39 |   156 |
+| KR | 37 |   358 |
+| AU | 36 |   120 |
 
 A few things stand out:
-- **US wins 24 of 26 golds:** dominant across every humanities, social science, biomedical, and prestige-science field. China holds the remaining 2 (Energy, Materials Science). This is a substantially different count from an earlier pull of this pipeline (US 22, China 5), and three of the flipped/close races are decided by a single institution's worth of H3 — Chemical Engineering (US 10 vs. China 9) and Materials Science (China 25 vs. US 24) are both photo finishes; only Chemistry (US 23 vs. China 20, no longer a tie) and Engineering (US 30 vs. China 28) moved by more than one point.
-- **China's 2 golds are both applied/materials science** (Energy, Materials Science), with zero medals in arts, humanities, social sciences, or business — the qualitative pattern survives even though the medal count dropped.
-- **Great Britain gets 14 silvers and 10 bronzes, but zero golds:** consistent with the UK having world-class institutions but being outgunned by US depth everywhere.
-- **Germany and the UK tie for 2nd** (37 each) despite the UK having 42 more institutions (547 vs 505).
-- **Italy and Japan tie for 4th** (34 each), even though Italy gets there with a fraction of the institutions (228 vs 1,356). H3 now scales as institution_count^(1/β₂) with β₂=2.917 fit directly (R²=0.937, replacing an earlier √N/log₂N heuristic) — and because that grows faster than log₂N for large countries, the US's efficiency rank falls all the way to 84th (efficiency 2.80) despite leading every country on raw H3. Spain (5.49), Australia (5.42), and Italy (5.29) are now the most efficient countries by this measure.
-- **Australia and South Korea tie for 9th** (28 each) despite South Korea having exactly 3× the institutions (358 vs 120) — a starker version of the Italy/Japan pattern.
-- **Saudi Arabia (H3=20, only 52 institutions)** still ranks surprisingly high for its size (5th by efficiency), likely an artifact of high-h-index researchers listing Saudi affiliations as secondary appointments in exchange for grants.
+- **US wins 22 of 26 golds:** dominant across every humanities, social science, biomedical, and prestige-science field. China wins 4 outright (Chemical Engineering, Energy, Engineering, Materials Science) and ties the US for gold in Chemistry. China's five total golds form a clean sweep of applied and materials science, with zero medals in arts, humanities, social sciences, or business, an unambiguously present-tense structural result rather than a catching-up story.
+- **Great Britain gets 10 silvers and 9 bronzes, but zero golds:** consistent with world-class institutions that are nonetheless outgunned by US depth in every single field.
+- **Italy (45) and Japan (46) nearly tie** despite Japan having roughly 6× the institutions (1,358 vs. 229). h<sub>3</sub> scales as institution_count^(1/β<sub>2</sub>) with β<sub>2</sub>=2.998 fit directly (R²=0.922). Italy's efficiency score is the highest of any country; Japan's is far lower despite nearly the same raw h<sub>3</sub>.
+- **Australia (h<sub>3</sub>=36, only 120 institutions)** achieves the 2nd highest efficiency. Spain is 3rd. Germany, the UK, and France are the only countries that rank in the top 10 on both raw h<sub>3</sub> and efficiency, confirming that their research depth is genuine rather than a scale artifact.
+- **Saudi Arabia (h<sub>3</sub>=25, only 52 institutions)** ranks 4th by efficiency, likely an artifact of high-h-index researchers listing Saudi affiliations as secondary appointments in exchange for grants rather than a genuine concentration of resident research talent.
+- **The US falls to efficiency rank 34** despite its raw h<sub>3</sub> lead. With 4,242 qualifying institutions, the size denominator absorbs most of its advantage. China (rank 10 by efficiency) appears above the US on this metric.
 
 ## Future work
-Ranking university departments would be a natural next step. You'd need department-level affiliation data, which OpenAlex doesn't currently provide, but could be approximated with a few thousand dollars of Search API calls.
+Ranking university departments would be a natural next step. The hierarchy would extend naturally to researcher → department → institution → country, with successive indices h<sub>1</sub> through h<sub>4</sub>. Departments are field-specialized by construction, so the step of inferring each author's modal field from topic weights may become unnecessary at the departmental level. OpenAlex does not currently provide departmental affiliation data; this is the single most valuable addition OpenAlex could make for scientometric work of this kind.
