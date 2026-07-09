@@ -95,6 +95,9 @@ def plot_choropleth(gdf):
 
     ax.set_axis_off()
     ax.set_aspect("equal")
+    xmin, ymin, xmax, ymax = gdf.total_bounds
+    ax.set_xlim(xmin, xmax)
+    ax.set_ylim(ymin, ymax)
 
     sm = ScalarMappable(norm=norm, cmap=cmap)
     ticks_raw = [1, 5, 10, 20, 40, 70]
@@ -113,7 +116,7 @@ def plot_choropleth(gdf):
 
     fig.tight_layout(rect=(0, 0, 1, 0.92))
     os.makedirs(os.path.dirname(OUT_PNG), exist_ok=True)
-    fig.savefig(OUT_PNG, dpi=300, facecolor=SURFACE)
+    fig.savefig(OUT_PNG, dpi=300, facecolor=SURFACE, bbox_inches="tight")
     print(f"Saved -> {OUT_PNG}")
 
 

@@ -2,16 +2,9 @@
 """
 H2 efficiency: H2 / author_count^(1/beta_1).
 
-A large institution can achieve high H2 simply by having many researchers,
-even if most are mediocre. Normalizing by author_count^(1/beta_1) adjusts for
-size and surfaces institutions whose talent is unusually concentrated
-relative to how many people they employ.
+A large institution can achieve high H2 simply by having many researchers, even if most are mediocre. Normalizing by author_count^(1/beta_1) adjusts for size and surfaces institutions whose talent is unusually concentrated relative to how many people they employ.
 
-beta_1 = alpha_0*alpha_1 is the compound Lotka exponent from Egghe (2008),
-eq. 11: h2 = author_count^(1/(alpha_0*alpha_1)). It is fit empirically by
-estimate_alphas.py (the tail exponent of the h1 distribution across authors,
-his eq. 7) and read from results/lotka_exponents.json here. Run
-estimate_alphas.py first.
+beta_1 = alpha_0*alpha_1 is the compound Lotka exponent from Egghe (2008), eq. 11: h2 = author_count^(1/(alpha_0*alpha_1)). It is fit empirically by estimate_alphas.py (the tail exponent of the h1 distribution across authors, his eq. 7) and read from results/lotka_exponents.json here. Run estimate_alphas.py first.
 
 Also shows the most efficient institution per field.
 

@@ -1,0 +1,16 @@
+\section{Introduction}
+\label{sec:intro}
+In 2007, András Schubert published a paper titled ``Successive h-indices.''~\citeyearpar{parent} It begins:
+\begin{quotation}
+	Hirsch's excessively discussed h-index generated a long row of interpretations, applications and derivatives within a surprisingly short period. Symptomatically, Hirsch's paper in the \textit{Proceedings of the National Academy of Sciences of the United States of America} became the second highest cited paper of the issue in which it had been published. In this note, attention is called to an apparently so far overlooked option: h-indices themselves may form the basis of a successive series of h-indices.
+
+	Given, e.g., the h-indices of the researchers of an institute (which indices will be denoted by h\textsubscript{1} in what follows), an index, h\textsubscript{2}, of the institute can be determined: the institute has an index h\textsubscript{2} if h\textsubscript{2} of its N researchers have an h\textsubscript{1}-index of at least h\textsubscript{2} each, and the other $\mathrm{N}-\mathrm{h}_2$ researchers have h\textsubscript{1}-indices lower than h\textsubscript{2} each. The succession can then be continued, e.g., for networks of institutions or countries or other higher levels of aggregation.
+
+	Since no sufficient data for testing the concept on the researcher-institute-country hierarchy were available, another example was chosen.
+\end{quotation}
+
+Fifteen years later, OpenAlex~\citep{openalex} launched a FOSS bibliographic catalogue complete with citation indexing, authors, fields, and institutions. Recent evaluations have found it to be a broadly suitable substitute for proprietary sources such as Scopus and Web of Science at the institutional level~\citep{alperin2024,culbert2025}, and I take it here as the dataset for which Schubert wished in 2007.
+
+In the years between, successive h-indices attracted modest but sustained attention. Egghe~\citeyearpar{egghe2008} gave the concept a theoretical footing, showing how the exponent of the underlying Lotka distribution propagates through each successive aggregation step. Two case studies followed shortly after: Ruane and Tol~\citeyearpar{ruane2008} computed a rational (non-integer) successive h-index across economics departments in Ireland, and Arencibia-Jorge et al.~\citeyearpar{arencibia2008} applied Schubert's exact researcher--department--institution hierarchy to a Cuban research institute using Web of Science data. More recently, Mryglod et al.~\citeyearpar{mryglod2022} cautioned that departmental- and institutional-level h-indices are driven largely by group size rather than quality, a critique I return to in Section~\ref{subsec:methods-efficiency}. None of this prior work, however, has had access to a comprehensive, open, institution-labeled snapshot of the kind OpenAlex now provides.
+
+Schubert suggested that h\textsubscript{2} of institutes would be more interesting than that of journals; Section~\ref{sec:methodology} describes how I compute it at scale, and Section~\ref{sec:results} presents the results.

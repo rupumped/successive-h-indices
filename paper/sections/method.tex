@@ -1,0 +1,76 @@
+\section{Methodology}
+\label{sec:methodology}
+
+\subsection{Data source and filtering}
+The underlying data is OpenAlex's public authors snapshot~\citep{openalex}, distributed as Parquet on \texttt{s3://openalex/data/parquet/authors/} (\texttt{us-east-1}, no credentials required) and partitioned into over 1,600 daily \texttt{updated\_date=} directories totalling about 53\,GB. Only four columns are read from each remote file (\texttt{id}, \texttt{h\_index}, \texttt{affiliations}, \texttt{topics}), and an author is retained only if all of the following hold:
+\begin{itemize}
+	\item \texttt{summary\_stats.h\_index} is non-null and greater than zero;
+	\item at least one entry in \texttt{affiliations} has \texttt{institution.type = 'education'};
+	\item at least one entry in \texttt{topics} carries a non-null field classification.
+\end{itemize}
+Applying these filters to the full snapshot yields 17.1 million authors, spanning 20,669 institutions and OpenAlex's current list of 26 top-level fields. One limitation carried over from the source data: an author's \texttt{h\_index} is computed by OpenAlex from all works meeting its citation criteria regardless of retraction status, which OpenAlex records inconsistently~\citep{hauschke2025}; a small, unquantified fraction of h\textsubscript{1} values in the dataset may therefore be inflated by since-retracted work.
+
+\subsection{Author-level assignment}
+Each retained author is reduced to a single row: one institution and one field. An author may list several affiliations with \texttt{institution.type = 'education'}; rather than fractionally splitting or duplicating that author across institutions, I assign them to the one with which they were most recently affiliated. Recency is read from OpenAlex's \texttt{affiliations} field, which records, for each institution an author has ever listed, the calendar years in which they published while there; I take the institution whose most recent such year is latest, breaking ties (identical latest year) by the numerically smallest OpenAlex institution identifier. I deliberately do not use the similarly-named \texttt{last\_known\_institutions} field for this: despite its name, it is simply the set of affiliations listed on an author's single most recent work, carrying no per-entry recency of its own, so when an author has more than one such affiliation (e.g., a joint appointment or co-affiliated coauthors misattributed to one author) there is no way to tell which is ``more recent'' than another.
+
+Field assignment works the same way but is weighted. OpenAlex tags each author with a set of topics, each carrying a \texttt{count} (roughly, the number of the author's works classified under that topic) and a parent field. I sum \texttt{count} within each field and assign the author to whichever field carries the largest total weight: their modal field by publication volume, not simply their single most granular topic. The result is an \texttt{authors} table with one row per author: \texttt{(author\_id, h\_index, institution\_id, institution\_name, field, field\_name)}.
+
+\subsection{The h-index and its successive generalization}
+Hirsch's~\citeyearpar{hindex} original index, here $\mathrm{h}_1$, is computed by OpenAlex per author from citation counts and taken as given. Schubert's generalization~\citeyearpar{parent} lifts the same definition up a level of aggregation: a group of $N$ members, each already carrying an $\mathrm{h}_{k-1}$ index, has an index $\mathrm{h}_k = n$ if $n$ of its members have $\mathrm{h}_{k-1} \geq n$ and the remaining $N-n$ members have $\mathrm{h}_{k-1} < n$:
+
+\begin{algorithm}
+\caption{Successive h-index of a group $G$, given a value $v(m)$ for each member $m \in G$}
+\begin{algorithmic}[1]
+\State Sort $G$ by $v$ descending; let $r(m)$ be $m$'s 1-indexed rank in that order
+\State \Return $\max \{\, r(m) : v(m) \geq r(m),\ m \in G \,\}$
+\end{algorithmic}
+\end{algorithm}
+
+I use this rank-based procedure, implemented as a window function in SQL ranking rows within each group and taking the largest rank whose value has not yet fallen below it, for every successive index in this paper: $\mathrm{h}_2$ of an institution over the $\mathrm{h}_1$ of its authors, and $\mathrm{h}_3$ of a country over the $\mathrm{h}_2$ of its institutions.
+
+\subsection{h\textsubscript{2}: institution and institution$\times$field}
+h\textsubscript{2} is computed twice, over different groupings of the same author-level data. The field-specific table groups authors by (institution, field) and yields 288,300 pairs; institutions are matched on their numeric identifier only; institution and field \emph{names} are resolved afterward via \texttt{arg\_max}, so that spelling or formatting variants of the same name across snapshot partitions cannot silently split one institution into several groups. The institution-overall table ignores field entirely and applies the same procedure across all of an institution's authors regardless of discipline, yielding one h\textsubscript{2} per institution (20,669 rows).
+
+\subsection{h\textsubscript{3}: country level}
+Institutions are mapped to countries using the \texttt{country\_code} field of OpenAlex's institutions snapshot (also read directly from S3, joined on institution ID). h\textsubscript{3} is then computed with the same rank-based procedure, once globally per country over the h\textsubscript{2} values of its institutions and once per (country, field) over the field-specific h\textsubscript{2} values, producing one file per field.
+
+\subsection{Efficiency}
+\label{subsec:methods-efficiency}
+Mryglod et al.~\citeyearpar{mryglod2022} showed that group-level h-indices grow with group size even when per-member quality is held constant. They were not studying successive h indices, but a similar argument makes raw $\mathrm{h}_2$ and $\mathrm{h}_3$ values unsuitable for comparing institutions or countries of unequal scale.
+
+Egghe~\citeyearpar{egghe2008} applied a Lotkaian framework to successive h indices. Suppose the article--citation frequency function follows Lotka's law with exponent $\alpha_0 > 1$, and the author--article frequency function follows Lotka's law with exponent $\alpha_1 > 1$. Egghe showed that the distribution of $\mathrm{h}_1$ values across authors is itself Lotkaian with compound exponent $\beta_1 = \alpha_0\alpha_1$. Applying the h-index formula for Lotkaian systems, the institution-level index satisfies
+\begin{equation}
+	\mathrm{h}_2 = \mathrm{S}^{1/\beta_1}
+	\label{eq:h2-scaling}
+\end{equation}
+where S is the number of authors at the institution. An analogous argument at the next level gives the distribution of $\mathrm{h}_2$ values across institutions a Lotkaian exponent $\beta_2 = \alpha_0\alpha_1\alpha_2$, where $\alpha_2$ is the Lotka exponent of the institution--author frequency function, so that
+\begin{equation}
+	\mathrm{h}_3 = \mathrm{R}^{1/\beta_2}
+	\label{eq:h3-scaling}
+\end{equation}
+where R is the number of institutions in the country. I define size-normalized efficiency metrics by dividing out these predicted scalings:
+\begin{equation}
+	\varepsilon_2 = \frac{\mathrm{h}_2}{\mathrm{S}^{1/\beta_1}}
+	\label{eq:eff2}
+\end{equation}
+\begin{equation}
+	\varepsilon_3 = \frac{\mathrm{h}_3}{\mathrm{R}^{1/\beta_2}}
+	\label{eq:eff3}
+\end{equation}
+An institution with $\varepsilon_2 > 1$ outperforms the Lotkaian prediction for its headcount; one with $\varepsilon_2 < 1$ underperforms it.
+
+The exponents $\beta_1$ and $\beta_2$ are estimated directly from the data rather than assembled from separately fit $\alpha_0$, $\alpha_1$, $\alpha_2$. I apply discrete maximum-likelihood tail estimation following \citet{clauset2009}, with $x_\text{min}$ chosen to minimize the Kolmogorov--Smirnov distance between the empirical and fitted CDFs, to the distributions of $\mathrm{h}_1$ across all authors and $\mathrm{h}_2$ across all institutions, reading $\beta_1$ and $\beta_2$ as their fitted Lotka exponents. I then fit $\alpha_0$, $\alpha_1$, and $\alpha_2$ individually: $\alpha_0$ from a stratified sample of per-article citation counts drawn from the OpenAlex works snapshot, $\alpha_1$ from per-author work counts, and $\alpha_2$ from per-institution author counts. Finally, I verify that $\alpha_0\alpha_1 \approx \beta_1$ and $\alpha_0\alpha_1\alpha_2 \approx \beta_2$ as a cross-check that the compounding-exponent structure of Egghe's model holds in the OpenAlex dataset.
+
+\subsection{Supplementary metrics}
+\label{subsec:methods-supplementary}
+Several secondary statistics are derived from the h\textsubscript{2} and h\textsubscript{3} tables to probe what the headline numbers obscure:
+\begin{itemize}
+	\item \textbf{Gini coefficient}, computed on the within-field distribution of institutional h\textsubscript{2}, quantifies whether a field's excellence is concentrated in one institution (Gini near 1) or broadly distributed (Gini near 0).
+	\item \textbf{Breadth score} counts, per institution, how many of the 26 fields it ranks in the global top 10, top 50, and top 100.
+	\item \textbf{Non-biomedical ranking} recomputes institution-level h\textsubscript{2} after excluding authors whose modal field is Medicine, Biochemistry/Genetics/Molecular Biology, Immunology and Microbiology, Neuroscience, or Health Professions, to test whether the overall ranking is, in substance, a ranking of medical school size.
+	\item \textbf{Academic Olympics} converts each field's country-level h\textsubscript{3} ranking into an Olympic-style medal table: the top three distinct h\textsubscript{3} values in a field are gold/silver/bronze, ties at the same h\textsubscript{3} share a medal and the next tier is skipped (as in the real Olympics), and medals are tallied across all 26 fields per country.
+\end{itemize}
+
+\subsection{Manual cross-validation}
+\label{subsec:methods-crossval}
+Because errors in OpenAlex's underlying author disambiguation or citation counts would propagate directly into every successive index, I manually spot-check a targeted, non-random sample of authors rather than a random one, chosen at the points where an error would be both most likely and most consequential: authors sitting exactly at an institution's h\textsubscript{2} threshold, where a $\pm 1$ error in a single h\textsubscript{1} could change the institution's rank; top authors in fields where OpenAlex's topic classification is known to be thinner (e.g., Arts and Humanities); top authors at institutions with non-Anglophone naming conventions, where author-name disambiguation is more error-prone and where OpenAlex's coverage is known to diverge unevenly from other databases by country, most severely for China~\citep{zheng2025}, including institutions suspected of affiliation-swapping for grant purposes~\citep{saudi}; and the small number of authors with the highest h\textsubscript{1} globally, as a sanity check at the extreme of the distribution. For each candidate, I resolve the author's OpenAlex profile through the public API and compare it by hand against Web of Science, Scopus, and Google Scholar.

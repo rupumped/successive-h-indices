@@ -1,79 +1,26 @@
 #!/usr/bin/env python3
 """
-Estimate the Lotka exponents alpha_0, alpha_1, alpha_2 of Egghe (2008)'s
-successive-h-index model from this project's data, and the compound
-exponents beta_1 = alpha_0*alpha_1 and beta_2 = alpha_0*alpha_1*alpha_2 that
-h2_efficiency.py and h3_efficiency.py actually need (his eqs. 11 and 18).
+Estimate the Lotka exponents alpha_0, alpha_1, alpha_2 of Egghe (2008)'s successive-h-index model from this project's data, and the compound exponents beta_1 = alpha_0*alpha_1 and beta_2 = alpha_0*alpha_1*alpha_2 that h2_efficiency.py and h3_efficiency.py actually need (his eqs. 11 and 18).
 
 Egghe's levels and where each exponent's tail shows up in our data:
-  alpha_1 : Lotka tail of works_count (T, articles per author)      -- eq. 6
-  alpha_2 : Lotka tail of author_count (S, authors per institution) -- eq. 13
-  beta_1  : Lotka tail of h1 (h_index) across authors                -- eq. 7/8,  = alpha_0*alpha_1
-  beta_2  : Lotka tail of h2 across institutions                     -- eq. 14/15, = alpha_0*alpha_1*alpha_2
-  alpha_0 : Lotka tail of cited_by_count across articles -- eq. 3. Requires
-            per-article citation counts (the OpenAlex works snapshot, not the
-            authors snapshot the rest of this script reads), so it's only
-            fit directly if data/interim/citation_sample.csv exists --
-            produced by prefetch_citations.py, which samples a small spread
-            of works partitions rather than the full ~725 GB snapshot (see
-            its docstring for why that's enough data). If that file is
-            absent, alpha_0 is left to the two indirect estimates below.
-            Either way, it's also backed out two independent ways as a
-            consistency check on the whole model: beta_1/alpha_1 and
-            beta_2/(alpha_1*alpha_2) -- agreement between those and (if
-            available) the direct fit is evidence the compounding-exponent
-            model actually holds across levels, not just that each level
-            individually looks Lotkaian.
+ - alpha_1 : Lotka tail of works_count (T, articles per author)      -- eq. 6
+ - alpha_2 : Lotka tail of author_count (S, authors per institution) -- eq. 13
+ - beta_1  : Lotka tail of h1 (h_index) across authors                -- eq. 7/8,  = alpha_0*alpha_1
+ - beta_2  : Lotka tail of h2 across institutions                     -- eq. 14/15, = alpha_0*alpha_1*alpha_2
+ - alpha_0 : Lotka tail of cited_by_count across articles -- eq. 3. Requires per-article citation counts (the OpenAlex works snapshot, not the authors snapshot the rest of this script reads). data/interim/citation_sample.csv is required; it is produced by prefetch_citations.py, which samples a small spread of works partitions rather than the full ~725 GB snapshot (see its docstring for why that's enough data). alpha_0 is also backed out two independent ways as a consistency check on the whole model: beta_1/alpha_1 and beta_2/(alpha_1*alpha_2). Agreement between those and the direct fit is evidence the compounding-exponent model actually holds across levels, not just that each level individually looks Lotkaian.
 
-Fitting method: discrete MLE (Clauset, Shalizi & Newman 2009) via the
-`powerlaw` package, with x_min chosen automatically by minimizing the
-Kolmogorov-Smirnov distance between empirical and fitted CDFs -- not an OLS
-fit on a log-log rank-frequency plot, which is a known-biased estimator.
-Egghe's densities (eqs. 3, 6, 13) are asserted to hold for the whole range
-j >= 1, but real count data is typically power-law only above some
-threshold, so x_min lets the data say where the tail actually starts. The
-`alpha` returned by `powerlaw.Fit` uses the same density-exponent convention
-as Egghe's, so it plugs directly into his formulas with no offset.
+Fitting method: discrete MLE (Clauset, Shalizi & Newman 2009) via the `powerlaw` package, with x_min chosen automatically by minimizing the Kolmogorov-Smirnov distance between empirical and fitted CDFs, not an OLS fit on a log-log rank-frequency plot, which is a known-biased estimator. Egghe's densities (eqs. 3, 6, 13) are asserted to hold for the whole range j >= 1, but real count data is typically power-law only above some threshold, so x_min lets the data say where the tail actually starts. The `alpha` returned by `powerlaw.Fit` uses the same density-exponent convention as Egghe's, so it plugs directly into his formulas with no offset.
 
-Each fit is otherwise unfiltered (no MIN_AUTHORS/MIN_INST-style cutoffs) so
-the x_min search sees the full dynamic range; h2_efficiency.py and
-h3_efficiency.py apply their own display cutoffs separately, after the
-exponents are fixed.
+Each fit is otherwise unfiltered (no MIN_AUTHORS/MIN_INST-style cutoffs) so the x_min search sees the full dynamic range; h2_efficiency.py and h3_efficiency.py apply their own display cutoffs separately, after the exponents are fixed.
 
-works_count outliers: a first run of this script put alpha_1's x_min at 718
-with only 171/2,000,000 tail points, and every one of the top-10 works_count
-authors turned out to pair a huge count with a single-digit h_index (one has
-works_count=278,862, h_index=1) -- see results/works_count_histogram.png
-(generated by plot_works_count_hist.py). A real prolific individual has both
-high works_count and high h_index; this pattern is the signature of an
-OpenAlex author-disambiguation failure (a generic name or collaboration
-byline absorbing many different people's publications into one author ID),
-not genuine productivity. WORKS_COUNT_CAP excludes authors above a fixed
-threshold before fitting alpha_1 only: works_count > 10,000 affects 46 of
-27,083,177 authors (0.0002%), comfortably beyond any documented legitimate
-individual publication count. The histogram itself doesn't show a clean
-bimodal gap -- the tail thins out gradually, as expected for a real
-power-law tail -- so this cap is justified by the implausibility of the
-h_index/works_count pairing, not by a visible break in the distribution.
-No such cap is applied to h1/h2/author_count: none of them showed this
-pathology.
+works_count outliers: a first run of this script put alpha_1's x_min at 718 with only 171/2,000,000 tail points, and every one of the top-10 works_count authors turned out to pair a huge count with a single-digit h_index (one has works_count=278,862, h_index=1, see results/works_count_histogram.png, generated by plot_works_count_hist.py). A real prolific individual has both high works_count and high h_index; this pattern is the signature of an OpenAlex author-disambiguation failure (a generic name or collaboration byline absorbing many different people's publications into one author ID), not genuine productivity. WORKS_COUNT_CAP excludes authors above a fixed threshold before fitting alpha_1 only: works_count > 10,000 affects 46 of 27,083,177 authors (0.0002%), comfortably beyond any documented legitimate individual publication count. The histogram itself doesn't show a clean bimodal gap; the tail thins out gradually, as expected for a real power-law tail. Thus, this cap is justified by the implausibility of the h_index/works_count pairing, not by a visible break in the distribution. No such cap is applied to h1/h2/author_count: none of them showed this pathology.
 
-Runtime note: powerlaw's x_min search tries every distinct value in the data
-as a candidate threshold, and each candidate re-scans the whole array (see
-its functional.find_xmin) -- cost is roughly (# distinct values) x N, not N.
-alpha_1 and beta_1 are fit on the ~17M-author-scale arrays and dominate this
-script's runtime accordingly; alpha_2 and beta_2 (~20K institutions) are
-fast. Rather than a progress bar for that O(N) rescan (which would need
-patching powerlaw's internals), MAX_FIT_POINTS below subsamples the two
-large arrays before fitting -- MLE tail estimation is data-efficient
-(SE(alpha) ~ (alpha-1)/sqrt(n_tail), and n_tail is itself usually a small
-fraction of n; the same argument justifies prefetch_citations.py's sample
-size for alpha_0), so this costs negligible precision for a large runtime win.
+Runtime note: powerlaw's x_min search tries every distinct value in the data as a candidate threshold, and each candidate re-scans the whole array (see its functional.find_xmin) -- cost is roughly (# distinct values) x N, not N. alpha_1 and beta_1 are fit on the ~17M-author-scale arrays and dominate this script's runtime accordingly; alpha_2 and beta_2 (~20K institutions) are fast. Rather than a progress bar for that O(N) rescan (which would need patching powerlaw's internals), MAX_FIT_POINTS below subsamples the two large arrays before fitting. MLE tail estimation is data-efficient (SE(alpha) ~ (alpha-1)/sqrt(n_tail), and n_tail is itself usually a small fraction of n; the same argument justifies prefetch_citations.py's sample size for alpha_0), so this costs negligible precision for a large runtime win.
 
 Output: results/lotka_exponents.json
 
 Usage:
-  python3 prefetch_citations.py   # optional, enables the direct alpha_0 fit
+  python3 prefetch_citations.py   # required, produces citation_sample.csv
   python3 estimate_alphas.py
 """
 
@@ -167,9 +114,11 @@ def summarize(r):
 
 
 def main():
-    for p in (AUTHORS_CSV, H2_INST_CSV):
+    for p in (AUTHORS_CSV, H2_INST_CSV, CITATIONS_CSV):
         if not os.path.exists(p):
-            raise SystemExit(f"ERROR: {p} not found.")
+            raise SystemExit(f"ERROR: {p} not found." + (
+                " Run prefetch_citations.py first." if p == CITATIONS_CSV else ""
+            ))
 
     con = duckdb.connect()
     con.execute("SET threads=4;")
@@ -205,17 +154,13 @@ def main():
         ("beta_2", h2_vals, "beta_2 = alpha_0*alpha_1*alpha_2 (h2 / institution, eq.14)"),
     ]
 
-    if os.path.exists(CITATIONS_CSV):
-        print(f"Loading cited_by_count from {CITATIONS_CSV}...", end=" ", flush=True)
-        t0 = time.time()
-        citation_vals = con.execute(
-            f"SELECT cited_by_count FROM read_csv_auto('{CITATIONS_CSV}') WHERE cited_by_count > 0"
-        ).fetchnumpy()["cited_by_count"]
-        print(f"{len(citation_vals):,} rows ({time.time()-t0:.0f}s)")
-        jobs.append(("alpha_0", citation_vals, "alpha_0 (cited_by_count / article, eq.3)"))
-    else:
-        print(f"{CITATIONS_CSV} not found -- skipping direct alpha_0 fit "
-              f"(run prefetch_citations.py to enable it). Falling back to indirect estimates.")
+    print(f"Loading cited_by_count from {CITATIONS_CSV}...", end=" ", flush=True)
+    t0 = time.time()
+    citation_vals = con.execute(
+        f"SELECT cited_by_count FROM read_csv_auto('{CITATIONS_CSV}') WHERE cited_by_count > 0"
+    ).fetchnumpy()["cited_by_count"]
+    print(f"{len(citation_vals):,} rows ({time.time()-t0:.0f}s)")
+    jobs.append(("alpha_0", citation_vals, "alpha_0 (cited_by_count / article, eq.3)"))
 
     print(f"\nFitting {len(jobs)} tail exponents (x_min search over each distribution)...")
     fits = {}
@@ -237,9 +182,7 @@ def main():
     beta_2_predicted = beta_1 * alpha_2
 
     print("\nDerived / consistency checks:")
-    if "alpha_0" in fits:
-        alpha_0_direct = fits["alpha_0"]["alpha"]
-        print(f"  alpha_0 (direct fit, cited_by_count)     = {alpha_0_direct:.3f}")
+    print(f"  alpha_0 (direct fit, cited_by_count)     = {fits['alpha_0']['alpha']:.3f}")
     print(f"  alpha_0 (from beta_1/alpha_1)             = {alpha_0_from_beta1:.3f}")
     print(f"  alpha_0 (from beta_2/(alpha_1*alpha_2))   = {alpha_0_from_beta2:.3f}")
     print(
@@ -249,6 +192,7 @@ def main():
     )
 
     out = {
+        "alpha_0": fits["alpha_0"]["alpha"],
         "alpha_1": alpha_1,
         "alpha_2": alpha_2,
         "beta_1": beta_1,
@@ -260,8 +204,6 @@ def main():
         "works_count_cap_excluded": n_excluded,
         "fits": fits,
     }
-    if "alpha_0" in fits:
-        out["alpha_0_direct"] = fits["alpha_0"]["alpha"]
     os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)
     with open(OUT_JSON, "w") as f:
         json.dump(out, f, indent=2)
