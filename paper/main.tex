@@ -35,6 +35,13 @@
 \usepackage{algorithmicx}%
 \usepackage{algpseudocode}%
 \usepackage{listings}%
+%% sn-jnl.cls already \gdef's \orcidlogo (pointing at a nonexistent
+%% Orcidlogo.eps) and errors when orcidlink.sty tries to redefine it.
+%% Reset it to \relax first so orcidlink's own definition wins cleanly.
+\makeatletter
+\let\orcidlogo\relax
+\makeatother
+\usepackage{orcidlink}
 
 %% as per the requirement new theorem styles can be included as shown below
 % \theoremstyle{thmstyleone}%
@@ -66,17 +73,17 @@
 %% \author*[1,2]{\fnm{Joergen W.} \spfx{van der} \sur{Ploeg} 
 %%  \sfx{IV}}\email{iauthor@gmail.com}
 %%=============================================================%%
-\author*[1]{\fnm{Nicholas S.} \sur{Selby}}\email{nicholas.selby@renewvia.com}
+\author*[1]{\fnm{Nicholas S.} \sur{Selby}\,\orcidlink{0000-0001-9476-4850}}\email{nicholas.selby@renewvia.com}
 
 \affil*[1]{\orgname{Renewvia Solar Ethiopia PLC}, \orgaddress{\street{Bole sub-city, Woreda 03, House No. 174/175, Saya Building, 5th Floor}, \city{Addis Ababa}, \country{Ethiopia}}}
 
 \abstract{I apply Schubert's successive h-index framework to OpenAlex, computing h\textsubscript{2} for 20,669 institutions and h\textsubscript{3} for 214 countries across 17.1 million researchers. The overall institution-level ranking is, in substance, a ranking of medical school size: Medicine accounts for 44\% of the author pool and structurally dominates any university-wide aggregate. Field-specific decomposition is more informative: Wageningen University leads Agricultural \& Biological Sciences and Environmental Science while ranking 172nd overall; Carnegie Mellon leads Computer Science from 175th; Brazil holds two of the world's six deepest dental-research benches. I normalize for group size using Egghe's Lotkaian scaling, which accounts for 91--92\% of variance in both h\textsubscript{2} and h\textsubscript{3}, and find that Italy and Japan reach nearly the same h\textsubscript{3} from a 6$\times$ difference in institutional scale. A country-level Academic Olympics reveals the United States winning 22 of 26 fields, China sweeping applied and materials science, and the United Kingdom placing in the top three in nearly every field without leading any.}
 
-\keywords{successive h-index, OpenAlex, institutional ranking, research assessment, scientometrics}
+\keywords{successive h-index, OpenAlex, institutional ranking, research assessment}
 
-%%\pacs[JEL Classification]{D8, H51}
+\pacs[JEL Classification]{I23, C80}
 
-%%\pacs[MSC Classification]{35A01, 65L10, 65L12, 65L20, 65L70}
+\pacs[MSC Classification]{62P99, 62-07, 62P25}
 
 \maketitle
 
@@ -85,7 +92,13 @@
 \input{sections/results}
 \input{sections/conc}
 
-\bibliography{references}% common bib file
+\section*{Statements and Declarations}
+The author did not receive support from any organization for the submitted work.
+The author has no relevant financial or non-financial interests to disclose.
+This study did not involve human participants or animals, and thus no ethical approval or informed consent was required.
+The data that support the findings of this study are publicly available from the OpenAlex public snapshot. The analysis code is available at the GitHub repository provided in the manuscript.
+
+\bibliography{references.bib}% common bib file
 %% if required, the content of .bbl file can be included here once bbl is generated
 %%\input sn-article.bbl
 

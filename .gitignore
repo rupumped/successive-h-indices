@@ -9,5 +9,6 @@ paper/*.bbl
 paper/*.blg
 paper/*.log
 paper/*.out
+paper/submit
 
 src/__pycache__

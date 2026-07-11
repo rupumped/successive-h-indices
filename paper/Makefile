@@ -22,6 +22,12 @@ report: sn-jnl.cls sn-apacite.bst
 view: report
 	$(OPEN) $(DOCNAME).pdf
 
+submit:
+	lateflat .
+	cp sn-apacite.bst submit/
+	cd submit && pdflatex $(DOCNAME).tex && bibtex $(DOCNAME).aux && pdflatex $(DOCNAME).tex && pdflatex $(DOCNAME).tex
+	wslview submit/$(DOCNAME).pdf
+
 clean:
 	rm -f *.blg *.bbl *.aux *.log *.spl
 
