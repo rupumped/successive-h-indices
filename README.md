@@ -50,11 +50,10 @@ data/          raw/intermediate pipeline artifacts (gitignored)
   interim/                       tables generated from data/ that are also
                                   read as inputs by other scripts
 results/       terminal analysis outputs: final CSVs and plots (gitignored)
-export/        top-100 per-field/subfield rankings and full country/institution
-               tables, ready for web serving
+rankings.json  single JSON file for web serving (see below)
 ```
 
-All data in `export/` is derived from the [OpenAlex](https://openalex.org) public snapshot and is released under [CC0 (public domain)](https://creativecommons.org/publicdomain/zero/1.0/).
+`rankings.json` is derived from the [OpenAlex](https://openalex.org) public snapshot and is released under [CC0 (public domain)](https://creativecommons.org/publicdomain/zero/1.0/).
 
 ## How to run
 Run the scripts in order (all from the repo root):
@@ -176,8 +175,8 @@ python3 src/plot_works_count_hist.py
 #     Writes results/cross_validation_sample.csv.
 python3 src/cross_validation_sample.py
 
-# 24. Export top-100 rankings from each field/subfield directory plus full
-#     institution and country tables into export/ for web serving.
+# 24. Build rankings.json for web serving: complete institution (h2) and
+#     country (h3) lists, plus top-100 per field and subfield.
 python3 src/export_top100.py
 ```
 
@@ -222,12 +221,7 @@ The AWS CLI must also be installed and `aws s3 ls --no-sign-request` must work (
 | `results/h3_vs_size_sqrt.png` | Scatter plot of h<sub>3</sub> vs √institution_count (√N heuristic baseline) |
 | `results/works_count_histogram.png` | works_count histogram, diagnostic for the disambiguation-artifact cap |
 | `results/cross_validation_sample.csv` | Sample of authors for manual Google Scholar cross-validation |
-| `export/h2_by_field/` | Top-100 institutions per field (CC0, derived from OpenAlex) |
-| `export/h2_by_subfield/` | Top-100 institutions per subfield (CC0, derived from OpenAlex) |
-| `export/h3_by_field/` | Top-100 countries per field (CC0, derived from OpenAlex) |
-| `export/h3_by_subfield/` | Top-100 countries per subfield (CC0, derived from OpenAlex) |
-| `export/h2_by_institution.csv` | All institutions with institution-level h<sub>2</sub> (CC0, derived from OpenAlex) |
-| `export/h3_by_country.csv` | All countries with h<sub>3</sub> (CC0, derived from OpenAlex) |
+| `rankings.json` | Web-serving JSON: all institutions ranked by h<sub>2</sub>, all countries ranked by h<sub>3</sub>, and top-100 institutions and countries per field and subfield (CC0, derived from OpenAlex) |
 
 ## Efficiency exponents
 

@@ -1,43 +1,55 @@
 import json
-import shutil
 from pathlib import Path
 
 import pandas as pd
+import pycountry
 
 ROOT = Path(__file__).parent.parent
+INTERIM = ROOT / "data" / "interim"
+RESULTS = ROOT / "results"
 
-SOURCES = {
-    "h2_by_field": ROOT / "results" / "h2_by_field",
-    "h2_by_subfield": ROOT / "results" / "h2_by_subfield",
-    "h3_by_field": ROOT / "data" / "interim" / "h3_by_field",
-    "h3_by_subfield": ROOT / "data" / "interim" / "h3_by_subfield",
+
+def country_name(code):
+    try:
+        c = pycountry.countries.get(alpha_2=code)
+        return c.name if c else code
+    except LookupError:
+        return code
+
+
+def stem_to_name(stem):
+    return stem.replace("__", ", ").replace("_", " ")
+
+
+def load_institutions(csv_path, nrows=None):
+    df = pd.read_csv(csv_path, nrows=nrows)
+    return [{"name": r.institution_name, "h2": int(r.h2)} for r in df.itertuples()]
+
+
+def load_countries(csv_path, nrows=None):
+    df = pd.read_csv(csv_path, nrows=nrows)
+    return [{"name": country_name(r.country_code), "h3": int(r.h3)} for r in df.itertuples()]
+
+
+output = {
+    "institutions": load_institutions(INTERIM / "h2_by_institution.csv"),
+    "countries": load_countries(INTERIM / "h3_by_country.csv"),
+    "fields": {},
+    "subfields": {},
 }
 
-EXPORT_ROOT = ROOT / "export"
+for csv_path in sorted((RESULTS / "h2_by_field").glob("*.csv")):
+    output["fields"].setdefault(stem_to_name(csv_path.stem), {})["institutions"] = load_institutions(csv_path, nrows=100)
 
-manifest = {}
+for csv_path in sorted((INTERIM / "h3_by_field").glob("*.csv")):
+    output["fields"].setdefault(stem_to_name(csv_path.stem), {})["countries"] = load_countries(csv_path, nrows=100)
 
-for folder_name, src_dir in SOURCES.items():
-    dest_dir = EXPORT_ROOT / folder_name
-    dest_dir.mkdir(parents=True, exist_ok=True)
+for csv_path in sorted((RESULTS / "h2_by_subfield").glob("*.csv")):
+    output["subfields"].setdefault(stem_to_name(csv_path.stem), {})["institutions"] = load_institutions(csv_path, nrows=100)
 
-    names = []
-    for csv_path in sorted(src_dir.glob("*.csv")):
-        df = pd.read_csv(csv_path, nrows=101)
-        df.to_csv(dest_dir / csv_path.name, index=False)
-        names.append(csv_path.stem)
-    manifest[folder_name] = names
+for csv_path in sorted((INTERIM / "h3_by_subfield").glob("*.csv")):
+    output["subfields"].setdefault(stem_to_name(csv_path.stem), {})["countries"] = load_countries(csv_path, nrows=100)
 
-FULL_COPIES = [
-    ROOT / "data" / "interim" / "h2_by_institution.csv",
-    ROOT / "data" / "interim" / "h3_by_country.csv",
-]
-
-for src in FULL_COPIES:
-    shutil.copy(src, EXPORT_ROOT / src.name)
-
-manifest["flat_files"] = [src.name for src in FULL_COPIES]
-
-(EXPORT_ROOT / "index.json").write_text(json.dumps(manifest, indent=2))
-
-print(f"Exported to {EXPORT_ROOT}")
+out_path = ROOT / "rankings.json"
+out_path.write_text(json.dumps(output))
+print(f"Wrote {out_path} ({out_path.stat().st_size / 1e6:.1f} MB)")
