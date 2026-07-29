@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I9360294,University of Bologna,7,115
+https://openalex.org/I55143463,University of Turin,6,80
+https://openalex.org/I149461666,Ca' Foscari University of Venice,5,59
+https://openalex.org/I45084792,University of Florence,5,62
+https://openalex.org/I189158943,University of Milan,5,73
+https://openalex.org/I138689650,University of Padua,5,40
+https://openalex.org/I861853513,Sapienza University of Rome,4,71
+https://openalex.org/I157210198,Scuola Normale Superiore,4,13
+https://openalex.org/I121748325,Universidad Complutense de Madrid,4,30
+https://openalex.org/I5561750,University of Bari Aldo Moro,4,35
+https://openalex.org/I11039511,University of Bergamo,4,24
+https://openalex.org/I83816512,University of Genoa,4,33
+https://openalex.org/I122346577,University of Modena and Reggio Emilia,4,17
+https://openalex.org/I71267560,University of Naples Federico II,4,31
+https://openalex.org/I25217355,University of Pavia,4,33
+https://openalex.org/I108290504,University of Pisa,4,39
+https://openalex.org/I116067653,University of Rome Tor Vergata,4,21
+https://openalex.org/I102064193,University of Siena,4,32
+https://openalex.org/I185261750,University of Toronto,4,17
+https://openalex.org/I103320735,Università Cattolica del Sacro Cuore,4,45
+https://openalex.org/I154387261,Vita-Salute San Raffaele University,4,9
+https://openalex.org/I93860229,Politecnico di Milano,3,17
+https://openalex.org/I177477856,Politecnico di Torino,3,7
+https://openalex.org/I119003972,Roma Tre University,3,35
+https://openalex.org/I59553526,Stony Brook University,3,6
+https://openalex.org/I8961855,Universidad Nacional Autónoma de México,3,20
+https://openalex.org/I173304897,Universidad de Granada,3,15
+https://openalex.org/I79238269,Universidad de Sevilla,3,18
+https://openalex.org/I108103353,Universidad de Valladolid,3,6
+https://openalex.org/I37745579,University for Foreigners of Siena,3,5
+https://openalex.org/I79940851,University of Brescia,3,5
+https://openalex.org/I172446870,University of Cagliari,3,27
+https://openalex.org/I45204951,University of Calabria,3,22
+https://openalex.org/I39063666,University of Catania,3,21
+https://openalex.org/I201324441,University of Ferrara,3,8
+https://openalex.org/I115752224,University of Insubria,3,7
+https://openalex.org/I26415053,University of L'Aquila,3,7
+https://openalex.org/I112862951,University of Messina,3,16
+https://openalex.org/I900890020,University of Palermo,3,34
+https://openalex.org/I124601658,University of Parma,3,13
+https://openalex.org/I131729948,University of Salerno,3,36
+https://openalex.org/I159650629,University of Sassari,3,3
+https://openalex.org/I193223587,University of Trento,3,12
+https://openalex.org/I142444530,University of Trieste,3,15
+https://openalex.org/I39555362,University of Warwick,3,7
+https://openalex.org/I11986463,Università Iuav di Venezia,3,13
+https://openalex.org/I123338534,Università degli Studi del Piemonte Orientale “Amedeo Avogadro”,3,12
+https://openalex.org/I200420086,IULM University,3,11
+https://openalex.org/I2802616479,Accademia di Belle Arti di Bologna,2,2
+https://openalex.org/I116680314,Chitose Institute of Science and Technology,2,2
+https://openalex.org/I125749732,Western University,2,3
+https://openalex.org/I65285256,Pontifical Catholic University of Peru,2,8
+https://openalex.org/I219193219,Purdue University West Lafayette,2,2
+https://openalex.org/I192455969,York University,2,2
+https://openalex.org/I1288451689,Real Academia Española,2,5
+https://openalex.org/I4210099865,European University of Rome,2,4
+https://openalex.org/I71838634,San Francisco State University,2,3
+https://openalex.org/I114090438,Goethe University Frankfurt,2,2
+https://openalex.org/I4210134585,Silvio d'Amico National Academy of Dramatic Arts,2,2
+https://openalex.org/I39804081,Sorbonne Université,2,11
+https://openalex.org/I70983195,Syracuse University,2,2
+https://openalex.org/I316699675,Hodges University,2,2
+https://openalex.org/I39694355,Hunter College,2,2
+https://openalex.org/I52357470,The Ohio State University,2,4
+https://openalex.org/I86519309,The University of Texas at Austin,2,3
+https://openalex.org/I592451,Indiana University,2,6
+https://openalex.org/I205274468,Trinity College Dublin,2,3
+https://openalex.org/I95674353,UCLouvain,2,4
+https://openalex.org/I187481652,Instituto Tecnológico Autónomo de México,2,3
+https://openalex.org/I4210140695,Universidad Independiente,2,2
+https://openalex.org/I36243813,Universidad Nacional de Colombia,2,10
+https://openalex.org/I178450904,Universidad Nacional de Educación a Distancia,2,7
+https://openalex.org/I874386039,Universidad Nacional de La Plata,2,10
+https://openalex.org/I126596746,Jagiellonian University,2,3
+https://openalex.org/I55952717,Universidad Rovira i Virgili,2,2
+https://openalex.org/I24354313,Universidad de Buenos Aires,2,16
+https://openalex.org/I31944674,Universidad de Costa Rica,2,17
+https://openalex.org/I39147953,Universidad de Cádiz,2,5
+https://openalex.org/I78880903,Universidad de Huelva,2,2
+https://openalex.org/I80180929,Universidad de Murcia,2,8
+https://openalex.org/I184999862,Universidad de Salamanca,2,13
+https://openalex.org/I90803817,Universidad del Rosario,2,5
+https://openalex.org/I4104125,Universidade Federal de Santa Catarina,2,7
+https://openalex.org/I243754102,Universidade Federal do Ceará,2,5
+https://openalex.org/I52418104,Universidade Federal do Paraná,2,9
+https://openalex.org/I172980758,Kennesaw State University,2,2
+https://openalex.org/I200284239,Universidade de Santiago de Compostela,2,4
+https://openalex.org/I17974374,Universidade de São Paulo,2,17
+https://openalex.org/I165230279,Universitas Gadjah Mada,2,2
+https://openalex.org/I71999127,Universitat de Barcelona,2,11
+https://openalex.org/I251424209,Universitat de Girona,2,4
+https://openalex.org/I16097986,Universitat de València,2,7
+https://openalex.org/I45129253,University College London,2,5
+https://openalex.org/I63190737,"University at Buffalo, State University of New York",2,3
+https://openalex.org/I9568059,University for Foreigners Perugia,2,8
+https://openalex.org/I887064364,University of Amsterdam,2,2
+https://openalex.org/I128649747,Libera Università Maria SS. Assunta,2,4
+https://openalex.org/I20272500,University of Basilicata,2,3
+https://openalex.org/I118564535,University of Bern,2,4
+https://openalex.org/I141945490,University of British Columbia,2,4
+https://openalex.org/I152456871,University of Caldas,2,6

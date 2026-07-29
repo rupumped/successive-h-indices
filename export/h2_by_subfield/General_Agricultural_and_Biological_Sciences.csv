@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I913481162,Wageningen University & Research,24,450
+https://openalex.org/I87216513,Michigan State University,21,201
+https://openalex.org/I205783295,Cornell University,16,229
+https://openalex.org/I173911158,Iowa State University,16,432
+https://openalex.org/I33213144,University of Florida,15,291
+https://openalex.org/I110079840,University of Hohenheim,15,140
+https://openalex.org/I21881038,IPB University,14,1398
+https://openalex.org/I52357470,The Ohio State University,14,289
+https://openalex.org/I79817857,University of Guelph,14,108
+https://openalex.org/I39343248,Humboldt-Universität zu Berlin,13,109
+https://openalex.org/I72227227,Makerere University,13,106
+https://openalex.org/I219193219,Purdue University West Lafayette,13,156
+https://openalex.org/I135140700,University of Bonn,13,112
+https://openalex.org/I157725225,University of Illinois Urbana-Champaign,13,139
+https://openalex.org/I130238516,University of Minnesota,13,151
+https://openalex.org/I71052956,University of Reading,13,80
+https://openalex.org/I4210097172,Colegio de Postgraduados,12,637
+https://openalex.org/I195931504,Egerton University,12,146
+https://openalex.org/I99464096,KU Leuven,12,55
+https://openalex.org/I189590672,Kansas State University,12,142
+https://openalex.org/I137902535,North Carolina State University,12,106
+https://openalex.org/I298625061,Swedish University of Agricultural Sciences,12,80
+https://openalex.org/I83291730,University for Development Studies,12,116
+https://openalex.org/I138690464,University of Ghana,12,87
+https://openalex.org/I114203471,University of Gloucestershire,12,24
+https://openalex.org/I12859529,University of Nairobi,12,169
+https://openalex.org/I90745801,University of New England,12,37
+https://openalex.org/I859038795,Virginia Tech,12,133
+https://openalex.org/I118347636,Australian National University,11,54
+https://openalex.org/I205984670,Czech University of Life Sciences Prague,11,79
+https://openalex.org/I28046988,Kwame Nkrumah University of Science and Technology,11,120
+https://openalex.org/I84884186,Newcastle University,11,46
+https://openalex.org/I91819753,Padjadjaran University,11,671
+https://openalex.org/I130769515,Pennsylvania State University,11,173
+https://openalex.org/I91045830,Texas A&M University,11,143
+https://openalex.org/I165779595,The University of Melbourne,11,57
+https://openalex.org/I177877127,The University of Western Australia,11,53
+https://openalex.org/I36243813,Universidad Nacional de Colombia,11,544
+https://openalex.org/I165230279,Universitas Gadjah Mada,11,684
+https://openalex.org/I100930933,University College Dublin,11,60
+https://openalex.org/I124055696,University of Copenhagen,11,68
+https://openalex.org/I165733156,University of Georgia,11,123
+https://openalex.org/I74656192,University of Göttingen,11,117
+https://openalex.org/I133731052,University of Helsinki,11,63
+https://openalex.org/I76835614,University of Missouri,11,129
+https://openalex.org/I162608824,University of Sussex,11,37
+https://openalex.org/I135310074,University of Wisconsin–Madison,11,103
+https://openalex.org/I153455119,University of Zimbabwe,11,63
+https://openalex.org/I26999989,University of the Free State,11,85
+https://openalex.org/I4537092,Addis Ababa University,10,85
+https://openalex.org/I92869138,BOKU University,10,58
+https://openalex.org/I24057909,Bangladesh Agricultural University,10,264
+https://openalex.org/I31466659,Chapingo Autonomous University,10,367
+https://openalex.org/I153487414,Haramaya University,10,118
+https://openalex.org/I145311948,Johns Hopkins University,10,31
+https://openalex.org/I131249849,Oregon State University,10,93
+https://openalex.org/I5681781,The University of Adelaide,10,43
+https://openalex.org/I8961855,Universidad Nacional Autónoma de México,10,331
+https://openalex.org/I195460627,University of Aberdeen,10,44
+https://openalex.org/I138006243,University of Arizona,10,72
+https://openalex.org/I84218800,"University of California, Davis",10,96
+https://openalex.org/I1118541,University of East Anglia,10,30
+https://openalex.org/I23923803,University of Exeter,10,33
+https://openalex.org/I95023434,University of KwaZulu-Natal,10,82
+https://openalex.org/I124357947,University of London,10,42
+https://openalex.org/I114395901,University of Nebraska–Lincoln,10,137
+https://openalex.org/I40120149,University of Oxford,10,46
+https://openalex.org/I865915315,Vrije Universiteit Amsterdam,10,29
+https://openalex.org/I21370196,Aristotle University of Thessaloniki,9,54
+https://openalex.org/I52158045,China Agricultural University,9,61
+https://openalex.org/I92446798,Colorado State University,9,57
+https://openalex.org/I11855966,Diponegoro University,9,803
+https://openalex.org/I49595703,Ethiopian Institute of Agricultural Research,9,193
+https://openalex.org/I32597200,Ghent University,9,49
+https://openalex.org/I12833781,Lampung University,9,677
+https://openalex.org/I4210101907,Lilongwe University of Agriculture and Natural Resources,9,96
+https://openalex.org/I187531555,Lund University,9,36
+https://openalex.org/I45711476,Obafemi Awolowo University,9,72
+https://openalex.org/I899646,Punjab Agricultural University,9,132
+https://openalex.org/I260719752,Scotland's Rural College,9,22
+https://openalex.org/I84641585,Sokoine University of Agriculture,9,148
+https://openalex.org/I134900695,Tamil Nadu Agricultural University,9,446
+https://openalex.org/I165143802,The University of Queensland,9,64
+https://openalex.org/I177055848,University of Brawijaya,9,810
+https://openalex.org/I141945490,University of British Columbia,9,51
+https://openalex.org/I95457486,"University of California, Berkeley",9,77
+https://openalex.org/I55060895,University of Greenwich,9,32
+https://openalex.org/I143302722,University of Kentucky,9,100
+https://openalex.org/I11892038,University of Nigeria,9,123
+https://openalex.org/I142263535,University of Nottingham,9,37
+https://openalex.org/I165390105,University of South Africa,9,51
+https://openalex.org/I75027704,University of Tennessee at Knoxville,9,75
+https://openalex.org/I185261750,University of Toronto,9,50
+https://openalex.org/I111236770,University of Vermont,9,55
+https://openalex.org/I33278361,University of Zambia,9,52
+https://openalex.org/I121980950,Utah State University,9,77
+https://openalex.org/I193662353,Utrecht University,9,48
+https://openalex.org/I16038530,Aberystwyth University,8,29
+https://openalex.org/I109954829,Agricultural University of Athens,8,49
+https://openalex.org/I55732556,Arizona State University,8,54
+https://openalex.org/I153230381,Charles Sturt University,8,29

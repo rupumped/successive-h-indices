@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I126520041,University of Science and Technology of China,56,3430
+https://openalex.org/I4210165038,University of Chinese Academy of Sciences,51,3319
+https://openalex.org/I22299242,Kyoto University,46,2212
+https://openalex.org/I165932596,National University of Singapore,45,1534
+https://openalex.org/I40120149,University of Oxford,45,1455
+https://openalex.org/I108688024,Qingdao University,44,1048
+https://openalex.org/I157773358,Sun Yat-sen University,44,1876
+https://openalex.org/I201537933,Tohoku University,44,2854
+https://openalex.org/I28407311,University of Manchester,44,1724
+https://openalex.org/I139660479,Central South University,43,2100
+https://openalex.org/I10660446,Kunming University of Science and Technology,43,1635
+https://openalex.org/I111979921,Northwestern University,43,1529
+https://openalex.org/I125839683,Beijing Institute of Technology,42,1951
+https://openalex.org/I35440088,ETH Zurich,42,1483
+https://openalex.org/I115592961,Jiangsu University,42,1422
+https://openalex.org/I194450716,Jilin University,42,2304
+https://openalex.org/I102335020,Karlsruhe Institute of Technology,42,2053
+https://openalex.org/I134687103,Nanjing Tech University,42,1821
+https://openalex.org/I130769515,Pennsylvania State University,41,1814
+https://openalex.org/I183067930,Shanghai Jiao Tong University,41,2056
+https://openalex.org/I116953780,Tongji University,41,1182
+https://openalex.org/I143593769,East China University of Science and Technology,40,1376
+https://openalex.org/I111599522,Jiangnan University,40,883
+https://openalex.org/I113940042,Shanghai University,40,1871
+https://openalex.org/I114531698,Tokyo Institute of Technology,40,2507
+https://openalex.org/I99065089,Tsinghua University,40,2122
+https://openalex.org/I241749,University of Cambridge,40,1561
+https://openalex.org/I5124864,École Polytechnique Fédérale de Lausanne,40,1203
+https://openalex.org/I158842170,Chongqing University,39,1425
+https://openalex.org/I135598925,Kyushu University,39,2245
+https://openalex.org/I60134161,Nagoya University,39,1787
+https://openalex.org/I109935558,Ningbo University,39,1040
+https://openalex.org/I20231570,Peking University,39,1757
+https://openalex.org/I24185976,Sichuan University,39,2136
+https://openalex.org/I39804081,Sorbonne Université,39,1108
+https://openalex.org/I162868743,Tianjin University,39,1999
+https://openalex.org/I68947357,Université de Strasbourg,39,716
+https://openalex.org/I27357992,Dalian University of Technology,38,1528
+https://openalex.org/I24943067,Fudan University,38,1464
+https://openalex.org/I205237279,Nankai University,38,1130
+https://openalex.org/I180726961,Shenzhen University,38,1125
+https://openalex.org/I74801974,The University of Tokyo,38,2173
+https://openalex.org/I100532134,Université Claude Bernard Lyon 1,38,1508
+https://openalex.org/I277688954,Université Paris-Saclay,38,1131
+https://openalex.org/I181369854,Friedrich-Alexander-Universität Erlangen-Nürnberg,37,1362
+https://openalex.org/I139024713,Guangdong University of Technology,37,1017
+https://openalex.org/I150807315,Guangxi University,37,1278
+https://openalex.org/I47720641,Huazhong University of Science and Technology,37,1527
+https://openalex.org/I28022161,King Saud University,37,731
+https://openalex.org/I157485424,Korea Advanced Institute of Science and Technology,37,1537
+https://openalex.org/I63966007,Massachusetts Institute of Technology,37,1730
+https://openalex.org/I141649914,Nanchang University,37,967
+https://openalex.org/I154099455,Shandong University,37,2037
+https://openalex.org/I98285908,The University of Osaka,37,2430
+https://openalex.org/I60858718,University of Aveiro,37,473
+https://openalex.org/I27837315,University of Michigan,37,1298
+https://openalex.org/I146399215,University of Tsukuba,37,1026
+https://openalex.org/I87445476,Xi'an Jiaotong University,37,2052
+https://openalex.org/I168719708,City University of Hong Kong,36,716
+https://openalex.org/I111753288,Fujian Normal University,36,603
+https://openalex.org/I47508984,Imperial College London,36,1217
+https://openalex.org/I17145004,Northwestern Polytechnical University,36,1693
+https://openalex.org/I157725225,University of Illinois Urbana-Champaign,36,1579
+https://openalex.org/I130238516,University of Minnesota,36,1105
+https://openalex.org/I129774422,University of Vienna,36,721
+https://openalex.org/I15057530,Université de Bordeaux,36,915
+https://openalex.org/I191208505,Xiamen University,36,1365
+https://openalex.org/I122411786,California Institute of Technology,35,736
+https://openalex.org/I106645853,Changchun University of Science and Technology,35,658
+https://openalex.org/I130701444,Georgia Institute of Technology,35,1258
+https://openalex.org/I204983213,Harbin Institute of Technology,35,1918
+https://openalex.org/I136199984,Harvard University,35,828
+https://openalex.org/I16609230,Hunan University,35,1182
+https://openalex.org/I172675005,Nanyang Technological University,35,1283
+https://openalex.org/I219193219,Purdue University West Lafayette,35,1276
+https://openalex.org/I96673099,Technical University of Denmark,35,905
+https://openalex.org/I91045830,Texas A&M University,35,1153
+https://openalex.org/I255234318,Universidad de Zaragoza,35,518
+https://openalex.org/I16097986,Universitat de València,35,459
+https://openalex.org/I45129253,University College London,35,750
+https://openalex.org/I161318765,"University of California, Los Angeles",35,1052
+https://openalex.org/I150229711,University of Electronic Science and Technology of China,35,1098
+https://openalex.org/I38877650,Zhengzhou University,35,1338
+https://openalex.org/I14243506,Hong Kong Polytechnic University,34,611
+https://openalex.org/I881766915,Nanjing University,34,1535
+https://openalex.org/I188973947,Novosibirsk State University,34,904
+https://openalex.org/I90610280,South China University of Technology,34,1333
+https://openalex.org/I161296585,Tokyo University of Science,34,1466
+https://openalex.org/I123044942,Universitat Autònoma de Barcelona,34,376
+https://openalex.org/I9360294,University of Bologna,34,518
+https://openalex.org/I95457486,"University of California, Berkeley",34,1450
+https://openalex.org/I141596103,University of Lisbon,34,518
+https://openalex.org/I146655781,University of Liverpool,34,582
+https://openalex.org/I135310074,University of Wisconsin–Madison,34,1043
+https://openalex.org/I899635006,Université Grenoble Alpes,34,658
+https://openalex.org/I37461747,Wuhan University,34,1141
+https://openalex.org/I76130692,Zhejiang University,34,1899
+https://openalex.org/I11935315,École Nationale Supérieure de Chimie de Montpellier,34,594
+https://openalex.org/I99364266,Academy of Scientific and Innovative Research,33,918
+https://openalex.org/I143868143,Anhui University,33,871
+https://openalex.org/I118347636,Australian National University,33,467

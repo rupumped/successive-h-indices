@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I74973139,Carnegie Mellon University,22,413
+https://openalex.org/I157725225,University of Illinois Urbana-Champaign,22,525
+https://openalex.org/I97018004,Stanford University,19,348
+https://openalex.org/I86519309,The University of Texas at Austin,19,302
+https://openalex.org/I83019370,Eindhoven University of Technology,18,236
+https://openalex.org/I9617848,Universitat Politècnica de Catalunya,18,295
+https://openalex.org/I27837315,University of Michigan,18,257
+https://openalex.org/I95457486,"University of California, Berkeley",17,366
+https://openalex.org/I204250578,"University of California, Irvine",17,293
+https://openalex.org/I35440088,ETH Zurich,16,215
+https://openalex.org/I99464096,KU Leuven,16,191
+https://openalex.org/I102335020,Karlsruhe Institute of Technology,16,239
+https://openalex.org/I82509713,Mälardalen University,16,125
+https://openalex.org/I177477856,Politecnico di Torino,16,195
+https://openalex.org/I139264467,Seoul National University,16,241
+https://openalex.org/I185261750,University of Toronto,16,235
+https://openalex.org/I201448701,University of Washington,16,192
+https://openalex.org/I130701444,Georgia Institute of Technology,15,306
+https://openalex.org/I106785703,Institut polytechnique de Grenoble,15,186
+https://openalex.org/I63966007,Massachusetts Institute of Technology,15,272
+https://openalex.org/I93860229,Politecnico di Milano,15,218
+https://openalex.org/I205783295,Cornell University,14,139
+https://openalex.org/I47508984,Imperial College London,14,150
+https://openalex.org/I16733864,National Taiwan University,14,191
+https://openalex.org/I20089843,Princeton University,14,215
+https://openalex.org/I36258959,University of California San Diego,14,147
+https://openalex.org/I161318765,"University of California, Los Angeles",14,197
+https://openalex.org/I1174212,University of Southern California,14,232
+https://openalex.org/I135310074,University of Wisconsin–Madison,14,199
+https://openalex.org/I55732556,Arizona State University,13,118
+https://openalex.org/I78577930,Columbia University,13,81
+https://openalex.org/I98358874,Delft University of Technology,13,193
+https://openalex.org/I86987016,KTH Royal Institute of Technology,13,104
+https://openalex.org/I170215575,National University of Defense Technology,13,202
+https://openalex.org/I137902535,North Carolina State University,13,161
+https://openalex.org/I130769515,Pennsylvania State University,13,198
+https://openalex.org/I74775410,Rice University,13,97
+https://openalex.org/I162290304,Scuola Superiore Sant'Anna,13,66
+https://openalex.org/I99065089,Tsinghua University,13,226
+https://openalex.org/I121748325,Universidad Complutense de Madrid,13,71
+https://openalex.org/I103635307,"University of California, Riverside",13,94
+https://openalex.org/I241749,University of Cambridge,13,87
+https://openalex.org/I98677209,University of Edinburgh,13,123
+https://openalex.org/I33213144,University of Florida,13,177
+https://openalex.org/I28407311,University of Manchester,13,170
+https://openalex.org/I114027177,University of North Carolina at Chapel Hill,13,75
+https://openalex.org/I5124864,École Polytechnique Fédérale de Lausanne,13,178
+https://openalex.org/I134446601,Berkeley College,12,51
+https://openalex.org/I111088046,Boston University,12,69
+https://openalex.org/I32597200,Ghent University,12,77
+https://openalex.org/I136199984,Harvard University,12,47
+https://openalex.org/I157485424,Korea Advanced Institute of Science and Technology,12,195
+https://openalex.org/I187531555,Lund University,12,57
+https://openalex.org/I4210099336,Menlo School,12,77
+https://openalex.org/I183067930,Shanghai Jiao Tong University,12,118
+https://openalex.org/I94509681,Technische Universität Braunschweig,12,141
+https://openalex.org/I60053951,Universitat Politècnica de València,12,88
+https://openalex.org/I66946132,"University of Maryland, College Park",12,168
+https://openalex.org/I75027704,University of Tennessee at Knoxville,12,60
+https://openalex.org/I94624287,University of Twente,12,132
+https://openalex.org/I223532165,University of Utah,12,93
+https://openalex.org/I161929037,Université de Bretagne Occidentale,12,79
+https://openalex.org/I19894307,Université de Montpellier,12,94
+https://openalex.org/I56067802,Université de Rennes,12,78
+https://openalex.org/I145894827,Indian Institute of Technology Kharagpur,11,99
+https://openalex.org/I102134673,Linköping University,11,87
+https://openalex.org/I25846049,National Tsing Hua University,11,200
+https://openalex.org/I111979921,Northwestern University,11,88
+https://openalex.org/I206945453,Paderborn University,11,160
+https://openalex.org/I219193219,Purdue University West Lafayette,11,162
+https://openalex.org/I91712215,Saarland University,11,68
+https://openalex.org/I145847075,TU Wien,11,150
+https://openalex.org/I111112146,Tallinn University of Technology,11,60
+https://openalex.org/I62916508,Technical University of Munich,11,204
+https://openalex.org/I78650965,Technische Universität Dresden,11,173
+https://openalex.org/I130442723,Universidade Federal do Rio Grande do Sul,11,168
+https://openalex.org/I141945490,University of British Columbia,11,108
+https://openalex.org/I84218800,"University of California, Davis",11,104
+https://openalex.org/I154570441,"University of California, Santa Barbara",11,101
+https://openalex.org/I4210165038,University of Chinese Academy of Sciences,11,134
+https://openalex.org/I108290504,University of Pisa,11,69
+https://openalex.org/I126520041,University of Science and Technology of China,11,105
+https://openalex.org/I899635006,Université Grenoble Alpes,11,119
+https://openalex.org/I859038795,Virginia Tech,11,184
+https://openalex.org/I100005738,Brigham Young University,10,95
+https://openalex.org/I181369854,Friedrich-Alexander-Universität Erlangen-Nürnberg,10,228
+https://openalex.org/I165932596,National University of Singapore,10,111
+https://openalex.org/I17145004,Northwestern Polytechnical University,10,54
+https://openalex.org/I887968799,RWTH Aachen University,10,202
+https://openalex.org/I200332995,TU Dortmund University,10,93
+https://openalex.org/I96673099,Technical University of Denmark,10,103
+https://openalex.org/I31512782,Technische Universität Darmstadt,10,154
+https://openalex.org/I74801974,The University of Tokyo,10,117
+https://openalex.org/I31746571,UNSW Sydney,10,77
+https://openalex.org/I10902133,Universitat Jaume I,10,23
+https://openalex.org/I154130895,University of Auckland,10,54
+https://openalex.org/I9360294,University of Bologna,10,101
+https://openalex.org/I153267046,University of Kaiserslautern,10,111
+https://openalex.org/I141596103,University of Lisbon,10,49
+https://openalex.org/I51556381,University of Virginia,10,104
+https://openalex.org/I151746483,University of Waterloo,10,139

@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I121748325,Universidad Complutense de Madrid,12,395
+https://openalex.org/I123044942,Universitat Autònoma de Barcelona,11,187
+https://openalex.org/I63634437,Universidad Autónoma de Madrid,10,98
+https://openalex.org/I178450904,Universidad Nacional de Educación a Distancia,9,156
+https://openalex.org/I79238269,Universidad de Sevilla,9,119
+https://openalex.org/I71999127,Universitat de Barcelona,9,172
+https://openalex.org/I16097986,Universitat de València,9,197
+https://openalex.org/I126596746,Jagiellonian University,8,119
+https://openalex.org/I95013407,Universidad Pablo de Olavide,8,79
+https://openalex.org/I173304897,Universidad de Granada,8,145
+https://openalex.org/I80180929,Universidad de Murcia,8,118
+https://openalex.org/I165339363,Universidad de Oviedo,8,60
+https://openalex.org/I255234318,Universidad de Zaragoza,8,90
+https://openalex.org/I169108374,University of the Basque Country,8,161
+https://openalex.org/I8961855,Universidad Nacional Autónoma de México,7,218
+https://openalex.org/I175051016,Universidad Publica de Navarra,7,56
+https://openalex.org/I182083151,Universidad Rey Juan Carlos,7,44
+https://openalex.org/I78880903,Universidad de Huelva,7,57
+https://openalex.org/I158438070,Universidad de La Laguna,7,66
+https://openalex.org/I82767444,Universidad de Málaga,7,89
+https://openalex.org/I184999862,Universidad de Salamanca,7,82
+https://openalex.org/I11019714,Universidade da Coruña,7,38
+https://openalex.org/I200284239,Universidade de Santiago de Compostela,7,82
+https://openalex.org/I130194489,University of Alicante,7,76
+https://openalex.org/I79189158,University of Castilla-La Mancha,7,48
+https://openalex.org/I34250744,University of Łódź,7,106
+https://openalex.org/I121032520,Medical University of Lublin,7,54
+https://openalex.org/I268303160,Medical University of Warsaw,6,19
+https://openalex.org/I3019271933,Nicolaus Copernicus University,6,49
+https://openalex.org/I79833322,Pomeranian Medical University,6,19
+https://openalex.org/I18193975,SGH Warsaw School of Economics,6,29
+https://openalex.org/I200362191,Universidad Autónoma Metropolitana,6,107
+https://openalex.org/I189268942,Universidad de Alcalá,6,39
+https://openalex.org/I24354313,Universidad de Buenos Aires,6,144
+https://openalex.org/I191420491,Universidad de Jaén,6,55
+https://openalex.org/I108103353,Universidad de Valladolid,6,57
+https://openalex.org/I6289922,Universidade de Vigo,6,35
+https://openalex.org/I55952717,Universitat Rovira i Virgili,6,42
+https://openalex.org/I251424209,Universitat de Girona,6,41
+https://openalex.org/I52354020,University of Almería,6,30
+https://openalex.org/I69737025,University of Chile,6,192
+https://openalex.org/I4654613,University of Warsaw,6,91
+https://openalex.org/I59411706,Adam Mickiewicz University in Poznań,5,102
+https://openalex.org/I2799540354,First Pavlov State Medical University of St. Petersburg,5,15
+https://openalex.org/I4210151758,Fundació Universitat-Empresa de les Illes Balears,5,25
+https://openalex.org/I111702420,John Paul II Catholic University of Lublin,5,40
+https://openalex.org/I149592570,Kazimierz Wielki University in Bydgoszcz,5,36
+https://openalex.org/I162148367,Pontificia Universidad Católica de Chile,5,100
+https://openalex.org/I1288451689,Real Academia Española,5,8
+https://openalex.org/I50357001,Universidad Carlos III de Madrid,5,31
+https://openalex.org/I96580804,Universidad Pontificia Comillas,5,45
+https://openalex.org/I46176106,Universidad de Burgos,5,20
+https://openalex.org/I136040515,Universidad de Deusto,5,70
+https://openalex.org/I193181351,Universidad de Guadalajara,5,70
+https://openalex.org/I168974976,Universidad de La Rioja,5,28
+https://openalex.org/I88155538,Universidad de Navarra,5,20
+https://openalex.org/I10457146,Universidad de Santiago de Chile,5,31
+https://openalex.org/I5593406,Universitat Ramon Llull,5,63
+https://openalex.org/I111262870,Universitat de Miguel Hernández d'Elx,5,12
+https://openalex.org/I50441567,Universitat de les Illes Balears,5,30
+https://openalex.org/I227774917,University School of Physical Education in Kraków,5,11
+https://openalex.org/I40413290,University of Gdańsk,5,30
+https://openalex.org/I104588304,University of Szczecin,5,41
+https://openalex.org/I305801656,Wroclaw University of Economics and Business,5,23
+https://openalex.org/I76842071,Icesi University,4,12
+https://openalex.org/I4400008913,Instituto de Investigaciones Sociales,4,11
+https://openalex.org/I169495764,Jan Kochanowski University,4,40
+https://openalex.org/I21203515,Kazan Federal University,4,141
+https://openalex.org/I174183983,Maria Curie-Skłodowska University,4,57
+https://openalex.org/I166182418,Medical University of Silesia,4,14
+https://openalex.org/I65285256,Pontifical Catholic University of Peru,4,49
+https://openalex.org/I29406707,Pontificia Universidad Católica Argentina,4,14
+https://openalex.org/I130474213,Pontificia Universidad Católica de Valparaíso,4,42
+https://openalex.org/I233745408,Pontificia Universidad Javeriana,4,57
+https://openalex.org/I120230055,Poznan University of Medical Sciences,4,14
+https://openalex.org/I12379730,Poznań University of Economics and Business,4,19
+https://openalex.org/I4210135221,The Maria Grzegorzewska University,4,40
+https://openalex.org/I63797719,Universidad Centroamericana José Simeón Cañas,4,20
+https://openalex.org/I4210116615,Universidad Internacional De La Rioja,4,21
+https://openalex.org/I116419501,Universidad Mayor,4,10
+https://openalex.org/I8379220,Universidad Nacional de Asunción,4,18
+https://openalex.org/I36243813,Universidad Nacional de Colombia,4,117
+https://openalex.org/I874386039,Universidad Nacional de La Plata,4,70
+https://openalex.org/I181028852,Universidad Pontificia Bolivariana,4,55
+https://openalex.org/I41382782,Universidad Pontificia de Salamanca,4,30
+https://openalex.org/I31944674,Universidad de Costa Rica,4,91
+https://openalex.org/I80606768,Universidad de Extremadura,4,29
+https://openalex.org/I157650460,Universidad de La Sabana,4,24
+https://openalex.org/I119635470,Universidad de Las Palmas de Gran Canaria,4,27
+https://openalex.org/I4210143738,Universidad de Los Andes,4,38
+https://openalex.org/I4210154195,Universidad de Los Lagos,4,13
+https://openalex.org/I180910786,Universidad de la República de Uruguay,4,58
+https://openalex.org/I10902133,Universitat Jaume I,4,31
+https://openalex.org/I138847295,Universitat Oberta de Catalunya,4,28
+https://openalex.org/I9617848,Universitat Politècnica de Catalunya,4,16
+https://openalex.org/I170486558,Universitat Pompeu Fabra,4,24
+https://openalex.org/I15766328,Universitat de Lleida,4,20
+https://openalex.org/I245364917,University of Białystok,4,18
+https://openalex.org/I221450849,University of Bío-Bío,4,16
+https://openalex.org/I172787465,University of Concepción,4,32
+https://openalex.org/I188922065,University of Economics in Katowice,4,47

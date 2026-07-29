@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I17877952,Sechenov University,7,77
+https://openalex.org/I136199984,Harvard University,5,8
+https://openalex.org/I4210156742,I.Horbachevsky Ternopil National Medical University,5,55
+https://openalex.org/I145311948,Johns Hopkins University,5,21
+https://openalex.org/I4210131292,"National Pirogov Memorial Medical University, Vinnytsya",5,92
+https://openalex.org/I4210118375,Saratov State Medical University,5,53
+https://openalex.org/I4210162035,Stavropol State Medical University,5,23
+https://openalex.org/I285663978,Weatherford College,5,88
+https://openalex.org/I1323554757,Ivano-Frankivsk National Medical University,4,82
+https://openalex.org/I197323543,Johannes Gutenberg University Mainz,4,7
+https://openalex.org/I76407603,Kharkiv National Medical University,4,66
+https://openalex.org/I168528297,Kuban State Medical University,4,28
+https://openalex.org/I68956291,Martin Luther University Halle-Wittenberg,4,13
+https://openalex.org/I136268261,Moscow State University of Medicine and Dentistry,4,42
+https://openalex.org/I337778094,Pirogov Russian National Research Medical University,4,46
+https://openalex.org/I4387155203,Poltava State Medical University,4,97
+https://openalex.org/I4210121467,Poltava V.G. Korolenko National Pedagogical University,4,64
+https://openalex.org/I2801546011,S. M. Kirov Military Medical Academy,4,48
+https://openalex.org/I2800007259,Shupyk National Healthcare University of Ukraine,4,82
+https://openalex.org/I39804081,Sorbonne Université,4,13
+https://openalex.org/I135140700,University of Bonn,4,7
+https://openalex.org/I98677209,University of Edinburgh,4,8
+https://openalex.org/I189158943,University of Milan,4,11
+https://openalex.org/I79576946,University of Pennsylvania,4,11
+https://openalex.org/I4665924,University of Rostock,4,7
+https://openalex.org/I202697423,University of Zurich,4,14
+https://openalex.org/I68947357,Université de Strasbourg,4,5
+https://openalex.org/I4210093938,Ural State Medical University,4,32
+https://openalex.org/I77443782,Uzhhorod National University,4,59
+https://openalex.org/I155623535,Volgograd State Medical University,4,67
+https://openalex.org/I84407627,Bogomolets National Medical University,4,107
+https://openalex.org/I3410338,Bukovinian State Medical University,4,113
+https://openalex.org/I21250087,Charles University,4,17
+https://openalex.org/I24402780,Danylo Halytsky Lviv National Medical University,4,102
+https://openalex.org/I268303160,Medical University of Warsaw,3,9
+https://openalex.org/I57206974,New York University,3,10
+https://openalex.org/I104946051,Nihon University,3,9
+https://openalex.org/I4210151936,North-Western State Medical University named after I.I. Mechnikov,3,32
+https://openalex.org/I111979921,Northwestern University,3,8
+https://openalex.org/I4210088483,Perm State Medical Academy,3,29
+https://openalex.org/I161103922,Philipps University of Marburg,3,9
+https://openalex.org/I100051649,Privolzhsky Research Medical University,3,22
+https://openalex.org/I4210108300,Russian Medical Academy of Continuous Professional Education,3,18
+https://openalex.org/I4210141419,Ryazan State Medical University named after Academician I.P. Pavlov,3,29
+https://openalex.org/I101202996,Semmelweis University,3,9
+https://openalex.org/I4210120801,Smolensk State Medical University,3,9
+https://openalex.org/I189238007,Taras Shevchenko National University of Kyiv,3,11
+https://openalex.org/I16391192,Tel Aviv University,3,3
+https://openalex.org/I45129253,University College London,3,14
+https://openalex.org/I1850255,University of Basel,3,7
+https://openalex.org/I118564535,University of Bern,3,11
+https://openalex.org/I36258959,University of California San Diego,3,6
+https://openalex.org/I63135867,University of Cincinnati,3,5
+https://openalex.org/I74656192,University of Göttingen,3,4
+https://openalex.org/I143302722,University of Kentucky,3,3
+https://openalex.org/I130828816,University of Leeds,3,9
+https://openalex.org/I27837315,University of Michigan,3,11
+https://openalex.org/I22465464,University of Münster,3,7
+https://openalex.org/I40120149,University of Oxford,3,6
+https://openalex.org/I170201317,University of Pittsburgh,3,11
+https://openalex.org/I1174212,University of Southern California,3,7
+https://openalex.org/I185261750,University of Toronto,3,12
+https://openalex.org/I55143463,University of Turin,3,6
+https://openalex.org/I129774422,University of Vienna,3,8
+https://openalex.org/I181343428,University of Zagreb,3,16
+https://openalex.org/I159176309,Universität Hamburg,3,8
+https://openalex.org/I190249584,Universität Innsbruck,3,4
+https://openalex.org/I204730241,Université Paris Cité,3,22
+https://openalex.org/I15057530,Université de Bordeaux,3,9
+https://openalex.org/I2279609970,Université de Lille,3,5
+https://openalex.org/I70931966,Université de Montréal,3,5
+https://openalex.org/I2800247874,Voronezh State Medical Academy named after N.N. Burdenko,3,39
+https://openalex.org/I204465549,Washington University in St. Louis,3,9
+https://openalex.org/I74788687,Comenius University Bratislava,3,7
+https://openalex.org/I205783295,Cornell University,3,12
+https://openalex.org/I129902397,Dalhousie University,3,8
+https://openalex.org/I181369854,Friedrich-Alexander-Universität Erlangen-Nürnberg,3,5
+https://openalex.org/I39343248,Humboldt-Universität zu Berlin,3,7
+https://openalex.org/I4210166198,Irkutsk State Medical University,3,21
+https://openalex.org/I28166907,Karolinska Institutet,3,7
+https://openalex.org/I186356647,Kazan State Medical University,3,22
+https://openalex.org/I4210090231,Krasnoyarsk State Medical University,3,37
+https://openalex.org/I3130988169,Kyiv Medical University,3,17
+https://openalex.org/I121797337,Leiden University,3,45
+https://openalex.org/I926574661,Leipzig University,3,7
+https://openalex.org/I3122748864,"""Dunarea de Jos"" University of Galati",2,4
+https://openalex.org/I2898155008,Academic Center for Dentistry Amsterdam,2,5
+https://openalex.org/I4210103120,Académie Nationale de Médecine,2,6
+https://openalex.org/I185571130,Al-Farabi Kazakh National University,2,6
+https://openalex.org/I120273102,Altai State Medical University,2,21
+https://openalex.org/I4210112215,Astrakhan State Medical University,2,10
+https://openalex.org/I39854758,Auckland University of Technology,2,2
+https://openalex.org/I189285622,Azerbaijan Medical University,2,16
+https://openalex.org/I4210120901,Bashkir State Medical University,2,21
+https://openalex.org/I45812101,Belarusian National Technical University,2,2
+https://openalex.org/I53298266,Belarusian State Medical University,2,7
+https://openalex.org/I120938084,Belgorod National Research University,2,8
+https://openalex.org/I111088046,Boston University,2,6
+https://openalex.org/I27804330,Brown University,2,4
+https://openalex.org/I79510175,Cardiff University,2,2
+https://openalex.org/I58956616,Case Western Reserve University,2,3

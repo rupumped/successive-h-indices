@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I92403157,University of Science and Technology Beijing,11,122
+https://openalex.org/I201537933,Tohoku University,9,58
+https://openalex.org/I22299242,Kyoto University,8,25
+https://openalex.org/I204778367,Norwegian University of Science and Technology,8,31
+https://openalex.org/I52357470,The Ohio State University,7,31
+https://openalex.org/I51556381,University of Virginia,7,28
+https://openalex.org/I15057530,Université de Bordeaux,7,11
+https://openalex.org/I4210162190,"China University of Petroleum, East China",7,33
+https://openalex.org/I135598925,Kyushu University,7,42
+https://openalex.org/I123900574,Pohang University of Science and Technology,7,26
+https://openalex.org/I139660479,Central South University,6,17
+https://openalex.org/I24943067,Fudan University,6,14
+https://openalex.org/I182712176,Montanuniversität Leoben,6,20
+https://openalex.org/I16733864,National Taiwan University,6,13
+https://openalex.org/I113940042,Shanghai University,6,35
+https://openalex.org/I165745306,Southwest Petroleum University,6,50
+https://openalex.org/I114531698,Tokyo Institute of Technology,6,22
+https://openalex.org/I122140584,Universidade Federal do Rio de Janeiro,6,34
+https://openalex.org/I157725225,University of Illinois Urbana-Champaign,6,13
+https://openalex.org/I28407311,University of Manchester,6,36
+https://openalex.org/I150744194,Waseda University,6,10
+https://openalex.org/I124227911,Ben-Gurion University of the Negev,5,10
+https://openalex.org/I32597200,Ghent University,5,8
+https://openalex.org/I200207707,Homi Bhabha National Institute,5,9
+https://openalex.org/I86987016,KTH Royal Institute of Technology,5,13
+https://openalex.org/I5023651,McGill University,5,11
+https://openalex.org/I3019848993,Mines Saint-Étienne,5,12
+https://openalex.org/I134687103,Nanjing Tech University,5,9
+https://openalex.org/I9224756,Northeastern University,5,41
+https://openalex.org/I17145004,Northwestern Polytechnical University,5,23
+https://openalex.org/I95793202,Otto-von-Guericke-Universität Magdeburg,5,12
+https://openalex.org/I177909021,Universidade Federal de São Carlos,5,10
+https://openalex.org/I17974374,Universidade de São Paulo,5,19
+https://openalex.org/I126520041,University of Science and Technology of China,5,14
+https://openalex.org/I192619145,University of the Witwatersrand,5,12
+https://openalex.org/I285663978,Weatherford College,5,19
+https://openalex.org/I87445476,Xi'an Jiaotong University,5,17
+https://openalex.org/I173915773,Yamaguchi University,5,9
+https://openalex.org/I4575257,Hanyang University,4,9
+https://openalex.org/I47720641,Huazhong University of Science and Technology,4,17
+https://openalex.org/I47508984,Imperial College London,4,14
+https://openalex.org/I59361560,Instituto Politécnico Nacional,4,20
+https://openalex.org/I197347611,Korea University,4,10
+https://openalex.org/I78744979,La Rochelle Université,4,8
+https://openalex.org/I166846921,Liaoning Shihua University,4,13
+https://openalex.org/I63966007,Massachusetts Institute of Technology,4,16
+https://openalex.org/I91807558,National Cheng Kung University,4,16
+https://openalex.org/I228664971,National University of General San Martín,4,7
+https://openalex.org/I84884186,Newcastle University,4,11
+https://openalex.org/I59028903,Ocean University of China,4,16
+https://openalex.org/I130769515,Pennsylvania State University,4,19
+https://openalex.org/I4921948,Pusan National University,4,15
+https://openalex.org/I152269853,Qilu University of Technology,4,6
+https://openalex.org/I154099455,Shandong University,4,11
+https://openalex.org/I42999171,Sophia University,4,13
+https://openalex.org/I90610280,South China University of Technology,4,7
+https://openalex.org/I4800084,Southwest Jiaotong University,4,5
+https://openalex.org/I157773358,Sun Yat-sen University,4,15
+https://openalex.org/I28334184,The University of Arizona Global Campus,4,5
+https://openalex.org/I165143802,The University of Queensland,4,10
+https://openalex.org/I74801974,The University of Tokyo,4,18
+https://openalex.org/I88060688,Universidad Politécnica de Madrid,4,7
+https://openalex.org/I161127581,Universidade Federal Fluminense,4,20
+https://openalex.org/I110200422,Universidade Federal de Minas Gerais,4,11
+https://openalex.org/I130442723,Universidade Federal do Rio Grande do Sul,4,22
+https://openalex.org/I4210165038,University of Chinese Academy of Sciences,4,7
+https://openalex.org/I130828816,University of Leeds,4,14
+https://openalex.org/I134113660,"University of Nevada, Reno",4,5
+https://openalex.org/I108290504,University of Pisa,4,6
+https://openalex.org/I148128674,University of Shanghai for Science and Technology,4,6
+https://openalex.org/I100066346,University of Stuttgart,4,7
+https://openalex.org/I277688954,Université Paris-Saclay,4,17
+https://openalex.org/I125749732,Western University,4,11
+https://openalex.org/I43922553,Wuhan University of Science and Technology,4,17
+https://openalex.org/I181903023,Xi'an Shiyou University,4,16
+https://openalex.org/I193775966,Yonsei University,4,14
+https://openalex.org/I1328775524,Zhejiang Sci-Tech University,4,8
+https://openalex.org/I76130692,Zhejiang University,4,12
+https://openalex.org/I55712492,Zhejiang University of Technology,4,12
+https://openalex.org/I38877650,Zhengzhou University,4,5
+https://openalex.org/I9927081,Aalto University,4,6
+https://openalex.org/I74973139,Carnegie Mellon University,4,9
+https://openalex.org/I25757504,China University of Mining and Technology,4,7
+https://openalex.org/I167576493,Colorado School of Mines,4,14
+https://openalex.org/I205640436,Curtin University,4,8
+https://openalex.org/I143593769,East China University of Science and Technology,4,15
+https://openalex.org/I181369854,Friedrich-Alexander-Universität Erlangen-Nürnberg,4,8
+https://openalex.org/I126477371,Mohammed V University,3,10
+https://openalex.org/I9842412,Nanjing University of Aeronautics and Astronautics,3,8
+https://openalex.org/I172675005,Nanyang Technological University,3,7
+https://openalex.org/I122964287,National Institute of Technology Tiruchirappalli,3,9
+https://openalex.org/I153512688,National Taiwan Ocean University,3,12
+https://openalex.org/I25846049,National Tsing Hua University,3,7
+https://openalex.org/I165932596,National University of Singapore,3,6
+https://openalex.org/I111979921,Northwestern University,3,8
+https://openalex.org/I4210106879,Ohio University,3,5
+https://openalex.org/I20231570,Peking University,3,8
+https://openalex.org/I93860229,Politecnico di Milano,3,8
+https://openalex.org/I165799507,Rensselaer Polytechnic Institute,3,7
+https://openalex.org/I904495901,Ruhr University Bochum,3,6
+https://openalex.org/I861853513,Sapienza University of Rome,3,3

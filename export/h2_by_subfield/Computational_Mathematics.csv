@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I99464096,KU Leuven,7,15
+https://openalex.org/I139024713,Guangdong University of Technology,6,16
+https://openalex.org/I130701444,Georgia Institute of Technology,4,8
+https://openalex.org/I125989756,Skolkovo Institute of Science and Technology,4,9
+https://openalex.org/I150229711,University of Electronic Science and Technology of China,4,12
+https://openalex.org/I5124864,École Polytechnique Fédérale de Lausanne,4,6
+https://openalex.org/I205783295,Cornell University,4,4
+https://openalex.org/I170215575,National University of Defense Technology,3,7
+https://openalex.org/I887968799,RWTH Aachen University,3,7
+https://openalex.org/I102322142,"Rutgers, The State University of New Jersey",3,3
+https://openalex.org/I183067930,Shanghai Jiao Tong University,3,6
+https://openalex.org/I187400657,South China Normal University,3,5
+https://openalex.org/I157773358,Sun Yat-sen University,3,4
+https://openalex.org/I4577782,Technische Universität Berlin,3,6
+https://openalex.org/I52357470,The Ohio State University,3,4
+https://openalex.org/I103635307,"University of California, Riverside",3,6
+https://openalex.org/I185103710,"University of California, Santa Cruz",3,3
+https://openalex.org/I83816512,University of Genoa,3,3
+https://openalex.org/I129774422,University of Vienna,3,3
+https://openalex.org/I277688954,Université Paris-Saclay,3,5
+https://openalex.org/I143002897,Université de Toulon,3,5
+https://openalex.org/I24943067,Fudan University,3,8
+https://openalex.org/I47720641,Huazhong University of Science and Technology,3,5
+https://openalex.org/I47508984,Imperial College London,3,5
+https://openalex.org/I19880235,Lomonosov Moscow State University,3,4
+https://openalex.org/I125839683,Beijing Institute of Technology,2,5
+https://openalex.org/I119856527,Cadi Ayyad University,2,3
+https://openalex.org/I67031392,Carleton University,2,2
+https://openalex.org/I139660479,Central South University,2,2
+https://openalex.org/I20231570,Peking University,2,2
+https://openalex.org/I90767664,Persian Gulf University,2,2
+https://openalex.org/I87445476,Xi'an Jiaotong University,2,6
+https://openalex.org/I69356397,Xi’an Jiaotong-Liverpool University,2,2
+https://openalex.org/I193352282,Daegu Gyeongbuk Institute of Science and Technology,2,2
+https://openalex.org/I27357992,Dalian University of Technology,2,8
+https://openalex.org/I219193219,Purdue University West Lafayette,2,5
+https://openalex.org/I202126657,Qufu Normal University,2,4
+https://openalex.org/I98358874,Delft University of Technology,2,5
+https://openalex.org/I114539943,Zhejiang Chinese Medical University,2,2
+https://openalex.org/I135237710,Zhejiang Normal University,2,2
+https://openalex.org/I76130692,Zhejiang University,2,3
+https://openalex.org/I168879160,Zhejiang University of Science and Technology,2,2
+https://openalex.org/I100445878,École Centrale de Nantes,2,2
+https://openalex.org/I170897317,Duke University,2,2
+https://openalex.org/I91712215,Saarland University,2,2
+https://openalex.org/I4880106,Feng Chia University,2,2
+https://openalex.org/I103163165,Florida State University,2,2
+https://openalex.org/I139264467,Seoul National University,2,4
+https://openalex.org/I113940042,Shanghai University,2,4
+https://openalex.org/I180726961,Shenzhen University,2,3
+https://openalex.org/I39804081,Sorbonne Université,2,4
+https://openalex.org/I184647316,South Dakota School of Mines and Technology,2,2
+https://openalex.org/I150807315,Guangxi University,2,3
+https://openalex.org/I4210095439,Guizhou Minzu University,2,2
+https://openalex.org/I154893126,Guizhou Normal University,2,3
+https://openalex.org/I178232147,Guizhou University,2,3
+https://openalex.org/I3045169105,Southern University of Science and Technology,2,2
+https://openalex.org/I50760025,Hangzhou Dianzi University,2,4
+https://openalex.org/I151727225,Harbin Engineering University,2,5
+https://openalex.org/I134052481,Harbin Normal University,2,3
+https://openalex.org/I136199984,Harvard University,2,2
+https://openalex.org/I75955062,Henan Normal University,2,3
+https://openalex.org/I173899330,Henan University,2,2
+https://openalex.org/I141568987,Hong Kong Baptist University,2,3
+https://openalex.org/I55741626,Technical University of Crete,2,4
+https://openalex.org/I119449181,Technische Universität Ilmenau,2,4
+https://openalex.org/I16609230,Hunan University,2,3
+https://openalex.org/I91045830,Texas A&M University,2,5
+https://openalex.org/I200475212,"The Graduate University for Advanced Studies, SOKENDAI",2,3
+https://openalex.org/I165779595,The University of Melbourne,2,2
+https://openalex.org/I132369690,Tianjin University of Science and Technology,2,2
+https://openalex.org/I4210116741,Innopolis University,2,2
+https://openalex.org/I99065089,Tsinghua University,2,6
+https://openalex.org/I111599522,Jiangnan University,2,2
+https://openalex.org/I118574674,Jiangsu Normal University,2,2
+https://openalex.org/I2800546203,Kazan State Technical University named after A. N. Tupolev,2,3
+https://openalex.org/I157485424,Korea Advanced Institute of Science and Technology,2,3
+https://openalex.org/I146071755,Kunming University,2,4
+https://openalex.org/I135598925,Kyushu University,2,3
+https://openalex.org/I4210152533,Lanzhou University of Finance and Economics,2,2
+https://openalex.org/I32389192,University of Alabama at Birmingham,2,2
+https://openalex.org/I121797337,Leiden University,2,3
+https://openalex.org/I179225836,University of Augsburg,2,2
+https://openalex.org/I9360294,University of Bologna,2,3
+https://openalex.org/I135140700,University of Bonn,2,2
+https://openalex.org/I95457486,"University of California, Berkeley",2,2
+https://openalex.org/I204250578,"University of California, Irvine",2,5
+https://openalex.org/I161318765,"University of California, Los Angeles",2,3
+https://openalex.org/I40347166,University of Chicago,2,5
+https://openalex.org/I4210165038,University of Chinese Academy of Sciences,2,3
+https://openalex.org/I33213144,University of Florida,2,3
+https://openalex.org/I169381384,University of Groningen,2,2
+https://openalex.org/I889458895,University of Hong Kong,2,4
+https://openalex.org/I87216513,Michigan State University,2,5
+https://openalex.org/I126477371,Mohammed V University,2,3
+https://openalex.org/I27837315,University of Michigan,2,2
+https://openalex.org/I130238516,University of Minnesota,2,3
+https://openalex.org/I114027177,University of North Carolina at Chapel Hill,2,4
+https://openalex.org/I881766915,Nanjing University,2,2
+https://openalex.org/I181233156,University of Oregon,2,3
+https://openalex.org/I205237279,Nankai University,2,3

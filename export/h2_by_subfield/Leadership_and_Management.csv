@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I139264467,Seoul National University,9,65
+https://openalex.org/I67900169,Chung-Ang University,8,39
+https://openalex.org/I12832649,Gachon University,8,27
+https://openalex.org/I165507594,Kangwon National University,8,26
+https://openalex.org/I193775966,Yonsei University,8,86
+https://openalex.org/I111277659,Chonnam National University,7,25
+https://openalex.org/I21028721,Eulji University,7,33
+https://openalex.org/I133533813,Gangneung–Wonju National University,7,14
+https://openalex.org/I165028127,Konyang University,7,33
+https://openalex.org/I197347611,Korea University,7,40
+https://openalex.org/I57664883,Ajou University,6,29
+https://openalex.org/I87111246,Catholic University of Korea,6,30
+https://openalex.org/I138925566,Ewha Womans University,6,41
+https://openalex.org/I31419693,Kyungpook National University,6,34
+https://openalex.org/I116631150,Ulsan College,6,20
+https://openalex.org/I104906788,Catholic University of Pusan,5,16
+https://openalex.org/I39705031,Daegu Catholic University,5,14
+https://openalex.org/I27166778,Dongnam Health University,5,13
+https://openalex.org/I189442560,Gyeongsang National University,5,21
+https://openalex.org/I146824383,Hallym University,5,17
+https://openalex.org/I4575257,Hanyang University,5,28
+https://openalex.org/I90735388,Kosin University,5,13
+https://openalex.org/I35928602,Kyung Hee University,5,35
+https://openalex.org/I27941296,Sahmyook University,5,24
+https://openalex.org/I4210104247,Seoul Women's College of Nursing,5,11
+https://openalex.org/I199143407,Sunchon National University,5,10
+https://openalex.org/I77079311,Wonkwang University,5,11
+https://openalex.org/I249221365,Gwangju Health University,4,19
+https://openalex.org/I191879574,Inha University,4,12
+https://openalex.org/I104338594,Inje University,4,31
+https://openalex.org/I80611190,Jeonbuk National University,4,15
+https://openalex.org/I4210149646,Jungwon University,4,5
+https://openalex.org/I52010207,Keimyung University,4,15
+https://openalex.org/I88761825,Korea University of Science and Technology,4,4
+https://openalex.org/I120158604,Kunsan National University,4,15
+https://openalex.org/I4210145313,Kyungwoon University,4,9
+https://openalex.org/I4210128927,Nambu University,4,13
+https://openalex.org/I129672417,Namseoul University,4,11
+https://openalex.org/I8991828,Pukyong National University,4,9
+https://openalex.org/I4921948,Pusan National University,4,25
+https://openalex.org/I4210107562,Semyung University,4,8
+https://openalex.org/I4210123920,Silla University,4,10
+https://openalex.org/I848706,Sungkyunkwan University,4,17
+https://openalex.org/I21376657,Tanta University,4,50
+https://openalex.org/I107720978,Ain Shams University,4,37
+https://openalex.org/I3132035342,Ansan University,4,10
+https://openalex.org/I4210148737,CHA University,4,16
+https://openalex.org/I89079967,Catholic Kwandong University,4,12
+https://openalex.org/I174101054,Changwon National University,4,12
+https://openalex.org/I4210163158,Choonhae College of Health Sciences,4,14
+https://openalex.org/I152238500,Chosun University,4,21
+https://openalex.org/I163753206,Chungbuk National University,4,16
+https://openalex.org/I196345858,Chungnam National University,4,21
+https://openalex.org/I163584902,Daegu Health College,4,24
+https://openalex.org/I74898755,Daejeon Health Institute of Technology,4,6
+https://openalex.org/I119522612,Daejeon University,4,7
+https://openalex.org/I204974687,Dong-Eui University,4,12
+https://openalex.org/I159299179,Dongshin University,4,10
+https://openalex.org/I4210099829,Masan University,3,10
+https://openalex.org/I63601056,Menoufia University,3,19
+https://openalex.org/I11893660,Mokpo National University,3,5
+https://openalex.org/I110118728,Pai Chai University,3,9
+https://openalex.org/I88017793,Port Said University,3,6
+https://openalex.org/I157264075,Sangmyung University,3,7
+https://openalex.org/I4210094357,Shinhan University,3,7
+https://openalex.org/I4210167106,Shinsung University,3,6
+https://openalex.org/I24541011,Soonchunhyang University,3,5
+https://openalex.org/I141371507,Soongsil University,3,10
+https://openalex.org/I51926615,Sun Moon University,3,3
+https://openalex.org/I4210143664,Suwon Science College,3,4
+https://openalex.org/I4210110706,Suwon Women’s University,3,7
+https://openalex.org/I91041137,Assiut University,3,14
+https://openalex.org/I35919505,Baekseok University,3,8
+https://openalex.org/I207547235,Benha University,3,36
+https://openalex.org/I113643904,Beni-Suef University,3,10
+https://openalex.org/I4210108896,WonKwang Health Science University,3,13
+https://openalex.org/I7446070,Woosuk University,3,5
+https://openalex.org/I145487455,Cairo University,3,14
+https://openalex.org/I40900486,Changshin University,3,9
+https://openalex.org/I391668,Cheju Halla University,3,6
+https://openalex.org/I198667473,Chodang University,3,7
+https://openalex.org/I205783295,Cornell University,3,3
+https://openalex.org/I138826464,Daegu Haany University,3,4
+https://openalex.org/I4210134443,Daejeon Institute of Science and Technology,3,7
+https://openalex.org/I169744251,Damanhour University,3,16
+https://openalex.org/I51226738,Dong-A University,3,10
+https://openalex.org/I205490536,Dongguk University,3,17
+https://openalex.org/I201873833,Dongyang University,3,5
+https://openalex.org/I79056234,Gwangju University,3,6
+https://openalex.org/I113018520,Gyeongguk National University,3,6
+https://openalex.org/I236437131,Hallym Polytechnic University,3,3
+https://openalex.org/I195373058,Honam University,3,12
+https://openalex.org/I191209535,Howon University,3,8
+https://openalex.org/I24359042,Hyejeon College,3,9
+https://openalex.org/I4210151859,Incheon Catholic University,3,4
+https://openalex.org/I146429904,Incheon National University,3,4
+https://openalex.org/I161106909,Iran University of Medical Sciences,3,13
+https://openalex.org/I83202590,Jeju National University,3,6
+https://openalex.org/I3131463087,Joongbu University,3,6
+https://openalex.org/I4210120925,Kaya University,3,10
+https://openalex.org/I4210101341,Keimyung College University,3,7

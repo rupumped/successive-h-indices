@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I74899385,Central Queensland University,8,18
+https://openalex.org/I141243467,Chang Gung University of Science and Technology,8,19
+https://openalex.org/I11701301,Griffith University,8,24
+https://openalex.org/I28022161,King Saud University,8,36
+https://openalex.org/I154425047,University of Alberta,8,26
+https://openalex.org/I116067653,University of Rome Tor Vergata,8,23
+https://openalex.org/I114017466,University of Technology Sydney,8,20
+https://openalex.org/I155660961,University of Turku,8,19
+https://openalex.org/I129043915,University of Udine,8,29
+https://openalex.org/I175532246,University of Eastern Finland,7,18
+https://openalex.org/I63525965,Western Sydney University,7,16
+https://openalex.org/I125749732,Western University,7,20
+https://openalex.org/I12079687,Edith Cowan University,7,17
+https://openalex.org/I161106909,Iran University of Medical Sciences,7,23
+https://openalex.org/I4210107665,Kiang Wu Nursing College of Macau,7,10
+https://openalex.org/I165932596,National University of Singapore,7,23
+https://openalex.org/I139660479,Central South University,6,19
+https://openalex.org/I126350171,Fairfield University,6,8
+https://openalex.org/I149672521,Federation University,6,16
+https://openalex.org/I114982161,Isfahan University of Medical Sciences,6,19
+https://openalex.org/I145311948,Johns Hopkins University,6,25
+https://openalex.org/I28166907,Karolinska Institutet,6,12
+https://openalex.org/I177721651,Oakland University,6,11
+https://openalex.org/I47818738,Sultan Qaboos University,6,8
+https://openalex.org/I12315562,Texas Tech University,6,18
+https://openalex.org/I3123915005,Universitat Internacional de Catalunya,6,8
+https://openalex.org/I100633361,University of Massachusetts Dartmouth,6,16
+https://openalex.org/I165390105,University of South Africa,6,19
+https://openalex.org/I2801380234,University of South-Eastern Norway,6,13
+https://openalex.org/I185261750,University of Toronto,6,21
+https://openalex.org/I119439378,University of Verona,6,8
+https://openalex.org/I197907453,Akdeniz University,5,15
+https://openalex.org/I149704539,Deakin University,5,13
+https://openalex.org/I169541294,Flinders University,5,12
+https://openalex.org/I156983542,Jordan University of Science and Technology,5,16
+https://openalex.org/I196829312,La Trobe University,5,19
+https://openalex.org/I149530613,Lynn University,5,6
+https://openalex.org/I57206974,New York University,5,12
+https://openalex.org/I32394136,Northumbria University,5,13
+https://openalex.org/I188760350,Ollscoil na Gaillimhe – University of Galway,5,9
+https://openalex.org/I165690674,Oregon Health & Science University,5,15
+https://openalex.org/I126231945,Queen's University Belfast,5,11
+https://openalex.org/I150913223,Texas Woman's University,5,16
+https://openalex.org/I5681781,The University of Adelaide,5,8
+https://openalex.org/I165779595,The University of Melbourne,5,14
+https://openalex.org/I100930933,University College Dublin,5,12
+https://openalex.org/I110263422,University West,5,9
+https://openalex.org/I32389192,University of Alabama at Birmingham,5,22
+https://openalex.org/I51713134,University of Colorado Anschutz Medical Campus,5,10
+https://openalex.org/I177639307,University of Dundee,5,8
+https://openalex.org/I83816512,University of Genoa,5,7
+https://openalex.org/I138690464,University of Ghana,5,8
+https://openalex.org/I4210088963,University of Ha'il,5,19
+https://openalex.org/I39422238,University of Illinois Chicago,5,16
+https://openalex.org/I46247651,University of Manitoba,5,13
+https://openalex.org/I4210092198,University of Michigan–Flint,5,10
+https://openalex.org/I114027177,University of North Carolina at Chapel Hill,5,29
+https://openalex.org/I155781252,University of South Carolina,5,8
+https://openalex.org/I92008406,University of Stavanger,5,12
+https://openalex.org/I129604602,University of Sydney,5,13
+https://openalex.org/I204824540,University of Wollongong,5,9
+https://openalex.org/I123387679,Uppsala University,5,13
+https://openalex.org/I138220800,Georgia College & State University,4,8
+https://openalex.org/I14243506,Hong Kong Polytechnic University,4,17
+https://openalex.org/I4210119109,Indiana University Bloomington,4,10
+https://openalex.org/I55769427,Indiana University – Purdue University Indianapolis,4,15
+https://openalex.org/I4210098257,Iranshahr University,4,17
+https://openalex.org/I172980758,Kennesaw State University,4,12
+https://openalex.org/I185163786,King Abdulaziz University,4,10
+https://openalex.org/I185203018,King Saud bin Abdulaziz University for Health Sciences,4,16
+https://openalex.org/I183935753,King's College London,4,19
+https://openalex.org/I53276908,Marymount University,4,19
+https://openalex.org/I98251732,McMaster University,4,9
+https://openalex.org/I56590836,Monash University,4,19
+https://openalex.org/I176790772,Murdoch University,4,6
+https://openalex.org/I18020613,Mzuzu University,4,7
+https://openalex.org/I2802079931,Nord University,4,10
+https://openalex.org/I27765905,North-West University,4,18
+https://openalex.org/I12912129,Northeastern University,4,6
+https://openalex.org/I63586086,Oulu University of Applied Sciences,4,6
+https://openalex.org/I145872427,Radboud University Nijmegen,4,8
+https://openalex.org/I49886154,Rush University,4,10
+https://openalex.org/I194629146,School of the Art Institute of Chicago,4,12
+https://openalex.org/I58048189,Shahid Beheshti University of Medical Sciences,4,12
+https://openalex.org/I183067930,Shanghai Jiao Tong University,4,9
+https://openalex.org/I17721919,Shanxi Medical University,4,12
+https://openalex.org/I206935292,Shaqra University,4,7
+https://openalex.org/I66809481,Southern Cross University,4,9
+https://openalex.org/I39586589,Swansea University,4,11
+https://openalex.org/I163205636,Tabriz University of Medical Sciences,4,15
+https://openalex.org/I47519274,Taipei Medical University,4,10
+https://openalex.org/I70640408,Tehran University of Medical Sciences,4,15
+https://openalex.org/I128956969,Texas Christian University,4,9
+https://openalex.org/I165143802,The University of Queensland,4,8
+https://openalex.org/I82767444,Universidad de Málaga,4,5
+https://openalex.org/I27577105,University College Cork,4,6
+https://openalex.org/I17301866,University of Alabama,4,11
+https://openalex.org/I1118541,University of East Anglia,4,6
+https://openalex.org/I98677209,University of Edinburgh,4,7
+https://openalex.org/I91203450,University of Haifa,4,8
+https://openalex.org/I133731052,University of Helsinki,4,7

@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I913481162,Wageningen University & Research,56,5350
+https://openalex.org/I35440088,ETH Zurich,54,2288
+https://openalex.org/I201448701,University of Washington,52,3860
+https://openalex.org/I136199984,Harvard University,51,2612
+https://openalex.org/I141945490,University of British Columbia,51,3833
+https://openalex.org/I95457486,"University of California, Berkeley",51,2549
+https://openalex.org/I133731052,University of Helsinki,50,2584
+https://openalex.org/I131249849,Oregon State University,49,3630
+https://openalex.org/I165143802,The University of Queensland,49,2573
+https://openalex.org/I193662353,Utrecht University,49,2111
+https://openalex.org/I204337017,Aarhus University,48,1756
+https://openalex.org/I92446798,Colorado State University,48,2958
+https://openalex.org/I205783295,Cornell University,48,2779
+https://openalex.org/I4210165038,University of Chinese Academy of Sciences,48,6474
+https://openalex.org/I124055696,University of Copenhagen,48,2103
+https://openalex.org/I130238516,University of Minnesota,48,2686
+https://openalex.org/I114027177,University of North Carolina at Chapel Hill,47,2285
+https://openalex.org/I129801699,University of Tasmania,47,1710
+https://openalex.org/I135310074,University of Wisconsin–Madison,47,2737
+https://openalex.org/I118347636,Australian National University,46,1470
+https://openalex.org/I138006243,University of Arizona,46,2601
+https://openalex.org/I23923803,University of Exeter,46,1556
+https://openalex.org/I165779595,University of Melbourne,46,2022
+https://openalex.org/I40120149,University of Oxford,46,1645
+https://openalex.org/I170897317,Duke University,45,1537
+https://openalex.org/I154425047,University of Alberta,45,2391
+https://openalex.org/I84218800,"University of California, Davis",45,3306
+https://openalex.org/I188538660,University of Colorado Boulder,45,1804
+https://openalex.org/I130828816,University of Leeds,45,1286
+https://openalex.org/I66946132,"University of Maryland, College Park",45,1883
+https://openalex.org/I161318765,"University of California, Los Angeles",44,1756
+https://openalex.org/I33213144,University of Florida,44,3602
+https://openalex.org/I86467917,James Cook University,43,1507
+https://openalex.org/I20231570,Peking University,43,2624
+https://openalex.org/I298625061,Swedish University of Agricultural Sciences,43,2170
+https://openalex.org/I177877127,The University of Western Australia,43,1284
+https://openalex.org/I165733156,University of Georgia,43,2518
+https://openalex.org/I27837315,University of Michigan–Ann Arbor,43,2333
+https://openalex.org/I55732556,Arizona State University,42,1602
+https://openalex.org/I78577930,Columbia University,42,1372
+https://openalex.org/I130769515,Pennsylvania State University,42,2453
+https://openalex.org/I157773358,Sun Yat-sen University,42,2902
+https://openalex.org/I31746571,UNSW Sydney,42,1533
+https://openalex.org/I154570441,"University of California, Santa Barbara",42,1438
+https://openalex.org/I1118541,University of East Anglia,42,870
+https://openalex.org/I32971472,Yale University,42,1335
+https://openalex.org/I187531555,Lund University,41,1576
+https://openalex.org/I5023651,McGill University,41,1800
+https://openalex.org/I87216513,Michigan State University,41,2121
+https://openalex.org/I137902535,North Carolina State University,41,2549
+https://openalex.org/I96673099,Technical University of Denmark,41,1608
+https://openalex.org/I116953780,Tongji University,41,2628
+https://openalex.org/I99065089,Tsinghua University,41,2060
+https://openalex.org/I36258959,University of California San Diego,41,1330
+https://openalex.org/I185103710,"University of California, Santa Cruz",41,1217
+https://openalex.org/I157725225,University of Illinois Urbana-Champaign,41,2442
+https://openalex.org/I185261750,University of Toronto,41,2544
+https://openalex.org/I19894307,Université de Montpellier,41,1841
+https://openalex.org/I25254941,Beijing Normal University,40,3161
+https://openalex.org/I139660479,Central South University,40,1872
+https://openalex.org/I47508984,Imperial College London,40,1894
+https://openalex.org/I145311948,Johns Hopkins University,40,1232
+https://openalex.org/I10660446,Kunming University of Science and Technology,40,1424
+https://openalex.org/I20089843,Princeton University,40,836
+https://openalex.org/I102322142,"Rutgers, The State University of New Jersey",40,1759
+https://openalex.org/I97018004,Stanford University,40,1458
+https://openalex.org/I71999127,Universitat de Barcelona,40,1391
+https://openalex.org/I241749,University of Cambridge,40,1538
+https://openalex.org/I141596103,University of Lisbon,40,1740
+https://openalex.org/I184942183,University of Oslo,40,1192
+https://openalex.org/I111088046,Boston University,39,930
+https://openalex.org/I32597200,Ghent University,39,2104
+https://openalex.org/I11701301,Griffith University,39,1134
+https://openalex.org/I108688024,Qingdao University,39,901
+https://openalex.org/I161593684,Stockholm University,39,1382
+https://openalex.org/I129604602,The University of Sydney,39,1489
+https://openalex.org/I17974374,Universidade de São Paulo,39,5783
+https://openalex.org/I123044942,Universitat Autònoma de Barcelona,39,1167
+https://openalex.org/I45129253,University College London,39,1390
+https://openalex.org/I117965899,University of Hawaiʻi at Mānoa,39,1334
+https://openalex.org/I145608581,University of Miami,39,1345
+https://openalex.org/I129774422,University of Vienna,39,1354
+https://openalex.org/I151746483,University of Waterloo,39,1750
+https://openalex.org/I159885104,École Pratique des Hautes Études,39,707
+https://openalex.org/I219193219,Purdue University West Lafayette,38,1778
+https://openalex.org/I183067930,Shanghai Jiao Tong University,38,1551
+https://openalex.org/I101479585,South China Agricultural University,38,1338
+https://openalex.org/I91045830,Texas A&M University,38,2311
+https://openalex.org/I182534213,Universidade do Porto,38,1318
+https://openalex.org/I98677209,University of Edinburgh,38,1216
+https://openalex.org/I114395901,University of Nebraska–Lincoln,38,1496
+https://openalex.org/I900890020,University of Palermo,38,738
+https://openalex.org/I1174212,University of Southern California,38,1127
+https://openalex.org/I134560555,Université Toulouse III - Paul Sabatier,38,1178
+https://openalex.org/I129902397,Dalhousie University,37,1442
+https://openalex.org/I204983213,Harbin Institute of Technology,37,1792
+https://openalex.org/I102335020,Karlsruhe Institute of Technology,37,1421
+https://openalex.org/I56590836,Monash University,37,1166
+https://openalex.org/I119454577,Nanjing Agricultural University,37,1616
+https://openalex.org/I54108979,Norwegian University of Life Sciences,37,883
+https://openalex.org/I204778367,Norwegian University of Science and Technology,37,1457

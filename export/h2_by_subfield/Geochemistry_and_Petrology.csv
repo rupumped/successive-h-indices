@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I25757504,China University of Mining and Technology,16,192
+https://openalex.org/I143302722,University of Kentucky,15,86
+https://openalex.org/I3124059619,China University of Geosciences,13,242
+https://openalex.org/I3125743391,China University of Geosciences (Beijing),12,217
+https://openalex.org/I163340411,Hohai University,12,74
+https://openalex.org/I4210165038,University of Chinese Academy of Sciences,12,148
+https://openalex.org/I4210099336,Menlo School,11,18
+https://openalex.org/I162868743,Tianjin University,11,40
+https://openalex.org/I116953780,Tongji University,11,76
+https://openalex.org/I99364266,Academy of Scientific and Innovative Research,10,29
+https://openalex.org/I184681353,Anhui University of Science and Technology,10,57
+https://openalex.org/I25355098,Chang'an University,10,66
+https://openalex.org/I106079672,Hebei University of Engineering,10,39
+https://openalex.org/I97188460,Nantes Université,10,23
+https://openalex.org/I45129253,University College London,10,34
+https://openalex.org/I151746483,University of Waterloo,10,43
+https://openalex.org/I204730241,Université Paris Cité,10,36
+https://openalex.org/I129877168,Carl von Ossietzky Universität Oldenburg,9,24
+https://openalex.org/I139660479,Central South University,9,86
+https://openalex.org/I39804081,Sorbonne Université,9,37
+https://openalex.org/I157773358,Sun Yat-sen University,9,63
+https://openalex.org/I8961855,Universidad Nacional Autónoma de México,9,77
+https://openalex.org/I138006243,University of Arizona,9,68
+https://openalex.org/I142899784,University of Sfax,9,34
+https://openalex.org/I134560555,Université Toulouse III - Paul Sabatier,9,32
+https://openalex.org/I56067802,Université de Rennes,9,19
+https://openalex.org/I193662353,Utrecht University,9,61
+https://openalex.org/I35440088,ETH Zurich,8,46
+https://openalex.org/I150807315,Guangxi University,8,30
+https://openalex.org/I178232147,Guizhou University,8,75
+https://openalex.org/I136199984,Harvard University,8,20
+https://openalex.org/I10660446,Kunming University of Science and Technology,8,52
+https://openalex.org/I130769515,Pennsylvania State University,8,50
+https://openalex.org/I154099455,Shandong University,8,32
+https://openalex.org/I52357470,The Ohio State University,8,40
+https://openalex.org/I31746571,UNSW Sydney,8,34
+https://openalex.org/I180437899,University of Bremen,8,22
+https://openalex.org/I168635309,University of Calgary,8,55
+https://openalex.org/I117965899,University of Hawaiʻi at Mānoa,8,23
+https://openalex.org/I157725225,University of Illinois Urbana-Champaign,8,42
+https://openalex.org/I141596103,University of Lisbon,8,19
+https://openalex.org/I130238516,University of Minnesota,8,38
+https://openalex.org/I108290504,University of Pisa,8,16
+https://openalex.org/I126520041,University of Science and Technology of China,8,49
+https://openalex.org/I8087733,University of Tübingen,8,32
+https://openalex.org/I223532165,University of Utah,8,26
+https://openalex.org/I135310074,University of Wisconsin–Madison,8,35
+https://openalex.org/I198415970,Université d'Avignon et des Pays de Vaucluse,8,13
+https://openalex.org/I90183372,Université de Lorraine,8,60
+https://openalex.org/I1331070479,Université de Yaoundé I,8,89
+https://openalex.org/I285663978,Weatherford College,8,48
+https://openalex.org/I191208505,Xiamen University,8,26
+https://openalex.org/I116265982,Qinghai University,7,33
+https://openalex.org/I102322142,"Rutgers, The State University of New Jersey",7,28
+https://openalex.org/I861853513,Sapienza University of Rome,7,30
+https://openalex.org/I4800084,Southwest Jiaotong University,7,26
+https://openalex.org/I97018004,Stanford University,7,23
+https://openalex.org/I161593684,Stockholm University,7,24
+https://openalex.org/I165143802,The University of Queensland,7,26
+https://openalex.org/I74801974,The University of Tokyo,7,50
+https://openalex.org/I17974374,Universidade de São Paulo,7,53
+https://openalex.org/I154425047,University of Alberta,7,40
+https://openalex.org/I118564535,University of Bern,7,32
+https://openalex.org/I141945490,University of British Columbia,7,39
+https://openalex.org/I24027795,University of Johannesburg,7,23
+https://openalex.org/I130828816,University of Leeds,7,37
+https://openalex.org/I66752286,University of Milano-Bicocca,7,14
+https://openalex.org/I24571045,University of North Dakota,7,36
+https://openalex.org/I40120149,University of Oxford,7,34
+https://openalex.org/I900890020,University of Palermo,7,21
+https://openalex.org/I174878644,University of Patras,7,20
+https://openalex.org/I201448701,University of Washington,7,36
+https://openalex.org/I19894307,Université de Montpellier,7,27
+https://openalex.org/I110440473,Xi'an University of Science and Technology,7,35
+https://openalex.org/I125839683,Beijing Institute of Technology,7,13
+https://openalex.org/I25254941,Beijing Normal University,7,35
+https://openalex.org/I124227911,Ben-Gurion University of the Negev,7,25
+https://openalex.org/I31595395,Chengdu University of Technology,7,77
+https://openalex.org/I32021983,Christian-Albrechts-Universität zu Kiel,7,23
+https://openalex.org/I205783295,Cornell University,7,35
+https://openalex.org/I130701444,Georgia Institute of Technology,7,25
+https://openalex.org/I204823248,Huazhong Agricultural University,7,21
+https://openalex.org/I47720641,Huazhong University of Science and Technology,7,36
+https://openalex.org/I47508984,Imperial College London,7,39
+https://openalex.org/I194450716,Jilin University,7,55
+https://openalex.org/I102335020,Karlsruhe Institute of Technology,7,34
+https://openalex.org/I56590836,Monash University,7,34
+https://openalex.org/I881766915,Nanjing University,7,70
+https://openalex.org/I131249849,Oregon State University,7,28
+https://openalex.org/I20231570,Peking University,7,47
+https://openalex.org/I118347636,Australian National University,6,29
+https://openalex.org/I91357014,Banaras Hindu University,6,26
+https://openalex.org/I122411786,California Institute of Technology,6,21
+https://openalex.org/I66862912,Chalmers University of Technology,6,19
+https://openalex.org/I167576493,Colorado School of Mines,6,47
+https://openalex.org/I193615760,Dokuz Eylül University,6,17
+https://openalex.org/I170897317,Duke University,6,17
+https://openalex.org/I103163165,Florida State University,6,23
+https://openalex.org/I111753288,Fujian Normal University,6,23
+https://openalex.org/I223822909,Heidelberg University,6,26
+https://openalex.org/I205349734,Hokkaido University,6,41

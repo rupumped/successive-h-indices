@@ -50,7 +50,11 @@ data/          raw/intermediate pipeline artifacts (gitignored)
   interim/                       tables generated from data/ that are also
                                   read as inputs by other scripts
 results/       terminal analysis outputs: final CSVs and plots (gitignored)
+export/        top-100 per-field/subfield rankings and full country/institution
+               tables, ready for web serving
 ```
+
+All data in `export/` is derived from the [OpenAlex](https://openalex.org) public snapshot and is released under [CC0 (public domain)](https://creativecommons.org/publicdomain/zero/1.0/).
 
 ## How to run
 Run the scripts in order (all from the repo root):
@@ -66,31 +70,40 @@ python3 src/prefetch.py
 #     Skip this if disk space is tight; build.py reads staging files directly.
 python3 src/consolidate.py
 
-# 2. Build the per-author table and compute h<sub>2</sub> by (institution, field).
-#    Writes data/interim/authors.csv, data/interim/h<sub>2</sub>_by_institution_field.csv,
-#    and data/openalex.duckdb.
+# 2. Build the per-author table and compute h2 by (institution, field) and
+#    (institution, subfield). Writes data/interim/authors.csv,
+#    data/interim/h2_by_institution_field.csv,
+#    data/interim/h2_by_institution_subfield.csv, and data/openalex.duckdb.
 python3 src/build.py
 
-# 3. Split h<sub>2</sub>_by_institution_field.csv into one file per field.
-#    Writes to results/h<sub>2</sub>_by_field/<field_name>.csv.
+# 3. Split h2_by_institution_field.csv into one file per field.
+#    Writes to results/h2_by_field/<field_name>.csv.
 python3 src/split_by_field.py
 
-# 4. Compute institution-level h<sub>2</sub> (ignoring field).
-#    Writes data/interim/h<sub>2</sub>_by_institution.csv.
-python3 src/build_institution_h<sub>2</sub>.py
+# 3a. Split h2_by_institution_subfield.csv into one file per subfield.
+#     Writes to results/h2_by_subfield/<subfield_name>.csv.
+python3 src/split_by_subfield.py
+
+# 4. Compute institution-level h2 (ignoring field).
+#    Writes data/interim/h2_by_institution.csv.
+python3 src/build_institution_h2.py
 
 # 5. Download the institution id -> country_code lookup from the OpenAlex
 #    institutions snapshot on S3, once. Writes
 #    data/interim/institution_country_map.csv.
 python3 src/fetch_country_codes.py
 
-# 6. Compute h<sub>3</sub> per country, using the local country map from step 5.
-#    Writes data/interim/h<sub>3</sub>_by_country.csv.
-python3 src/build_country_h<sub>3</sub>.py
+# 6. Compute h3 per country, using the local country map from step 5.
+#    Writes data/interim/h3_by_country.csv.
+python3 src/build_country_h3.py
 
-# 7. Split h<sub>3</sub>_by_country.csv into one file per field.
-#    Writes to data/interim/h<sub>3</sub>_by_field/<field_name>.csv.
-python3 src/build_country_h<sub>3</sub>_by_field.py
+# 7. Split h3_by_country.csv into one file per field.
+#    Writes to data/interim/h3_by_field/<field_name>.csv.
+python3 src/build_country_h3_by_field.py
+
+# 7a. Compute h3 per (country, subfield) and split into one file per subfield.
+#     Writes to data/interim/h3_by_subfield/<subfield_name>.csv.
+python3 src/build_country_h3_by_subfield.py
 
 # 8. Optional: sample cited_by_count from the OpenAlex works snapshot to
 #    enable a direct alpha_0 fit (step 9 falls back to an indirect estimate
@@ -102,15 +115,15 @@ python3 src/prefetch_citations.py
 python3 src/estimate_alphas.py
 
 # 10. Efficiency metrics, normalized by the fitted exponents from step 9.
-#     Writes results/h<sub>2</sub>_efficiency.csv and results/h<sub>3</sub>_efficiency.csv.
-python3 src/h<sub>2</sub>_efficiency.py
-python3 src/h<sub>3</sub>_efficiency.py
+#     Writes results/h2_efficiency.csv and results/h3_efficiency.csv.
+python3 src/h2_efficiency.py
+python3 src/h3_efficiency.py
 
 # 11. Total author count per field.
 #     Writes results/authors_by_field.csv.
 python3 src/authors_by_field.py
 
-# 12. Gini coefficient of h<sub>2</sub> within each field (inequality of research strength
+# 12. Gini coefficient of h2 within each field (inequality of research strength
 #     across institutions). Writes results/field_gini.csv.
 python3 src/field_gini.py
 
@@ -121,7 +134,7 @@ python3 src/breadth_score.py
 # 14. Re-rank institutions excluding the five core biomedical fields
 #     (Medicine, Biochemistry/Genetics/Molecular Biology, Immunology and
 #     Microbiology, Neuroscience, Health Professions).
-#     Writes results/nonbiomedical_h<sub>2</sub>.csv.
+#     Writes results/nonbiomedical_h2.csv.
 python3 src/nonbiomedical_ranking.py
 
 # 15. Specialization index: how much higher an institution ranks in its best
@@ -130,28 +143,28 @@ python3 src/nonbiomedical_ranking.py
 python3 src/specialization_index.py
 
 # 16. Academic Olympics: gold/silver/bronze medals per country per field
-#     based on h<sub>3</sub>. Writes results/academic_olympics.png.
+#     based on h3. Writes results/academic_olympics.png.
 python3 src/academic_olympics.py
 
-# 17. Country specialization index: overall h<sub>3</sub> rank minus best-field h<sub>3</sub> rank.
+# 17. Country specialization index: overall h3 rank minus best-field h3 rank.
 #     Writes results/country_specialization.csv.
 python3 src/country_specialization.py
 
-# 18. World choropleth of h<sub>3</sub> by country. Downloads the Natural Earth 50m
-#     shapefile on first run. Writes results/h<sub>3</sub>_choropleth.png.
-python3 src/plot_h<sub>3</sub>_choropleth.py
+# 18. World choropleth of h3 by country. Downloads the Natural Earth 50m
+#     shapefile on first run. Writes results/h3_choropleth.png.
+python3 src/plot_h3_choropleth.py
 
-# 19. Scatter plot of h<sub>2</sub> vs author_count^(1/β₁) with linear trendline and R².
-#     Requires step 9. Writes results/h<sub>2</sub>_vs_size.png.
-python3 src/plot_h<sub>2</sub>_vs_size.py
+# 19. Scatter plot of h2 vs author_count^(1/β₁) with linear trendline and R².
+#     Requires step 9. Writes results/h2_vs_size.png.
+python3 src/plot_h2_vs_size.py
 
-# 20. Scatter plot of h<sub>3</sub> vs institution_count^(1/β₂) with linear trendline
-#     and R². Requires step 9. Writes results/h<sub>3</sub>_vs_size.png.
-python3 src/plot_h<sub>3</sub>_vs_size.py
+# 20. Scatter plot of h3 vs institution_count^(1/β₂) with linear trendline
+#     and R². Requires step 9. Writes results/h3_vs_size.png.
+python3 src/plot_h3_vs_size.py
 
 # 21. Same scatter but using √institution_count (the √N heuristic, for
-#     comparison with step 20). Writes results/h<sub>3</sub>_vs_size_sqrt.png.
-python3 src/plot_h<sub>3</sub>_vs_size_sqrt.py
+#     comparison with step 20). Writes results/h3_vs_size_sqrt.png.
+python3 src/plot_h3_vs_size_sqrt.py
 
 # 22. Histogram of works_count across authors — diagnostic for the
 #     disambiguation-artifact cap used in step 9.
@@ -162,6 +175,10 @@ python3 src/plot_works_count_hist.py
 #     validation against Google Scholar. Requires OpenAlex API access.
 #     Writes results/cross_validation_sample.csv.
 python3 src/cross_validation_sample.py
+
+# 24. Export top-100 rankings from each field/subfield directory plus full
+#     institution and country tables into export/ for web serving.
+python3 src/export_top100.py
 ```
 
 ### Requirements
@@ -180,28 +197,37 @@ The AWS CLI must also be installed and `aws s3 ls --no-sign-request` must work (
 |---|---|
 | `data/authors_filtered.parquet` | Consolidated single parquet (optional; created by `consolidate.py`) |
 | `data/interim/authors.csv` | 17.1M rows: author_id, h_index, works_count, institution_id, institution_name, field, field_name |
-| `data/interim/h<sub>2</sub>_by_institution_field.csv` | 288,300 (institution, field) pairs with h<sub>2</sub> and author count |
-| `results/h<sub>2</sub>_by_field/` | One CSV per field, sorted by h<sub>2</sub> descending |
-| `data/interim/h<sub>2</sub>_by_institution.csv` | 20,669 institutions with institution-level h<sub>2</sub> |
+| `data/interim/h2_by_institution_field.csv` | 288,300 (institution, field) pairs with h<sub>2</sub> and author count |
+| `data/interim/h2_by_institution_subfield.csv` | (institution, subfield) pairs with h<sub>2</sub> and author count |
+| `results/h2_by_field/` | One CSV per field, sorted by h<sub>2</sub> descending |
+| `results/h2_by_subfield/` | One CSV per subfield, sorted by h<sub>2</sub> descending |
+| `data/interim/h2_by_institution.csv` | 20,669 institutions with institution-level h<sub>2</sub> |
 | `data/interim/institution_country_map.csv` | institution_id → country_code lookup, downloaded once by `fetch_country_codes.py` |
-| `data/interim/h<sub>3</sub>_by_country.csv` | h<sub>3</sub> index per country with institution count |
-| `data/interim/h<sub>3</sub>_by_field/` | One CSV per field, sorted by h<sub>3</sub> descending |
+| `data/interim/h3_by_country.csv` | h<sub>3</sub> index per country with institution count |
+| `data/interim/h3_by_field/` | One CSV per field, sorted by h<sub>3</sub> descending |
+| `data/interim/h3_by_subfield/` | One CSV per subfield, sorted by h<sub>3</sub> descending |
 | `results/lotka_exponents.json` | Fitted α<sub>1</sub>, α<sub>2</sub>, β<sub>1</sub>, β<sub>2</sub>, α<sub>0</sub>, and per-fit diagnostics |
-| `results/h<sub>2</sub>_efficiency.csv` | Institutions ranked by h<sub>2</sub> / author_count^(1/β<sub>1</sub>) |
-| `results/h<sub>3</sub>_efficiency.csv` | Countries ranked by h<sub>3</sub> / institution_count^(1/β<sub>2</sub>) |
+| `results/h2_efficiency.csv` | Institutions ranked by h<sub>2</sub> / author_count^(1/β<sub>1</sub>) |
+| `results/h3_efficiency.csv` | Countries ranked by h<sub>3</sub> / institution_count^(1/β<sub>2</sub>) |
 | `results/authors_by_field.csv` | Author count per field |
 | `results/field_gini.csv` | Gini coefficient of h<sub>2</sub> across institutions within each field |
 | `results/breadth_score.csv` | Per-institution count of top-10/50/100 field placements |
-| `results/nonbiomedical_h<sub>2</sub>.csv` | Institution h<sub>2</sub> recomputed excluding the five core biomedical fields |
+| `results/nonbiomedical_h2.csv` | Institution h<sub>2</sub> recomputed excluding the five core biomedical fields |
 | `results/specialization_index.csv` | Institution specialization index (overall rank minus best single-field rank) |
 | `results/academic_olympics.png` | Medal table: gold/silver/bronze per country per field |
 | `results/country_specialization.csv` | Country specialization index (overall h<sub>3</sub> rank minus best-field h<sub>3</sub> rank) |
-| `results/h<sub>3</sub>_choropleth.png` | World choropleth of h<sub>3</sub> by country |
-| `results/h<sub>2</sub>_vs_size.png` | Scatter plot of h<sub>2</sub> vs author_count^(1/β<sub>1</sub>) with trendline and R² |
-| `results/h<sub>3</sub>_vs_size.png` | Scatter plot of h<sub>3</sub> vs institution_count^(1/β<sub>2</sub>) with trendline and R² |
-| `results/h<sub>3</sub>_vs_size_sqrt.png` | Scatter plot of h<sub>3</sub> vs √institution_count (√N heuristic baseline) |
+| `results/h3_choropleth.png` | World choropleth of h<sub>3</sub> by country |
+| `results/h2_vs_size.png` | Scatter plot of h<sub>2</sub> vs author_count^(1/β<sub>1</sub>) with trendline and R² |
+| `results/h3_vs_size.png` | Scatter plot of h<sub>3</sub> vs institution_count^(1/β<sub>2</sub>) with trendline and R² |
+| `results/h3_vs_size_sqrt.png` | Scatter plot of h<sub>3</sub> vs √institution_count (√N heuristic baseline) |
 | `results/works_count_histogram.png` | works_count histogram, diagnostic for the disambiguation-artifact cap |
 | `results/cross_validation_sample.csv` | Sample of authors for manual Google Scholar cross-validation |
+| `export/h2_by_field/` | Top-100 institutions per field (CC0, derived from OpenAlex) |
+| `export/h2_by_subfield/` | Top-100 institutions per subfield (CC0, derived from OpenAlex) |
+| `export/h3_by_field/` | Top-100 countries per field (CC0, derived from OpenAlex) |
+| `export/h3_by_subfield/` | Top-100 countries per subfield (CC0, derived from OpenAlex) |
+| `export/h2_by_institution.csv` | All institutions with institution-level h<sub>2</sub> (CC0, derived from OpenAlex) |
+| `export/h3_by_country.csv` | All countries with h<sub>3</sub> (CC0, derived from OpenAlex) |
 
 ## Efficiency exponents
 

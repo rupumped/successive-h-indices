@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I136199984,Harvard University,12,76
+https://openalex.org/I114027177,University of North Carolina at Chapel Hill,11,59
+https://openalex.org/I27837315,University of Michigan–Ann Arbor,8,54
+https://openalex.org/I145872427,Radboud University Nijmegen,7,33
+https://openalex.org/I180670191,"University of California, San Francisco",7,39
+https://openalex.org/I39422238,University of Illinois Chicago,7,33
+https://openalex.org/I130828816,University of Leeds,7,19
+https://openalex.org/I43406934,Université Laval,7,19
+https://openalex.org/I181547552,Baylor College of Medicine,7,26
+https://openalex.org/I145311948,Johns Hopkins University,7,70
+https://openalex.org/I159385669,Chiba University,6,10
+https://openalex.org/I34352273,Maastricht University,6,28
+https://openalex.org/I98251732,McMaster University,6,28
+https://openalex.org/I1850255,University of Basel,6,18
+https://openalex.org/I1174212,University of Southern California,6,23
+https://openalex.org/I160606119,University of Tennessee Health Science Center,6,28
+https://openalex.org/I201448701,University of Washington,6,32
+https://openalex.org/I151746483,University of Waterloo,6,16
+https://openalex.org/I193662353,Utrecht University,6,31
+https://openalex.org/I111088046,Boston University,5,18
+https://openalex.org/I78274823,Dokkyo Medical University,5,11
+https://openalex.org/I913958620,Erasmus University Rotterdam,5,22
+https://openalex.org/I47508984,Imperial College London,5,22
+https://openalex.org/I183935753,King's College London,5,18
+https://openalex.org/I5023651,McGill University,5,18
+https://openalex.org/I165932596,National University of Singapore,5,29
+https://openalex.org/I52357470,The Ohio State University,5,26
+https://openalex.org/I165779595,The University of Melbourne,5,22
+https://openalex.org/I129604602,The University of Sydney,5,26
+https://openalex.org/I148314036,Uniformed Services University of the Health Sciences,5,12
+https://openalex.org/I173304897,Universidad de Granada,5,19
+https://openalex.org/I71999127,Universitat de Barcelona,5,14
+https://openalex.org/I45129253,University College London,5,28
+https://openalex.org/I168635309,University of Calgary,5,19
+https://openalex.org/I161318765,"University of California, Los Angeles",5,28
+https://openalex.org/I63135867,University of Cincinnati,5,21
+https://openalex.org/I114457229,University of Geneva,5,11
+https://openalex.org/I169381384,University of Groningen,5,40
+https://openalex.org/I44461941,University of Houston,5,14
+https://openalex.org/I126307644,University of Iowa,5,26
+https://openalex.org/I126744593,"University of Maryland, Baltimore",5,23
+https://openalex.org/I130238516,University of Minnesota,5,24
+https://openalex.org/I185261750,University of Toronto,5,33
+https://openalex.org/I135310074,University of Wisconsin–Madison,5,26
+https://openalex.org/I135117807,Université de Sherbrooke,5,12
+https://openalex.org/I865915315,Vrije Universiteit Amsterdam,5,11
+https://openalex.org/I79072001,International University of Health and Welfare,4,4
+https://openalex.org/I153297377,Medical University of South Carolina,4,26
+https://openalex.org/I885383172,National University of Malaysia,4,22
+https://openalex.org/I57206974,New York University,4,27
+https://openalex.org/I111979921,Northwestern University,4,18
+https://openalex.org/I97018004,Stanford University,4,20
+https://openalex.org/I181391015,Universidade Estadual de Campinas (UNICAMP),4,18
+https://openalex.org/I182534213,Universidade do Porto,4,6
+https://openalex.org/I123044942,Universitat Autònoma de Barcelona,4,15
+https://openalex.org/I79619799,University of Birmingham,4,8
+https://openalex.org/I141945490,University of British Columbia,4,27
+https://openalex.org/I204250578,"University of California, Irvine",4,12
+https://openalex.org/I241749,University of Cambridge,4,8
+https://openalex.org/I921990950,University of Colorado Denver,4,27
+https://openalex.org/I140172145,University of Connecticut,4,10
+https://openalex.org/I175532246,University of Eastern Finland,4,7
+https://openalex.org/I881427289,University of Gothenburg,4,11
+https://openalex.org/I157674565,University of Liège,4,9
+https://openalex.org/I66752286,University of Milano-Bicocca,4,6
+https://openalex.org/I76835614,University of Missouri,4,8
+https://openalex.org/I8692664,University of Oklahoma,4,6
+https://openalex.org/I153718931,University of Ottawa,4,16
+https://openalex.org/I40120149,University of Oxford,4,19
+https://openalex.org/I170201317,University of Pittsburgh,4,29
+https://openalex.org/I17626003,University of Rhode Island,4,9
+https://openalex.org/I5388228,University of Rochester,4,10
+https://openalex.org/I223532165,University of Utah,4,22
+https://openalex.org/I70931966,Université de Montréal,4,25
+https://openalex.org/I200719446,Vanderbilt University,4,11
+https://openalex.org/I32971472,Yale University,4,14
+https://openalex.org/I12138139,Austin College,4,13
+https://openalex.org/I205783295,Cornell University,4,18
+https://openalex.org/I107672454,Dartmouth College,4,9
+https://openalex.org/I150468666,Emory University,4,14
+https://openalex.org/I8204097,Ludwig-Maximilians-Universität München,3,14
+https://openalex.org/I204308271,Medical College of Wisconsin,3,11
+https://openalex.org/I4210122071,Medical University of Lodz,3,6
+https://openalex.org/I56590836,Monash University,3,17
+https://openalex.org/I4210103786,"National University Cancer Institute, Singapore",3,3
+https://openalex.org/I165690674,Oregon Health & Science University,3,12
+https://openalex.org/I151104398,Pokhara University,3,4
+https://openalex.org/I196272386,Providence College,3,6
+https://openalex.org/I60342839,Qatar University,3,11
+https://openalex.org/I102322142,"Rutgers, The State University of New Jersey",3,9
+https://openalex.org/I101202996,Semmelweis University,3,4
+https://openalex.org/I39804081,Sorbonne Université,3,13
+https://openalex.org/I163917720,St. Marianna University School of Medicine,3,3
+https://openalex.org/I12315562,Texas Tech University,3,20
+https://openalex.org/I5681781,The University of Adelaide,3,10
+https://openalex.org/I165951966,The University of Texas at San Antonio Health Science Center,3,10
+https://openalex.org/I149251103,Thomas Jefferson University,3,19
+https://openalex.org/I121934306,Tufts University,3,11
+https://openalex.org/I114832834,Tulane University,3,11
+https://openalex.org/I121748325,Universidad Complutense de Madrid,3,9
+https://openalex.org/I88060688,Universidad Politécnica de Madrid,3,4

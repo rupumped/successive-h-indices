@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I136199984,Harvard University,50,2129
+https://openalex.org/I145311948,Johns Hopkins University,50,2687
+https://openalex.org/I180670191,"University of California, San Francisco",46,1641
+https://openalex.org/I150468666,Emory University,45,1717
+https://openalex.org/I201448701,University of Washington,45,1638
+https://openalex.org/I204730241,Université Paris Cité,45,1443
+https://openalex.org/I114027177,University of North Carolina at Chapel Hill,44,1898
+https://openalex.org/I40120149,University of Oxford,44,1821
+https://openalex.org/I47508984,Imperial College London,41,1032
+https://openalex.org/I45129253,University College London,41,1930
+https://openalex.org/I157614274,University of Cape Town,41,1091
+https://openalex.org/I161318765,"University of California, Los Angeles",39,935
+https://openalex.org/I26092322,Stellenbosch University,38,809
+https://openalex.org/I170201317,University of Pittsburgh,38,976
+https://openalex.org/I78577930,Columbia University,37,889
+https://openalex.org/I4210089966,London School of Hygiene & Tropical Medicine,37,789
+https://openalex.org/I28166907,Karolinska Institutet,36,721
+https://openalex.org/I124055696,University of Copenhagen,36,664
+https://openalex.org/I192619145,University of the Witwatersrand,36,1095
+https://openalex.org/I205783295,Cornell University,35,1018
+https://openalex.org/I141945490,University of British Columbia,35,793
+https://openalex.org/I146655781,University of Liverpool,35,1456
+https://openalex.org/I124357947,University of London,35,479
+https://openalex.org/I100532134,Université Claude Bernard Lyon 1,35,778
+https://openalex.org/I32971472,Yale University,35,868
+https://openalex.org/I111088046,Boston University,34,732
+https://openalex.org/I170897317,Duke University,34,651
+https://openalex.org/I165779595,The University of Melbourne,34,613
+https://openalex.org/I126744593,"University of Maryland, Baltimore",34,936
+https://openalex.org/I185261750,University of Toronto,34,1042
+https://openalex.org/I202697423,University of Zurich,34,569
+https://openalex.org/I204465549,Washington University in St. Louis,34,691
+https://openalex.org/I55302922,The University of Texas Medical Branch at Galveston,33,486
+https://openalex.org/I181547552,Baylor College of Medicine,32,707
+https://openalex.org/I98704320,Icahn School of Medicine at Mount Sinai,32,717
+https://openalex.org/I72227227,Makerere University,32,1171
+https://openalex.org/I102322142,"Rutgers, The State University of New Jersey",32,773
+https://openalex.org/I39804081,Sorbonne Université,32,1118
+https://openalex.org/I97018004,Stanford University,32,685
+https://openalex.org/I129604602,The University of Sydney,32,583
+https://openalex.org/I71999127,Universitat de Barcelona,32,736
+https://openalex.org/I32389192,University of Alabama at Birmingham,32,706
+https://openalex.org/I241749,University of Cambridge,32,708
+https://openalex.org/I19894307,Université de Montpellier,32,502
+https://openalex.org/I111979921,Northwestern University,31,558
+https://openalex.org/I200296433,Chinese Academy of Medical Sciences & Peking Union Medical College,30,886
+https://openalex.org/I99464096,KU Leuven,30,531
+https://openalex.org/I5023651,McGill University,30,556
+https://openalex.org/I16391192,Tel Aviv University,30,577
+https://openalex.org/I121748325,Universidad Complutense de Madrid,30,463
+https://openalex.org/I887064364,University of Amsterdam,30,668
+https://openalex.org/I36258959,University of California San Diego,30,636
+https://openalex.org/I98677209,University of Edinburgh,30,558
+https://openalex.org/I114457229,University of Geneva,30,362
+https://openalex.org/I126307644,University of Iowa,30,459
+https://openalex.org/I27837315,University of Michigan,30,707
+https://openalex.org/I130238516,University of Minnesota,30,843
+https://openalex.org/I114832834,Tulane University,29,568
+https://openalex.org/I31746571,UNSW Sydney,29,520
+https://openalex.org/I133731052,University of Helsinki,29,403
+https://openalex.org/I189158943,University of Milan,29,716
+https://openalex.org/I79576946,University of Pennsylvania,29,717
+https://openalex.org/I102064193,University of Siena,29,536
+https://openalex.org/I135310074,University of Wisconsin–Madison,29,668
+https://openalex.org/I92446798,Colorado State University,28,371
+https://openalex.org/I913958620,Erasmus University Rotterdam,28,352
+https://openalex.org/I193531525,George Washington University,28,419
+https://openalex.org/I183935753,King's College London,28,462
+https://openalex.org/I57206974,New York University,28,580
+https://openalex.org/I145872427,Radboud University Nijmegen,28,664
+https://openalex.org/I123044942,Universitat Autònoma de Barcelona,28,655
+https://openalex.org/I33213144,University of Florida,28,624
+https://openalex.org/I95023434,University of KwaZulu-Natal,28,685
+https://openalex.org/I145608581,University of Miami,28,719
+https://openalex.org/I103320735,Università Cattolica del Sacro Cuore,28,511
+https://openalex.org/I193662353,Utrecht University,28,459
+https://openalex.org/I200719446,Vanderbilt University,28,381
+https://openalex.org/I21491767,Aix-Marseille Université,27,476
+https://openalex.org/I139660479,Central South University,27,448
+https://openalex.org/I177725633,Chinese University of Hong Kong,27,537
+https://openalex.org/I39343248,Humboldt-Universität zu Berlin,27,416
+https://openalex.org/I165932596,National University of Singapore,27,605
+https://openalex.org/I139264467,Seoul National University,27,426
+https://openalex.org/I165143802,The University of Queensland,27,425
+https://openalex.org/I192545095,United States Military Academy,27,295
+https://openalex.org/I17974374,Universidade de São Paulo,27,1391
+https://openalex.org/I1850255,University of Basel,27,366
+https://openalex.org/I204250578,"University of California, Irvine",27,384
+https://openalex.org/I889458895,University of Hong Kong,27,776
+https://openalex.org/I116067653,University of Rome Tor Vergata,27,378
+https://openalex.org/I154387261,Vita-Salute San Raffaele University,27,270
+https://openalex.org/I129975664,Albert Einstein College of Medicine,26,655
+https://openalex.org/I114090438,Goethe University Frankfurt,26,451
+https://openalex.org/I56590836,Monash University,26,388
+https://openalex.org/I157773358,Sun Yat-sen University,26,650
+https://openalex.org/I52357470,The Ohio State University,26,543
+https://openalex.org/I165951966,The University of Texas at San Antonio Health Science Center,26,312
+https://openalex.org/I138006243,University of Arizona,26,453
+https://openalex.org/I118564535,University of Bern,26,427
+https://openalex.org/I1174212,University of Southern California,26,583
+https://openalex.org/I159176309,Universität Hamburg,26,448

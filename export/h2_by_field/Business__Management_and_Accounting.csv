@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I136199984,Harvard University,32,505
+https://openalex.org/I97018004,Stanford University,31,432
+https://openalex.org/I27837315,University of Michigan,31,649
+https://openalex.org/I55732556,Arizona State University,30,480
+https://openalex.org/I63966007,Massachusetts Institute of Technology,30,465
+https://openalex.org/I28407311,University of Manchester,29,627
+https://openalex.org/I1174212,University of Southern California,29,399
+https://openalex.org/I180519160,Copenhagen Business School,28,682
+https://openalex.org/I57206974,New York University,28,414
+https://openalex.org/I130769515,Pennsylvania State University,28,744
+https://openalex.org/I165779595,University of Melbourne,28,573
+https://openalex.org/I79576946,University of Pennsylvania,28,332
+https://openalex.org/I78577930,Columbia University,27,434
+https://openalex.org/I205783295,Cornell University,27,632
+https://openalex.org/I170897317,Duke University,27,277
+https://openalex.org/I87216513,Michigan State University,27,422
+https://openalex.org/I93860229,Politecnico di Milano,27,490
+https://openalex.org/I162577319,The University of Texas at Dallas,27,197
+https://openalex.org/I185261750,University of Toronto,27,549
+https://openalex.org/I913958620,Erasmus University Rotterdam,26,757
+https://openalex.org/I111979921,Northwestern University,26,289
+https://openalex.org/I102322142,"Rutgers, The State University of New Jersey",26,412
+https://openalex.org/I241749,University of Cambridge,26,583
+https://openalex.org/I157725225,University of Illinois Urbana-Champaign,26,504
+https://openalex.org/I114027177,University of North Carolina at Chapel Hill,26,427
+https://openalex.org/I40120149,University of Oxford,26,418
+https://openalex.org/I202963720,University of St.Gallen,26,870
+https://openalex.org/I169199633,Aston University,25,257
+https://openalex.org/I11701301,Griffith University,25,369
+https://openalex.org/I14243506,Hong Kong Polytechnic University,25,847
+https://openalex.org/I165143802,The University of Queensland,25,486
+https://openalex.org/I86519309,The University of Texas at Austin,25,402
+https://openalex.org/I193700539,Tilburg University,25,467
+https://openalex.org/I95457486,"University of California, Berkeley",25,601
+https://openalex.org/I161318765,"University of California, Los Angeles",25,303
+https://openalex.org/I169381384,University of Groningen,25,492
+https://openalex.org/I129604602,University of Sydney,25,537
+https://openalex.org/I102248843,Vienna University of Economics and Business,25,588
+https://openalex.org/I192455969,York University,25,321
+https://openalex.org/I111088046,Boston University,24,344
+https://openalex.org/I190082696,Durham University,24,246
+https://openalex.org/I108192572,HEC Montréal,24,320
+https://openalex.org/I67415387,Lancaster University,24,260
+https://openalex.org/I99043593,Macquarie University,24,313
+https://openalex.org/I56590836,Monash University,24,608
+https://openalex.org/I165932596,National University of Singapore,24,761
+https://openalex.org/I91045830,Texas A&M University,24,349
+https://openalex.org/I130828816,University of Leeds,24,396
+https://openalex.org/I155781252,University of South Carolina,24,311
+https://openalex.org/I51556381,University of Virginia,24,439
+https://openalex.org/I201448701,University of Washington,24,403
+https://openalex.org/I82497590,Auburn University,23,275
+https://openalex.org/I79510175,Cardiff University,23,292
+https://openalex.org/I107672454,Dartmouth College,23,123
+https://openalex.org/I103163165,Florida State University,23,266
+https://openalex.org/I130701444,Georgia Institute of Technology,23,302
+https://openalex.org/I102134673,Linköping University,23,349
+https://openalex.org/I12912129,Northeastern University,23,329
+https://openalex.org/I52357470,The Ohio State University,23,508
+https://openalex.org/I154130895,University of Auckland,23,382
+https://openalex.org/I33213144,University of Florida,23,371
+https://openalex.org/I165733156,University of Georgia,23,332
+https://openalex.org/I66946132,"University of Maryland, College Park",23,312
+https://openalex.org/I130238516,University of Minnesota,23,391
+https://openalex.org/I142263535,University of Nottingham,23,323
+https://openalex.org/I114017466,University of Technology Sydney,23,414
+https://openalex.org/I39555362,University of Warwick,23,421
+https://openalex.org/I9927081,Aalto University,22,516
+https://openalex.org/I103531236,Boston College,22,288
+https://openalex.org/I168719708,City University of Hong Kong,22,413
+https://openalex.org/I82284825,Cranfield University,22,396
+https://openalex.org/I150468666,Emory University,22,179
+https://openalex.org/I61544103,London Business School,22,194
+https://openalex.org/I909854389,London School of Economics and Political Science,22,293
+https://openalex.org/I187531555,Lund University,22,448
+https://openalex.org/I219193219,Purdue University West Lafayette,22,477
+https://openalex.org/I160993911,Queensland University of Technology,22,464
+https://openalex.org/I31746571,UNSW Sydney,22,489
+https://openalex.org/I170201317,University of Pittsburgh,22,239
+https://openalex.org/I135310074,University of Wisconsin–Madison,22,310
+https://openalex.org/I125749732,Western University,22,335
+https://openalex.org/I32971472,Yale University,22,285
+https://openalex.org/I100005738,Brigham Young University,21,358
+https://openalex.org/I74973139,Carnegie Mellon University,21,191
+https://openalex.org/I177725633,Chinese University of Hong Kong,21,350
+https://openalex.org/I92446798,Colorado State University,21,234
+https://openalex.org/I83019370,Eindhoven University of Technology,21,392
+https://openalex.org/I2799283415,Fisher College,21,80
+https://openalex.org/I184565670,Georgetown University,21,278
+https://openalex.org/I181565077,Georgia State University,21,352
+https://openalex.org/I173911158,Iowa State University,21,397
+https://openalex.org/I183935753,King's College London,21,250
+https://openalex.org/I180242103,Stockholm School of Economics,21,315
+https://openalex.org/I128956969,Texas Christian University,21,113
+https://openalex.org/I12315562,Texas Tech University,21,291
+https://openalex.org/I16097986,Universitat de València,21,559
+https://openalex.org/I5681781,University of Adelaide,21,218
+https://openalex.org/I17301866,University of Alabama,21,239
+https://openalex.org/I51601045,University of Bath,21,249
+https://openalex.org/I141945490,University of British Columbia,21,310
+https://openalex.org/I106165777,University of Central Florida,21,286

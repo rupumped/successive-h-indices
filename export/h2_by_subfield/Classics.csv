@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I40120149,University of Oxford,16,157
+https://openalex.org/I241749,University of Cambridge,14,122
+https://openalex.org/I78577930,Columbia University,10,36
+https://openalex.org/I145311948,Johns Hopkins University,10,28
+https://openalex.org/I183935753,King's College London,10,47
+https://openalex.org/I161318765,"University of California, Los Angeles",10,43
+https://openalex.org/I205783295,Cornell University,9,31
+https://openalex.org/I190082696,Durham University,9,47
+https://openalex.org/I20089843,Princeton University,9,39
+https://openalex.org/I98677209,University of Edinburgh,9,41
+https://openalex.org/I107639228,University of Notre Dame,9,44
+https://openalex.org/I16835326,University of St Andrews,9,51
+https://openalex.org/I52099693,University of York,9,41
+https://openalex.org/I32971472,Yale University,9,42
+https://openalex.org/I136199984,Harvard University,8,28
+https://openalex.org/I8204097,Ludwig-Maximilians-Universität München,8,67
+https://openalex.org/I86519309,The University of Texas at Austin,8,29
+https://openalex.org/I45129253,University College London,8,33
+https://openalex.org/I79619799,University of Birmingham,8,46
+https://openalex.org/I36234482,University of Bristol,8,45
+https://openalex.org/I130828816,University of Leeds,8,35
+https://openalex.org/I146655781,University of Liverpool,8,20
+https://openalex.org/I124357947,University of London,8,30
+https://openalex.org/I28407311,University of Manchester,8,41
+https://openalex.org/I142263535,University of Nottingham,8,33
+https://openalex.org/I185261750,University of Toronto,8,79
+https://openalex.org/I129774422,University of Vienna,8,64
+https://openalex.org/I135310074,University of Wisconsin–Madison,8,32
+https://openalex.org/I102322142,"Rutgers, The State University of New Jersey",7,25
+https://openalex.org/I97018004,Stanford University,7,21
+https://openalex.org/I52357470,The Ohio State University,7,50
+https://openalex.org/I135140700,University of Bonn,7,63
+https://openalex.org/I95457486,"University of California, Berkeley",7,28
+https://openalex.org/I154570441,"University of California, Santa Barbara",7,21
+https://openalex.org/I23923803,University of Exeter,7,30
+https://openalex.org/I161046081,University of Freiburg,7,54
+https://openalex.org/I27837315,University of Michigan–Ann Arbor,7,34
+https://openalex.org/I22465464,University of Münster,7,59
+https://openalex.org/I32881790,Université de Poitiers,7,28
+https://openalex.org/I159885104,École Pratique des Hautes Études,7,28
+https://openalex.org/I4210119109,Indiana University Bloomington,7,17
+https://openalex.org/I57206974,New York University,7,44
+https://openalex.org/I55732556,Arizona State University,6,21
+https://openalex.org/I36788626,California University of Pennsylvania,6,22
+https://openalex.org/I79510175,Cardiff University,6,23
+https://openalex.org/I84470341,Catholic University of America,6,20
+https://openalex.org/I150468666,Emory University,6,20
+https://openalex.org/I164389053,Fordham University,6,27
+https://openalex.org/I75951250,Freie Universität Berlin,6,47
+https://openalex.org/I181369854,Friedrich-Alexander-Universität Erlangen-Nürnberg,6,28
+https://openalex.org/I184565670,Georgetown University,6,16
+https://openalex.org/I114090438,Goethe University Frankfurt,6,38
+https://openalex.org/I99043593,Macquarie University,6,20
+https://openalex.org/I200777214,National and Kapodistrian University of Athens,6,54
+https://openalex.org/I130769515,Pennsylvania State University,6,23
+https://openalex.org/I196585927,Pontifical Institute of Mediaeval Studies,6,19
+https://openalex.org/I166337079,Queen Mary University of London,6,18
+https://openalex.org/I4210131395,St. John's College,6,13
+https://openalex.org/I91045830,Texas A&M University,6,17
+https://openalex.org/I165779595,The University of Melbourne,6,15
+https://openalex.org/I4392021135,Transnational Press London,6,46
+https://openalex.org/I118564535,University of Bern,6,33
+https://openalex.org/I84218800,"University of California, Davis",6,10
+https://openalex.org/I40347166,University of Chicago,6,39
+https://openalex.org/I180923762,University of Cologne,6,40
+https://openalex.org/I34771391,University of Cyprus,6,18
+https://openalex.org/I1118541,University of East Anglia,6,24
+https://openalex.org/I33213144,University of Florida,6,14
+https://openalex.org/I7882870,University of Glasgow,6,26
+https://openalex.org/I169381384,University of Groningen,6,22
+https://openalex.org/I74656192,University of Göttingen,6,35
+https://openalex.org/I126307644,University of Iowa,6,22
+https://openalex.org/I153648349,University of Leicester,6,24
+https://openalex.org/I66946132,"University of Maryland, College Park",6,17
+https://openalex.org/I208333798,University of Missouri–St. Louis,6,9
+https://openalex.org/I114027177,University of North Carolina at Chapel Hill,6,37
+https://openalex.org/I170201317,University of Pittsburgh,6,17
+https://openalex.org/I71052956,University of Reading,6,22
+https://openalex.org/I1174212,University of Southern California,6,13
+https://openalex.org/I100066346,University of Stuttgart,6,20
+https://openalex.org/I51556381,University of Virginia,6,33
+https://openalex.org/I202697423,University of Zurich,6,59
+https://openalex.org/I159176309,Universität Hamburg,6,41
+https://openalex.org/I193662353,Utrecht University,6,38
+https://openalex.org/I16038530,Aberystwyth University,5,9
+https://openalex.org/I157394403,Baylor University,5,17
+https://openalex.org/I98259816,"Birkbeck, University of London",5,15
+https://openalex.org/I103531236,Boston College,5,15
+https://openalex.org/I149461666,Ca' Foscari University of Venice,5,27
+https://openalex.org/I174216632,City University of New York,5,12
+https://openalex.org/I129902397,Dalhousie University,5,13
+https://openalex.org/I170897317,Duke University,5,14
+https://openalex.org/I103163165,Florida State University,5,15
+https://openalex.org/I32597200,Ghent University,5,18
+https://openalex.org/I223822909,Heidelberg University,5,53
+https://openalex.org/I39343248,Humboldt-Universität zu Berlin,5,21
+https://openalex.org/I197323543,Johannes Gutenberg University Mainz,5,32
+https://openalex.org/I175594653,John Brown University,5,11
+https://openalex.org/I84884186,Newcastle University,5,13
+https://openalex.org/I111979921,Northwestern University,5,13
+https://openalex.org/I161103922,Philipps University of Marburg,5,30

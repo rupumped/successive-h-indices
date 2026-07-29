@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I116953780,Tongji University,25,622
+https://openalex.org/I14243506,Hong Kong Polytechnic University,23,404
+https://openalex.org/I177477856,Polytechnic University of Turin,21,312
+https://openalex.org/I71267560,University of Naples Federico II,21,154
+https://openalex.org/I45129253,University College London,20,307
+https://openalex.org/I98358874,Delft University of Technology,19,513
+https://openalex.org/I35440088,ETH Zurich,19,357
+https://openalex.org/I204778367,Norwegian University of Science and Technology,19,288
+https://openalex.org/I93860229,Politecnico di Milano,19,385
+https://openalex.org/I96673099,Technical University of Denmark,19,305
+https://openalex.org/I891191580,Aalborg University,18,228
+https://openalex.org/I111599522,Jiangnan University,18,125
+https://openalex.org/I143804889,Loughborough University,18,184
+https://openalex.org/I165779595,The University of Melbourne,18,217
+https://openalex.org/I31746571,UNSW Sydney,18,199
+https://openalex.org/I141945490,University of British Columbia,18,274
+https://openalex.org/I158842170,Chongqing University,17,300
+https://openalex.org/I204983213,Harbin Institute of Technology,17,280
+https://openalex.org/I187531555,Lund University,17,177
+https://openalex.org/I88060688,Universidad Politécnica de Madrid,17,296
+https://openalex.org/I79238269,Universidad de Sevilla,17,206
+https://openalex.org/I141596103,University of Lisbon,17,223
+https://openalex.org/I153976015,University of Ljubljana,17,178
+https://openalex.org/I135310074,University of Wisconsin–Madison,17,143
+https://openalex.org/I19894307,Université de Montpellier,17,99
+https://openalex.org/I148099405,Xi'an University of Architecture and Technology,17,341
+https://openalex.org/I9927081,Aalto University,16,157
+https://openalex.org/I66862912,Chalmers University of Technology,16,176
+https://openalex.org/I16609230,Hunan University,16,176
+https://openalex.org/I167027274,Nanjing Forestry University,16,231
+https://openalex.org/I165932596,National University of Singapore,16,304
+https://openalex.org/I165143802,The University of Queensland,16,162
+https://openalex.org/I95457486,"University of California, Berkeley",16,222
+https://openalex.org/I149704539,Deakin University,15,109
+https://openalex.org/I99464096,KU Leuven,15,173
+https://openalex.org/I102134673,Linköping University,15,82
+https://openalex.org/I130769515,Pennsylvania State University,15,250
+https://openalex.org/I108688024,Qingdao University,15,92
+https://openalex.org/I887968799,RWTH Aachen University,15,290
+https://openalex.org/I861853513,Sapienza University of Rome,15,177
+https://openalex.org/I129604602,The University of Sydney,15,140
+https://openalex.org/I182534213,Universidade do Porto,15,163
+https://openalex.org/I154425047,University of Alberta,15,194
+https://openalex.org/I33213144,University of Florida,15,180
+https://openalex.org/I204337017,Aarhus University,14,78
+https://openalex.org/I21370196,Aristotle University of Thessaloniki,14,196
+https://openalex.org/I83019370,Eindhoven University of Technology,14,280
+https://openalex.org/I130701444,Georgia Institute of Technology,14,210
+https://openalex.org/I134085113,King Fahd University of Petroleum and Minerals,14,120
+https://openalex.org/I109935558,Ningbo University,14,114
+https://openalex.org/I219193219,Purdue University West Lafayette,14,266
+https://openalex.org/I160993911,Queensland University of Technology,14,114
+https://openalex.org/I99065089,Tsinghua University,14,282
+https://openalex.org/I39147953,Universidad de Cádiz,14,53
+https://openalex.org/I173304897,Universidad de Granada,14,90
+https://openalex.org/I108103353,Universidad de Valladolid,14,89
+https://openalex.org/I9617848,Universitat Politècnica de Catalunya,14,224
+https://openalex.org/I130343225,Universiti Putra Malaysia,14,198
+https://openalex.org/I51601045,University of Bath,14,98
+https://openalex.org/I130828816,University of Leeds,14,156
+https://openalex.org/I99682543,University of Minho,14,187
+https://openalex.org/I900890020,University of Palermo,14,75
+https://openalex.org/I185261750,University of Toronto,14,183
+https://openalex.org/I859038795,Virginia Tech,14,208
+https://openalex.org/I1328775524,Zhejiang Sci-Tech University,14,113
+https://openalex.org/I5124864,École Polytechnique Fédérale de Lausanne,14,181
+https://openalex.org/I92869138,BOKU University,13,103
+https://openalex.org/I168719708,City University of Hong Kong,13,110
+https://openalex.org/I44504214,Czech Technical University in Prague,13,271
+https://openalex.org/I27357992,Dalian University of Technology,13,195
+https://openalex.org/I32597200,Ghent University,13,179
+https://openalex.org/I47720641,Huazhong University of Science and Technology,13,135
+https://openalex.org/I86987016,KTH Royal Institute of Technology,13,172
+https://openalex.org/I190632392,Luleå University of Technology,13,112
+https://openalex.org/I134687103,Nanjing Tech University,13,169
+https://openalex.org/I174458059,National Technical University of Athens,13,220
+https://openalex.org/I137902535,North Carolina State University,13,160
+https://openalex.org/I131249849,Oregon State University,13,113
+https://openalex.org/I183067930,Shanghai Jiao Tong University,13,172
+https://openalex.org/I180726961,Shenzhen University,13,162
+https://openalex.org/I76569877,Southeast University,13,252
+https://openalex.org/I111112146,Tallinn University of Technology,13,155
+https://openalex.org/I62916508,Technical University of Munich,13,282
+https://openalex.org/I162868743,Tianjin University,13,236
+https://openalex.org/I4104125,Universidade Federal de Santa Catarina,13,260
+https://openalex.org/I17974374,Universidade de São Paulo,13,399
+https://openalex.org/I241749,University of Cambridge,13,149
+https://openalex.org/I188538660,University of Colorado Boulder,13,117
+https://openalex.org/I142263535,University of Nottingham,13,122
+https://openalex.org/I126520041,University of Science and Technology of China,13,85
+https://openalex.org/I181647926,University of Strathclyde,13,97
+https://openalex.org/I4576418,University of Technology Malaysia,13,444
+https://openalex.org/I114017466,University of Technology Sydney,13,111
+https://openalex.org/I167420956,Vilnius Gediminas Technical University,13,206
+https://openalex.org/I193775966,Yonsei University,13,171
+https://openalex.org/I31683504,Beijing Forestry University,12,85
+https://openalex.org/I67031392,Carleton University,12,109
+https://openalex.org/I139660479,Central South University,12,194
+https://openalex.org/I4092182,Graz University of Technology,12,98
+https://openalex.org/I11701301,Griffith University,12,72
+https://openalex.org/I139024713,Guangdong University of Technology,12,115

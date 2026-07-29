@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I63966007,Massachusetts Institute of Technology,6,16
+https://openalex.org/I22465464,University of Münster,6,13
+https://openalex.org/I185261750,University of Toronto,6,16
+https://openalex.org/I204730241,Université Paris Cité,6,35
+https://openalex.org/I174216632,City University of New York,5,10
+https://openalex.org/I78577930,Columbia University,5,15
+https://openalex.org/I114090438,Goethe University Frankfurt,5,12
+https://openalex.org/I85384741,Heidelberg University,5,8
+https://openalex.org/I4210088715,Hochschule Campus Wien,5,24
+https://openalex.org/I219193219,Purdue University West Lafayette,5,14
+https://openalex.org/I97018004,Stanford University,5,11
+https://openalex.org/I45129253,University College London,5,11
+https://openalex.org/I135140700,University of Bonn,5,14
+https://openalex.org/I95457486,"University of California, Berkeley",5,22
+https://openalex.org/I241749,University of Cambridge,5,18
+https://openalex.org/I40120149,University of Oxford,5,17
+https://openalex.org/I68947357,Université de Strasbourg,5,10
+https://openalex.org/I193662353,Utrecht University,5,8
+https://openalex.org/I136199984,Harvard University,4,9
+https://openalex.org/I223822909,Heidelberg University,4,6
+https://openalex.org/I200763008,Justus-Liebig-Universität Gießen,4,8
+https://openalex.org/I4210106879,Ohio University,4,6
+https://openalex.org/I20089843,Princeton University,4,8
+https://openalex.org/I16269868,Santa Clara University,4,11
+https://openalex.org/I39804081,Sorbonne Université,4,13
+https://openalex.org/I31512782,Technical University of Darmstadt,4,5
+https://openalex.org/I204136569,The Open University,4,8
+https://openalex.org/I4392021135,Transnational Press London,4,9
+https://openalex.org/I40347166,University of Chicago,4,13
+https://openalex.org/I124055696,University of Copenhagen,4,9
+https://openalex.org/I23923803,University of Exeter,4,6
+https://openalex.org/I161046081,University of Freiburg,4,10
+https://openalex.org/I74656192,University of Göttingen,4,10
+https://openalex.org/I66946132,"University of Maryland, College Park",4,14
+https://openalex.org/I27837315,University of Michigan,4,21
+https://openalex.org/I107639228,University of Notre Dame,4,7
+https://openalex.org/I135310074,University of Wisconsin–Madison,4,10
+https://openalex.org/I167360494,University of Wuppertal,4,9
+https://openalex.org/I202697423,University of Zurich,4,10
+https://openalex.org/I134560555,Université Toulouse III - Paul Sabatier,4,6
+https://openalex.org/I197141962,Zurich University of Applied Sciences in Business Administration,4,7
+https://openalex.org/I83041322,Brooklyn College,4,5
+https://openalex.org/I8204097,Ludwig-Maximilians-Universität München,3,10
+https://openalex.org/I5444425,Macalester College,3,3
+https://openalex.org/I174004417,Munich University of Applied Sciences,3,6
+https://openalex.org/I200777214,National and Kapodistrian University of Athens,3,8
+https://openalex.org/I10052268,New Mexico State University,3,7
+https://openalex.org/I57206974,New York University,3,6
+https://openalex.org/I203172682,Northern Arizona University,3,6
+https://openalex.org/I130769515,Pennsylvania State University,3,10
+https://openalex.org/I161103922,Philipps University of Marburg,3,8
+https://openalex.org/I1288097491,Pushkin Leningrad State University,3,5
+https://openalex.org/I126231945,Queen's University Belfast,3,4
+https://openalex.org/I192578771,Rose–Hulman Institute of Technology,3,3
+https://openalex.org/I4210161658,Russian State Agrarian Correspondence University,3,4
+https://openalex.org/I71838634,San Francisco State University,3,5
+https://openalex.org/I51504820,San Jose State University,3,16
+https://openalex.org/I861853513,Sapienza University of Rome,3,8
+https://openalex.org/I24861097,St. Olaf College,3,4
+https://openalex.org/I145847075,TU Wien,3,6
+https://openalex.org/I16391192,Tel Aviv University,3,4
+https://openalex.org/I52357470,The Ohio State University,3,17
+https://openalex.org/I201537933,Tohoku University,3,3
+https://openalex.org/I5681781,University of Adelaide,3,3
+https://openalex.org/I1850255,University of Basel,3,4
+https://openalex.org/I168635309,University of Calgary,3,4
+https://openalex.org/I204250578,"University of California, Irvine",3,4
+https://openalex.org/I126307644,University of Iowa,3,7
+https://openalex.org/I153267046,University of Kaiserslautern,3,5
+https://openalex.org/I146416000,University of Kansas,3,6
+https://openalex.org/I189712700,University of Konstanz,3,4
+https://openalex.org/I146655781,University of Liverpool,3,3
+https://openalex.org/I157674565,University of Liège,3,8
+https://openalex.org/I7947594,University of Maine,3,4
+https://openalex.org/I28407311,University of Manchester,3,15
+https://openalex.org/I165779595,University of Melbourne,3,8
+https://openalex.org/I189158943,University of Milan,3,8
+https://openalex.org/I108290504,University of Pisa,3,4
+https://openalex.org/I176453806,University of Potsdam,3,6
+https://openalex.org/I21491767,Aix-Marseille Université,3,4
+https://openalex.org/I8087733,University of Tübingen,3,8
+https://openalex.org/I129774422,University of Vienna,3,9
+https://openalex.org/I51556381,University of Virginia,3,5
+https://openalex.org/I55106644,Amsterdam University of Applied Sciences,3,4
+https://openalex.org/I201448701,University of Washington,3,6
+https://openalex.org/I159176309,Universität Hamburg,3,5
+https://openalex.org/I132053463,Université Libre de Bruxelles,3,6
+https://openalex.org/I277688954,Université Paris-Saclay,3,4
+https://openalex.org/I90183372,Université de Lorraine,3,6
+https://openalex.org/I55732556,Arizona State University,3,6
+https://openalex.org/I17866349,Université de Toulouse,3,7
+https://openalex.org/I111088046,Boston University,3,6
+https://openalex.org/I27804330,Brown University,3,4
+https://openalex.org/I122411786,California Institute of Technology,3,8
+https://openalex.org/I32971472,Yale University,3,6
+https://openalex.org/I192455969,York University,3,7
+https://openalex.org/I36788626,California University of Pennsylvania,3,5
+https://openalex.org/I188497080,Carleton College,3,3
+https://openalex.org/I67031392,Carleton University,3,3
+https://openalex.org/I58956616,Case Western Reserve University,3,5
+https://openalex.org/I142476485,École Polytechnique,3,6

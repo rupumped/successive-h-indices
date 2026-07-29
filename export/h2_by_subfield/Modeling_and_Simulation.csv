@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I47508984,Imperial College London,18,86
+https://openalex.org/I4210089966,London School of Hygiene & Tropical Medicine,18,57
+https://openalex.org/I40120149,University of Oxford,16,108
+https://openalex.org/I145311948,Johns Hopkins University,13,87
+https://openalex.org/I185261750,University of Toronto,13,64
+https://openalex.org/I12912129,Northeastern University,12,34
+https://openalex.org/I204730241,Université Paris Cité,12,46
+https://openalex.org/I136199984,Harvard University,11,54
+https://openalex.org/I51556381,University of Virginia,11,37
+https://openalex.org/I201448701,University of Washington,11,66
+https://openalex.org/I150468666,Emory University,10,41
+https://openalex.org/I240666556,Imam Mohammad ibn Saud Islamic University,10,28
+https://openalex.org/I165932596,National University of Singapore,10,31
+https://openalex.org/I160993911,Queensland University of Technology,10,34
+https://openalex.org/I31746571,UNSW Sydney,10,32
+https://openalex.org/I124357947,University of London,10,18
+https://openalex.org/I27837315,University of Michigan,10,49
+https://openalex.org/I114027177,University of North Carolina at Chapel Hill,10,47
+https://openalex.org/I10535382,Chongqing University of Posts and Telecommunications,9,19
+https://openalex.org/I205783295,Cornell University,9,37
+https://openalex.org/I130769515,Pennsylvania State University,9,39
+https://openalex.org/I165779595,The University of Melbourne,9,33
+https://openalex.org/I165733156,University of Georgia,9,25
+https://openalex.org/I192455969,York University,9,34
+https://openalex.org/I181063083,Abdul Wali Khan University Mardan,8,23
+https://openalex.org/I33926330,Al-Balqa Applied University,8,22
+https://openalex.org/I181565077,Georgia State University,8,25
+https://openalex.org/I110525433,"Islamic Azad University, Tehran",8,31
+https://openalex.org/I185163786,King Abdulaziz University,8,44
+https://openalex.org/I28022161,King Saud University,8,34
+https://openalex.org/I159247623,Mansoura University,8,28
+https://openalex.org/I20231570,Peking University,8,44
+https://openalex.org/I20089843,Princeton University,8,27
+https://openalex.org/I861853513,Sapienza University of Rome,8,31
+https://openalex.org/I154099455,Shandong University,8,30
+https://openalex.org/I179331831,Taif University,8,24
+https://openalex.org/I86519309,The University of Texas at Austin,8,29
+https://openalex.org/I147280213,Universidad Veracruzana,8,31
+https://openalex.org/I173304897,Universidad de Granada,8,15
+https://openalex.org/I36234482,University of Bristol,8,23
+https://openalex.org/I141945490,University of British Columbia,8,27
+https://openalex.org/I241749,University of Cambridge,8,47
+https://openalex.org/I142204992,University of Lahore,8,39
+https://openalex.org/I142263535,University of Nottingham,8,25
+https://openalex.org/I170201317,University of Pittsburgh,8,21
+https://openalex.org/I39555362,University of Warwick,8,30
+https://openalex.org/I151746483,University of Waterloo,8,19
+https://openalex.org/I32971472,Yale University,8,32
+https://openalex.org/I139264467,Seoul National University,7,29
+https://openalex.org/I183067930,Shanghai Jiao Tong University,7,28
+https://openalex.org/I119004910,Silesian University of Technology,7,18
+https://openalex.org/I97018004,Stanford University,7,49
+https://openalex.org/I157773358,Sun Yat-sen University,7,50
+https://openalex.org/I145847075,TU Wien,7,21
+https://openalex.org/I121847817,"The Graduate Center, CUNY",7,9
+https://openalex.org/I45129253,University College London,7,47
+https://openalex.org/I188538660,University of Colorado Boulder,7,15
+https://openalex.org/I99297268,University of Hassan II Casablanca,7,36
+https://openalex.org/I889458895,University of Hong Kong,7,39
+https://openalex.org/I68649149,University of Malakand,7,30
+https://openalex.org/I28407311,University of Manchester,7,19
+https://openalex.org/I2613432,University of South Florida,7,23
+https://openalex.org/I100532134,Université Claude Bernard Lyon 1,7,25
+https://openalex.org/I191208505,Xiamen University,7,26
+https://openalex.org/I125839683,Beijing Institute of Technology,7,19
+https://openalex.org/I145487455,Cairo University,7,34
+https://openalex.org/I129708740,Fujian Medical University,7,15
+https://openalex.org/I130701444,Georgia Institute of Technology,7,21
+https://openalex.org/I14243506,Hong Kong Polytechnic University,7,25
+https://openalex.org/I113330528,Khazar University,7,9
+https://openalex.org/I63966007,Massachusetts Institute of Technology,7,20
+https://openalex.org/I142608572,Prince Sattam Bin Abdulaziz University,7,25
+https://openalex.org/I145019703,Al-Zaytoonah University of Jordan,6,13
+https://openalex.org/I63739035,All India Institute of Medical Sciences,6,17
+https://openalex.org/I55732556,Arizona State University,6,30
+https://openalex.org/I115600380,Balıkesir University,6,11
+https://openalex.org/I207547235,Benha University,6,12
+https://openalex.org/I16076960,COMSATS University Islamabad,6,38
+https://openalex.org/I139660479,Central South University,6,32
+https://openalex.org/I200296433,Chinese Academy of Medical Sciences & Peking Union Medical College,6,14
+https://openalex.org/I177725633,Chinese University of Hong Kong,6,22
+https://openalex.org/I35440088,ETH Zurich,6,18
+https://openalex.org/I24943067,Fudan University,6,19
+https://openalex.org/I184565670,Georgetown University,6,37
+https://openalex.org/I43879129,"Government College University, Lahore",6,17
+https://openalex.org/I878454856,Hasselt University,6,11
+https://openalex.org/I163340411,Hohai University,6,21
+https://openalex.org/I4210119109,Indiana University Bloomington,6,28
+https://openalex.org/I20126385,Inonu University,6,8
+https://openalex.org/I115592961,Jiangsu University,6,23
+https://openalex.org/I28046988,Kwame Nkrumah University of Science and Technology,6,28
+https://openalex.org/I25399158,Mahidol University,6,25
+https://openalex.org/I4210146087,Malayer University,6,10
+https://openalex.org/I16733864,National Taiwan University,6,19
+https://openalex.org/I174458059,National Technical University of Athens,6,22
+https://openalex.org/I201384688,National University of Computer and Emerging Sciences,6,18
+https://openalex.org/I885383172,National University of Malaysia,6,20
+https://openalex.org/I148366613,National Yang Ming Chiao Tung University,6,14
+https://openalex.org/I109935558,Ningbo University,6,12
+https://openalex.org/I137902535,North Carolina State University,6,28
+https://openalex.org/I111979921,Northwestern University,6,20

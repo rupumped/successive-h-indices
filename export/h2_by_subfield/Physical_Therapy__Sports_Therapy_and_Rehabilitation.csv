@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I129604602,The University of Sydney,15,173
+https://openalex.org/I136199984,Harvard University,14,79
+https://openalex.org/I165143802,University of Queensland,13,70
+https://openalex.org/I223822909,Heidelberg University,12,123
+https://openalex.org/I34352273,Maastricht University,12,35
+https://openalex.org/I31746571,UNSW Sydney,12,50
+https://openalex.org/I170201317,University of Pittsburgh,12,77
+https://openalex.org/I185261750,University of Toronto,12,103
+https://openalex.org/I181369854,Friedrich-Alexander-Universität Erlangen-Nürnberg,11,60
+https://openalex.org/I14243506,Hong Kong Polytechnic University,11,109
+https://openalex.org/I28166907,Karolinska Institutet,11,44
+https://openalex.org/I56590836,Monash University,11,40
+https://openalex.org/I16391192,Tel Aviv University,11,53
+https://openalex.org/I169381384,University of Groningen,11,43
+https://openalex.org/I125749732,Western University,11,64
+https://openalex.org/I127859547,Yogyakarta State University,11,446
+https://openalex.org/I99464096,KU Leuven,10,70
+https://openalex.org/I196829312,La Trobe University,10,31
+https://openalex.org/I111979921,Northwestern University,10,49
+https://openalex.org/I245308123,State University of Padang,10,431
+https://openalex.org/I879563668,Universidade Estadual Paulista (Unesp),10,70
+https://openalex.org/I182534213,Universidade do Porto,10,45
+https://openalex.org/I154130895,University of Auckland,10,40
+https://openalex.org/I33213144,University of Florida,10,51
+https://openalex.org/I27837315,University of Michigan,10,94
+https://openalex.org/I153718931,University of Ottawa,10,67
+https://openalex.org/I151746483,University of Waterloo,10,54
+https://openalex.org/I865915315,Vrije Universiteit Amsterdam,10,70
+https://openalex.org/I130218214,Indonesia University of Education,9,465
+https://openalex.org/I143804889,Loughborough University,9,27
+https://openalex.org/I232763632,National University of Ukraine on Physical Education and Sport,9,244
+https://openalex.org/I145872427,Radboud University Nijmegen,9,51
+https://openalex.org/I90267481,Umeå University,9,30
+https://openalex.org/I141945490,University of British Columbia,9,97
+https://openalex.org/I161046081,University of Freiburg,9,48
+https://openalex.org/I122266389,University of Nebraska at Omaha,9,43
+https://openalex.org/I159176309,Universität Hamburg,9,86
+https://openalex.org/I204465549,Washington University in St. Louis,9,42
+https://openalex.org/I111088046,Boston University,8,48
+https://openalex.org/I145311948,Johns Hopkins University,8,55
+https://openalex.org/I149910238,Kent State University,8,21
+https://openalex.org/I2799463576,Kharkiv State Academy of Physical Culture,8,264
+https://openalex.org/I84884186,Newcastle University,8,26
+https://openalex.org/I32394136,Northumbria University,8,16
+https://openalex.org/I165690674,Oregon Health & Science University,8,41
+https://openalex.org/I3133421993,State University of Jakarta,8,247
+https://openalex.org/I102893293,State University of Malang,8,289
+https://openalex.org/I148158369,State University of Semarang,8,405
+https://openalex.org/I182083151,Universidad Rey Juan Carlos,8,17
+https://openalex.org/I177909021,Universidade Federal de São Carlos,8,42
+https://openalex.org/I17974374,Universidade de São Paulo,8,136
+https://openalex.org/I23758234,Universitas Negeri Surabaya,8,244
+https://openalex.org/I100930933,University College Dublin,8,24
+https://openalex.org/I154425047,University of Alberta,8,54
+https://openalex.org/I9360294,University of Bologna,8,28
+https://openalex.org/I86501945,University of Delaware,8,31
+https://openalex.org/I126307644,University of Iowa,8,45
+https://openalex.org/I94722563,University of Jyväskylä,8,30
+https://openalex.org/I146416000,University of Kansas,8,30
+https://openalex.org/I230495080,University of Limerick,8,39
+https://openalex.org/I126744593,"University of Maryland, Baltimore",8,32
+https://openalex.org/I114027177,University of North Carolina at Chapel Hill,8,52
+https://openalex.org/I201448701,University of Washington,8,31
+https://openalex.org/I135310074,University of Wisconsin–Madison,8,40
+https://openalex.org/I12834331,University of Wyoming,8,22
+https://openalex.org/I181343428,University of Zagreb,8,93
+https://openalex.org/I196349391,Universität Ulm,8,34
+https://openalex.org/I219193219,Purdue University West Lafayette,7,18
+https://openalex.org/I204722609,Queen's University,7,33
+https://openalex.org/I119896790,Sebelas Maret University,7,191
+https://openalex.org/I271888150,Sriwijaya University,7,103
+https://openalex.org/I12176630,Tanjungpura University,7,88
+https://openalex.org/I165779595,The University of Melbourne,7,28
+https://openalex.org/I177877127,The University of Western Australia,7,22
+https://openalex.org/I1331278255,Universidade de Ribeirão Preto,7,31
+https://openalex.org/I4210090826,Universitas Pendidikan Ganesha,7,120
+https://openalex.org/I45129253,University College London,7,46
+https://openalex.org/I32389192,University of Alabama at Birmingham,7,45
+https://openalex.org/I130194489,University of Alicante,7,27
+https://openalex.org/I47755478,University of Bengkulu,7,76
+https://openalex.org/I79619799,University of Birmingham,7,29
+https://openalex.org/I98677209,University of Edinburgh,7,25
+https://openalex.org/I83816512,University of Genoa,7,18
+https://openalex.org/I44461941,University of Houston,7,19
+https://openalex.org/I39422238,University of Illinois Chicago,7,43
+https://openalex.org/I46247651,University of Manitoba,7,27
+https://openalex.org/I189158943,University of Milan,7,23
+https://openalex.org/I133999245,"University of Nevada, Las Vegas",7,30
+https://openalex.org/I138689650,University of Padua,7,24
+https://openalex.org/I43439940,University of Southampton,7,24
+https://openalex.org/I204824540,University of Wollongong,7,19
+https://openalex.org/I2279609970,Université de Lille,7,19
+https://openalex.org/I70931966,Université de Montréal,7,43
+https://openalex.org/I135117807,Université de Sherbrooke,7,32
+https://openalex.org/I4210132263,Vinnytsia Mykhailo Kotsiubynskyi State Pedagogical University,7,59
+https://openalex.org/I285663978,Weatherford College,7,122
+https://openalex.org/I12097938,West Virginia University,7,38
+https://openalex.org/I32971472,Yale University,7,18
+https://openalex.org/I5124864,École Polytechnique Fédérale de Lausanne,7,16
+https://openalex.org/I55732556,Arizona State University,7,35
+https://openalex.org/I100005738,Brigham Young University,7,29

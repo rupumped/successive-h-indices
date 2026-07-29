@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I40120149,University of Oxford,17,123
+https://openalex.org/I4654613,University of Warsaw,16,125
+https://openalex.org/I39804081,Sorbonne Université,15,65
+https://openalex.org/I204730241,Université Paris Cité,15,77
+https://openalex.org/I21250087,Charles University,14,68
+https://openalex.org/I17974374,Universidade de São Paulo,14,130
+https://openalex.org/I4068193,University of Belgrade,14,76
+https://openalex.org/I189158943,University of Milan,14,45
+https://openalex.org/I201537933,Tohoku University,13,84
+https://openalex.org/I5124864,École Polytechnique Fédérale de Lausanne,13,67
+https://openalex.org/I4210120094,Instituto de Investigaciones Fisicoquímicas Teóricas y Aplicadas,12,41
+https://openalex.org/I86519309,The University of Texas at Austin,12,56
+https://openalex.org/I166401450,Universidad Nacional de Córdoba,12,37
+https://openalex.org/I21370196,Aristotle University of Thessaloniki,11,60
+https://openalex.org/I219193219,Purdue University West Lafayette,11,56
+https://openalex.org/I904495901,Ruhr University Bochum,11,37
+https://openalex.org/I130194489,University of Alicante,11,36
+https://openalex.org/I9360294,University of Bologna,11,26
+https://openalex.org/I63135867,University of Cincinnati,11,56
+https://openalex.org/I114027177,University of North Carolina at Chapel Hill,11,61
+https://openalex.org/I58956616,Case Western Reserve University,10,39
+https://openalex.org/I197251160,Hebrew University of Jerusalem,10,44
+https://openalex.org/I174183983,Maria Curie-Skłodowska University,10,42
+https://openalex.org/I55547365,Payame Noor University,10,89
+https://openalex.org/I200362191,Universidad Autónoma Metropolitana,10,54
+https://openalex.org/I46176106,Universidad de Burgos,10,21
+https://openalex.org/I177909021,Universidade Federal de São Carlos,10,63
+https://openalex.org/I71999127,Universitat de Barcelona,10,51
+https://openalex.org/I27837315,University of Michigan,10,40
+https://openalex.org/I138689650,University of Padua,10,36
+https://openalex.org/I126520041,University of Science and Technology of China,10,50
+https://openalex.org/I43439940,University of Southampton,10,56
+https://openalex.org/I39555362,University of Warwick,10,42
+https://openalex.org/I34250744,University of Łódź,10,30
+https://openalex.org/I196349391,Universität Ulm,10,24
+https://openalex.org/I132053463,Université Libre de Bruxelles,10,54
+https://openalex.org/I149461666,Ca' Foscari University of Venice,9,21
+https://openalex.org/I126596746,Jagiellonian University,9,28
+https://openalex.org/I19880235,Lomonosov Moscow State University,9,75
+https://openalex.org/I137902535,North Carolina State University,9,32
+https://openalex.org/I165339363,Universidad de Oviedo,9,29
+https://openalex.org/I79817857,University of Guelph,9,21
+https://openalex.org/I157725225,University of Illinois Urbana-Champaign,9,64
+https://openalex.org/I146416000,University of Kansas,9,45
+https://openalex.org/I108290504,University of Pisa,9,19
+https://openalex.org/I134560555,Université Toulouse III - Paul Sabatier,9,44
+https://openalex.org/I90183372,Université de Lorraine,9,28
+https://openalex.org/I191208505,Xiamen University,9,72
+https://openalex.org/I99364266,Academy of Scientific and Innovative Research,8,27
+https://openalex.org/I122411786,California Institute of Technology,8,35
+https://openalex.org/I129877168,Carl von Ossietzky Universität Oldenburg,8,21
+https://openalex.org/I149758196,Chimie ParisTech,8,28
+https://openalex.org/I83019370,Eindhoven University of Technology,8,34
+https://openalex.org/I47508984,Imperial College London,8,45
+https://openalex.org/I106785703,Institut polytechnique de Grenoble,8,13
+https://openalex.org/I10660446,Kunming University of Science and Technology,8,25
+https://openalex.org/I22299242,Kyoto University,8,80
+https://openalex.org/I143804889,Loughborough University,8,32
+https://openalex.org/I56590836,Monash University,8,27
+https://openalex.org/I881766915,Nanjing University,8,46
+https://openalex.org/I172675005,Nanyang Technological University,8,32
+https://openalex.org/I12003341,National University of Science and Technology,8,10
+https://openalex.org/I84884186,Newcastle University,8,45
+https://openalex.org/I111979921,Northwestern University,8,29
+https://openalex.org/I70703428,Palacký University Olomouc,8,22
+https://openalex.org/I861853513,Sapienza University of Rome,8,29
+https://openalex.org/I91045830,Texas A&M University,8,34
+https://openalex.org/I52357470,The Ohio State University,8,51
+https://openalex.org/I114531698,Tokyo Institute of Technology,8,51
+https://openalex.org/I80180929,Universidad de Murcia,8,30
+https://openalex.org/I10457146,Universidad de Santiago de Chile,8,44
+https://openalex.org/I108103353,Universidad de Valladolid,8,18
+https://openalex.org/I80850581,Universidade Federal de Uberlândia,8,26
+https://openalex.org/I182534213,Universidade do Porto,8,21
+https://openalex.org/I241749,University of Cambridge,8,24
+https://openalex.org/I69737025,University of Chile,8,48
+https://openalex.org/I4210165038,University of Chinese Academy of Sciences,8,31
+https://openalex.org/I53110688,University of Córdoba,8,49
+https://openalex.org/I114457229,University of Geneva,8,52
+https://openalex.org/I99682543,University of Minho,8,10
+https://openalex.org/I130238516,University of Minnesota,8,45
+https://openalex.org/I107639228,University of Notre Dame,8,24
+https://openalex.org/I140744787,University of Pardubice,8,28
+https://openalex.org/I79741316,University of Pecs,8,16
+https://openalex.org/I170201317,University of Pittsburgh,8,35
+https://openalex.org/I223532165,University of Utah,8,44
+https://openalex.org/I4210119856,Université Sultan Moulay Slimane,8,19
+https://openalex.org/I123387679,Uppsala University,8,31
+https://openalex.org/I110757952,Slovak University of Technology in Bratislava,7,40
+https://openalex.org/I97455420,Sohag University,7,8
+https://openalex.org/I3923682,Soochow University,7,19
+https://openalex.org/I170558118,Sri Venkateswara University,7,29
+https://openalex.org/I62916508,Technical University of Munich,7,39
+https://openalex.org/I39147953,Universidad de Cádiz,7,16
+https://openalex.org/I79238269,Universidad de Sevilla,7,24
+https://openalex.org/I181391015,Universidade Estadual de Campinas (UNICAMP),7,51
+https://openalex.org/I243754102,Universidade Federal do Ceará,7,21
+https://openalex.org/I15766328,Universitat de Lleida,7,15
+https://openalex.org/I16097986,Universitat de València,7,32
+https://openalex.org/I27577105,University College Cork,7,34
+https://openalex.org/I149213910,University of Antwerp,7,12

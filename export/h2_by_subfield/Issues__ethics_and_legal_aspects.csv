@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I126307644,University of Iowa,9,45
+https://openalex.org/I149530613,Lynn University,8,11
+https://openalex.org/I130442723,Universidade Federal do Rio Grande do Sul,8,40
+https://openalex.org/I130238516,University of Minnesota,8,53
+https://openalex.org/I243754102,Universidade Federal do Ceará,7,40
+https://openalex.org/I17301866,University of Alabama,7,13
+https://openalex.org/I114027177,University of North Carolina at Chapel Hill,7,30
+https://openalex.org/I79576946,University of Pennsylvania,7,37
+https://openalex.org/I43579087,University of Wisconsin–Milwaukee,7,22
+https://openalex.org/I103531236,Boston College,6,20
+https://openalex.org/I63772739,Florida Atlantic University,6,11
+https://openalex.org/I102461120,Marquette University,6,16
+https://openalex.org/I88273585,Universidade Federal de São Paulo,6,24
+https://openalex.org/I35046152,Universidade Federal do Rio Grande do Norte,6,36
+https://openalex.org/I17974374,Universidade de São Paulo,6,39
+https://openalex.org/I154425047,University of Alberta,6,18
+https://openalex.org/I141945490,University of British Columbia,6,19
+https://openalex.org/I180670191,"University of California, San Francisco",6,24
+https://openalex.org/I185261750,University of Toronto,6,25
+https://openalex.org/I223532165,University of Utah,6,24
+https://openalex.org/I51556381,University of Virginia,6,23
+https://openalex.org/I201448701,University of Washington,6,31
+https://openalex.org/I78577930,Columbia University,5,51
+https://openalex.org/I205783295,Cornell University,5,25
+https://openalex.org/I193531525,George Washington University,5,12
+https://openalex.org/I184565670,Georgetown University,5,18
+https://openalex.org/I55769427,Indiana University – Purdue University Indianapolis,5,25
+https://openalex.org/I145311948,Johns Hopkins University,5,42
+https://openalex.org/I922845939,Philadelphia University,5,19
+https://openalex.org/I49886154,Rush University,5,12
+https://openalex.org/I102322142,"Rutgers, The State University of New Jersey",5,26
+https://openalex.org/I194629146,School of the Art Institute of Chicago,5,12
+https://openalex.org/I12315562,Texas Tech University,5,10
+https://openalex.org/I39147953,Universidad de Cádiz,5,10
+https://openalex.org/I10902133,Universitat Jaume I,5,7
+https://openalex.org/I161318765,"University of California, Los Angeles",5,19
+https://openalex.org/I33213144,University of Florida,5,24
+https://openalex.org/I27837315,University of Michigan,5,36
+https://openalex.org/I208333798,University of Missouri–St. Louis,5,15
+https://openalex.org/I170201317,University of Pittsburgh,5,20
+https://openalex.org/I162714631,George Mason University,4,14
+https://openalex.org/I136199984,Harvard University,4,13
+https://openalex.org/I183935753,King's College London,4,9
+https://openalex.org/I1925986,Loyola University Chicago,4,13
+https://openalex.org/I53276908,Marymount University,4,29
+https://openalex.org/I87216513,Michigan State University,4,13
+https://openalex.org/I57206974,New York University,4,12
+https://openalex.org/I102502594,Northern Illinois University,4,7
+https://openalex.org/I165690674,Oregon Health & Science University,4,11
+https://openalex.org/I126863827,Pace University,4,9
+https://openalex.org/I130769515,Pennsylvania State University,4,19
+https://openalex.org/I152130510,Royal College of Nursing,4,25
+https://openalex.org/I130186095,Sacred Heart University,4,9
+https://openalex.org/I26538001,San Diego State University,4,6
+https://openalex.org/I39586589,Swansea University,4,9
+https://openalex.org/I165143802,The University of Queensland,4,8
+https://openalex.org/I129604602,The University of Sydney,4,12
+https://openalex.org/I919571938,The University of Texas Health Science Center at Houston,4,9
+https://openalex.org/I148314036,Uniformed Services University of the Health Sciences,4,6
+https://openalex.org/I193876067,Universidade Estadual do Oeste do Paraná,4,6
+https://openalex.org/I169045520,Universidade Federal da Paraíba,4,27
+https://openalex.org/I110200422,Universidade Federal de Minas Gerais,4,16
+https://openalex.org/I100930933,University College Dublin,4,9
+https://openalex.org/I45129253,University College London,4,14
+https://openalex.org/I110152177,University of Akron,4,14
+https://openalex.org/I32389192,University of Alabama at Birmingham,4,19
+https://openalex.org/I168959743,University of America,4,11
+https://openalex.org/I138006243,University of Arizona,4,18
+https://openalex.org/I79620101,University of Arkansas for Medical Sciences,4,7
+https://openalex.org/I63135867,University of Cincinnati,4,12
+https://openalex.org/I921990950,University of Colorado Denver,4,12
+https://openalex.org/I140172145,University of Connecticut,4,17
+https://openalex.org/I39422238,University of Illinois Chicago,4,29
+https://openalex.org/I146416000,University of Kansas,4,10
+https://openalex.org/I143302722,University of Kentucky,4,13
+https://openalex.org/I126744593,"University of Maryland, Baltimore",4,29
+https://openalex.org/I76835614,University of Missouri,4,9
+https://openalex.org/I133999245,"University of Nevada, Las Vegas",4,6
+https://openalex.org/I142263535,University of Nottingham,4,7
+https://openalex.org/I184942183,University of Oslo,4,9
+https://openalex.org/I153718931,University of Ottawa,4,6
+https://openalex.org/I17626003,University of Rhode Island,4,10
+https://openalex.org/I155781252,University of South Carolina,4,13
+https://openalex.org/I2613432,University of South Florida,4,11
+https://openalex.org/I135310074,University of Wisconsin–Madison,4,18
+https://openalex.org/I185443292,Wayne State University,4,15
+https://openalex.org/I19648265,Wright State University,4,9
+https://openalex.org/I32971472,Yale University,4,15
+https://openalex.org/I55732556,Arizona State University,4,14
+https://openalex.org/I111088046,Boston University,4,23
+https://openalex.org/I58956616,Case Western Reserve University,4,26
+https://openalex.org/I4210152507,Chamberlain University,4,9
+https://openalex.org/I2800922704,Dean College,4,8
+https://openalex.org/I170897317,Duke University,4,18
+https://openalex.org/I165102784,Duquesne University,4,7
+https://openalex.org/I186335123,East Carolina University,4,11
+https://openalex.org/I119443389,East Tennessee State University,4,8
+https://openalex.org/I150468666,Emory University,4,20
+https://openalex.org/I124121301,Lucian Blaga University of Sibiu,3,4
+https://openalex.org/I207601951,Malone University,3,4
+https://openalex.org/I5023651,McGill University,3,5

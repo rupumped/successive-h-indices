@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I4432739,University of Bergen,25,144
+https://openalex.org/I59028903,Ocean University of China,22,355
+https://openalex.org/I12093191,University of Stirling,21,152
+https://openalex.org/I54108979,Norwegian University of Life Sciences,20,109
+https://openalex.org/I182534213,Universidade do Porto,20,142
+https://openalex.org/I204778367,Norwegian University of Science and Technology,19,109
+https://openalex.org/I82497590,Auburn University,18,167
+https://openalex.org/I119454577,Nanjing Agricultural University,18,204
+https://openalex.org/I109935558,Ningbo University,18,202
+https://openalex.org/I4210112248,Nutrition Metabolism Aquaculture,18,145
+https://openalex.org/I119635470,Universidad de Las Palmas de Gran Canaria,18,93
+https://openalex.org/I71503853,University of Algarve,18,92
+https://openalex.org/I161929037,Université de Bretagne Occidentale,18,76
+https://openalex.org/I913481162,Wageningen University & Research,18,181
+https://openalex.org/I581031,Central Institute of Fisheries Education,17,425
+https://openalex.org/I107982497,Dalian Ocean University,17,297
+https://openalex.org/I161346416,Jimei University,17,147
+https://openalex.org/I8991828,Pukyong National University,17,231
+https://openalex.org/I78037679,UiT The Arctic University of Norway,17,64
+https://openalex.org/I205349734,Hokkaido University,16,187
+https://openalex.org/I59361560,Instituto Politécnico Nacional,16,208
+https://openalex.org/I48840829,Tokyo University of Marine Science and Technology,16,136
+https://openalex.org/I879563668,Universidade Estadual Paulista (Unesp),16,382
+https://openalex.org/I4104125,Universidade Federal de Santa Catarina,16,285
+https://openalex.org/I83202590,Jeju National University,15,139
+https://openalex.org/I2799442855,New York University Press,15,24
+https://openalex.org/I44675526,Shanghai Ocean University,15,389
+https://openalex.org/I96673099,Technical University of Denmark,15,69
+https://openalex.org/I39147953,Universidad de Cádiz,15,64
+https://openalex.org/I17974374,Universidade de São Paulo,15,219
+https://openalex.org/I6289922,Universidade de Vigo,15,52
+https://openalex.org/I129801699,University of Tasmania,15,80
+https://openalex.org/I79223203,Guangdong Ocean University,14,234
+https://openalex.org/I204823248,Huazhong Agricultural University,14,200
+https://openalex.org/I21881038,IPB University,14,932
+https://openalex.org/I101479585,South China Agricultural University,14,117
+https://openalex.org/I126460647,Universidade Federal do Rio Grande,14,179
+https://openalex.org/I157696592,Universiti Malaysia Terengganu,14,305
+https://openalex.org/I130343225,Universiti Putra Malaysia,14,287
+https://openalex.org/I3124161356,University of South Bohemia in České Budějovice,14,61
+https://openalex.org/I144889574,Université de Pau et des Pays de l'Adour,14,35
+https://openalex.org/I24057909,Bangladesh Agricultural University,13,394
+https://openalex.org/I129902397,Dalhousie University,13,57
+https://openalex.org/I32597200,Ghent University,13,99
+https://openalex.org/I169427155,Instituto Politécnico de Leiria,13,64
+https://openalex.org/I107139324,Kagoshima University,13,89
+https://openalex.org/I916559398,Kindai University,13,84
+https://openalex.org/I39804081,Sorbonne Université,13,59
+https://openalex.org/I135366938,Sylhet Agricultural University,13,104
+https://openalex.org/I173268674,Texas A&M University System,13,48
+https://openalex.org/I74801974,The University of Tokyo,13,78
+https://openalex.org/I243754102,Universidade Federal do Ceará,13,268
+https://openalex.org/I141945490,University of British Columbia,13,121
+https://openalex.org/I19894307,Université de Montpellier,13,75
+https://openalex.org/I31847773,Zhejiang Ocean University,13,136
+https://openalex.org/I149704539,Deakin University,12,58
+https://openalex.org/I41641357,Ege University,12,164
+https://openalex.org/I129708740,Fujian Medical University,12,27
+https://openalex.org/I67388046,Gorgan University of Agricultural Sciences and Natural Resources,12,174
+https://openalex.org/I150807315,Guangxi University,12,78
+https://openalex.org/I88447708,Kentucky State University,12,64
+https://openalex.org/I153512688,National Taiwan Ocean University,12,178
+https://openalex.org/I154099455,Shandong University,12,47
+https://openalex.org/I157773358,Sun Yat-sen University,12,95
+https://openalex.org/I110200422,Universidade Federal de Minas Gerais,12,141
+https://openalex.org/I33501960,Universidade Federal de Santa Maria,12,128
+https://openalex.org/I52418104,Universidade Federal do Paraná,12,137
+https://openalex.org/I161371597,Universiti of Malaysia Sabah,12,148
+https://openalex.org/I4210165038,University of Chinese Academy of Sciences,12,109
+https://openalex.org/I33213144,University of Florida,12,87
+https://openalex.org/I47996466,University of Warmia and Mazury in Olsztyn,12,71
+https://openalex.org/I181343428,University of Zagreb,12,68
+https://openalex.org/I115953327,Çanakkale Onsekiz Mart Üniversitesi,12,91
+https://openalex.org/I197907453,Akdeniz University,11,50
+https://openalex.org/I84524832,Alexandria University,11,134
+https://openalex.org/I197081775,Annamalai University,11,184
+https://openalex.org/I139660479,Central South University,11,30
+https://openalex.org/I11855966,Diponegoro University,11,684
+https://openalex.org/I204947315,Far Eastern Federal University,11,66
+https://openalex.org/I136199984,Harvard University,11,51
+https://openalex.org/I3018263800,Huzhou University,11,51
+https://openalex.org/I111599522,Jiangnan University,11,37
+https://openalex.org/I130309236,Kafrelsheikh University,11,130
+https://openalex.org/I130438778,Memorial University of Newfoundland,11,79
+https://openalex.org/I43777268,Nagasaki University,11,62
+https://openalex.org/I2802079931,Nord University,11,38
+https://openalex.org/I131249849,Oregon State University,11,81
+https://openalex.org/I108688024,Qingdao University,11,44
+https://openalex.org/I37574244,Sichuan Agricultural University,11,98
+https://openalex.org/I142108993,Southwest University,11,87
+https://openalex.org/I304343950,Tamil Nadu Dr. J Jayalalitha Fisheries University,11,215
+https://openalex.org/I4210109462,Tashkent Institute of Irrigation and Agricultural Mechanization Engineers,11,486
+https://openalex.org/I11849452,Tianjin Agricultural University,11,54
+https://openalex.org/I80180929,Universidad de Murcia,11,47
+https://openalex.org/I123443094,Universidade Estadual de Maringá,11,141
+https://openalex.org/I35046152,Universidade Federal do Rio Grande do Norte,11,134
+https://openalex.org/I200284239,Universidade de Santiago de Compostela,11,65
+https://openalex.org/I71999127,Universitat de Barcelona,11,57
+https://openalex.org/I177055848,University of Brawijaya,11,488
+https://openalex.org/I24354313,University of Buenos Aires,11,61
+https://openalex.org/I142617266,University of Crete,11,34

@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I9360294,University of Bologna,6,50
+https://openalex.org/I56441308,Libera Università Internazionale degli Studi Sociali Guido Carli,5,10
+https://openalex.org/I861853513,Sapienza University of Rome,5,42
+https://openalex.org/I45084792,University of Florence,5,46
+https://openalex.org/I55133342,University of Macerata,5,17
+https://openalex.org/I189158943,University of Milan,5,76
+https://openalex.org/I103320735,Università Cattolica del Sacro Cuore,5,37
+https://openalex.org/I119003972,Roma Tre University,4,37
+https://openalex.org/I5561750,University of Bari Aldo Moro,4,39
+https://openalex.org/I11039511,University of Bergamo,4,14
+https://openalex.org/I83816512,University of Genoa,4,17
+https://openalex.org/I122346577,University of Modena and Reggio Emilia,4,18
+https://openalex.org/I71267560,University of Naples Federico II,4,35
+https://openalex.org/I124601658,University of Parma,4,11
+https://openalex.org/I108290504,University of Pisa,4,26
+https://openalex.org/I55143463,University of Turin,4,24
+https://openalex.org/I93860229,Politecnico di Milano,3,5
+https://openalex.org/I172446870,University of Cagliari,3,9
+https://openalex.org/I197809005,"University of Campania ""Luigi Vanvitelli""",3,7
+https://openalex.org/I39063666,University of Catania,3,13
+https://openalex.org/I39387349,University of Chieti-Pescara,3,9
+https://openalex.org/I201324441,University of Ferrara,3,11
+https://openalex.org/I106296451,University of Foggia,3,9
+https://openalex.org/I66752286,University of Milano-Bicocca,3,11
+https://openalex.org/I138689650,University of Padua,3,20
+https://openalex.org/I900890020,University of Palermo,3,32
+https://openalex.org/I25217355,University of Pavia,3,11
+https://openalex.org/I27483092,University of Perugia,3,21
+https://openalex.org/I116067653,University of Rome Tor Vergata,3,14
+https://openalex.org/I102064193,University of Siena,3,26
+https://openalex.org/I124326101,University of Teramo,3,6
+https://openalex.org/I193223587,University of Trento,3,9
+https://openalex.org/I119439378,University of Verona,3,17
+https://openalex.org/I149461666,Ca' Foscari University of Venice,3,22
+https://openalex.org/I71209653,Bocconi University,2,9
+https://openalex.org/I4210125310,Pegaso University,2,2
+https://openalex.org/I177477856,Politecnico di Torino,2,4
+https://openalex.org/I4210087796,Istituto di Ricerche Economiche e Sociali,2,3
+https://openalex.org/I99464096,KU Leuven,2,2
+https://openalex.org/I122140584,Universidade Federal do Rio de Janeiro,2,2
+https://openalex.org/I17974374,Universidade de São Paulo,2,3
+https://openalex.org/I128649747,Libera Università Maria SS. Assunta,2,3
+https://openalex.org/I79940851,University of Brescia,2,6
+https://openalex.org/I122534668,Marche Polytechnic University,2,6
+https://openalex.org/I115752224,University of Insubria,2,7
+https://openalex.org/I143386109,Miles College,2,2
+https://openalex.org/I186903577,University of Luxembourg,2,2
+https://openalex.org/I129627893,University of Molise,2,8
+https://openalex.org/I142910587,University of Salento,2,6
+https://openalex.org/I131729948,University of Salerno,2,10
+https://openalex.org/I16337185,University of Sannio,2,8
+https://openalex.org/I4210155898,National Interuniversity Consortium of Materials Science and Technology,2,2
+https://openalex.org/I159650629,University of Sassari,2,4
+https://openalex.org/I142444530,University of Trieste,2,6
+https://openalex.org/I129043915,University of Udine,2,6
+https://openalex.org/I190397597,University of Urbino,2,10
+https://openalex.org/I4141589,National University of Rosario,2,3
+https://openalex.org/I4210135106,Università degli Studi Internazionali di Roma,2,3
+https://openalex.org/I112859197,Università di Camerino,2,4
+https://openalex.org/I100532134,Université Claude Bernard Lyon 1,2,3
+https://openalex.org/I117841876,Université Paris-Panthéon-Assas,2,3
+https://openalex.org/I183638586,Parthenope University of Naples,2,5
+https://openalex.org/I4210140223,1 Decembrie 1918 University,1,1
+https://openalex.org/I204337017,Aarhus University,1,1
+https://openalex.org/I4210123776,Academy of Labour and Social Relations,1,1
+https://openalex.org/I4210133179,Accademia di Belle Arti di Catanzaro,1,1
+https://openalex.org/I2802932681,Accademia di Belle Arti di Napoli,1,1
+https://openalex.org/I1330701686,Collegio Carlo Alberto,1,1
+https://openalex.org/I21491767,Aix-Marseille Université,1,1
+https://openalex.org/I55106644,Amsterdam University of Applied Sciences,1,1
+https://openalex.org/I4210135670,Amsterdam University of the Arts,1,1
+https://openalex.org/I98358874,Delft University of Technology,1,1
+https://openalex.org/I4210120837,Delta International University,1,1
+https://openalex.org/I147962203,Democritus University of Thrace,1,1
+https://openalex.org/I4210136909,Dilla University,1,1
+https://openalex.org/I4210163037,Dixon University Center,1,1
+https://openalex.org/I190103667,Autonomous University of Aguascalientes,1,1
+https://openalex.org/I35440088,ETH Zurich,1,2
+https://openalex.org/I94179979,"EU Business School, Geneva",1,1
+https://openalex.org/I872719,Bellarmine University,1,1
+https://openalex.org/I721619,Benemérita Universidad Autónoma de Puebla,1,1
+https://openalex.org/I4210112137,Escola Superior Artística do Porto,1,1
+https://openalex.org/I874792244,European University Institute,1,1
+https://openalex.org/I4210099865,European University of Rome,1,2
+https://openalex.org/I111088046,Boston University,1,1
+https://openalex.org/I30667456,Brescia University,1,2
+https://openalex.org/I27804330,Brown University,1,1
+https://openalex.org/I187398979,Favaloro University,1,1
+https://openalex.org/I131221577,Bucknell University,1,1
+https://openalex.org/I166595947,Federal University of São João del-Rei,1,1
+https://openalex.org/I4210142324,CY Cergy Paris Université,1,4
+https://openalex.org/I164389053,Fordham University,1,1
+https://openalex.org/I69984877,Cardinal Stefan Wyszynski University in Warsaw,1,1
+https://openalex.org/I4210165932,Giustino Fortunato University,1,1
+https://openalex.org/I52710748,Charles R. Drew University of Medicine and Science,1,1
+https://openalex.org/I4210129267,HES-SO Valais-Wallis,1,1
+https://openalex.org/I3132940433,Politecnica Salesiana University,1,1
+https://openalex.org/I42775652,Link Campus University,1,1
+https://openalex.org/I2801160284,HafenCity University Hamburg,1,1
+https://openalex.org/I293362453,Polytechnic Institute of Coimbra,1,1
+https://openalex.org/I68618741,Polytechnic University of Bari,1,1

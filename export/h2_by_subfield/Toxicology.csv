@@ -1,0 +1,102 @@
+institution_id,institution_name,h2,author_count
+https://openalex.org/I183935753,King's College London,13,41
+https://openalex.org/I124055696,University of Copenhagen,13,61
+https://openalex.org/I138689650,University of Padua,13,48
+https://openalex.org/I861853513,Sapienza University of Rome,12,39
+https://openalex.org/I123044942,Universitat Autònoma de Barcelona,12,45
+https://openalex.org/I161046081,University of Freiburg,12,31
+https://openalex.org/I189158943,University of Milan,12,36
+https://openalex.org/I119439378,University of Verona,12,47
+https://openalex.org/I173865709,Gifu Pharmaceutical University,11,31
+https://openalex.org/I102134673,Linköping University,11,30
+https://openalex.org/I122534668,Marche Polytechnic University,11,25
+https://openalex.org/I91712215,Saarland University,11,40
+https://openalex.org/I9360294,University of Bologna,11,35
+https://openalex.org/I141584323,University of Hertfordshire,11,31
+https://openalex.org/I202697423,University of Zurich,11,41
+https://openalex.org/I204730241,Université Paris Cité,11,59
+https://openalex.org/I15057530,Université de Bordeaux,11,41
+https://openalex.org/I32597200,Ghent University,10,39
+https://openalex.org/I136199984,Harvard University,10,67
+https://openalex.org/I145311948,Johns Hopkins University,10,51
+https://openalex.org/I169248161,Universidade Federal de Pelotas,10,33
+https://openalex.org/I33501960,Universidade Federal de Santa Maria,10,36
+https://openalex.org/I17974374,Universidade de São Paulo,10,70
+https://openalex.org/I197809005,"University of Campania ""Luigi Vanvitelli""",10,19
+https://openalex.org/I45084792,University of Florence,10,21
+https://openalex.org/I33213144,University of Florida,10,44
+https://openalex.org/I126744593,"University of Maryland, Baltimore",10,31
+https://openalex.org/I184942183,University of Oslo,10,37
+https://openalex.org/I28166907,Karolinska Institutet,9,42
+https://openalex.org/I200777214,National and Kapodistrian University of Athens,9,25
+https://openalex.org/I129604602,The University of Sydney,9,51
+https://openalex.org/I200284239,Universidade de Santiago de Compostela,9,41
+https://openalex.org/I118564535,University of Bern,9,27
+https://openalex.org/I180670191,"University of California, San Francisco",9,38
+https://openalex.org/I169381384,University of Groningen,9,31
+https://openalex.org/I25217355,University of Pavia,9,27
+https://openalex.org/I103320735,Università Cattolica del Sacro Cuore,9,19
+https://openalex.org/I17866349,Université Fédérale de Toulouse Midi-Pyrénées,9,30
+https://openalex.org/I2279609970,Université de Lille,9,28
+https://openalex.org/I193662353,Utrecht University,9,55
+https://openalex.org/I21370196,Aristotle University of Thessaloniki,8,28
+https://openalex.org/I126596746,Jagiellonian University,8,27
+https://openalex.org/I197323543,Johannes Gutenberg University Mainz,8,34
+https://openalex.org/I8204097,Ludwig-Maximilians-Universität München,8,41
+https://openalex.org/I56590836,Monash University,8,34
+https://openalex.org/I161127581,Universidade Federal Fluminense,8,49
+https://openalex.org/I130442723,Universidade Federal do Rio Grande do Sul,8,30
+https://openalex.org/I182534213,Universidade do Porto,8,28
+https://openalex.org/I1850255,University of Basel,8,30
+https://openalex.org/I141945490,University of British Columbia,8,36
+https://openalex.org/I24354313,University of Buenos Aires,8,25
+https://openalex.org/I180923762,University of Cologne,8,23
+https://openalex.org/I133731052,University of Helsinki,8,26
+https://openalex.org/I80281795,University of Otago,8,20
+https://openalex.org/I79576946,University of Pennsylvania,8,30
+https://openalex.org/I223532165,University of Utah,8,31
+https://openalex.org/I100532134,Université Claude Bernard Lyon 1,8,34
+https://openalex.org/I32881790,Université de Poitiers,8,14
+https://openalex.org/I123387679,Uppsala University,8,18
+https://openalex.org/I139264467,Seoul National University,7,25
+https://openalex.org/I121748325,Universidad Complutense de Madrid,7,20
+https://openalex.org/I181391015,Universidade Estadual de Campinas (UNICAMP),7,29
+https://openalex.org/I4104125,Universidade Federal de Santa Catarina,7,26
+https://openalex.org/I122140584,Universidade Federal do Rio de Janeiro,7,48
+https://openalex.org/I32389192,University of Alabama at Birmingham,7,21
+https://openalex.org/I887064364,University of Amsterdam,7,22
+https://openalex.org/I149213910,University of Antwerp,7,13
+https://openalex.org/I138006243,University of Arizona,7,19
+https://openalex.org/I161321875,University of Beira Interior,7,16
+https://openalex.org/I135140700,University of Bonn,7,35
+https://openalex.org/I177639307,University of Dundee,7,18
+https://openalex.org/I114027177,University of North Carolina at Chapel Hill,7,23
+https://openalex.org/I40120149,University of Oxford,7,24
+https://openalex.org/I63072094,University of Portsmouth,7,12
+https://openalex.org/I201448701,University of Washington,7,26
+https://openalex.org/I159176309,Universität Hamburg,7,28
+https://openalex.org/I899635006,Université Grenoble Alpes,7,27
+https://openalex.org/I49451733,Université d'Angers,7,14
+https://openalex.org/I195731000,Université de Versailles Saint-Quentin-en-Yvelines,7,17
+https://openalex.org/I12097938,West Virginia University,7,27
+https://openalex.org/I21491767,Aix-Marseille Université,7,17
+https://openalex.org/I79510175,Cardiff University,7,18
+https://openalex.org/I138925566,Ewha Womans University,7,20
+https://openalex.org/I16733864,National Taiwan University,7,19
+https://openalex.org/I181190671,New York Medical College,7,14
+https://openalex.org/I204337017,Aarhus University,6,15
+https://openalex.org/I58956616,Case Western Reserve University,6,11
+https://openalex.org/I21250087,Charles University,6,20
+https://openalex.org/I169541294,Flinders University,6,10
+https://openalex.org/I76198965,Friedrich Schiller University Jena,6,17
+https://openalex.org/I181369854,Friedrich-Alexander-Universität Erlangen-Nürnberg,6,25
+https://openalex.org/I75124487,Gdańsk Medical University,6,14
+https://openalex.org/I114090438,Goethe University Frankfurt,6,20
+https://openalex.org/I223822909,Heidelberg University,6,24
+https://openalex.org/I4210112471,Istanbul University-Cerrahpaşa,6,17
+https://openalex.org/I208470662,Iuliu Hațieganu University of Medicine and Pharmacy,6,9
+https://openalex.org/I91450128,Jazan University,6,33
+https://openalex.org/I200763008,Justus-Liebig-Universität Gießen,6,9
+https://openalex.org/I185163786,King Abdulaziz University,6,26
+https://openalex.org/I4210089966,London School of Hygiene & Tropical Medicine,6,14
+https://openalex.org/I34352273,Maastricht University,6,17
