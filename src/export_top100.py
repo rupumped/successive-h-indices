@@ -1,3 +1,4 @@
+import json
 import shutil
 from pathlib import Path
 
@@ -14,13 +15,18 @@ SOURCES = {
 
 EXPORT_ROOT = ROOT / "export"
 
+manifest = {}
+
 for folder_name, src_dir in SOURCES.items():
     dest_dir = EXPORT_ROOT / folder_name
     dest_dir.mkdir(parents=True, exist_ok=True)
 
+    names = []
     for csv_path in sorted(src_dir.glob("*.csv")):
         df = pd.read_csv(csv_path, nrows=101)
         df.to_csv(dest_dir / csv_path.name, index=False)
+        names.append(csv_path.stem)
+    manifest[folder_name] = names
 
 FULL_COPIES = [
     ROOT / "data" / "interim" / "h2_by_institution.csv",
@@ -29,5 +35,9 @@ FULL_COPIES = [
 
 for src in FULL_COPIES:
     shutil.copy(src, EXPORT_ROOT / src.name)
+
+manifest["flat_files"] = [src.name for src in FULL_COPIES]
+
+(EXPORT_ROOT / "index.json").write_text(json.dumps(manifest, indent=2))
 
 print(f"Exported to {EXPORT_ROOT}")
