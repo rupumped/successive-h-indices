@@ -34,7 +34,7 @@ The two Arts and Humanities threshold authors sampled (Gillian Ramchand and G.\ 
 
 \subsection{The overall h\textsubscript{2} ranking}
 \label{subsec:overall-h2}
-Table~\ref{tab:overall-h2} lists the ten institutions with the highest institution-level h\textsubscript{2}, computed over all 20,669 institutions and 17.1 million authors described in Section~\ref{sec:methodology}.
+Table~\ref{tab:overall-h2} lists the ten institutions with the highest institution-level h\textsubscript{2}, computed over all 20,932 institutions and 30.0 million authors described in Section~\ref{sec:methodology}.
 
 \begin{table}[h]
 	\centering
@@ -81,7 +81,7 @@ Splitting h\textsubscript{2} by (institution, field) reveals that the overall ra
 	Materials Science & USTC & 39 & 89 & 59 \\
 	Engineering & USTC & 39 & 89 & 62 \\
 	Energy & USTC & 39 & 89 & 52 \\
-	Chemical Engineering & Univ.\ of Chinese Academy of Sciences & 97 & 80 & 23 \\
+	Chemical Engineering & Univ.\ of Chinese Academy of Sciences & 91 & 80 & 23 \\
 	Dentistry & Universidade de São Paulo & 235 & 66 & 34 \\
 	\bottomrule
 	\end{tabular}
@@ -90,7 +90,7 @@ Splitting h\textsubscript{2} by (institution, field) reveals that the overall ra
 
 University of Antwerp is the counterexample that proves the rule holds both ways: it is \#14 overall ($\mathrm{h}_2=98$) \emph{and} \#1 in Physics and Astronomy ($\mathrm{h}_2=96$), a broad powerhouse that also happens to lead a specific, non-biomedical field outright. Universidade Estadual de Campinas (UNICAMP) places 6th in Dentistry behind São Paulo, giving Brazil two of the world's six deepest dental-research benches despite the country appearing nowhere near the top of any general-purpose ranking~\citep{vaccaro2022bibliometrics}. China's cluster is not one specialty but four related applied-science fields: University of Science and Technology of China (USTC) leads Materials Science, Engineering, and Energy outright, while its sister institution, the University of Chinese Academy of Sciences, leads Chemical Engineering.
 
-Not every field supports this kind of comparison equally well. Decision Sciences is the thinnest field in the dataset: Stanford's global \#1 is $\mathrm{h}_2=22$, built on only 285 Stanford authors against 139,954 authors field-wide, versus Medicine's $\mathrm{h}_2=119$ built on 7.58 million authors field-wide. h\textsubscript{2} is not meaningfully comparable across fields of such different size, only within a field, and Decision Sciences in particular may be too sparse an OpenAlex topic category for its ranking to carry much signal.
+Not every field supports this kind of comparison equally well. Decision Sciences is the thinnest field in the dataset: Stanford's global \#1 is $\mathrm{h}_2=22$, built on only 285 Stanford authors against 140,147 authors field-wide, versus Medicine's $\mathrm{h}_2=119$ built on 7.58 million authors field-wide. h\textsubscript{2} is not meaningfully comparable across fields of such different size, only within a field, and Decision Sciences in particular may be too sparse an OpenAlex topic category for its ranking to carry much signal.
 
 \subsection{Concentration within fields}
 \label{subsec:gini}
@@ -105,32 +105,32 @@ Table~\ref{tab:gini} reports, for every field, the Gini coefficient of instituti
 	\toprule
 	Field & Institutions & Max h\textsubscript{2} & Mean h\textsubscript{2} & Gini \\
 	\midrule
-	Physics and Astronomy & 12,757 & 96 & 6.10 & 0.605 \\
-	Biochemistry, Genetics \& Molecular Biology & 15,395 & 104 & 6.62 & 0.577 \\
-	Neuroscience & 11,656 & 64 & 4.41 & 0.574 \\
-	Immunology and Microbiology & 9,842 & 67 & 3.97 & 0.561 \\
-	Materials Science & 13,085 & 59 & 6.37 & 0.560 \\
-	Earth and Planetary Sciences & 12,487 & 60 & 4.29 & 0.557 \\
-	Chemistry & 12,107 & 41 & 5.02 & 0.541 \\
-	Environmental Science & 16,603 & 56 & 5.55 & 0.541 \\
-	Engineering & 17,734 & 62 & 6.91 & 0.533 \\
-	Medicine & 19,137 & 119 & 8.57 & 0.528 \\
-	Agricultural and Biological Sciences & 16,401 & 56 & 5.60 & 0.522 \\
-	Energy & 8,957 & 52 & 3.39 & 0.515 \\
+	Physics and Astronomy & 12,739 & 96 & 6.11 & 0.605 \\
+	Biochemistry, Genetics \& Molecular Biology & 15,404 & 104 & 6.61 & 0.578 \\
+	Neuroscience & 11,646 & 64 & 4.41 & 0.574 \\
+	Immunology and Microbiology & 9,838 & 67 & 3.97 & 0.561 \\
+	Materials Science & 13,097 & 59 & 6.36 & 0.560 \\
+	Earth and Planetary Sciences & 12,447 & 60 & 4.30 & 0.557 \\
+	Chemistry & 12,103 & 41 & 5.02 & 0.541 \\
+	Environmental Science & 16,603 & 56 & 5.54 & 0.541 \\
+	Engineering & 17,742 & 62 & 6.91 & 0.533 \\
+	Medicine & 19,119 & 119 & 8.58 & 0.528 \\
+	Agricultural and Biological Sciences & 16,391 & 56 & 5.61 & 0.522 \\
+	Energy & 8,971 & 52 & 3.38 & 0.515 \\
 	Psychology & 15,745 & 58 & 3.64 & 0.513 \\
-	Computer Science & 16,747 & 56 & 5.08 & 0.512 \\
-	Dentistry & 8,291 & 34 & 3.01 & 0.500 \\
-	Mathematics & 11,049 & 36 & 3.43 & 0.491 \\
-	Economics, Econometrics and Finance & 13,940 & 55 & 3.30 & 0.482 \\
-	Business, Management and Accounting & 14,620 & 32 & 3.59 & 0.481 \\
-	Health Professions & 14,863 & 41 & 2.88 & 0.465 \\
-	Social Sciences & 19,258 & 48 & 4.56 & 0.461 \\
-	Pharmacology, Toxicology and Pharmaceutics & 7,164 & 24 & 2.63 & 0.459 \\
-	Chemical Engineering & 5,880 & 23 & 2.49 & 0.445 \\
-	Arts and Humanities & 15,436 & 30 & 2.77 & 0.443 \\
-	Nursing & 8,951 & 31 & 2.37 & 0.433 \\
-	Decision Sciences & 10,385 & 22 & 2.37 & 0.423 \\
-	Veterinary & 4,727 & 28 & 2.03 & 0.420 \\
+	Computer Science & 16,736 & 56 & 5.08 & 0.512 \\
+	Dentistry & 8,303 & 34 & 3.01 & 0.500 \\
+	Mathematics & 11,092 & 36 & 3.42 & 0.491 \\
+	Economics, Econometrics and Finance & 13,923 & 55 & 3.30 & 0.482 \\
+	Business, Management and Accounting & 14,623 & 32 & 3.59 & 0.481 \\
+	Health Professions & 14,840 & 41 & 2.88 & 0.465 \\
+	Social Sciences & 19,242 & 48 & 4.57 & 0.461 \\
+	Pharmacology, Toxicology and Pharmaceutics & 7,219 & 24 & 2.61 & 0.459 \\
+	Chemical Engineering & 5,874 & 23 & 2.48 & 0.446 \\
+	Arts and Humanities & 15,390 & 30 & 2.78 & 0.443 \\
+	Nursing & 8,958 & 31 & 2.37 & 0.433 \\
+	Decision Sciences & 10,409 & 22 & 2.37 & 0.423 \\
+	Veterinary & 4,678 & 28 & 2.04 & 0.422 \\
 	\bottomrule
 	\end{tabular}
 \end{table}
@@ -139,7 +139,7 @@ Physics and Astronomy is the most unequal field: University of Antwerp's $\mathr
 
 \subsection{The overall ranking as an implicit biomedical ranking}
 \label{subsec:nonbiomedical}
-Medicine alone accounts for 7.58 million of the dataset's 17.1 million authors (44\%), and, together with Biochemistry/Genetics/Molecular Biology, Immunology and Microbiology, Neuroscience, and Health Professions, the five core biomedical fields dwarf every other field's author pool. Table~\ref{tab:nonbio} recomputes institution-level h\textsubscript{2} after excluding authors in these five fields entirely to test whether the overall ranking in Table~\ref{tab:overall-h2} is, in substance, a ranking of medical school size.
+Medicine alone accounts for 7.58 million of the dataset's 30.0 million authors (25\%), and, together with Biochemistry/Genetics/Molecular Biology, Immunology and Microbiology, Neuroscience, and Health Professions, the five core biomedical fields dwarf every other field's author pool. Table~\ref{tab:nonbio} recomputes institution-level h\textsubscript{2} after excluding authors in these five fields entirely to test whether the overall ranking in Table~\ref{tab:overall-h2} is, in substance, a ranking of medical school size.
 
 \begin{table}[h]
 	\centering
@@ -163,7 +163,7 @@ Medicine alone accounts for 7.58 million of the dataset's 17.1 million authors (
 	\end{tabular}
 \end{table}
 
-Harvard remains \#1 even with its biomedical authors removed, confirming the claim in Subsection~\ref{subsec:field-level} that it is genuinely excellent rather than merely large. But the rest of the table reshuffles substantially: Antwerp, Caltech, Paris-Saclay, MIT, Geneva, USTC, and ETH Zurich all gain 12 to 31 places once Medicine and its four sibling fields are set aside, while Stanford and Cambridge, both anchored by large medical schools, fall by 2 and 7 places respectively. The University of Chinese Academy of Sciences shows the same pattern one tier down: 97th overall but 23rd non-biomedical. Because medical fields have by far the largest, most-cited author pools, they structurally dominate any university-wide aggregate; an institution elite in non-medical fields, such as USTC or Carnegie Mellon, can never reach the top of the overall list no matter how good it is, simply because it lacks a large medical school. The field-level and non-biomedical breakdowns matter more than the unrestricted university-level number.
+Harvard remains \#1 even with its biomedical authors removed, confirming the claim in Subsection~\ref{subsec:field-level} that it is genuinely excellent rather than merely large. But the rest of the table reshuffles substantially: Antwerp, Caltech, Paris-Saclay, MIT, Geneva, USTC, and ETH Zurich all gain 12 to 31 places once Medicine and its four sibling fields are set aside, while Stanford and Cambridge, both anchored by large medical schools, fall by 2 and 7 places respectively. The University of Chinese Academy of Sciences shows the same pattern one tier down: 91st overall but 23rd non-biomedical. Because medical fields have by far the largest, most-cited author pools, they structurally dominate any university-wide aggregate; an institution elite in non-medical fields, such as USTC or Carnegie Mellon, can never reach the top of the overall list no matter how good it is, simply because it lacks a large medical school. The field-level and non-biomedical breakdowns matter more than the unrestricted university-level number.
 
 \subsection{Breadth versus depth}
 \label{subsec:breadth}
@@ -171,25 +171,26 @@ Table~\ref{tab:field-leaders} showed institutions that lead a single field while
 
 \begin{table}[h]
 	\centering
-	\caption{The eight institutions with the most top-50 field placements out of 26 fields.}
+	\caption{The nine institutions with the most top-50 field placements out of 26 fields.}
 	\label{tab:breadth}
 	\begin{tabular}{@{}lrrrr@{}}
 	\toprule
 	Institution & Top 50 & Top 10 & Overall rank & Overall h\textsubscript{2} \\
 	\midrule
 	University of California, Los Angeles & 20 & 8 & 13 & 99 \\
+	University of Michigan & 20 & 7 & 26 & 94 \\
 	Harvard University & 19 & 13 & 1 & 137 \\
 	University of Oxford & 19 & 8 & 6 & 103 \\
+	University of Washington & 17 & 8 & 7 & 102 \\
 	University of Toronto & 17 & 7 & 11 & 100 \\
 	Cornell University & 17 & 6 & 4 & 104 \\
-	University of Michigan & 17 & 6 & 28 & 94 \\
 	Univ.\ of North Carolina at Chapel Hill & 17 & 5 & 8 & 101 \\
 	University of Cambridge & 17 & 4 & 3 & 105 \\
 	\bottomrule
 	\end{tabular}
 \end{table}
 
-UCLA has the greatest breadth by this measure, placing in the global top 50 in 20 of 26 fields despite leading only 8 outright, more consistently broad than even Harvard's 19. Harvard still leads more fields outright (13 of 26) than any other institution, but four of the eight broadest institutions by this top-50 count, Toronto, Michigan, UNC Chapel Hill, and Cambridge, place fewer than half their 17 top-50 fields inside the top 10, meaning most of their breadth comes from being solidly good across many fields rather than dominant in any one. At the other extreme, several institutions post a high overall h\textsubscript{2} without ever leading a single field: UC San Diego (rank 17, $\mathrm{h}_2=97$), the University of Melbourne (rank 23, $\mathrm{h}_2=95$), and Boston University (rank 25, $\mathrm{h}_2=94$) all have zero top-10 field placements. These institutions achieve their overall strength through scale and consistency across many merely-good departments, not through fielding the single best group in any one discipline.
+UCLA and the University of Michigan share the greatest breadth by this measure, each placing in the global top 50 in 20 of 26 fields; UCLA leads 8 outright while Michigan leads 7. Harvard still leads more fields outright (13 of 26) than any other institution, but four of the nine broadest institutions by this top-50 count, Toronto, UNC Chapel Hill, Washington, and Cambridge, place fewer than half their 17 top-50 fields inside the top 10, meaning most of their breadth comes from being solidly good across many fields rather than dominant in any one. At the other extreme, Boston University (rank 23, $\mathrm{h}_2=94$) achieves its overall strength with zero top-10 field placements, through scale and consistency across many merely-good departments rather than fielding the single best group in any one discipline.
 
 \subsection{Institution efficiency}
 \label{subsec:h2-efficiency}
@@ -220,40 +221,40 @@ Table~\ref{tab:h2-efficiency-all} lists the top 10 institutions by $\varepsilon_
 	\toprule
 	Institution & $\varepsilon_2$ & h\textsubscript{2} & Authors & h\textsubscript{2} rank \\
 	\midrule
-	Bellevue University                                   & 6.27 & 54 &     590 &    497 \\
-	Augustana University                                  & 5.65 & 64 &   1,332 &    264 \\
-	Center for Behavioral Brain Sciences                  & 5.50 & 31 &     168 &  1,908 \\
-	Barcelona Inst.\ of Science and Technology            & 5.46 & 53 &     839 &    520 \\
-	Imperial Valley College                               & 5.36 & 62 &   1,412 &    319 \\
-	Saint Camillus International Univ.\ of Health Sci.   & 5.33 & 39 &     364 &  1,228 \\
-	City College of San Francisco                         & 4.95 & 43 &     605 &    934 \\
-	Frederick Community College                           & 4.83 & 37 &     416 &  1,331 \\
-	Acad\'{e}mie Nationale de M\'{e}decine                & 4.75 & 39 &     512 &  1,192 \\
-	Natl.\ Interuniversity Consortium of Materials Sci.  & 4.70 & 40 &     571 &  1,150 \\
+	Bellevue University                                   & 6.24 & 54 &     590 &    497 \\
+	Augustana University                                  & 5.61 & 64 &   1,332 &    264 \\
+	Center for Behavioral Brain Sciences                  & 5.48 & 31 &     168 &  1,908 \\
+	Barcelona Inst.\ of Science and Technology            & 5.43 & 53 &     839 &    520 \\
+	Imperial Valley College                               & 5.33 & 62 &   1,412 &    319 \\
+	Saint Camillus International Univ.\ of Health Sci.   & 5.30 & 39 &     364 &  1,228 \\
+	City College of San Francisco                         & 4.92 & 43 &     605 &    934 \\
+	Frederick Community College                           & 4.81 & 37 &     416 &  1,331 \\
+	Acad\'{e}mie Nationale de M\'{e}decine                & 4.72 & 39 &     512 &  1,192 \\
+	Natl.\ Interuniversity Consortium of Materials Sci.  & 4.67 & 40 &     571 &  1,150 \\
 	\bottomrule
 	\end{tabular}
 \end{table}
 
-Table~\ref{tab:h2-efficiency} restricts to the 1,317 institutions with at least 5,000 authors. The leading institutions are now a mix of specialized research institutes like Rockefeller University ($\varepsilon_2 = 3.79$, biomedical), the Institute of Cancer Research ($\varepsilon_2 = 3.59$), and the London School of Hygiene \& Tropical Medicine ($\varepsilon_2 = 3.47$) and comprehensive universities like the University of Antwerp ($\varepsilon_2 = 3.75$, $\mathrm{h}_2 = 98$, efficiency rank 110). The University of California System, treated here as a single institution under its OpenAlex identifier, is the only entry in the top 100 on both metrics simultaneously (h\textsubscript{2} rank 73, efficiency rank 66). Among the comprehensive elite research universities that dominate the raw $\mathrm{h}_2$ table, Caltech (efficiency rank 363), the University of Geneva (334), and Université Paris-Saclay (450) are the most efficient, each achieving $\mathrm{h}_2 \geq 93$ with under 25,000 authors.
+Table~\ref{tab:h2-efficiency} restricts to the 1,339 institutions with at least 5,000 authors. The leading institutions are now a mix of specialized research institutes like Rockefeller University ($\varepsilon_2 = 3.77$, biomedical), the Institute of Cancer Research ($\varepsilon_2 = 3.57$), and the London School of Hygiene \& Tropical Medicine ($\varepsilon_2 = 3.44$) and comprehensive universities like the University of Antwerp ($\varepsilon_2 = 3.72$, $\mathrm{h}_2 = 98$, efficiency rank 112). The University of California System, treated here as a single institution under its OpenAlex identifier, is the only entry in the top 100 on both metrics simultaneously (h\textsubscript{2} rank 73, efficiency rank 67). Among the comprehensive elite research universities that dominate the raw $\mathrm{h}_2$ table, Caltech (efficiency rank 367), the University of Geneva (344), and Université Paris-Saclay (465) are the most efficient, each achieving $\mathrm{h}_2 \geq 93$ with under 25,000 authors.
 
 \begin{table}[h]
 	\centering
-	\caption{Top 10 institutions by efficiency $\varepsilon_2 = \mathrm{h}_2 / \mathrm{S}^{1/\beta_1}$ ($\beta_1 = 2.963$) among those with at least 5,000 authors ($n = 1{,}317$).}
+	\caption{Top 10 institutions by efficiency $\varepsilon_2 = \mathrm{h}_2 / \mathrm{S}^{1/\beta_1}$ ($\beta_1 = 2.963$) among those with at least 5,000 authors ($n = 1{,}339$).}
 	\label{tab:h2-efficiency}
 	\begin{tabular}{@{}lrrrr@{}}
 	\toprule
 	Institution & $\varepsilon_2$ & h\textsubscript{2} & Authors & h\textsubscript{2} rank \\
 	\midrule
-	University of California System              & 3.96 &  83 &   8,242 &   73 \\
-	Rockefeller University                       & 3.79 &  70 &   5,637 &  179 \\
-	University of Antwerp                        & 3.75 &  98 &  15,759 &   14 \\
-	Institute of Cancer Research                 & 3.59 &  66 &   5,570 &  230 \\
-	University of San Diego                      & 3.59 &  64 &   5,097 &  286 \\
-	California University of Pennsylvania        & 3.52 &  76 &   9,011 &  121 \\
-	University of Wuppertal                      & 3.51 &  68 &   6,515 &  209 \\
-	London School of Hygiene \& Tropical Medicine & 3.47 &  65 &   5,903 &  249 \\
-	Royal Holloway, University of London         & 3.42 &  61 &   5,102 &  339 \\
-	Vita-Salute San Raffaele University          & 3.40 &  71 &   8,171 &  171 \\
+	University of California System              & 3.93 &  83 &   8,242 &   73 \\
+	Rockefeller University                       & 3.77 &  70 &   5,637 &  179 \\
+	University of Antwerp                        & 3.72 &  98 &  15,759 &   14 \\
+	Institute of Cancer Research                 & 3.57 &  66 &   5,570 &  230 \\
+	University of San Diego                      & 3.56 &  64 &   5,097 &  286 \\
+	California University of Pennsylvania        & 3.49 &  76 &   9,011 &  121 \\
+	University of Wuppertal                      & 3.48 &  68 &   6,515 &  209 \\
+	London School of Hygiene \& Tropical Medicine & 3.44 &  65 &   5,903 &  249 \\
+	Royal Holloway, University of London         & 3.39 &  61 &   5,102 &  339 \\
+	Vita-Salute San Raffaele University          & 3.37 &  71 &   8,171 &  171 \\
 	\bottomrule
 	\end{tabular}
 \end{table}

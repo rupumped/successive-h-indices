@@ -271,6 +271,29 @@ def step3_build_authors(con):
     print(f"  Authors (education + h_index > 0 + field): {n:,}  ({time.time()-t0:.0f}s)")
 
 
+def step3b_normalize_institution_names(con):
+    print("Step 3b: Normalizing institution names...")
+    t0 = time.time()
+    con.execute("""
+        CREATE OR REPLACE TEMP TABLE _canonical_names AS
+        SELECT institution_id, arg_max(institution_name, cnt) AS institution_name
+        FROM (
+            SELECT institution_id, institution_name, COUNT(*) AS cnt
+            FROM authors
+            GROUP BY institution_id, institution_name
+        )
+        GROUP BY institution_id
+    """)
+    con.execute("""
+        UPDATE authors
+        SET institution_name = c.institution_name
+        FROM _canonical_names c
+        WHERE authors.institution_id = c.institution_id
+    """)
+    con.execute("DROP TABLE _canonical_names")
+    print(f"  Done  ({time.time()-t0:.0f}s)")
+
+
 def step4_compute_h2(con):
     print("Step 4: Computing H2 index...")
     t0 = time.time()
@@ -469,6 +492,7 @@ if __name__ == "__main__":
 
     con = connect()
     step3_build_authors(con)
+    step3b_normalize_institution_names(con)
     step4_compute_h2(con)
     step4b_compute_h2_subfield(con)
     step5_write_outputs(con)

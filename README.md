@@ -37,7 +37,7 @@ Authors are filtered to those with:
 - at least one affiliation with `institution.type = "education"`
 - at least one OpenAlex topic with a non-null field classification
 
-This yields **17.1 million authors** across **20,669 institutions** and OpenAlex's current list of 26 fields. Each author's `works_count` is carried through as well, purely to fit the Lotka exponent α<sub>1</sub> (see "Efficiency exponents" below).
+This yields **30.0 million authors** across **20,932 institutions** and OpenAlex's current list of 26 fields. Each author's `works_count` is carried through as well, purely to fit the Lotka exponent α<sub>1</sub> (see "Efficiency exponents" below).
 
 Each author is assigned to a single institution: among their affiliations with `institution.type = "education"`, we pick the one with the latest publication year in that affiliation's `years[]` (OpenAlex's `affiliations` field lists an author's institutions together with the years they published while there). Ties are broken by the numerically smallest institution ID. We deliberately don't use `last_known_institutions` for this — despite the name, it's just the set of affiliations listed on an author's single most recent work, with no per-entry recency of its own, so it can't distinguish which of several co-affiliations is "most recent."
 
@@ -198,12 +198,12 @@ The AWS CLI must also be installed and `aws s3 ls --no-sign-request` must work (
 | File | Description |
 |---|---|
 | `data/authors_filtered.parquet` | Consolidated single parquet (optional; created by `consolidate.py`) |
-| `data/interim/authors.csv` | 17.1M rows: author_id, h_index, works_count, institution_id, institution_name, field, field_name |
+| `data/interim/authors.csv` | 30.0M rows: author_id, h_index, works_count, institution_id, institution_name, field, field_name |
 | `data/interim/h2_by_institution_field.csv` | 288,300 (institution, field) pairs with h<sub>2</sub> and author count |
 | `data/interim/h2_by_institution_subfield.csv` | (institution, subfield) pairs with h<sub>2</sub> and author count |
 | `results/h2_by_field/` | One CSV per field, sorted by h<sub>2</sub> descending |
 | `results/h2_by_subfield/` | One CSV per subfield, sorted by h<sub>2</sub> descending |
-| `data/interim/h2_by_institution.csv` | 20,669 institutions with institution-level h<sub>2</sub> |
+| `data/interim/h2_by_institution.csv` | 20,932 institutions with institution-level h<sub>2</sub> |
 | `data/interim/institution_country_map.csv` | institution_id → country_code lookup, downloaded once by `fetch_country_codes.py` |
 | `data/interim/h3_by_country.csv` | h<sub>3</sub> index per country with institution count |
 | `data/interim/h3_by_field/` | One CSV per field, sorted by h<sub>3</sub> descending |
@@ -268,24 +268,24 @@ Harvard leads 13 of the 26 fields outright, more than any other institution, inc
 - Wageningen University (#172 overall, h<sub>2</sub>=71): #1 globally in both Agricultural & Biological Sciences and Environmental Science (field h<sub>2</sub>=56 in each). A specialized institution that never appears near the top of any broad ranking.
 - Shenyang Pharmaceutical University (#535 overall, h<sub>2</sub>=53): #1 globally in Pharmacology, Toxicology & Pharmaceutics (field h<sub>2</sub>=24).
 - Carnegie Mellon (#175 overall, h<sub>2</sub>=70): #1 in Computer Science (field h<sub>2</sub>=56). CMU is world-renowned for CS but lacks a large medical school, placing it outside the overall top 100.
-- University of Science and Technology of China (USTC, #39 overall, h<sub>2</sub>=89): leads three fields simultaneously — Materials Science (h<sub>2</sub>=59), Engineering (h<sub>2</sub>=62), and Energy (h<sub>2</sub>=52). Its sister institution, the University of Chinese Academy of Sciences (#97 overall, h<sub>2</sub>=80), leads Chemical Engineering (h<sub>2</sub>=23).
+- University of Science and Technology of China (USTC, #39 overall, h<sub>2</sub>=89): leads three fields simultaneously — Materials Science (h<sub>2</sub>=59), Engineering (h<sub>2</sub>=62), and Energy (h<sub>2</sub>=52). Its sister institution, the University of Chinese Academy of Sciences (#91 overall, h<sub>2</sub>=80), leads Chemical Engineering (h<sub>2</sub>=23).
 - University of Antwerp (#14 overall, h<sub>2</sub>=98): #1 in Physics and Astronomy (field h<sub>2</sub>=96) is the counterexample that the rule holds both ways: a field leader that also ranks highly overall, because it is broadly excellent rather than narrowly specialized.
 - Universidade de São Paulo (#235 overall, h<sub>2</sub>=66): #1 in Dentistry (field h<sub>2</sub>=34), with UNICAMP placing 6th globally in the same field. Brazil holds two of the world's six deepest dental-research benches.
 
 ### Decision Sciences is the weakest field by far
-Stanford's #1 score is h<sub>2</sub>=22 on just 285 Stanford authors, out of only 139,954 authors in the field worldwide. Compare to Medicine's h<sub>2</sub>=119 built on 7.58 million authors. Decision Sciences is clearly a thin OpenAlex topic category, not a deep, well-populated discipline. h<sub>2</sub> isn't meaningfully comparable across fields, only within them, and Decision Sciences may be too sparse to be meaningful at all.
+Stanford's #1 score is h<sub>2</sub>=22 on just 285 Stanford authors, out of only 140,147 authors in the field worldwide. Compare to Medicine's h<sub>2</sub>=119 built on 7.58 million authors. Decision Sciences is clearly a thin OpenAlex topic category, not a deep, well-populated discipline. h<sub>2</sub> isn't meaningfully comparable across fields, only within them, and Decision Sciences may be too sparse to be meaningful at all.
 
 ### The overall ranking is implicitly a biomedical ranking
 Medicine alone accounts for 7.58 million of the dataset's 17.1 million authors (44%), and together with Biochemistry/Genetics/Molecular Biology, Immunology and Microbiology, Neuroscience, and Health Professions, the five core biomedical fields dwarf every other field's author pool. A university like USTC or CMU, elite in non-medical fields, will structurally never reach the top of the overall list no matter how good it is, simply because it lacks a large medical school. Harvard is the exception: it ranks #1 even with biomedical fields removed, confirming genuine breadth. For almost every other institution, the field-level breakdown matters more than the university-level number.
 
 ### Physics and Astronomy is the most unequal field; Decision Sciences and Veterinary the most distributed
-Physics and Astronomy is the most concentrated field (Gini=0.605): University of Antwerp's field-leading h<sub>2</sub>=96 is 15.7× the field mean of 6.1. Biochemistry, Genetics and Molecular Biology is second (Gini=0.577), narrowly ahead of Neuroscience (0.574). Decision Sciences and Veterinary are the most evenly distributed (Gini≈0.42, essentially tied). Medicine's Gini (0.528) sits mid-table despite Harvard's field-leading h<sub>2</sub>=119, because Medicine has thousands of institutions with meaningful h<sub>2</sub> rather than one dominant outlier.
+Physics and Astronomy is the most concentrated field (Gini=0.605): University of Antwerp's field-leading h<sub>2</sub>=96 is 15.7× the field mean of 6.1. Biochemistry, Genetics and Molecular Biology is second (Gini=0.578), narrowly ahead of Neuroscience (0.574). Decision Sciences and Veterinary are the most evenly distributed (Gini≈0.42, essentially tied). Medicine's Gini (0.528) sits mid-table despite Harvard's field-leading h<sub>2</sub>=119, because Medicine has thousands of institutions with meaningful h<sub>2</sub> rather than one dominant outlier.
 
 ### UCLA has the greatest breadth
-UCLA places in the global top 50 in 20 of 26 fields, more than any other institution, despite leading only 8 outright. Harvard places in 19 fields' global top 50 and leads 13 outright, the most of any institution. Oxford also has 19 top-50 placements; Toronto, Cornell, Michigan, UNC Chapel Hill, and Cambridge each have 17. At the other extreme, several high-ranked institutions achieve strong overall h<sub>2</sub> without ever leading a single field: UC San Diego (rank 17, h<sub>2</sub>=97), the University of Melbourne (rank 23, h<sub>2</sub>=95), and Boston University (rank 25, h<sub>2</sub>=94) all have zero top-10 field placements, achieving their overall strength through scale and consistency rather than fielding the single best group in any discipline.
+UCLA and the University of Michigan each place in the global top 50 in 20 of 26 fields, more than any other institution, though UCLA leads 8 outright while Michigan leads 7. Harvard places in 19 fields' global top 50 and leads 13 outright, the most of any institution. Oxford also has 19 top-50 placements; Toronto, Cornell, UNC Chapel Hill, and Cambridge each have 17. At the other extreme, Boston University (rank 23, h<sub>2</sub>=94) has zero top-10 field placements, achieving its overall strength through scale and consistency rather than fielding the single best group in any discipline.
 
 ### The most efficient universities have very few authors
-h<sub>2</sub> scales as author_count^(1/β<sub>1</sub>), with β<sub>1</sub>=2.963 fit directly from the h<sub>1</sub> (h-index) distribution's Lotka tail (R²=0.911 among institutions with ≥10 authors). Among the 12,026 institutions with at least 100 authors, the most efficient are focused or specialized institutions: Bellevue University (ε<sub>2</sub>=6.27, h<sub>2</sub>=54, 590 authors), Augustana University (ε<sub>2</sub>=5.65), and Germany's Center for Behavioral Brain Sciences (ε<sub>2</sub>=5.50). Among the 1,317 institutions with at least 5,000 authors, the most efficient are Rockefeller University, the Institute of Cancer Research, and University of Antwerp. Zero universities from the top 50 overall appear in the top 50 when measured by efficiency.
+h<sub>2</sub> scales as author_count^(1/β<sub>1</sub>), with β<sub>1</sub>=2.963 fit directly from the h<sub>1</sub> (h-index) distribution's Lotka tail (R²=0.911 among institutions with ≥10 authors). Among the 12,026 institutions with at least 100 authors, the most efficient are focused or specialized institutions: Bellevue University (ε<sub>2</sub>=6.24, h<sub>2</sub>=54, 590 authors), Augustana University (ε<sub>2</sub>=5.61), and Germany's Center for Behavioral Brain Sciences (ε<sub>2</sub>=5.48). Among the 1,339 institutions with at least 5,000 authors, the most efficient are the University of California System, Rockefeller University, and University of Antwerp. Zero universities from the top 50 overall appear in the top 50 when measured by efficiency.
 
 ### h<sub>3</sub>: Academic Olympics
 | Country | h<sub>3</sub> | Institutions |
