@@ -2,6 +2,7 @@
 \label{sec:results}
 
 \subsection{Manual cross-validation}
+\label{subsec:results-crossval}
 Of the 19 authors sampled under the scheme described in Subsection~\ref{subsec:methods-crossval}, Table~\ref{tab:crossval} summarizes agreement between OpenAlex's \texttt{h\_index} and the corresponding value I located by hand in Web of Science, Scopus, and Google Scholar. Coverage itself varies sharply: Scopus returned a value for 16 of the 19 authors, Google Scholar for 12, and Web of Science for only 11.
 
 \begin{table}[h]
@@ -28,9 +29,40 @@ Four authors, however, show disagreement well outside this range. I read this as
 	\item \textbf{Lei Jiang} (University of Science and Technology of China): $\mathrm{h}_1^{\mathrm{OpenAlex}}=215$ against Web of Science $=115$, consistent with documented China-specific coverage discrepancies in OpenAlex~\citep{zheng2025}.
 	\item \textbf{A.\ Jafari} (Sharif University of Technology): $\mathrm{h}_1^{\mathrm{OpenAlex}}=139$, but Web of Science, Scopus, and Google Scholar report $41$, $133$, and $224$ respectively.
 \end{itemize}
-All four fall in the non-Anglophone-institution or common-name strata of the sample, matching the concern raised in Subsection~\ref{subsec:methods-crossval} that disambiguation is more error-prone for exactly these authors. Because such merges can only inflate an author's apparent $\mathrm{h}_1$, and $\mathrm{h}_1$ feeds directly into $\mathrm{h}_2$ and $\mathrm{h}_3$, a handful of merged identities at the right institution could measurably distort an institution- or country-level ranking; I flag this as an open limitation rather than one this sample can size definitively.
+All four fall in the non-Anglophone-institution or common-name strata of the sample, matching the concern raised in Subsection~\ref{subsec:methods-crossval} that disambiguation is more error-prone for exactly these authors. Because such merges can only inflate an author's apparent $\mathrm{h}_1$, and $\mathrm{h}_1$ feeds directly into $\mathrm{h}_2$ and $\mathrm{h}_3$, a handful of merged identities at the right institution could measurably distort an institution- or country-level ranking; I flag this as an open limitation rather than one this sample can size definitively. \textcolor{red}{This sample is deliberately adversarial -- chosen to find errors, not to estimate how often they occur -- so the 4/19 (21\%) outlier fraction found here should not be read as an estimate of how much of the full 17.1-million-author dataset is affected. The same pattern, disambiguation precision concentrated lower for common names and non-Anglophone institutions, appears in an independent benchmark of 2{,}700 scholars sampled systematically across three regions~\citep{zhao2025}, corroborating that this is a real, geographically and onomastically concentrated failure mode rather than an artifact of this particular sample; OpenAlex's maintainers report an ongoing correction effort targeting exactly this kind of over-merging, with corresponding-author identification precision rising from 0.60 to 0.92 (F1 0.72 to 0.90) after a 2026 rework of the underlying author-matching model~\citep{demes2026}. Subsection~\ref{subsec:results-sensitivity} quantifies how much a population-wide error rate at or below the adversarial sample's raw rate would actually move this paper's rankings.}
 
 The two Arts and Humanities threshold authors sampled (Gillian Ramchand and G.\ Herbert Fowler, both sitting at Oxford's field-specific $\mathrm{h}_2=30$ threshold) returned no value in any of the three external sources. This is consistent with the well-documented weaker coverage of book-based humanities scholarship in all major citation databases~\citep{nederhof2006} and suggests that h-index comparisons in these fields should be read with correspondingly less confidence than in the sciences.
+
+\subsection{\textcolor{red}{Sensitivity to disambiguation error}}
+\label{subsec:results-sensitivity}
+\textcolor{red}{Table~\ref{tab:sensitivity} reports, for six simulated population-wide error rates spanning $p=1\%$ to a deliberately implausible $p=80\%$ (Subsection~\ref{subsec:methods-sensitivity}), the Spearman rank correlation and top-set overlap between the perturbed and unperturbed rankings, averaged over five trials, together with how often the paper's two headline field-leadership claims survive the perturbation intact. The cross-validation sample's own raw outlier fraction (4/19 $\approx 21\%$, Subsection~\ref{subsec:results-crossval}) is included as an extra row for reference, though it carries no special status in this analysis.}
+
+\textcolor{red}{Institution- and country-level rank correlations decline only modestly with $p$ and then plateau rather than continuing toward zero: Spearman $\rho$(h\textsubscript{2}) falls from 0.999 at $p=1\%$ to 0.991 at $p=20\%$ and then stays flat at 0.988 all the way out to $p=80\%$; $\rho$(h\textsubscript{3}) shows the same pattern, from 0.9996 down to 0.994. This follows from how h\textsubscript{2} and h\textsubscript{3} are computed: each is an order statistic (the largest rank whose value has not yet fallen below it), so what matters for a given institution or country is whether a noisy author sits near \emph{its own} threshold, not how many noisy authors exist elsewhere in the dataset; and because the perturbation is bounded in magnitude (at most $\approx 4\times$, the largest of the four observed ratios) and applied independently and identically everywhere, raising $p$ further increasingly inflates competing institutions' threshold authors by similar amounts, which cancels out much of the relative shift. There is no error rate in this model, however extreme, at which the aggregate institution and country rankings degrade toward noise.}
+
+\textcolor{red}{The field-specific leadership claims for Wageningen (Agricultural \& Biological Sciences, Environmental Science) and Carnegie Mellon (Computer Science) are noisier, as single-institution comparisons necessarily are with five trials per rate: each survives in 3 to 5 of 5 trials at every rate tested, with no consistent trend toward more or less frequent survival as $p$ increases -- each of the three claims has its single worst outcome (3/5) at a different rate, which reads as small-sample noise rather than a genuine breaking point. Carnegie Mellon's Computer Science lead is the most robust, failing in only one trial across the entire grid; Wageningen's two leads are each knocked out in one trial at some rate, without a clear ordering between them. Italy and Japan's near-parity in h\textsubscript{3} despite a 6$\times$ difference in institutional scale is preserved throughout the tested range: both values rise together under added noise (Italy 45 at $p=1\%$ to 66--67 at $p=80\%$; Japan 46 to 86--88 over the same range), and while their ratio drifts from about 0.96 down to about 0.76 as $p$ increases, even at that extreme it remains more than four times tighter than the underlying 1:6 gap in institutional count.}
+
+\textcolor{red}{Reading these together: the paper's overall institution and country rankings, and its country-comparison claims, are robust to author-disambiguation error at every rate tested, including rates far beyond what any plausible reading of the cross-validation sample would suggest. The field-leadership claims are more sensitive, as single-institution results necessarily are, and should be read with correspondingly more caution than the paper's other claims.}
+
+\begin{table}[h]
+	\centering
+	\caption{\textcolor{red}{Sensitivity of h\textsubscript{2} and h\textsubscript{3} rankings to simulated disambiguation error, by population-wide error rate $p$ (5 trials per rate). Overlap is computed on the top 20 institutions (by h\textsubscript{2}) and top 10 countries (by h\textsubscript{3}). The last three columns give the fraction of trials in which the named institution keeps rank \#1 in the stated field.}}
+	\label{tab:sensitivity}
+	\footnotesize
+	\begin{tabular}{@{}lccccccc@{}}
+	\toprule
+	$p$ & $\rho$(h\textsubscript{2}) & Top-20 & $\rho$(h\textsubscript{3}) & Top-10 & Wag.\ Ag\&Bio \#1 & Wag.\ EnvSci \#1 & CMU CS \#1 \\
+	\midrule
+	\textcolor{red}{1\%}  & \textcolor{red}{0.999} & \textcolor{red}{90\%} & \textcolor{red}{0.9996} & \textcolor{red}{100\%} & \textcolor{red}{5/5} & \textcolor{red}{5/5} & \textcolor{red}{5/5} \\
+	\textcolor{red}{5\%}  & \textcolor{red}{0.997} & \textcolor{red}{87\%} & \textcolor{red}{0.999}  & \textcolor{red}{92\%}  & \textcolor{red}{5/5} & \textcolor{red}{5/5} & \textcolor{red}{5/5} \\
+	\textcolor{red}{10\%} & \textcolor{red}{0.994} & \textcolor{red}{81\%} & \textcolor{red}{0.998}  & \textcolor{red}{90\%}  & \textcolor{red}{5/5} & \textcolor{red}{5/5} & \textcolor{red}{5/5} \\
+	\textcolor{red}{20\%} & \textcolor{red}{0.991} & \textcolor{red}{81\%} & \textcolor{red}{0.997}  & \textcolor{red}{90\%}  & \textcolor{red}{5/5} & \textcolor{red}{4/5} & \textcolor{red}{5/5} \\
+	\textcolor{red}{21\%*} & \textcolor{red}{0.991} & \textcolor{red}{83\%} & \textcolor{red}{0.997}  & \textcolor{red}{90\%}  & \textcolor{red}{3/5} & \textcolor{red}{5/5} & \textcolor{red}{4/5} \\
+	\textcolor{red}{40\%} & \textcolor{red}{0.988} & \textcolor{red}{85\%} & \textcolor{red}{0.996}  & \textcolor{red}{90\%}  & \textcolor{red}{4/5} & \textcolor{red}{3/5} & \textcolor{red}{5/5} \\
+	\textcolor{red}{80\%} & \textcolor{red}{0.988} & \textcolor{red}{86\%} & \textcolor{red}{0.994}  & \textcolor{red}{90\%}  & \textcolor{red}{5/5} & \textcolor{red}{5/5} & \textcolor{red}{5/5} \\
+	\bottomrule
+	\end{tabular}
+	\textcolor{red}{\\[2pt] \raggedright *cross-validation sample's raw outlier fraction, included for reference only.}
+\end{table}
 
 \subsection{The overall h\textsubscript{2} ranking}
 \label{subsec:overall-h2}
@@ -293,19 +325,6 @@ Aggregating institutional h\textsubscript{2} up to the country level via the sam
 \end{figure}
 
 The United States leads by a wide margin, but Italy's 45 on only 229 institutions and Japan's 46 on 1,358 are a first hint that raw h\textsubscript{3} rewards national research-system size as well as depth, a point to which I return in Subsection~\ref{subsec:h3-efficiency}.
-
-\subsection{Academic Olympics}
-\label{subsec:olympics}
-Section~\ref{subsec:methods-supplementary} defined an Olympic-style medal table by awarding gold/silver/bronze to the top three distinct h\textsubscript{3} tiers in each of the 26 fields, with ties sharing a medal. Figure~\ref{fig:olympics} shows the resulting medal table.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.85\textwidth]{figures/academic_olympics.png}
-\caption{Academic Olympics medal table: gold/silver/bronze by top-3 h\textsubscript{3} rank per field, across 26 fields.}
-\label{fig:olympics}
-\end{figure}
-
-The United States wins 22 of 26 golds, missing only the four fields where China wins outright (Chemical Engineering, Energy, Engineering, Materials Science) and tying China for gold in Chemistry, where both countries reach $\mathrm{h}_3=28$ (the US on 2,177 institutions, China on 970). China's five golds form a clean sweep of applied and materials science, with zero medals in arts, humanities, social sciences, or business, an unambiguously present-tense result rather than a ``catching up'' story. Great Britain is the clearest case of depth without a peak: 10 silvers and 9 bronzes, but zero golds, consistent with world-class institutions that are nonetheless outgunned by US depth in every single field.
 
 \subsection{Country efficiency}
 \label{subsec:h3-efficiency}
