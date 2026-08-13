@@ -48,7 +48,7 @@ TARGET_FIELDS = {
     "https://openalex.org/fields/17": ("Computer Science", CMU_ID),
 }
 
-ERROR_RATES = [0.20, 0.40, 0.80]
+ERROR_RATES = [0.01, 0.05, 0.1, 0.13, 0.20, 0.40, 0.80]
 TRIALS_PER_RATE = 5
 TOP_K = 20
 
