@@ -3,23 +3,62 @@
 Build the H2 dataset from the pre-filtered local parquet produced by prefetch.py.
 
 Steps:
+  2. Primary institution per author, from prefetch_works.py's authorship counts
+     (--attribution primary only)
   3. Build per-author table (id, h_index, works_count, institution_id, institution_name, field)
   4. Compute H2 per (institution_id, field)
   5. Write authors.csv and h2_by_institution_field.csv
   6. Sanity checks
+
+Institutional attribution (--attribution):
+  primary (default)  The education institution credited on the largest number
+                     of the author's own authorships in their last
+                     PRIMARY_WINDOW publishing years (last publication year
+                     and the four before it), provided it is credited on
+                     >= PRIMARY_MIN_PAPERS of them and on >= PRIMARY_MIN_SHARE
+                     of the share denominator. Ties go to the institution
+                     seen most recently, then most often over the whole
+                     career, then smallest id. Authors with no institution
+                     meeting the thresholds are excluded. Affiliation order on
+                     the paper is deliberately not used (see
+                     affiliation_order_check.py).
+                     Two switches (see prefetch_works.py for definitions):
+                       --rollup / --no-rollup   credit education ancestors
+                           of non-education institutions (JPL -> Caltech).
+                           Default on.
+                       --share-of edu|all       denominator for the share
+                           threshold: the author's works in the window that
+                           credit any education institution (default), or all
+                           their works in the window. "all" excludes
+                           hospital- and institute-based faculty whose papers
+                           mostly list only the hospital (e.g. Dana-Farber).
+  recent             The previous rule: the education affiliation with the
+                     latest year in the author record's affiliations[].years.
+
+Outputs for the default configuration have no suffix; any other configuration
+gets one (_recent, _norollup, _shareall, _norollup_shareall) so sensitivity
+runs don't overwrite the main results.
 
 works_count carries through from prefetch.py's top-level works_count column
 (the T in Egghe's 2008 author-article IPP) purely so estimate_alphas.py can
 fit alpha_1 later; it isn't used anywhere else in this script.
 
 Usage:
-  python3 build.py
+  python3 build.py                        # primary, rollup, share of edu works
+  python3 build.py --no-rollup            # sensitivity: direct credit only
+  python3 build.py --share-of all         # sensitivity: share of all works
+  python3 build.py --attribution recent   # most-recent-affiliation rule
+  python3 build.py --memory-gb 16         # DuckDB memory limit (default 3)
+Step 2 is cached in openalex.duckdb and recomputed automatically when the
+configuration changes, or on --rebuild-primary.
 """
 
+import argparse
 import duckdb
 import glob as _glob
 import math
 import os
+import shutil
 import sys
 import time
 
@@ -34,11 +73,23 @@ AUTHORS_CSV = os.path.join(INTERIM_DIR, "authors.csv")
 H2_CSV = os.path.join(INTERIM_DIR, "h2_by_institution_field.csv")
 H2_SUBFIELD_CSV = os.path.join(INTERIM_DIR, "h2_by_institution_subfield.csv")
 
+WORKS_STAGING_DIR = os.path.join(DATA_DIR, "works_staging")
+WORKS_BUCKET_DIR = os.path.join(DATA_DIR, "works_buckets")
+PRIMARY_WINDOW = 5         # publishing years, counting the author's last one
+PRIMARY_MIN_PAPERS = 2
+PRIMARY_MIN_SHARE = 0.10
+# Publication years after the snapshot year are data errors; left in, they
+# would drag an author's window into years with no real output.
+MAX_YEAR = 2026            # year of the works snapshot (updated_date=2026-09-23)
+N_BUCKETS = 64             # ~25M authorship-count rows per bucket; fits in 3 GB
 
-def connect():
+
+def connect(memory_gb=3):
+    # 4 GB was OOM-killed on a 7 GB machine (DuckDB's RSS overshoots its
+    # limit, and the OS and editor need the rest).
     db = os.path.join(DATA_DIR, "openalex.duckdb")
     con = duckdb.connect(database=db)
-    con.execute("SET threads=4; SET memory_limit='4GB';")
+    con.execute(f"SET threads=4; SET memory_limit='{memory_gb:g}GB';")
     con.execute(f"SET temp_directory='{DATA_DIR}';")
     con.execute("SET enable_progress_bar=true;")
     con.execute("SET preserve_insertion_order=false;")
@@ -118,7 +169,158 @@ def _batch_sql(batch):
     return "\n            UNION ALL\n            ".join(segments)
 
 
-def step3_build_authors(con):
+def check_works_staging_complete():
+    """Exit unless every works file on S3 has a current-schema staging output
+    (needs network)."""
+    from prefetch_works import list_files, staging_path, staging_ok
+    probe = duckdb.connect()
+    missing = [k for k, _ in list_files() if not staging_ok(staging_path(k), probe)]
+    probe.close()
+    if missing:
+        sys.exit(f"ERROR: {len(missing)} works file(s) missing or outdated in "
+                 f"{WORKS_STAGING_DIR}. Finish prefetch_works.py, or pass "
+                 "--allow-incomplete-works.")
+
+
+def primary_config(rollup, share_of):
+    return (f"rollup={rollup} share_of={share_of} window={PRIMARY_WINDOW} "
+            f"min_papers={PRIMARY_MIN_PAPERS} min_share={PRIMARY_MIN_SHARE} "
+            f"max_year={MAX_YEAR}")
+
+
+def cached_primary_config(con):
+    try:
+        return con.execute("SELECT config FROM primary_institution_config").fetchone()[0]
+    except duckdb.Error:
+        return None
+
+
+def step2_primary_institutions(con, rollup=True, share_of="edu", rebuild=False,
+                               staging_glob=None):
+    """Build table primary_institution: one row per author in the works staging.
+
+    Columns: author_id, last_year, n_all (distinct works in the window),
+    n_denom (share denominator: n_all, or works in the window crediting any
+    education institution, per share_of), institution_id / n_inst /
+    latest_year / n_career for the top-ranked education institution (NULL if
+    the window credits none), and passes (meets PRIMARY_MIN_PAPERS and
+    PRIMARY_MIN_SHARE). Only rows with passes = true are used for
+    attribution; the rest are kept for diagnostics. The configuration it was
+    built with is stored in primary_institution_config, and the table is
+    rebuilt whenever that differs from the requested one.
+
+    Staging rows are per (author, year[, institution]) counts from
+    prefetch_works.py, one set per source works file. Each work lives in
+    exactly one snapshot partition, so per-file counts sum correctly across
+    files. The ~1.6B staging rows are hash-partitioned by author into
+    N_BUCKETS once (kept in data/works_buckets/ so sensitivity runs with a
+    different configuration skip this pass), so each bucket's aggregation
+    fits in memory.
+    """
+    config = primary_config(rollup, share_of)
+    if not rebuild and cached_primary_config(con) == config:
+        print(f"Step 2: Reusing primary_institution table ({config}).")
+        return
+    print(f"Step 2: Computing primary institutions ({config})...")
+    t0 = time.time()
+    staging_glob = staging_glob or os.path.join(WORKS_STAGING_DIR, "*.parquet")
+    n_col = "n_rollup" if rollup else "n_direct"
+    denom_col = "n_all" if share_of == "all" else n_col
+
+    complete_marker = os.path.join(WORKS_BUCKET_DIR, "_COMPLETE")
+    if rebuild or not os.path.exists(complete_marker):
+        print(f"  Partitioning by author into {N_BUCKETS} buckets...", end=" ", flush=True)
+        if os.path.exists(WORKS_BUCKET_DIR):
+            shutil.rmtree(WORKS_BUCKET_DIR)
+        con.execute(f"""
+            COPY (
+                SELECT author_id, year, institution_id, n_all, n_direct, n_rollup,
+                       hash(author_id) % {N_BUCKETS} AS bucket
+                FROM read_parquet('{staging_glob}')
+                WHERE year <= {MAX_YEAR}
+            ) TO '{WORKS_BUCKET_DIR}' (FORMAT PARQUET, PARTITION_BY (bucket), COMPRESSION ZSTD)
+        """)
+        open(complete_marker, "w").close()
+        print(f"({time.time()-t0:.0f}s)")
+    else:
+        print(f"  Reusing author buckets in {WORKS_BUCKET_DIR} (--rebuild-primary to redo).")
+
+    con.execute("""
+        CREATE OR REPLACE TABLE primary_institution (
+            author_id VARCHAR, last_year INTEGER, n_all INTEGER, n_denom INTEGER,
+            institution_id VARCHAR, n_inst INTEGER, latest_year INTEGER,
+            n_career INTEGER, passes BOOLEAN
+        )
+    """)
+    con.execute("DROP TABLE IF EXISTS primary_institution_config")
+    for b in range(N_BUCKETS):
+        print(f"\r  Aggregating bucket {b+1}/{N_BUCKETS}...", end="", flush=True)
+        if not os.path.isdir(os.path.join(WORKS_BUCKET_DIR, f"bucket={b}")):
+            continue   # no authors hashed here (only happens on small inputs)
+        con.execute(f"""
+            INSERT INTO primary_institution
+            WITH c AS (
+                SELECT author_id, year, institution_id,
+                       SUM(n_all) AS n_all, SUM({n_col}) AS n_inst, SUM({denom_col}) AS n_denom
+                FROM read_parquet('{WORKS_BUCKET_DIR}/bucket={b}/*.parquet')
+                GROUP BY ALL
+            ),
+            last AS (
+                SELECT author_id, MAX(year) AS last_year
+                FROM c WHERE institution_id IS NULL GROUP BY author_id
+            ),
+            win AS (
+                SELECT c.* FROM c JOIN last USING (author_id)
+                WHERE c.year > last.last_year - {PRIMARY_WINDOW}
+            ),
+            tot AS (
+                SELECT author_id, SUM(n_all) AS n_all, SUM(n_denom) AS n_denom
+                FROM win WHERE institution_id IS NULL GROUP BY author_id
+            ),
+            career AS (
+                SELECT author_id, institution_id, SUM(n_inst) AS n_career
+                FROM c WHERE institution_id IS NOT NULL GROUP BY ALL
+            ),
+            ranked AS (
+                SELECT w.author_id, w.institution_id, SUM(w.n_inst) AS n_inst,
+                       MAX(w.year) AS latest_year, ANY_VALUE(k.n_career) AS n_career,
+                       ROW_NUMBER() OVER (
+                           PARTITION BY w.author_id
+                           ORDER BY SUM(w.n_inst) DESC, MAX(w.year) DESC,
+                                    ANY_VALUE(k.n_career) DESC, w.institution_id
+                       ) AS rnk
+                FROM win w JOIN career k USING (author_id, institution_id)
+                WHERE w.institution_id IS NOT NULL AND w.n_inst > 0
+                GROUP BY w.author_id, w.institution_id
+            )
+            SELECT l.author_id, l.last_year, t.n_all, t.n_denom,
+                   r.institution_id, r.n_inst, r.latest_year, r.n_career,
+                   COALESCE(r.n_inst >= {PRIMARY_MIN_PAPERS}
+                            AND r.n_inst >= {PRIMARY_MIN_SHARE} * t.n_denom, false) AS passes
+            FROM last l
+            JOIN tot t USING (author_id)
+            LEFT JOIN (SELECT * FROM ranked WHERE rnk = 1) r USING (author_id)
+        """)
+    print()
+    con.execute("CREATE TABLE primary_institution_config AS SELECT ? AS config", [config])
+
+    n, n_edu, n_pass, n_few, n_share = con.execute(f"""
+        SELECT COUNT(*),
+               COUNT(institution_id),
+               COUNT(*) FILTER (WHERE passes),
+               COUNT(*) FILTER (WHERE institution_id IS NOT NULL AND n_inst < {PRIMARY_MIN_PAPERS}),
+               COUNT(*) FILTER (WHERE institution_id IS NOT NULL AND n_inst >= {PRIMARY_MIN_PAPERS}
+                                AND NOT passes)
+        FROM primary_institution
+    """).fetchone()
+    print(f"  Authors in works staging:                 {n:>12,}")
+    print(f"    with an education institution in window: {n_edu:>10,}")
+    print(f"    failing min papers ({PRIMARY_MIN_PAPERS}):                {n_few:>10,}")
+    print(f"    failing min share ({PRIMARY_MIN_SHARE:.0%}):               {n_share:>10,}")
+    print(f"    assigned a primary institution:          {n_pass:>10,}  ({time.time()-t0:.0f}s)")
+
+
+def step3_build_authors(con, attribution="primary"):
     print("Step 3: Building per-author dataset...")
     t0 = time.time()
     con.execute("SET enable_progress_bar=false;")
@@ -144,12 +346,34 @@ def step3_build_authors(con):
         raw_n = con.execute("SELECT COUNT(*) FROM _raw").fetchone()[0]
         print(f"{raw_n:,} rows")
 
-        # Each author is assigned their most recent education affiliation:
-        # among affiliations with institution.type = 'education', rank by the
-        # latest publication year in that affiliation's years[] (ties broken
-        # by smallest institution id for determinism).
         print("    _inst...", end=" ", flush=True)
-        con.execute("""
+        if attribution == "primary":
+            # Institution from step 2. The name comes from the author's own
+            # affiliations[] when present there; otherwise it's left NULL and
+            # filled with the canonical name in step 3b.
+            con.execute("""
+                CREATE OR REPLACE TEMP TABLE _inst AS
+                WITH names AS (
+                    SELECT id AS author_id,
+                           aff.institution.id AS institution_id,
+                           ANY_VALUE(aff.institution.display_name) AS institution_name
+                    FROM _raw
+                    CROSS JOIN LATERAL UNNEST(affiliations) AS t(aff)
+                    WHERE aff.institution.type = 'education'
+                    GROUP BY ALL
+                )
+                SELECT r.id AS author_id, r.h_index, r.works_count,
+                       p.institution_id, n.institution_name
+                FROM _raw r
+                JOIN primary_institution p ON p.author_id = r.id AND p.passes
+                LEFT JOIN names n ON n.author_id = r.id AND n.institution_id = p.institution_id
+            """)
+        else:
+            # Each author is assigned their most recent education affiliation:
+            # among affiliations with institution.type = 'education', rank by the
+            # latest publication year in that affiliation's years[] (ties broken
+            # by smallest institution id for determinism).
+            con.execute("""
             CREATE OR REPLACE TEMP TABLE _inst AS
             WITH edu AS (
                 SELECT id AS author_id, h_index, works_count,
@@ -280,6 +504,7 @@ def step3b_normalize_institution_names(con):
         FROM (
             SELECT institution_id, institution_name, COUNT(*) AS cnt
             FROM authors
+            WHERE institution_name IS NOT NULL
             GROUP BY institution_id, institution_name
         )
         GROUP BY institution_id
@@ -291,6 +516,13 @@ def step3b_normalize_institution_names(con):
         WHERE authors.institution_id = c.institution_id
     """)
     con.execute("DROP TABLE _canonical_names")
+    # Primary institutions absent from every assigned author's own
+    # affiliations[] have no name source at all.
+    unnamed = con.execute(
+        "SELECT COUNT(*), COUNT(DISTINCT institution_id) FROM authors WHERE institution_name IS NULL"
+    ).fetchone()
+    if unnamed[0]:
+        print(f"  {unnamed[0]:,} authors at {unnamed[1]:,} institutions still have no name")
     print(f"  Done  ({time.time()-t0:.0f}s)")
 
 
@@ -478,7 +710,30 @@ def step6_sanity_checks(con):
 
 
 if __name__ == "__main__":
-    import glob as _glob
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--attribution", choices=["primary", "recent"], default="primary")
+    ap.add_argument("--rebuild-primary", action="store_true",
+                    help="recompute the primary_institution table from works staging")
+    ap.add_argument("--allow-incomplete-works", action="store_true",
+                    help="skip the check that every works file has been prefetched")
+    ap.add_argument("--rollup", action=argparse.BooleanOptionalAction, default=True,
+                    help="credit education ancestors of non-education institutions")
+    ap.add_argument("--share-of", choices=["edu", "all"], default="edu",
+                    help="share-threshold denominator: works crediting any education "
+                         "institution (edu) or all works (all)")
+    ap.add_argument("--memory-gb", type=float, default=3,
+                    help="DuckDB memory limit; leave ~3-4 GB of RAM for everything else")
+    args = ap.parse_args()
+
+    if args.attribution == "recent":
+        suffix = "_recent"
+    else:
+        suffix = ("" if args.rollup else "_norollup") + ("_shareall" if args.share_of == "all" else "")
+    if suffix:
+        AUTHORS_CSV, H2_CSV, H2_SUBFIELD_CSV = (
+            p.replace(".csv", f"{suffix}.csv") for p in (AUTHORS_CSV, H2_CSV, H2_SUBFIELD_CSV))
+        print(f"Non-default configuration: outputs get suffix '{suffix}'.")
+
     staging_files = _glob.glob(_staging_glob)
     if not os.path.exists(_consolidated) and not staging_files:
         print("ERROR: No data found. Run prefetch.py first.")
@@ -490,8 +745,15 @@ if __name__ == "__main__":
         size_mb = os.path.getsize(FILTERED_PARQUET) / 1e6
         print(f"Source: {FILTERED_PARQUET} ({size_mb:.0f} MB)")
 
-    con = connect()
-    step3_build_authors(con)
+    con = connect(args.memory_gb)
+    if args.attribution == "primary":
+        needs_step2 = (args.rebuild_primary
+                       or cached_primary_config(con) != primary_config(args.rollup, args.share_of))
+        if needs_step2 and not args.allow_incomplete_works:
+            check_works_staging_complete()
+        step2_primary_institutions(con, rollup=args.rollup, share_of=args.share_of,
+                                   rebuild=args.rebuild_primary)
+    step3_build_authors(con, attribution=args.attribution)
     step3b_normalize_institution_names(con)
     step4_compute_h2(con)
     step4b_compute_h2_subfield(con)

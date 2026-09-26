@@ -39,7 +39,9 @@ Authors are filtered to those with:
 
 This yields **30.0 million authors** across **20,932 institutions** and OpenAlex's current list of 26 fields. Each author's `works_count` is carried through as well, purely to fit the Lotka exponent α<sub>1</sub> (see "Efficiency exponents" below).
 
-Each author is assigned to a single institution: among their affiliations with `institution.type = "education"`, we pick the one with the latest publication year in that affiliation's `years[]` (OpenAlex's `affiliations` field lists an author's institutions together with the years they published while there). Ties are broken by the numerically smallest institution ID. We deliberately don't use `last_known_institutions` for this — despite the name, it's just the set of affiliations listed on an author's single most recent work, with no per-entry recency of its own, so it can't distinguish which of several co-affiliations is "most recent."
+Each author is assigned to a single *primary* institution, computed from the works snapshot (`s3://openalex/data/parquet/works/`): the institution with `type = "education"` credited on the largest number of the author's own authorships in their last five publishing years (their last publication year and the four before it). An authorship credits every education institution listed on it, plus the education-type ancestors (from OpenAlex's institution `lineage`) of any non-education institution listed — so a Jet Propulsion Laboratory paper credits Caltech — but education institutions are never rolled up to their own parents. The primary institution must be credited on at least 2 of the window's works and on at least 10% of the window's works that credit *any* education institution; authors with no such institution are excluded. (Measuring the 10% against all works instead would exclude hospital- and institute-based faculty whose papers mostly list only the hospital, such as Dana-Farber researchers who hold Harvard appointments.) Ties go to the institution seen most recently, then the one seen most often over the whole career, then the numerically smallest institution ID. This keeps secondary affiliations — a community college listed on a handful of papers, or a visiting appointment listed for funding — from outranking the institution where an author actually publishes. We don't use the order of affiliations on a paper: in a spot check against Crossref and Europe PMC, the order in OpenAlex's `authorships[].affiliations[]` matched the publisher's only about half the time (`src/affiliation_order_check.py`). Nor do we use the authors snapshot's `affiliations[].years[]` or `last_known_institutions`, which record only *which years* an institution appears, not on how many works.
+
+An earlier version of this analysis used the education affiliation with the latest year in `years[]`; `python3 src/build.py --attribution recent` reproduces it. `--no-rollup` (direct listings only) and `--share-of all` (10% of all works) give the other sensitivity variants.
 
 Each author is also assigned to a single field: OpenAlex tags each author with a set of topics, each carrying a `count` (roughly, the number of the author's works classified under that topic) and a parent field. We sum `count` within each field and assign the author to whichever field carries the largest total weight — their modal field by publication volume, not simply their single most granular topic.
 
@@ -72,10 +74,24 @@ python3 src/prefetch.py
 #     Skip this if disk space is tight; build.py reads staging files directly.
 python3 src/consolidate.py
 
+# 1b. Stream the OpenAlex works snapshot (~700 GB, read over S3, not stored)
+#     and reduce it to per-author, per-year authorship counts by education
+#     institution, which step 2 uses to pick each author's primary
+#     institution. Fetches data/interim/institution_types.parquet first (for
+#     lineage roll-up). Writes ~7-10 GB to data/works_staging/. ~12 h with one
+#     worker on a 7 GB machine; use --workers N --memory-gb M with more RAM.
+#     Resumable — safe to interrupt and re-run.
+python3 src/prefetch_works.py
+
 # 2. Build the per-author table and compute h2 by (institution, field) and
-#    (institution, subfield). Writes data/interim/authors.csv,
+#    (institution, subfield). Each author is attributed to their primary
+#    institution (see "Data source"; authors with none are excluded).
+#    Writes data/interim/authors.csv,
 #    data/interim/h2_by_institution_field.csv,
 #    data/interim/h2_by_institution_subfield.csv, and data/openalex.duckdb.
+#    Sensitivity variants write suffixed outputs: --no-rollup, --share-of all,
+#    --attribution recent (the older most-recent-affiliation rule).
+#    --memory-gb sets DuckDB's limit (default 3).
 python3 src/build.py
 
 # 3. Split h2_by_institution_field.csv into one file per field.

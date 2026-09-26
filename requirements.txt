@@ -6,3 +6,4 @@ pandas
 powerlaw
 pycountry
 scipy
+tqdm

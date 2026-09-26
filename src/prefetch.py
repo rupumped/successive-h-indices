@@ -2,28 +2,16 @@
 """
 Stream the OpenAlex authors snapshot from S3, one partition at a time.
 
-Each updated_date= partition is filtered and written to data/authors_staging/.
-Corrupt or partially-written files are detected at startup and re-downloaded.
-If interrupted, already-written partitions are skipped on the next run.
+Each updated_date= partition is filtered and written to data/authors_staging/. Corrupt or partially-written files are detected at startup and re-downloaded. If interrupted, already-written partitions are skipped on the next run.
 
 Filters applied per partition:
   - summary_stats.h_index > 0
   - affiliations contains at least one entry with institution.type = 'education'
   - topics contains at least one entry with a non-null field.id
 
-Column pruning: only id, h_index, works_count, affiliations, and topics are
-fetched from each remote file. affiliations (not last_known_institutions) is
-pulled because it carries a years[] array per institution, which build.py uses
-to pick each author's most recent education affiliation; last_known_institutions
-has no per-entry recency information — its entries are just the affiliations
-listed on an author's single most recent work, in no meaningful order.
-works_count (a top-level column, not part of summary_stats) is the T in Egghe's
-(2008) author-article IPP (his eq. 6): the number of articles credited to each
-author. Its Lotka tail exponent is alpha_1, used by estimate_alphas.py.
+Column pruning: only id, h_index, works_count, affiliations, and topics are fetched from each remote file. affiliations (not last_known_institutions) is pulled because it carries a years[] array per institution, which build.py uses to pick each author's most recent education affiliation; last_known_institutions has no per-entry recency information — its entries are just the affiliations listed on an author's single most recent work, in no meaningful order. works_count (a top-level column, not part of summary_stats) is the T in Egghe's (2008) author-article IPP (his eq. 6): the number of articles credited to each author. Its Lotka tail exponent is alpha_1, used by estimate_alphas.py.
 
-Staging files are schema-checked as well as integrity-checked: files written
-before works_count was added to this query lack the column and are treated as
-missing, so a re-run backfills them rather than silently proceeding without it.
+Staging files are schema-checked as well as integrity-checked: files written before works_count was added to this query lack the column and are treated as missing, so a re-run backfills them rather than silently proceeding without it.
 
 Usage:
   python3 prefetch.py
