@@ -5,17 +5,27 @@ take, at the magnitude actually observed in manual cross-validation, before
 the paper's institution- and country-level rankings changed?
 
 Perturbation model: at a population-wide "error rate" p, each author is
-independently flagged with probability p as a merged/inflated identity, and
-a flagged author's h1 is multiplied by an inflation ratio drawn uniformly
-from the four ratios actually observed among the manual cross-validation
-outliers (Donald Small 103/57, Karen Calhoun 45/11, Lei Jiang 215/115,
-A. Jafari 139/41 vs. Web of Science). The 21% outlier rate (4/19) in that
-sample comes from a deliberately adversarial, non-random selection
-(threshold authors, non-Anglophone institutions, common names) enriched for
-exactly the strata most likely to carry disambiguation errors, so treating
-21% as a population-wide error rate is a worst-case stress test, not a
-claim about the dataset's true error rate; 1% and 5% are included as more
-plausible population-wide rates.
+independently flagged with probability p as a merged/inflated identity.
+Flagged authors receive a bidirectional perturbation: with probability 0.5
+their h1 is multiplied by a ratio drawn uniformly from the four ratios
+observed in manual cross-validation (upward, simulating merged identities),
+and with probability 0.5 it is divided by that ratio (downward, simulating
+split identities). The four ratios are drawn from the actual manual
+cross-validation outliers: Donald Small 103/57, Karen Calhoun 45/11,
+Lei Jiang 215/115, A. Jafari 139/41 vs. Web of Science.
+
+Country-stratified error rates: authors affiliated with institutions in
+CN, KR, IR, or SA receive HIGH_ERROR_MULT times the base error rate,
+reflecting the higher disambiguation risk documented in the manual
+cross-validation for non-Anglophone institutions with common names.
+
+The 21% outlier rate (4/19) in that sample comes from a deliberately
+adversarial, non-random selection (threshold authors, non-Anglophone
+institutions, common names) enriched for exactly the strata most likely
+to carry disambiguation errors, so treating 21% as a population-wide
+error rate is a worst-case stress test, not a claim about the dataset's
+true error rate; 1% and 5% are included as more plausible
+population-wide rates.
 
 For each trial, recomputes institution-overall h2, country h3, and the
 within-field h2 ranking for two headline field-leader claims (Wageningen in
@@ -31,6 +41,7 @@ import os
 import time
 
 import duckdb
+import tqdm
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB_PATH = os.path.join(ROOT_DIR, "data", "openalex.duckdb")
@@ -40,16 +51,21 @@ LOG_PATH = os.path.join(ROOT_DIR, "results", "sensitivity_disambiguation.log")
 
 RATIOS = [103 / 57, 45 / 11, 215 / 115, 139 / 41]
 
+# Countries with elevated error rates due to higher disambiguation risk
+HIGH_ERROR_COUNTRIES = {"CN", "KR", "IR", "SA"}
+HIGH_ERROR_MULT = 3.0
+
 WAGENINGEN_ID = "https://openalex.org/I913481162"
 CMU_ID = "https://openalex.org/I74973139"
+UCAS_ID = "https://openalex.org/I4210165038"
 TARGET_FIELDS = {
     "https://openalex.org/fields/11": ("Agricultural and Biological Sciences", WAGENINGEN_ID),
-    "https://openalex.org/fields/23": ("Environmental Science", WAGENINGEN_ID),
+    "https://openalex.org/fields/23": ("Environmental Science", UCAS_ID),
     "https://openalex.org/fields/17": ("Computer Science", CMU_ID),
 }
 
 ERROR_RATES = [0.01, 0.05, 0.1, 0.13, 0.20, 0.40, 0.80]
-TRIALS_PER_RATE = 5
+TRIALS_PER_RATE = 50
 TOP_K = 20
 
 FIELDNAMES = [
@@ -57,13 +73,13 @@ FIELDNAMES = [
     "spearman_h2_institution", "top20_overlap_institution",
     "spearman_h3_country", "top10_overlap_country",
     "italy_h3", "japan_h3",
-    "wageningen_agbio_rank", "wageningen_envsci_rank", "cmu_cs_rank",
+    "wageningen_agbio_rank", "ucas_envsci_rank", "cmu_cs_rank",
     "elapsed_s",
 ]
 
 
 def log(msg):
-    print(msg, flush=True)
+    tqdm.tqdm.write(msg)
     with open(LOG_PATH, "a") as f:
         f.write(msg + "\n")
 
@@ -71,18 +87,40 @@ def log(msg):
 def build_perturbed(con, seed, error_rate):
     con.execute(f"SELECT setseed({seed})")
     ratio_case = (
-        "CASE CAST(FLOOR(random()*4) AS INTEGER) "
+        "CASE CAST(FLOOR(r_ratio * 4) AS INTEGER) "
         f"WHEN 0 THEN {RATIOS[0]}::DOUBLE WHEN 1 THEN {RATIOS[1]}::DOUBLE "
         f"WHEN 2 THEN {RATIOS[2]}::DOUBLE ELSE {RATIOS[3]}::DOUBLE END"
     )
+    high_cc = ", ".join(f"'{cc}'" for cc in sorted(HIGH_ERROR_COUNTRIES))
+    # Three independent random draws per author:
+    #   r_flag  -> determines if flagged (country-stratified probability)
+    #   r_dir   -> determines inflate (< 0.5) vs. deflate (>= 0.5)
+    #   r_ratio -> selects which of the four empirical ratios to apply
     con.execute(f"""
         CREATE OR REPLACE TEMP TABLE perturbed AS
+        WITH draws AS (
+            SELECT institution_id, field, h_index, country_code,
+                   random() AS r_flag,
+                   random() AS r_dir,
+                   random() AS r_ratio
+            FROM authors_mem
+        ),
+        flagged AS (
+            SELECT institution_id, field, h_index,
+                   r_flag < LEAST(1.0, CASE WHEN country_code IN ({high_cc})
+                                            THEN {error_rate} * {HIGH_ERROR_MULT}
+                                            ELSE {error_rate} END) AS is_flagged,
+                   r_dir,
+                   {ratio_case} AS ratio
+            FROM draws
+        )
         SELECT institution_id, field,
-            CASE WHEN random() < {error_rate}
-                 THEN CAST(ROUND(CAST(h_index AS DOUBLE) * ({ratio_case})) AS INTEGER)
+            CASE WHEN is_flagged
+                 THEN GREATEST(1, CAST(ROUND(CAST(h_index AS DOUBLE)
+                      * CASE WHEN r_dir < 0.5 THEN ratio ELSE 1.0 / ratio END) AS INTEGER))
                  ELSE h_index
             END AS h_index
-        FROM authors_mem
+        FROM flagged
     """)
 
 
@@ -168,12 +206,18 @@ def main():
     con = duckdb.connect(DB_PATH, read_only=True)
     con.execute("SET threads=16; SET enable_progress_bar=false; SET memory_limit='6GB';")
 
+    # country_map must be loaded before authors_mem (used in the join below)
+    con.execute(f"CREATE TEMP TABLE country_map AS SELECT id, country_code FROM read_csv_auto('{COUNTRY_MAP_CSV}')")
+
     log("Loading authors into memory...")
     t0 = time.time()
-    con.execute("CREATE TEMP TABLE authors_mem AS SELECT institution_id, field, h_index FROM authors")
+    con.execute("""
+        CREATE TEMP TABLE authors_mem AS
+        SELECT a.institution_id, a.field, a.h_index, cm.country_code
+        FROM authors a
+        LEFT JOIN country_map cm ON cm.id = a.institution_id
+    """)
     log(f"  {time.time()-t0:.1f}s")
-
-    con.execute(f"CREATE TEMP TABLE country_map AS SELECT id, country_code FROM read_csv_auto('{COUNTRY_MAP_CSV}')")
 
     log("Computing baseline (error_rate=0)...")
     t0 = time.time()
@@ -184,22 +228,25 @@ def main():
     log(f"  {time.time()-t0:.1f}s")
 
     wag_agbio_base = base_field_ranks["https://openalex.org/fields/11"].get(WAGENINGEN_ID)
-    wag_env_base = base_field_ranks["https://openalex.org/fields/23"].get(WAGENINGEN_ID)
+    ucas_env_base = base_field_ranks["https://openalex.org/fields/23"].get(UCAS_ID)
     cmu_cs_base = base_field_ranks["https://openalex.org/fields/17"].get(CMU_ID)
     it_base = con.execute("SELECT h3 FROM h3_base WHERE country_code='IT'").fetchone()
     jp_base = con.execute("SELECT h3 FROM h3_base WHERE country_code='JP'").fetchone()
-    log(f"  baseline: Wageningen Ag&Bio rank={wag_agbio_base}, EnvSci rank={wag_env_base}, "
-        f"CMU CS rank={cmu_cs_base}, Italy h3={it_base}, Japan h3={jp_base}")
+    log(f"  baseline: Wageningen Ag&Bio rank={wag_agbio_base}, UCAS EnvSci rank={ucas_env_base}, "
+        f"CMU CS rank={cmu_cs_base}, Italy h3={it_base[0] if it_base else None}, "
+        f"Japan h3={jp_base[0] if jp_base else None}")
 
-    file_exists = os.path.exists(OUT_CSV)
-    with open(OUT_CSV, "a", newline="") as f:
+    # Overwrite: new bidirectional + stratified design is incompatible with old upward-only results
+    with open(OUT_CSV, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
-        if not file_exists:
-            writer.writeheader()
+        writer.writeheader()
 
+        total = len(ERROR_RATES) * TRIALS_PER_RATE
+        pbar = tqdm.tqdm(total=total, unit="trial")
         for error_rate in ERROR_RATES:
             for trial in range(TRIALS_PER_RATE):
-                seed = round(0.01 * (trial + 1) + error_rate, 6)
+                # Seed stays well within [-1, 1] for all (trial, error_rate) combinations
+                seed = round((trial + 1) * 0.001 + error_rate * 0.01, 6)
                 t0 = time.time()
                 build_perturbed(con, seed=seed, error_rate=error_rate)
                 compute_institution_h2(con, "h2_pert")
@@ -213,7 +260,7 @@ def main():
                 jp = con.execute("SELECT h3 FROM h3_pert WHERE country_code='JP'").fetchone()
 
                 wag_agbio = field_ranks["https://openalex.org/fields/11"].get(WAGENINGEN_ID)
-                wag_env = field_ranks["https://openalex.org/fields/23"].get(WAGENINGEN_ID)
+                ucas_env = field_ranks["https://openalex.org/fields/23"].get(UCAS_ID)
                 cmu_cs = field_ranks["https://openalex.org/fields/17"].get(CMU_ID)
 
                 elapsed = time.time() - t0
@@ -222,15 +269,17 @@ def main():
                     "spearman_h2_institution": sp_h2, "top20_overlap_institution": ov_h2,
                     "spearman_h3_country": sp_h3, "top10_overlap_country": ov_h3,
                     "italy_h3": it[0] if it else None, "japan_h3": jp[0] if jp else None,
-                    "wageningen_agbio_rank": wag_agbio, "wageningen_envsci_rank": wag_env,
+                    "wageningen_agbio_rank": wag_agbio, "ucas_envsci_rank": ucas_env,
                     "cmu_cs_rank": cmu_cs, "elapsed_s": round(elapsed, 1),
                 }
                 writer.writerow(row)
                 f.flush()
                 log(f"  p={error_rate:.2f} trial={trial}: spearman_h2={sp_h2:.4f} top20_ov={ov_h2:.2f} "
                     f"spearman_h3={sp_h3:.4f} top10_ov={ov_h3:.2f} IT/JP h3={it[0] if it else '-'}/"
-                    f"{jp[0] if jp else '-'} wag_agbio={wag_agbio} wag_env={wag_env} cmu_cs={cmu_cs} "
+                    f"{jp[0] if jp else '-'} wag_agbio={wag_agbio} ucas_env={ucas_env} cmu_cs={cmu_cs} "
                     f"({elapsed:.1f}s)")
+                pbar.update(1)
+        pbar.close()
 
     log(f"\nWrote results to {OUT_CSV}")
 

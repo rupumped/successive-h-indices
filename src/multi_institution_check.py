@@ -1,58 +1,53 @@
 #!/usr/bin/env python3
 """
-Multi-institution robustness check for currently tied affiliations
-(reviewer round 2, issue 1: "fractional treatment of multiple current
-affiliations").
+Multi-institution robustness check (works-based, 5-year window).
 
-The paper assigns each author to a single "most recent educational
-affiliation," picked by the institution whose recorded affiliation-years
-reach latest, with ties broken arbitrarily by smallest institution id
-(see build.py). For authors whose OpenAlex record shows two or more
-educational institutions tied for the same most-recent year (a genuine
-current dual/multi-affiliation, not a data artifact of missing years),
-that tiebreak silently drops all but one institution.
+For each qualifying author, finds every institution meeting both primary-attribution
+thresholds (>=2 papers AND >=10% of education-crediting works) in the author's
+5-year window — not just the one with the most works. Assigns the author's full
+h₁ to each such institution, recomputes institution h₂ and country h₃, and
+compares to the default single-institution rankings.
 
-This script re-assigns each such author to *every* institution tied for
-their most-recent year (inclusive multi-membership, the same pattern the
-paper already uses for its multi-field robustness check), recomputes
-institution h2 and country h3, and compares to the paper's baseline
-single-pick assignment. This is not a literal fractional (1/n-weighted)
-h-index -- it is a sensitivity bound on how much the single-institution
-tiebreak rule, rather than genuine multi-affiliation, is driving results.
+Addresses the reviewer's request for "fractional treatment of multiple current
+affiliations." Since h-indices are integer by definition, multi-institution
+assignment (each author counted fully at every qualifying institution) is the
+closest tractable analog to fractional credit.
 
 Outputs
 -------
-results/multi_institution_check.csv          — per-institution comparison
-results/multi_institution_check_country.csv  — per-country comparison
-results/multi_institution_check.log          — verbose run log
+results/multi_institution_check.csv         — per-institution comparison
+results/multi_institution_check_country.csv — per-country comparison
+results/multi_institution_check.log         — verbose run log
 
 Usage
 -----
-  python3 src/multi_institution_check.py
+  conda run -n base python3 src/multi_institution_check.py
 """
 
-import glob
 import json
 import os
-import sys
 import time
 
 import duckdb
-
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build import _source_files, _make_batches, _batch_sql  # noqa: E402 (reuse memory-safe batching)
+import tqdm
 
 ROOT_DIR        = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB_PATH         = os.path.join(ROOT_DIR, "data", "openalex.duckdb")
-STAGING         = os.path.join(ROOT_DIR, "data", "authors_staging", "*.parquet")
+WORKS_BUCKET_DIR = os.path.join(ROOT_DIR, "data", "works_buckets")
 COUNTRY_MAP     = os.path.join(ROOT_DIR, "data", "interim", "institution_country_map.csv")
+H2_CSV          = os.path.join(ROOT_DIR, "data", "interim", "h2_by_institution.csv")
 LOTKA_JSON      = os.path.join(ROOT_DIR, "results", "lotka_exponents.json")
 OUT_CSV         = os.path.join(ROOT_DIR, "results", "multi_institution_check.csv")
 OUT_COUNTRY_CSV = os.path.join(ROOT_DIR, "results", "multi_institution_check_country.csv")
 LOG_PATH        = os.path.join(ROOT_DIR, "results", "multi_institution_check.log")
 
-TOP_N = 20
-FLAG_COUNTRIES = ["SA", "IT", "JP", "AU", "ES", "DE", "GB", "FR", "US", "CN"]
+N_BUCKETS        = 64
+PRIMARY_WINDOW   = 5
+PRIMARY_MIN_PAPERS = 2
+PRIMARY_MIN_SHARE  = 0.10
+MAX_YEAR         = 2026
+TOP_N            = 20
+FLAG_COUNTRIES   = ["SA", "IT", "JP", "AU", "ES", "DE", "GB", "FR", "US", "CN"]
 
 _log_file = None
 
@@ -149,89 +144,130 @@ def main():
             lotka = json.load(f)
         beta_2 = lotka["beta_2"]
 
+        log(f"Primary-institution thresholds: min_papers={PRIMARY_MIN_PAPERS}, "
+            f"min_share={PRIMARY_MIN_SHARE:.0%}, window={PRIMARY_WINDOW} years")
+        log("Multi-institution variant: keep ALL institutions meeting both thresholds "
+            "(not just the one with most works).\n")
+
         log("Loading institution -> country map...")
         con.execute(f"""
             CREATE OR REPLACE TEMP TABLE _country_map AS
             SELECT id, country_code FROM read_csv_auto('{COUNTRY_MAP}')
         """)
 
-        log("Finding every educational institution tied for each author's most-recent affiliation "
-            "year (batched scan, mirrors build.py's memory-safe batching)...")
+        log("Loading institution name lookup (from h2_by_institution.csv)...")
+        con.execute(f"""
+            CREATE OR REPLACE TEMP TABLE _inst_names AS
+            SELECT institution_id, institution_name
+            FROM read_csv_auto('{H2_CSV}')
+        """)
+
+        # primary_institution is in openalex.duckdb (from build.py step 2).
+        # It has: author_id, last_year, n_all, n_denom, institution_id,
+        #         n_inst, latest_year, n_career, passes
+        n_qualifying = con.execute(
+            "SELECT COUNT(*) FROM primary_institution WHERE passes"
+        ).fetchone()[0]
+        log(f"Qualifying authors (passes=true in primary_institution): {n_qualifying:,}\n")
+
+        # Build multi-institution roster: for each qualifying author, find every
+        # institution meeting both thresholds in their 5-year window.
+        log("Building multi-institution roster (scanning works_buckets by bucket)...")
         t0 = time.time()
-        files = _source_files()
-        batches = _make_batches(files)
-        con.execute("DROP TABLE IF EXISTS _tied")
-        tied_created = False
-        for b, batch in enumerate(batches):
-            batch_sql = _batch_sql(batch)
+        con.execute("DROP TABLE IF EXISTS _multi_pairs")
+        pairs_created = False
+
+        for b in tqdm.tqdm(range(N_BUCKETS), desc="  Scanning buckets", unit="bucket"):
+            bucket_dir = os.path.join(WORKS_BUCKET_DIR, f"bucket={b}")
+            if not os.path.isdir(bucket_dir):
+                continue
+            bucket_glob = os.path.join(bucket_dir, "*.parquet")
             con.execute(f"""
-                CREATE OR REPLACE TEMP TABLE _tied_batch AS
-                WITH _raw AS ({batch_sql}),
-                edu AS (
-                    SELECT id AS author_id,
-                           aff.institution.id           AS institution_id,
-                           aff.institution.display_name AS institution_name,
-                           list_max(aff.years)          AS latest_year
-                    FROM _raw
-                    CROSS JOIN LATERAL UNNEST(affiliations) AS t(aff)
-                    WHERE aff.institution.type = 'education'
+                CREATE OR REPLACE TEMP TABLE _bucket_pairs AS
+                WITH raw AS (
+                    SELECT author_id, year, institution_id, n_rollup
+                    FROM read_parquet('{bucket_glob}')
+                    WHERE year <= {MAX_YEAR}
                 ),
-                maxyear AS (
-                    SELECT author_id, MAX(latest_year) AS m FROM edu GROUP BY author_id
+                last_year AS (
+                    SELECT author_id, MAX(year) AS last_year
+                    FROM raw WHERE institution_id IS NULL GROUP BY author_id
+                ),
+                win_inst AS (
+                    SELECT r.author_id, r.institution_id,
+                           SUM(r.n_rollup) AS n_inst_window
+                    FROM raw r JOIN last_year l USING (author_id)
+                    WHERE r.year > l.last_year - {PRIMARY_WINDOW}
+                    AND r.institution_id IS NOT NULL
+                    GROUP BY r.author_id, r.institution_id
                 )
-                SELECT e.author_id, e.institution_id, e.institution_name
-                FROM edu e JOIN maxyear m USING (author_id)
-                WHERE e.latest_year = m.m OR (e.latest_year IS NULL AND m.m IS NULL)
+                SELECT w.author_id, w.institution_id, w.n_inst_window
+                FROM win_inst w
+                JOIN primary_institution p ON p.author_id = w.author_id AND p.passes
+                WHERE w.n_inst_window >= {PRIMARY_MIN_PAPERS}
+                AND w.n_inst_window >= {PRIMARY_MIN_SHARE} * p.n_denom
             """)
-            if not tied_created:
-                con.execute("CREATE TEMP TABLE _tied AS SELECT * FROM _tied_batch")
-                tied_created = True
+            if not pairs_created:
+                con.execute("CREATE TEMP TABLE _multi_pairs AS SELECT * FROM _bucket_pairs")
+                pairs_created = True
             else:
-                con.execute("INSERT INTO _tied SELECT * FROM _tied_batch")
-            con.execute("DROP TABLE _tied_batch")
-            log(f"  batch {b+1}/{len(batches)} done")
-        n_tied_rows, n_tied_authors = con.execute("""
-            SELECT COUNT(*), COUNT(DISTINCT author_id) FROM _tied
-        """).fetchone()
-        n_multi_authors = con.execute("""
+                con.execute("INSERT INTO _multi_pairs SELECT * FROM _bucket_pairs")
+            con.execute("DROP TABLE _bucket_pairs")
+
+        n_pairs = con.execute("SELECT COUNT(*) FROM _multi_pairs").fetchone()[0]
+        n_authors_multi = con.execute(
+            "SELECT COUNT(DISTINCT author_id) FROM _multi_pairs"
+        ).fetchone()[0]
+        n_baseline = con.execute("SELECT COUNT(*) FROM authors").fetchone()[0]
+        log(f"  {n_pairs:,} (author, institution) pairs in multi-institution roster "
+            f"({n_pairs/n_baseline - 1:+.1%} vs baseline {n_baseline:,})  "
+            f"({time.time()-t0:.0f}s)")
+
+        n_multi_only = con.execute("""
             SELECT COUNT(*) FROM (
-                SELECT author_id FROM _tied GROUP BY author_id HAVING COUNT(*) > 1
+                SELECT author_id FROM _multi_pairs GROUP BY author_id HAVING COUNT(*) > 1
             )
         """).fetchone()[0]
-        log(f"  {n_tied_authors:,} authors have >=1 institution at their most-recent year; "
-            f"{n_multi_authors:,} of them ({n_multi_authors/n_tied_authors:.1%}) have a genuine tie "
-            f"(2+ institutions)  ({time.time()-t0:.0f}s)\n")
+        log(f"  {n_multi_only:,} authors ({n_multi_only/n_authors_multi:.1%}) qualify at "
+            f">=2 institutions\n")
 
-        log("Building inclusive multi-institution roster (join h_index onto every tied institution)...")
+        # Build the expanded roster: (institution_id, institution_name, h_index)
+        # Institution name: from authors table (primary assignment) where available,
+        # otherwise from h2_by_institution lookup.
+        log("Joining h_index and institution names onto multi-institution pairs...")
         con.execute("""
             CREATE OR REPLACE TEMP TABLE _roster_multi AS
-            SELECT t.institution_id, t.institution_name, a.h_index
-            FROM _tied t
-            JOIN authors a USING (author_id)
+            SELECT mp.institution_id,
+                   COALESCE(n.institution_name, '[unknown]') AS institution_name,
+                   a.h_index
+            FROM _multi_pairs mp
+            JOIN authors a ON a.author_id = mp.author_id
+            LEFT JOIN _inst_names n ON n.institution_id = mp.institution_id
         """)
-        n_pairs_multi = con.execute("SELECT COUNT(*) FROM _roster_multi").fetchone()[0]
-        n_pairs_baseline = con.execute("SELECT COUNT(*) FROM authors").fetchone()[0]
-        log(f"  baseline (author, institution) pairs: {n_pairs_baseline:,}")
-        log(f"  inclusive multi-institution pairs:     {n_pairs_multi:,} "
-            f"({(n_pairs_multi/n_pairs_baseline - 1):+.1%})\n")
+        n_roster = con.execute("SELECT COUNT(*) FROM _roster_multi").fetchone()[0]
+        log(f"  {n_roster:,} rows in expanded roster\n")
 
-        log("Computing institution h2: baseline vs inclusive multi-institution roster...")
+        # Compute h₂: baseline (single institution per author) vs multi-institution
+        log("Computing institution h2: baseline...")
         h2_table_sql(con, "h2_baseline",
                      "SELECT institution_id, institution_name, h_index FROM authors")
+        log("Computing institution h2: multi-institution...")
         h2_table_sql(con, "h2_multi",
                      "SELECT institution_id, institution_name, h_index FROM _roster_multi")
 
         n_inst_baseline = con.execute("SELECT COUNT(*) FROM h2_baseline").fetchone()[0]
         n_inst_multi = con.execute("SELECT COUNT(*) FROM h2_multi").fetchone()[0]
-        log(f"  baseline: {n_inst_baseline:,} institutions | multi-institution: {n_inst_multi:,} institutions\n")
+        log(f"  baseline: {n_inst_baseline:,} institutions | "
+            f"multi-institution: {n_inst_multi:,} institutions\n")
 
         rho_inst, n_shared_inst = spearman(con, "h2_baseline", "h2_multi", ["institution_id"])
         overlap10 = topn_overlap(con, "h2_baseline", "h2_multi", ["institution_id"], "h2", 10)
         overlap20 = topn_overlap(con, "h2_baseline", "h2_multi", ["institution_id"], "h2", 20)
-        log(f"Institution h2 rank correlation (baseline vs multi-institution, {n_shared_inst:,} shared): "
-            f"rho = {rho_inst:.4f}")
+        log(f"Institution h2 rank correlation (baseline vs multi-institution, "
+            f"{n_shared_inst:,} shared): rho = {rho_inst:.4f}")
         log(f"  Top-10 overlap: {overlap10:.0%} | Top-20 overlap: {overlap20:.0%}\n")
 
+        # Compute h₃
         log("Computing country h3: baseline vs multi-institution...")
         h3_table_sql(con, "h3_baseline", "h2_baseline")
         h3_table_sql(con, "h3_multi", "h2_multi")
@@ -240,15 +276,16 @@ def main():
                                                    ["country_code"], val_col="h3")
         overlap10_c = topn_overlap(con, "h3_baseline", "h3_multi", ["country_code"], "h3", 10)
         overlap20_c = topn_overlap(con, "h3_baseline", "h3_multi", ["country_code"], "h3", 20)
-        log(f"Country h3 rank correlation (baseline vs multi-institution, {n_shared_country:,} shared): "
-            f"rho = {rho_country:.4f}")
+        log(f"Country h3 rank correlation (baseline vs multi-institution, "
+            f"{n_shared_country:,} shared): rho = {rho_country:.4f}")
         log(f"  Top-10 overlap: {overlap10_c:.0%} | Top-20 overlap: {overlap20_c:.0%}\n")
 
-        log("Efficiency comparison (epsilon_3 = h3 / institution_count^(1/beta_2)) for flagged countries:")
+        log("Efficiency comparison for flagged countries:")
         for tname in ["h3_baseline", "h3_multi"]:
             con.execute(f"""
                 CREATE OR REPLACE TEMP TABLE {tname}_ranked AS
-                SELECT *, h3 / POW(institution_count, 1.0/{beta_2}) AS eps3
+                SELECT *, h3 / POW(institution_count, 1.0/{beta_2}) AS eps3,
+                       RANK() OVER (ORDER BY h3 / POW(institution_count, 1.0/{beta_2}) DESC) AS eff_rank
                 FROM {tname}
             """)
         rows = con.execute(f"""
@@ -262,26 +299,31 @@ def main():
         log(f"  {'cc':<4}{'h3_base':>9}{'rank_base':>11}{'eps3_base':>11}"
             f"{'h3_multi':>10}{'rank_multi':>12}{'eps3_multi':>12}")
         for cc, h3b, rb, eb, h3m, rm, em in rows:
-            log(f"  {cc:<4}{h3b:>9}{rb:>11}{eb:>11.3f}{h3m:>10}{rm:>12}{em:>12.3f}")
+            h3m_s = f"{h3m:>10}" if h3m is not None else f"{'n/a':>10}"
+            rm_s  = f"{rm:>12}" if rm  is not None else f"{'n/a':>12}"
+            em_s  = f"{em:>12.3f}" if em is not None else f"{'n/a':>12}"
+            log(f"  {cc:<4}{h3b:>9}{rb:>11}{eb:>11.3f}{h3m_s}{rm_s}{em_s}")
         log("")
 
-        log(f"Top {TOP_N} institutions by |rank shift|, restricted to institutions gaining "
-            f">=20 authors under the multi-institution roster:")
+        log(f"Top {TOP_N} institutions by |rank shift|, multi-institution vs baseline:")
         movers = con.execute(f"""
-            WITH b AS (SELECT institution_id, institution_name, h2 AS h2_base, author_count AS n_base,
+            WITH b AS (SELECT institution_id, institution_name, h2 AS h2_base,
+                              author_count AS n_base,
                               RANK() OVER (ORDER BY h2 DESC) AS rank_base FROM h2_baseline),
                  m AS (SELECT institution_id, h2 AS h2_multi, author_count AS n_multi,
                               RANK() OVER (ORDER BY h2 DESC) AS rank_multi FROM h2_multi)
-            SELECT b.institution_name, b.h2_base, b.rank_base, m.h2_multi, m.rank_multi,
-                   b.n_base, m.n_multi, (b.rank_base - m.rank_multi) AS shift
+            SELECT b.institution_name, b.h2_base, b.rank_base,
+                   m.h2_multi, m.rank_multi, b.n_base, m.n_multi,
+                   (b.rank_base - m.rank_multi) AS shift
             FROM b JOIN m USING (institution_id)
-            WHERE (m.n_multi - b.n_base) >= 20
             ORDER BY ABS(shift) DESC
             LIMIT {TOP_N}
         """).fetchall()
-        log(f"  {'institution':<40}{'h2_base':>8}{'rank_base':>10}{'h2_multi':>9}{'rank_multi':>11}{'n_base':>8}{'n_multi':>8}{'shift':>7}")
+        log(f"  {'institution':<40}{'h2_base':>8}{'rnk_base':>9}{'h2_multi':>9}"
+            f"{'rnk_multi':>10}{'n_base':>8}{'n_multi':>8}{'shift':>7}")
         for name, h2b, rb, h2m, rm, nb, nm, shift in movers:
-            log(f"  {str(name)[:39]:<40}{h2b:>8}{rb:>10}{h2m:>9}{rm:>11}{nb:>8,}{nm:>8,}{shift:>7}")
+            log(f"  {str(name)[:39]:<40}{h2b:>8}{rb:>9}{h2m:>9}{rm:>10}"
+                f"{nb:>8,}{nm:>8,}{shift:>7}")
         log("")
 
         con.execute(f"""

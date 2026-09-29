@@ -28,12 +28,12 @@ WORLD_ZIP = os.path.join(ROOT_DIR, "data", "external", "ne_50m_admin_0_countries
 WORLD_URL = "https://naciscdn.org/naturalearth/50m/cultural/ne_50m_admin_0_countries.zip"
 OUT_PNG = os.path.join(ROOT_DIR, "results", "h3_choropleth.png")
 
-SURFACE = "#fcfcfb"
+SURFACE = "#ffffff"
 INK = "#0b0b0b"
 MUTED = "#898781"
 NO_DATA_FILL = "#e1e0d9"
 NO_DATA_EDGE = "#c3c2b7"
-BORDER = "#fcfcfb"
+BORDER = "#ffffff"
 
 # Sequential blue ramp, step 100 -> 700 (references/palette.md)
 BLUE_RAMP = [
@@ -110,9 +110,7 @@ def plot_choropleth(gdf):
     cbar.ax.xaxis.set_tick_params(color=MUTED, labelcolor=MUTED)
     cbar.outline.set_edgecolor(MUTED)
 
-    fig.suptitle(
-        "The World, Colored by H3", fontsize=24, fontweight="bold", color=INK, y=0.99,
-    )
+    # fig.suptitle("The World, Colored by H3", fontsize=24, fontweight="bold", color=INK, y=0.99)
 
     fig.tight_layout(rect=(0, 0, 1, 0.92))
     os.makedirs(os.path.dirname(OUT_PNG), exist_ok=True)

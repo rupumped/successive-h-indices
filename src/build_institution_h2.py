@@ -48,6 +48,7 @@ def main():
                            ORDER BY h_index DESC
                        ) AS rank_desc
                 FROM authors
+                WHERE institution_id IS NOT NULL
             ),
             h2_candidates AS (
                 SELECT institution_id,
@@ -60,11 +61,13 @@ def main():
             counts AS (
                 SELECT institution_id, COUNT(*) AS author_count
                 FROM authors
+                WHERE institution_id IS NOT NULL
                 GROUP BY institution_id
             )
             SELECT h.institution_id, h.institution_name, h.h2, c.author_count
             FROM h2_candidates h
             JOIN counts c USING (institution_id)
+            WHERE h.institution_name IS NOT NULL
             ORDER BY h2 DESC, institution_name
         ) TO '{OUT_CSV}' (HEADER, DELIMITER ',')
     """)

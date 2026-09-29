@@ -61,6 +61,7 @@ import os
 import shutil
 import sys
 import time
+import tqdm
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(ROOT_DIR, "data")
@@ -226,6 +227,7 @@ def step2_primary_institutions(con, rollup=True, share_of="edu", rebuild=False,
     staging_glob = staging_glob or os.path.join(WORKS_STAGING_DIR, "*.parquet")
     n_col = "n_rollup" if rollup else "n_direct"
     denom_col = "n_all" if share_of == "all" else n_col
+    con.execute("SET enable_progress_bar=false;")
 
     complete_marker = os.path.join(WORKS_BUCKET_DIR, "_COMPLETE")
     if rebuild or not os.path.exists(complete_marker):
@@ -253,8 +255,7 @@ def step2_primary_institutions(con, rollup=True, share_of="edu", rebuild=False,
         )
     """)
     con.execute("DROP TABLE IF EXISTS primary_institution_config")
-    for b in range(N_BUCKETS):
-        print(f"\r  Aggregating bucket {b+1}/{N_BUCKETS}...", end="", flush=True)
+    for b in tqdm.tqdm(range(N_BUCKETS), desc="  Aggregating buckets", unit="bucket"):
         if not os.path.isdir(os.path.join(WORKS_BUCKET_DIR, f"bucket={b}")):
             continue   # no authors hashed here (only happens on small inputs)
         con.execute(f"""
@@ -301,7 +302,7 @@ def step2_primary_institutions(con, rollup=True, share_of="edu", rebuild=False,
             JOIN tot t USING (author_id)
             LEFT JOIN (SELECT * FROM ranked WHERE rnk = 1) r USING (author_id)
         """)
-    print()
+    con.execute("SET enable_progress_bar=true;")
     con.execute("CREATE TABLE primary_institution_config AS SELECT ? AS config", [config])
 
     n, n_edu, n_pass, n_few, n_share = con.execute(f"""
@@ -541,6 +542,7 @@ def step4_compute_h2(con):
                     ORDER BY h_index DESC
                 ) AS rank_desc
             FROM authors
+            WHERE institution_id IS NOT NULL
         ),
         -- H2 = largest rank where h_index >= rank (same algorithm as h-index itself).
         -- Group by (institution_id, field) only — excluding institution_name/field_name
@@ -558,6 +560,7 @@ def step4_compute_h2(con):
         author_counts AS (
             SELECT institution_id, field, COUNT(*) AS author_count
             FROM authors
+            WHERE institution_id IS NOT NULL
             GROUP BY institution_id, field
         )
         SELECT
@@ -569,6 +572,7 @@ def step4_compute_h2(con):
             a.author_count
         FROM h2_candidates h
         JOIN author_counts a USING (institution_id, field)
+        WHERE h.institution_name IS NOT NULL
         ORDER BY h2 DESC, institution_name, field_name
     """)
 
@@ -589,7 +593,7 @@ def step4b_compute_h2_subfield(con):
                     ORDER BY h_index DESC
                 ) AS rank_desc
             FROM authors
-            WHERE subfield IS NOT NULL
+            WHERE institution_id IS NOT NULL AND subfield IS NOT NULL
         ),
         h2_candidates AS (
             SELECT institution_id, subfield,
@@ -603,7 +607,7 @@ def step4b_compute_h2_subfield(con):
         author_counts AS (
             SELECT institution_id, subfield, COUNT(*) AS author_count
             FROM authors
-            WHERE subfield IS NOT NULL
+            WHERE institution_id IS NOT NULL AND subfield IS NOT NULL
             GROUP BY institution_id, subfield
         )
         SELECT
@@ -615,6 +619,7 @@ def step4b_compute_h2_subfield(con):
             a.author_count
         FROM h2_candidates h
         JOIN author_counts a USING (institution_id, subfield)
+        WHERE h.institution_name IS NOT NULL
         ORDER BY h2 DESC, institution_name, subfield_name
     """)
 

@@ -96,6 +96,8 @@ def make_con():
     con.execute("INSTALL httpfs; LOAD httpfs;")
     con.execute("SET s3_region='us-east-1';")
     con.execute("SET s3_access_key_id=''; SET s3_secret_access_key='';")
+    con.execute("SET http_timeout=300000; SET http_retries=5; "
+                "SET http_retry_wait_ms=2000; SET http_retry_backoff=2;")
     return con
 
 
@@ -270,7 +272,21 @@ def main():
     failed = []
     with ThreadPoolExecutor(max_workers=_workers) as ex, \
             tqdm(total=total_bytes, unit="B", unit_scale=True, desc="works") as bar:
-        futures = {ex.submit(process_file, k): (k, s) for k, s in remaining}
+        def process_with_retry(key, retries=3):
+            for attempt in range(1, retries + 1):
+                if _stop.is_set():
+                    return
+                try:
+                    process_file(key)
+                    return
+                except Exception as e:
+                    if _stop.is_set() or attempt == retries:
+                        raise
+                    wait = 30 * attempt
+                    tqdm.write(f"  RETRY {attempt}/{retries - 1} on {key} in {wait}s: {e}")
+                    time.sleep(wait)
+
+        futures = {ex.submit(process_with_retry, k): (k, s) for k, s in remaining}
         for fut in as_completed(futures):
             k, s = futures[fut]
             try:
