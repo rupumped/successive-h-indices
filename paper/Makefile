@@ -25,7 +25,7 @@ view: report
 submit: report
 	lateflat .
 	cp sn-apacite.bst submit/
-	cd submit && pdflatex $(DOCNAME).tex && bibtex $(DOCNAME).aux && pdflatex $(DOCNAME).tex && pdflatex $(DOCNAME).tex
+	cd submit && pdflatex "\PassOptionsToPackage{monochrome}{xcolor}\input{$(DOCNAME).tex}" && bibtex $(DOCNAME).aux && pdflatex "\PassOptionsToPackage{monochrome}{xcolor}\input{$(DOCNAME).tex}" && pdflatex "\PassOptionsToPackage{monochrome}{xcolor}\input{$(DOCNAME).tex}"
 	$(OPEN) submit/$(DOCNAME).pdf
 
 clean:
