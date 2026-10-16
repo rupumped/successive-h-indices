@@ -27,15 +27,16 @@ Four authors, however, show disagreement well outside this range. I read this as
 	\item \textbf{Donald Small} (Johns Hopkins): $\mathrm{h}_1^{\mathrm{OpenAlex}}=103$ against Scopus $=57$ and Google Scholar $=59$.
 	\item \textbf{Karen S.\ Calhoun} (University of Michigan): $\mathrm{h}_1^{\mathrm{OpenAlex}}=45$ against Scopus $=11$ and Google Scholar $=13$.
 	\item \textbf{Lei Jiang} (University of Science and Technology of China): $\mathrm{h}_1^{\mathrm{OpenAlex}}=215$ against Web of Science $=115$, consistent with documented China-specific coverage discrepancies in OpenAlex~\citep{zheng2025}.
-	\item \textbf{A.\ Jafari} (Sharif University of Technology): $\mathrm{h}_1^{\mathrm{OpenAlex}}=139$, but Web of Science, Scopus, and Google Scholar report $41$, $133$, and $224$ respectively.
+	\item \textbf{A.\ Jafari} (Sharif University of Technology): $\mathrm{h}_1^{\mathrm{OpenAlex}}=139$, with Scopus $=133$ and Google Scholar $=224$; Web of Science reports only $41$.
 \end{itemize}
-All four fall in the non-Anglophone-institution or common-name strata of the sample, matching the concern raised in Subsection~\ref{subsec:methods-crossval} that disambiguation is more error-prone for exactly these authors. Because such merges can only inflate an author's apparent $\mathrm{h}_1$, and $\mathrm{h}_1$ feeds directly into $\mathrm{h}_2$ and $\mathrm{h}_3$, a handful of merged identities at the right institution could measurably distort an institution- or country-level ranking; I flag this as an open limitation rather than one this sample can size definitively. This sample is deliberately adversarial, chosen to find errors, not to estimate how often they occur. The 4/30 (13\%) outlier fraction should not be read as an estimate of how much of the full dataset is affected. The same pattern, disambiguation precision concentrated lower for common names and non-Anglophone institutions, appears in an independent benchmark of 2{,}700 scholars sampled systematically across three regions~\citep{zhao2025}, corroborating that this is a geographically and onomastically concentrated failure mode rather than an artifact of this particular sample. OpenAlex's maintainers report an ongoing correction effort targeting exactly this kind of over-merging, with corresponding-author identification precision rising from 0.60 to 0.92 (F1 0.72 to 0.90) after a 2026 rework of the underlying author-matching model~\citep{demes2026}. Subsection~\ref{subsec:results-sensitivity} quantifies how much a population-wide error rate at or below the adversarial sample's raw rate would actually move this paper's rankings.
+\textcolor{red}{The first three cases show large OpenAlex--Scopus discrepancies (factors of 1.8--4.1$\times$) consistent with multi-person merges. The A.\ Jafari case is different: OpenAlex (139) and Scopus (133) agree closely (4\% difference), and the low Web of Science value (41) is more plausibly explained by WoS's documented undercoverage of non-Anglophone institutions than by an OpenAlex over-merge. Cross-database h-index differences alone cannot distinguish disambiguation errors from coverage differences; publication-level identity verification (matching individual works across databases) would be needed for a definitive conclusion and is beyond the scope of this paper. We retain A.\ Jafari in the perturbation ratio pool as a conservative choice but note that this case is less clearly a disambiguation failure than the other three.}
+The \textcolor{red}{three more definitive} cases fall in the non-Anglophone-institution or common-name strata of the sample, matching the concern raised in Subsection~\ref{subsec:methods-crossval} that disambiguation is more error-prone for exactly these authors. Because such merges can only inflate an author's apparent $\mathrm{h}_1$, and $\mathrm{h}_1$ feeds directly into $\mathrm{h}_2$ and $\mathrm{h}_3$, a handful of merged identities at the right institution could measurably distort an institution- or country-level ranking; I flag this as an open limitation rather than one this sample can size definitively. This sample is deliberately adversarial, chosen to find errors, not to estimate how often they occur. The 4/30 (13\%) outlier fraction should not be read as an estimate of how much of the full dataset is affected. The same pattern, disambiguation precision concentrated lower for common names and non-Anglophone institutions, appears in an independent benchmark of 2{,}700 scholars sampled systematically across three regions~\citep{zhao2025}, corroborating that this is a geographically and onomastically concentrated failure mode rather than an artifact of this particular sample. OpenAlex's maintainers report an ongoing correction effort targeting exactly this kind of over-merging, with corresponding-author identification precision rising from 0.60 to 0.92 (F1 0.72 to 0.90) after a 2026 rework of the underlying author-matching model~\citep{demes2026}. Subsection~\ref{subsec:results-sensitivity} quantifies how much a population-wide error rate at or below the adversarial sample's raw rate would actually move this paper's rankings.
 
 The four Arts and Humanities threshold authors sampled (Gillian Ramchand and G.\ Herbert Fowler at Oxford; D.H.\ Mellor and James Raven at Cambridge) illustrate the range of under-coverage across major citation databases: Ramchand and Fowler returned no value in any of the three external sources, while Mellor (OA~$\mathrm{h}_1=28$) and Raven (OA~$\mathrm{h}_1=24$) appeared in Scopus at roughly half their OpenAlex values ($\mathrm{h}_1=13$ and 12, respectively); for Raven, Google Scholar (26) brackets the OpenAlex value closely. This is consistent with the well-documented weaker coverage of book-based humanities scholarship in all major citation databases~\citep{nederhof2006} and suggests that h-index comparisons in these fields should be read with correspondingly less confidence than in the sciences.
 
 \subsection{The overall h\textsubscript{2} ranking}
 \label{subsec:overall-h2}
-Table~\ref{tab:overall-h2} lists the ten institutions with the highest institution-level h\textsubscript{2}, computed over all \textcolor{red}{22,980} institutions and \textcolor{red}{13.3} million authors described in Section~\ref{sec:methodology}.
+Table~\ref{tab:overall-h2} lists the ten institutions with the highest institution-level h\textsubscript{2}, computed over all 22,980 institutions and 13.3 million authors described in Section~\ref{sec:methodology}.
 
 \begin{table}[h]
 	\centering
@@ -45,16 +46,16 @@ Table~\ref{tab:overall-h2} lists the ten institutions with the highest instituti
 	\toprule
 	Institution & h\textsubscript{2} & Authors \\
 	\midrule
-	\textcolor{red}{Harvard University} & \textcolor{red}{135} & \textcolor{red}{47,279} \\
-	\textcolor{red}{Stanford University} & \textcolor{red}{113} & \textcolor{red}{36,976} \\
-	\textcolor{red}{University of Antwerp} & \textcolor{red}{106} & \textcolor{red}{7,207} \\
-	\textcolor{red}{University of California San Diego} & \textcolor{red}{106} & \textcolor{red}{24,953} \\
-	\textcolor{red}{University of Cambridge} & \textcolor{red}{106} & \textcolor{red}{24,810} \\
-	\textcolor{red}{University of Oxford} & \textcolor{red}{105} & \textcolor{red}{28,577} \\
-	\textcolor{red}{University of Washington} & \textcolor{red}{104} & \textcolor{red}{30,392} \\
-	\textcolor{red}{Johns Hopkins University} & \textcolor{red}{102} & \textcolor{red}{33,329} \\
-	\textcolor{red}{Massachusetts Institute of Technology} & \textcolor{red}{101} & \textcolor{red}{21,527} \\
-	\textcolor{red}{University College London} & \textcolor{red}{101} & \textcolor{red}{33,413} \\
+	Harvard University & 135 & 47,279 \\
+	Stanford University & 113 & 36,976 \\
+	University of Antwerp & 106 & 7,207 \\
+	University of California San Diego & 106 & 24,953 \\
+	University of Cambridge & 106 & 24,810 \\
+	University of Oxford & 105 & 28,577 \\
+	University of Washington & 104 & 30,392 \\
+	Johns Hopkins University & 102 & 33,329 \\
+	Massachusetts Institute of Technology & 101 & 21,527 \\
+	University College London & 101 & 33,413 \\
 	\bottomrule
 	\end{tabular}
 \end{table}
@@ -63,7 +64,7 @@ This broadly tracks the US News and World Report ranking, where Harvard also pla
 
 \subsection{Field-level heterogeneity}
 \label{subsec:field-level}
-Splitting h\textsubscript{2} by (institution, field) reveals that the overall ranking is deceptive: several institutions that never come close to the top of Table~\ref{tab:overall-h2} rank first globally in their field by this measure. Table~\ref{tab:field-leaders} lists a sample of these cases.
+Splitting h\textsubscript{2} by (institution, field) reveals that the overall ranking is deceptive: several institutions that never come close to the top of Table~\ref{tab:overall-h2} rank first globally in their field by this measure. Table~\ref{tab:field-leaders} lists a sample of these cases. \textcolor{red}{A note on interpretation: field-specific h\textsubscript{2} uses each author's overall h\textsubscript{1} rather than a citation count restricted to within-field works. It measures the concentration of researchers whose modal field is the assigned discipline and who have strong overall h\textsubscript{1} values.}
 
 \begin{table}[h]
 	\centering
@@ -75,59 +76,59 @@ Splitting h\textsubscript{2} by (institution, field) reveals that the overall ra
 	\toprule
 	Field & Leader & Ov.\ rank & Ov.\ h\textsubscript{2} & Field h\textsubscript{2} \\
 	\midrule
-	\textcolor{red}{Agricultural \& Biological Sciences} & \textcolor{red}{Wageningen} & \textcolor{red}{148} & \textcolor{red}{73} & \textcolor{red}{58} \\
-	\textcolor{red}{Environmental Science} & \textcolor{red}{Univ.\ of Chinese Academy of Sciences} & \textcolor{red}{24} & \textcolor{red}{95} & \textcolor{red}{60} \\
-	\textcolor{red}{Pharmacology, Toxicology \& Pharmaceutics} & \textcolor{red}{Shenyang Pharmaceutical University} & \textcolor{red}{957} & \textcolor{red}{40} & \textcolor{red}{26} \\
-	\textcolor{red}{Computer Science} & \textcolor{red}{Carnegie Mellon University} & \textcolor{red}{159} & \textcolor{red}{71} & \textcolor{red}{56} \\
-	\textcolor{red}{Materials Science} & \textcolor{red}{Univ.\ of Chinese Academy of Sciences} & \textcolor{red}{24} & \textcolor{red}{95} & \textcolor{red}{71} \\
-	\textcolor{red}{Engineering} & \textcolor{red}{Univ.\ of Chinese Academy of Sciences} & \textcolor{red}{24} & \textcolor{red}{95} & \textcolor{red}{71} \\
-	\textcolor{red}{Energy} & \textcolor{red}{USTC} & \textcolor{red}{66} & \textcolor{red}{84} & \textcolor{red}{51} \\
-	\textcolor{red}{Chemical Engineering} & \textcolor{red}{Univ.\ of Chinese Academy of Sciences} & \textcolor{red}{24} & \textcolor{red}{95} & \textcolor{red}{30} \\
-	\textcolor{red}{Dentistry} & \textcolor{red}{Universidade de São Paulo} & \textcolor{red}{226} & \textcolor{red}{66} & \textcolor{red}{37} \\
+	Agricultural \& Biological Sciences & Wageningen & 148 & 73 & 58 \\
+	Environmental Science & Univ.\ of Chinese Academy of Sciences & 24 & 95 & 60 \\
+	Pharmacology, Toxicology \& Pharmaceutics & Shenyang Pharmaceutical University & 957 & 40 & 26 \\
+	Computer Science & Carnegie Mellon University & 159 & 71 & 56 \\
+	Materials Science & Univ.\ of Chinese Academy of Sciences & 24 & 95 & 71 \\
+	Engineering & Univ.\ of Chinese Academy of Sciences & 24 & 95 & 71 \\
+	Energy & USTC & 66 & 84 & 51 \\
+	Chemical Engineering & Univ.\ of Chinese Academy of Sciences & 24 & 95 & 30 \\
+	Dentistry & Universidade de São Paulo & 226 & 66 & 37 \\
 	\bottomrule
 	\end{tabular}
 	\renewcommand{\arraystretch}{1}
 \end{table}
 
-University of Antwerp is the counterexample that proves the rule holds both ways: it is \textcolor{red}{\#3} overall ($\mathrm{h}_2=\textcolor{red}{106}$) \emph{and} \#1 in Physics and Astronomy, a broad powerhouse that also ranks first in a specific, non-biomedical field. Universidade Estadual de Campinas (UNICAMP) places 6th in Dentistry behind São Paulo, placing Brazil among the top six globally in Dentistry by this measure despite the country appearing nowhere near the top of any general-purpose ranking~\citep{vaccaro2022bibliometrics}. \textcolor{red}{China's leading field-level h\textsubscript{2} positions in applied sciences are concentrated in the University of Chinese Academy of Sciences (UCAS, rank 24 overall, h\textsubscript{2}=95), which leads Environmental Science, Materials Science, Engineering, and Chemical Engineering by field h\textsubscript{2}, while its sister institution, the University of Science and Technology of China (USTC, rank 66, h\textsubscript{2}=84), leads Energy.}
+University of Antwerp is the counterexample that proves the rule holds both ways: it is \#3 overall ($\mathrm{h}_2=106$) \emph{and} \#1 in Physics and Astronomy, a broad powerhouse that also ranks first in a specific, non-biomedical field. Universidade Estadual de Campinas (UNICAMP) places 6th in Dentistry behind São Paulo, placing Brazil among the top six globally in Dentistry by this measure despite the country appearing nowhere near the top of any general-purpose ranking~\citep{vaccaro2022bibliometrics}. China's leading field-level h\textsubscript{2} positions in applied sciences are concentrated in the University of Chinese Academy of Sciences (UCAS, rank 24 overall, h\textsubscript{2}=95), which leads Environmental Science, Materials Science, Engineering, and Chemical Engineering by field h\textsubscript{2}, while its sister institution, the University of Science and Technology of China (USTC, rank 66, h\textsubscript{2}=84), leads Energy.
 
-Not every field supports this kind of comparison equally well. Decision Sciences is the thinnest field in the dataset: Stanford's global \#1 is $\mathrm{h}_2=\textcolor{red}{20}$, built on only \textcolor{red}{129} Stanford authors against \textcolor{red}{56,987} authors field-wide, versus Medicine's $\mathrm{h}_2=\textcolor{red}{118}$ built on \textcolor{red}{3.23} million authors field-wide. h\textsubscript{2} is not meaningfully comparable across fields of such different size, only within a field, and Decision Sciences in particular may be too sparse an OpenAlex topic category for its ranking to carry much signal.
+Not every field supports this kind of comparison equally well. Decision Sciences is the thinnest field in the dataset: Stanford's global \#1 is $\mathrm{h}_2=20$, built on only 129 Stanford authors against 56,987 authors field-wide, versus Medicine's $\mathrm{h}_2=118$ built on 3.23 million authors field-wide. h\textsubscript{2} is not meaningfully comparable across fields of such different size, only within a field, and Decision Sciences in particular may be too sparse an OpenAlex topic category for its ranking to carry much signal.
 
 \subsection{Robustness of field-specific rankings to multi-field assignment}
 \label{subsec:results-field-robustness}
 The single-field assignment described in Subsection~\ref{subsec:author-assignment} asks which field accounts for the plurality of an author's publication volume, and assigns them exclusively there. To test how much this choice moves the field-level rankings, I re-run the field-specific h\textsubscript{2} computation after allowing each author to count in every field for which their OpenAlex topic-weight share is at least $\tau$ in accordance with Subsection~\ref{subsec:methods-field-robustness}.
 
-At $\tau = 33\%$ (an author must contribute at least one third of their output to count in a field), the (institution, field) pair count rises by \textcolor{red}{16.0\%} (\textcolor{red}{229{,}309} $\to$ \textcolor{red}{266{,}002} pairs). The Spearman rank correlation between original and multi-field h\textsubscript{2} values, computed on the inner join of shared pairs, is $\rho = \textcolor{red}{0.960}$: field rankings are highly stable. Of the \textcolor{red}{28} fields' leading institutions \textcolor{red}{(26 fields, but Social Sciences and Business, Management and Accounting each have two institutions tied for the top h\textsubscript{2} value, yielding 28 leader entries)}, 23 are unchanged. The Wageningen Ag\&Bio leadership (Table~\ref{tab:field-leaders}) survives, Carnegie Mellon's Computer Science lead survives (tied with MIT, $\mathrm{h}_2 = 56$)\textcolor{red}{, and the University of Chinese Academy of Sciences (UCAS) Environmental Science lead ($\mathrm{h}_2 = 62$, baseline $\mathrm{h}_2 = 60$) also survives. The two methods answer different questions.} The single-field assignment identifies institutions where Environmental Science is researchers' \emph{primary} field; the multi-field assignment identifies institutions with the most researchers for whom it is a \emph{substantial} field.
+At $\tau = 33\%$ (an author must contribute at least one third of their output to count in a field), the (institution, field) pair count rises by 16.0\% (229{,}309 $\to$ 266{,}002 pairs). The Spearman rank correlation between original and multi-field h\textsubscript{2} values, computed on the inner join of shared pairs, is $\rho = 0.960$: field rankings are highly stable. Of the 28 fields' leading institutions (26 fields, but Social Sciences and Business, Management and Accounting each have two institutions tied for the top h\textsubscript{2} value, yielding 28 leader entries), 23 are unchanged. The Wageningen Ag\&Bio leadership (Table~\ref{tab:field-leaders}) survives, Carnegie Mellon's Computer Science lead survives (tied with MIT, $\mathrm{h}_2 = 56$), and the University of Chinese Academy of Sciences (UCAS) Environmental Science lead ($\mathrm{h}_2 = 62$, baseline $\mathrm{h}_2 = 60$) also survives. The two methods answer different questions. The single-field assignment identifies institutions where Environmental Science is researchers' \emph{primary} field; the multi-field assignment identifies institutions with the most researchers for whom it is a \emph{substantial} field.
 
-At $\tau = 20\%$ (a more aggressive threshold admitting all authors with one fifth or more of their output in a field), the pair count rises by \textcolor{red}{39.6\%} (\textcolor{red}{229{,}309} to \textcolor{red}{320{,}067}) and $\rho = \textcolor{red}{0.901}$; \textcolor{red}{21} of \textcolor{red}{28} field leaders survive. Carnegie Mellon's Computer Science lead also falls at this threshold, with Stanford leading instead ($\mathrm{h}_2 = 62$), consistent with the same mechanism of Stanford having a larger population of researchers with at least 20\% CS output, even if CS is not their modal field. These findings confirm that the overall field ranking structure is broadly stable under multi-field assignment but that the field-leadership claims for smaller, highly specialised institutions depend on how narrowly ``counts in this field'' is defined.
+At $\tau = 20\%$ (a more aggressive threshold admitting all authors with one fifth or more of their output in a field), the pair count rises by 39.6\% (229{,}309 to 320{,}067) and $\rho = 0.901$; 21 of 28 field leaders survive. Carnegie Mellon's Computer Science lead also falls at this threshold, with Stanford leading instead ($\mathrm{h}_2 = 62$), consistent with the same mechanism of Stanford having a larger population of researchers with at least 20\% CS output, even if CS is not their modal field. These findings confirm that the overall field ranking structure is broadly stable under multi-field assignment but that the field-leadership claims for smaller, highly specialised institutions depend on how narrowly ``counts in this field'' is defined.
 % Given this sensitivity, the field-leadership claims in Table~\ref{tab:field-leaders} should be read as reflecting depth of specialisation under the paper's single-field assignment.
 
 \subsection{Robustness of institutional rankings to attribution method}
 \label{subsec:results-institution-robustness}
-\textcolor{red}{Table~\ref{tab:attribution-sensitivity} reports rank-correlation statistics for the four sensitivity variants described in Subsection~\ref{subsec:methods-institution-robustness}, each compared against the paper's default primary-institution assignment. Institution-level h\textsubscript{2} Spearman rank correlations $\rho$ are computed over institutions shared between the default and variant rosters; country-level h\textsubscript{3} correlations use the fixed institution-to-country mapping.}
+Table~\ref{tab:attribution-sensitivity} reports rank-correlation statistics for the four sensitivity variants described in Subsection~\ref{subsec:methods-institution-robustness}, each compared against the paper's default primary-institution assignment. Institution-level h\textsubscript{2} Spearman rank correlations $\rho$ are computed over institutions shared between the default and variant rosters; country-level h\textsubscript{3} correlations use the fixed institution-to-country mapping.
 
 \begin{table}[h]
     \centering
     \small
-    \caption{\textcolor{red}{Sensitivity of institution h\textsubscript{2} and country h\textsubscript{3} rankings to four alternative attribution methods, each compared against the default primary-institution assignment. Spearman $\rho$ is computed over shared institutions (for h\textsubscript{2}) or shared countries (for h\textsubscript{3}); top-10 overlap counts institutions/countries common to both top-10 lists.}}
+    \caption{Sensitivity of institution h\textsubscript{2} and country h\textsubscript{3} rankings to four alternative attribution methods, each compared against the default primary-institution assignment. Spearman $\rho$ is computed over shared institutions (for h\textsubscript{2}) or shared countries (for h\textsubscript{3}); top-10 overlap counts institutions/countries common to both top-10 lists.}
     \label{tab:attribution-sensitivity}
     \begin{tabular}{@{}lrrrrrr@{}}
     \toprule
-    \textcolor{red}{Attribution variant} & \textcolor{red}{h\textsubscript{2} $\rho$} & \textcolor{red}{h\textsubscript{2} top-10} & \textcolor{red}{h\textsubscript{3} $\rho$} & \textcolor{red}{h\textsubscript{3} top-10} \\
+    Attribution variant & h\textsubscript{2 $\rho$} & h\textsubscript{2} top-10 & h\textsubscript{3} $\rho$ & h\textsubscript{3} top-10 \\
     \midrule
-    \textcolor{red}{Multi-institution} & \textcolor{red}{0.9391} & \textcolor{red}{7/10} & \textcolor{red}{0.9954} & \textcolor{red}{9/10} \\
-    \textcolor{red}{No rollup} & \textcolor{red}{0.9985} & \textcolor{red}{9/10} & \textcolor{red}{0.9976} & \textcolor{red}{10/10} \\
-    \textcolor{red}{Share of all works} & \textcolor{red}{0.9986} & \textcolor{red}{9/10} & \textcolor{red}{0.9973} & \textcolor{red}{10/10} \\
-    \textcolor{red}{Most-recent snapshot} & \textcolor{red}{0.9074} & \textcolor{red}{7/10} & \textcolor{red}{0.9906} & \textcolor{red}{9/10} \\
+    \textcolor{red}{Full-counting} & 0.9391 & 7/10 & 0.9954 & 9/10 \\
+    No rollup & 0.9985 & 9/10 & 0.9976 & 10/10 \\
+    Share of all works & 0.9986 & 9/10 & 0.9973 & 10/10 \\
+    Most-recent snapshot & 0.9074 & 7/10 & 0.9906 & 9/10 \\
     \bottomrule
     \end{tabular}
 \end{table}
 
-\textcolor{red}{The no-rollup and share-of-all variants are nearly indistinguishable from the default: institution h\textsubscript{2} Spearman correlations of 0.998--0.999 and top-10 overlaps of 9/10 confirm that neither the rollup rule nor the denominator choice for the 10\% share threshold materially shifts the rankings.}
+The no-rollup and share-of-all variants are nearly indistinguishable from the default: institution h\textsubscript{2} Spearman correlations of 0.998--0.999 and top-10 overlaps of 9/10 confirm that neither the rollup rule nor the denominator choice for the 10\% share threshold materially shifts the rankings.
 
-\textcolor{red}{The most-recent-snapshot variant, which reverts to reading each author's primary institution directly from the OpenAlex author snapshot rather than from the works-based five-year window, produces a lower institution h\textsubscript{2} Spearman correlation of 0.907. Seven of the ten top-ranked institutions are shared with the default top-10, but the three that differ include institutions whose apparent performance under the most-recent-snapshot rule reflects single-paper secondary affiliations rather than sustained research presence, the pattern the primary-institution rule was designed to exclude. Country h\textsubscript{3} is more stable ($\rho = 0.991$, 9/10 top-10 overlap), consistent with country aggregation smoothing institution-level noise. These results confirm that the choice between snapshot-based and works-based attribution is the dominant source of sensitivity in this paper's rankings, while choices within the works-based approach (rollup, denominator) are comparatively minor.}
+The most-recent-snapshot variant, which reverts to reading each author's primary institution directly from the OpenAlex author snapshot rather than from the works-based five-year window, produces a lower institution h\textsubscript{2} Spearman correlation of 0.907. Seven of the ten top-ranked institutions are shared with the default top-10, but the three that differ include institutions whose apparent performance under the most-recent-snapshot rule reflects single-paper secondary affiliations rather than sustained research presence, the pattern the primary-institution rule was designed to exclude. Country h\textsubscript{3} is more stable ($\rho = 0.991$, 9/10 top-10 overlap), consistent with country aggregation smoothing institution-level noise. These results confirm that the choice between snapshot-based and works-based attribution is the dominant source of sensitivity in this paper's rankings, while choices within the works-based approach (rollup, denominator) are comparatively minor.
 
-\textcolor{red}{Rather than assigning each author to a single institution, the multi-institution variant credits each author's full h\textsubscript{1} to every institution meeting both thresholds in their five-year window. Of the 13.3 million qualifying authors, 18.0\% (2,858,984) qualify at two or more institutions under this rule, producing 17.2 million (author, institution) attributions. Institution h\textsubscript{2} Spearman correlation is $\rho = 0.939$ (7/10 top-10 overlap); country h\textsubscript{3} is $\rho = 0.995$ (9/10 top-10 overlap). The three institutions entering the multi-institution top-10 that were not in the default top-10 (the University of Adelaide, Universit\'{e} Paris-Saclay, and Universit\'{e} Paris Cit\'{e}) are large research universities whose researchers commonly hold dual appointments with national research agencies \citep{cnrsHome,insermHome}, so they gain more authors under a multi-institution rule. The overall structure of the rankings is broadly stable at both the institution and country level.}
+Rather than assigning each author to a single institution, the \textcolor{red}{full-counting variant} credits each author's full h\textsubscript{1} to every institution meeting both thresholds in their five-year window. Of the \textcolor{red}{15.9 million authors with a works-based primary institution assigned, 18.0\%} (2,858,984) qualify at two or more institutions under this rule, producing 17.2 million (author, institution) attributions. Institution h\textsubscript{2} Spearman correlation is $\rho = 0.939$ (7/10 top-10 overlap); country h\textsubscript{3} is $\rho = 0.995$ (9/10 top-10 overlap). The three institutions entering the \textcolor{red}{full-counting} top-10 that were not in the default top-10 (the University of Adelaide, Universit\'{e} Paris-Saclay, and Universit\'{e} Paris Cit\'{e}) are large research universities whose researchers commonly hold dual appointments with national research agencies \citep{cnrsHome,insermHome}, so they gain more authors under a \textcolor{red}{full-counting} rule. The overall structure of the rankings is broadly stable at both the institution and country level.
 
 \subsection{Concentration within fields}
 \label{subsec:gini}
@@ -142,41 +143,41 @@ Table~\ref{tab:gini} reports, for every field, the Gini coefficient of instituti
 	\toprule
 	Field & Institutions & Max h\textsubscript{2} & Mean h\textsubscript{2} & Gini \\
 	\midrule
-	\textcolor{red}{Physics and Astronomy} & \textcolor{red}{9,054} & \textcolor{red}{104} & \textcolor{red}{6.42} & \textcolor{red}{0.619} \\
-	\textcolor{red}{Biochemistry, Genetics \& Molecular Biology} & \textcolor{red}{11,181} & \textcolor{red}{100} & \textcolor{red}{6.88} & \textcolor{red}{0.590} \\
-	\textcolor{red}{Neuroscience} & \textcolor{red}{7,808} & \textcolor{red}{62} & \textcolor{red}{4.94} & \textcolor{red}{0.581} \\
-	\textcolor{red}{Medicine} & \textcolor{red}{16,228} & \textcolor{red}{118} & \textcolor{red}{7.40} & \textcolor{red}{0.579} \\
-	\textcolor{red}{Earth and Planetary Sciences} & \textcolor{red}{7,787} & \textcolor{red}{58} & \textcolor{red}{4.74} & \textcolor{red}{0.573} \\
-	\textcolor{red}{Immunology and Microbiology} & \textcolor{red}{6,095} & \textcolor{red}{63} & \textcolor{red}{4.46} & \textcolor{red}{0.568} \\
-	\textcolor{red}{Materials Science} & \textcolor{red}{10,008} & \textcolor{red}{71} & \textcolor{red}{6.75} & \textcolor{red}{0.562} \\
-	\textcolor{red}{Environmental Science} & \textcolor{red}{12,793} & \textcolor{red}{60} & \textcolor{red}{5.58} & \textcolor{red}{0.557} \\
-	\textcolor{red}{Engineering} & \textcolor{red}{14,486} & \textcolor{red}{71} & \textcolor{red}{6.78} & \textcolor{red}{0.556} \\
-	\textcolor{red}{Agricultural and Biological Sciences} & \textcolor{red}{12,877} & \textcolor{red}{58} & \textcolor{red}{5.45} & \textcolor{red}{0.535} \\
-	\textcolor{red}{Chemistry} & \textcolor{red}{8,463} & \textcolor{red}{50} & \textcolor{red}{5.35} & \textcolor{red}{0.535} \\
-	\textcolor{red}{Psychology} & \textcolor{red}{11,486} & \textcolor{red}{56} & \textcolor{red}{3.83} & \textcolor{red}{0.530} \\
-	\textcolor{red}{Dentistry} & \textcolor{red}{4,712} & \textcolor{red}{37} & \textcolor{red}{3.65} & \textcolor{red}{0.527} \\
-	\textcolor{red}{Computer Science} & \textcolor{red}{14,392} & \textcolor{red}{56} & \textcolor{red}{5.06} & \textcolor{red}{0.519} \\
-	\textcolor{red}{Energy} & \textcolor{red}{6,246} & \textcolor{red}{51} & \textcolor{red}{3.92} & \textcolor{red}{0.514} \\
-	\textcolor{red}{Mathematics} & \textcolor{red}{8,046} & \textcolor{red}{35} & \textcolor{red}{3.74} & \textcolor{red}{0.490} \\
-	\textcolor{red}{Social Sciences} & \textcolor{red}{17,646} & \textcolor{red}{46} & \textcolor{red}{4.15} & \textcolor{red}{0.488} \\
-	\textcolor{red}{Economics, Econometrics and Finance} & \textcolor{red}{10,238} & \textcolor{red}{54} & \textcolor{red}{3.47} & \textcolor{red}{0.486} \\
-	\textcolor{red}{Business, Management and Accounting} & \textcolor{red}{11,909} & \textcolor{red}{32} & \textcolor{red}{3.77} & \textcolor{red}{0.485} \\
-	\textcolor{red}{Health Professions} & \textcolor{red}{10,317} & \textcolor{red}{40} & \textcolor{red}{3.05} & \textcolor{red}{0.479} \\
-	\textcolor{red}{Veterinary} & \textcolor{red}{2,162} & \textcolor{red}{26} & \textcolor{red}{2.52} & \textcolor{red}{0.468} \\
-	\textcolor{red}{Pharmacology, Toxicology and Pharmaceutics} & \textcolor{red}{4,392} & \textcolor{red}{26} & \textcolor{red}{2.96} & \textcolor{red}{0.456} \\
-	\textcolor{red}{Arts and Humanities} & \textcolor{red}{10,759} & \textcolor{red}{28} & \textcolor{red}{2.70} & \textcolor{red}{0.451} \\
-	\textcolor{red}{Chemical Engineering} & \textcolor{red}{3,486} & \textcolor{red}{30} & \textcolor{red}{2.88} & \textcolor{red}{0.443} \\
-	\textcolor{red}{Nursing} & \textcolor{red}{5,333} & \textcolor{red}{32} & \textcolor{red}{2.63} & \textcolor{red}{0.435} \\
-	\textcolor{red}{Decision Sciences} & \textcolor{red}{6,961} & \textcolor{red}{20} & \textcolor{red}{2.63} & \textcolor{red}{0.432} \\
+	Physics and Astronomy & 9,054 & 104 & 6.42 & 0.619 \\
+	Biochemistry, Genetics \& Molecular Biology & 11,181 & 100 & 6.88 & 0.590 \\
+	Neuroscience & 7,808 & 62 & 4.94 & 0.581 \\
+	Medicine & 16,228 & 118 & 7.40 & 0.579 \\
+	Earth and Planetary Sciences & 7,787 & 58 & 4.74 & 0.573 \\
+	Immunology and Microbiology & 6,095 & 63 & 4.46 & 0.568 \\
+	Materials Science & 10,008 & 71 & 6.75 & 0.562 \\
+	Environmental Science & 12,793 & 60 & 5.58 & 0.557 \\
+	Engineering & 14,486 & 71 & 6.78 & 0.556 \\
+	Agricultural and Biological Sciences & 12,877 & 58 & 5.45 & 0.535 \\
+	Chemistry & 8,463 & 50 & 5.35 & 0.535 \\
+	Psychology & 11,486 & 56 & 3.83 & 0.530 \\
+	Dentistry & 4,712 & 37 & 3.65 & 0.527 \\
+	Computer Science & 14,392 & 56 & 5.06 & 0.519 \\
+	Energy & 6,246 & 51 & 3.92 & 0.514 \\
+	Mathematics & 8,046 & 35 & 3.74 & 0.490 \\
+	Social Sciences & 17,646 & 46 & 4.15 & 0.488 \\
+	Economics, Econometrics and Finance & 10,238 & 54 & 3.47 & 0.486 \\
+	Business, Management and Accounting & 11,909 & 32 & 3.77 & 0.485 \\
+	Health Professions & 10,317 & 40 & 3.05 & 0.479 \\
+	Veterinary & 2,162 & 26 & 2.52 & 0.468 \\
+	Pharmacology, Toxicology and Pharmaceutics & 4,392 & 26 & 2.96 & 0.456 \\
+	Arts and Humanities & 10,759 & 28 & 2.70 & 0.451 \\
+	Chemical Engineering & 3,486 & 30 & 2.88 & 0.443 \\
+	Nursing & 5,333 & 32 & 2.63 & 0.435 \\
+	Decision Sciences & 6,961 & 20 & 2.63 & 0.432 \\
 	\bottomrule
 	\end{tabular}
 \end{table}
 
-Physics and Astronomy is the most unequal field: University of Antwerp's $\mathrm{h}_2=\textcolor{red}{104}$ is \textcolor{red}{16.2} times the field mean of \textcolor{red}{6.4}. Decision Sciences is the most evenly distributed (Gini $\approx \textcolor{red}{0.43}$).
+Physics and Astronomy is the most unequal field: University of Antwerp's $\mathrm{h}_2=104$ is 16.2 times the field mean of 6.4. Decision Sciences is the most evenly distributed (Gini $\approx 0.43$). \textcolor{red}{The Gini coefficient here measures inequality in the distribution of h\textsubscript{2} scores across institutions within a field, not inequality in research output or citation impact. Institutions with no authors assigned to a field are excluded from that field's Gini computation; their inclusion as $\mathrm{h}_2 = 0$ would increase all Gini values.}
 
 \subsection{The overall ranking as an implicit biomedical ranking}
 \label{subsec:nonbiomedical}
-Medicine alone accounts for \textcolor{red}{3.23} million of the dataset's \textcolor{red}{13.3} million authors (\textcolor{red}{24}\%), and, together with Biochemistry/Genetics/Molecular Biology, Immunology and Microbiology, Neuroscience, and Health Professions, the five core biomedical fields dwarf every other field's author pool. Table~\ref{tab:nonbio} recomputes institution-level h\textsubscript{2} after excluding authors in these five fields entirely to test whether the overall ranking in Table~\ref{tab:overall-h2} is, in substance, a ranking of medical school size.
+Medicine alone accounts for 3.23 million of the dataset's 13.3 million authors (24\%), and, together with Biochemistry/Genetics/Molecular Biology, Immunology and Microbiology, Neuroscience, and Health Professions, the five core biomedical fields dwarf every other field's author pool. Table~\ref{tab:nonbio} recomputes institution-level h\textsubscript{2} after excluding authors in these five fields entirely to test \textcolor{red}{how substantially the overall ranking is shaped by biomedical field representation.}
 
 \begin{table}[h]
 	\centering
@@ -186,21 +187,21 @@ Medicine alone accounts for \textcolor{red}{3.23} million of the dataset's \text
 	\toprule
 	Institution & Rank & h\textsubscript{2} & Overall rank & Overall h\textsubscript{2} & $\Delta$rank \\
 	\midrule
-	\textcolor{red}{University of Antwerp} & \textcolor{red}{1} & \textcolor{red}{105} & \textcolor{red}{3} & \textcolor{red}{106} & \textcolor{red}{+2} \\
-	\textcolor{red}{Harvard University} & \textcolor{red}{2} & \textcolor{red}{100} & \textcolor{red}{1} & \textcolor{red}{135} & \textcolor{red}{$-$1} \\
-	\textcolor{red}{Stanford University} & \textcolor{red}{3} & \textcolor{red}{100} & \textcolor{red}{2} & \textcolor{red}{113} & \textcolor{red}{$-$1} \\
-	\textcolor{red}{Université Paris-Saclay} & \textcolor{red}{4} & \textcolor{red}{95} & \textcolor{red}{14} & \textcolor{red}{100} & \textcolor{red}{+10} \\
-	\textcolor{red}{University of California, Berkeley} & \textcolor{red}{5} & \textcolor{red}{94} & \textcolor{red}{16} & \textcolor{red}{99} & \textcolor{red}{+11} \\
-	\textcolor{red}{Univ.\ of Chinese Academy of Sciences} & \textcolor{red}{6} & \textcolor{red}{93} & \textcolor{red}{24} & \textcolor{red}{95} & \textcolor{red}{+18} \\
-	\textcolor{red}{Massachusetts Institute of Technology} & \textcolor{red}{7} & \textcolor{red}{91} & \textcolor{red}{9} & \textcolor{red}{101} & \textcolor{red}{+2} \\
-	\textcolor{red}{California Institute of Technology} & \textcolor{red}{8} & \textcolor{red}{90} & \textcolor{red}{26} & \textcolor{red}{94} & \textcolor{red}{+18} \\
-	\textcolor{red}{ETH Zurich} & \textcolor{red}{9} & \textcolor{red}{88} & \textcolor{red}{35} & \textcolor{red}{90} & \textcolor{red}{+26} \\
-	\textcolor{red}{The University of Adelaide} & \textcolor{red}{10} & \textcolor{red}{88} & \textcolor{red}{34} & \textcolor{red}{88} & \textcolor{red}{+24} \\
+	University of Antwerp & 1 & 105 & 3 & 106 & +2 \\
+	Harvard University & 2 & 100 & 1 & 135 & $-$1 \\
+	Stanford University & 3 & 100 & 2 & 113 & $-$1 \\
+	Université Paris-Saclay & 4 & 95 & 14 & 100 & +10 \\
+	University of California, Berkeley & 5 & 94 & 16 & 99 & +11 \\
+	Univ.\ of Chinese Academy of Sciences & 6 & 93 & 24 & 95 & +18 \\
+	Massachusetts Institute of Technology & 7 & 91 & 9 & 101 & +2 \\
+	California Institute of Technology & 8 & 90 & 26 & \textcolor{red}{93} & +\textcolor{red}{17} \\
+	ETH Zurich & 9 & 88 & 35 & 90 & +26 \\
+	The University of Adelaide & 10 & 88 & 34 & \textcolor{red}{91} & +\textcolor{red}{23} \\
 	\bottomrule
 	\end{tabular}
 \end{table}
 
-\textcolor{red}{The University of Antwerp takes first place without biomedical authors (non-bio h\textsubscript{2}=105, overall rank 3), followed by Harvard and Stanford (both non-bio h\textsubscript{2}=100, overall ranks 1 and 2 respectively). Antwerp's top position reflects high h indices across physics, chemistry, and life-sciences disciplines outside the core biomedical fields.} The table reshuffles substantially: \textcolor{red}{Paris-Saclay, Berkeley, UCAS, Caltech, and ETH Zurich all rise 10--26 places once Medicine and its four sibling fields are set aside, while Cambridge falls 6 places and Oxford 8.} \textcolor{red}{The University of Chinese Academy of Sciences is 6th non-biomedical (overall 24th), and The University of Adelaide enters the top 10 (10th non-bio, 34th overall).} Because medical fields have by far the largest, most-cited author pools, they structurally dominate any university-wide aggregate; an institution elite in non-medical fields, such as USTC or Carnegie Mellon, can never reach the top of the overall list no matter how good it is, simply because it lacks a large medical school. The field-level and non-biomedical breakdowns matter more than the unrestricted university-level number.
+The University of Antwerp takes first place without biomedical authors (non-bio h\textsubscript{2}=105, overall rank 3), followed by Harvard and Stanford (both non-bio h\textsubscript{2}=100, overall ranks 1 and 2 respectively). Antwerp's top position reflects high h indices across physics, chemistry, and life-sciences disciplines outside the core biomedical fields. The table reshuffles substantially: Paris-Saclay, Berkeley, UCAS, Caltech, and ETH Zurich all rise 10--26 places once Medicine and its four sibling fields are set aside, while Cambridge falls 6 places and Oxford 8. The University of Chinese Academy of Sciences is 6th non-biomedical (overall 24th), and The University of Adelaide enters the top 10 (10th non-bio, 34th overall). Because medical fields have by far the largest, most-cited author pools, they structurally dominate any university-wide aggregate; \textcolor{red}{institutions without a large biomedical program, such as USTC or Carnegie Mellon, are disadvantaged in the overall ranking regardless of their non-biomedical h\textsubscript{2}. Antwerp's simultaneous top-3 overall and top-1 non-biomedical position shows that a non-biomedical institution can achieve a high h\textsubscript{2} if its non-biomedical h\textsubscript{2} is sufficiently concentrated; the overall ranking is substantially shaped by biomedical representation, though not reducible to it.} The field-level breakdowns matter more than the unrestricted university-level number.
 
 \subsection{Breadth versus depth}
 \label{subsec:breadth}
@@ -208,108 +209,112 @@ Table~\ref{tab:field-leaders} showed institutions that lead a single field while
 
 \begin{table}[h]
 	\centering
-	\caption{\textcolor{red}{The nine institutions with the most top-50 field placements out of 26 fields; ties broken by top-10 field placements.}}
+	\caption{The nine institutions with the most top-50 field placements out of 26 fields; ties broken by top-10 field placements.}
 	\label{tab:breadth}
 	\begin{tabular}{@{}lrrrr@{}}
 	\toprule
 	Institution & Top 50 & Top 10 & Overall rank & Overall h\textsubscript{2} \\
 	\midrule
-	\textcolor{red}{University of Oxford} & \textcolor{red}{19} & \textcolor{red}{5} & \textcolor{red}{6} & \textcolor{red}{105} \\
-	\textcolor{red}{Harvard University} & \textcolor{red}{18} & \textcolor{red}{12} & \textcolor{red}{1} & \textcolor{red}{135} \\
-	\textcolor{red}{University of Michigan} & \textcolor{red}{18} & \textcolor{red}{7} & \textcolor{red}{22} & \textcolor{red}{96} \\
-	\textcolor{red}{Stanford University} & \textcolor{red}{17} & \textcolor{red}{13} & \textcolor{red}{2} & \textcolor{red}{113} \\
-	\textcolor{red}{University of Toronto} & \textcolor{red}{17} & \textcolor{red}{5} & \textcolor{red}{13} & \textcolor{red}{100} \\
-	\textcolor{red}{University of California, Berkeley} & \textcolor{red}{16} & \textcolor{red}{4} & \textcolor{red}{16} & \textcolor{red}{99} \\
-	\textcolor{red}{University of Cambridge} & \textcolor{red}{16} & \textcolor{red}{3} & \textcolor{red}{5} & \textcolor{red}{106} \\
-	\textcolor{red}{The University of Melbourne} & \textcolor{red}{16} & \textcolor{red}{1} & \textcolor{red}{31} & \textcolor{red}{92} \\
-	\textcolor{red}{University College London} & \textcolor{red}{15} & \textcolor{red}{8} & \textcolor{red}{10} & \textcolor{red}{101} \\
+	University of Oxford & 19 & 5 & 6 & 105 \\
+	Harvard University & 18 & 12 & 1 & 135 \\
+	University of Michigan & 18 & 7 & 22 & 96 \\
+	Stanford University & 17 & 13 & 2 & 113 \\
+	University of Toronto & 17 & 5 & 13 & 100 \\
+	University of California, Berkeley & 16 & 4 & 16 & 99 \\
+	University of Cambridge & 16 & 3 & 5 & 106 \\
+	The University of Melbourne & 16 & 1 & 31 & 92 \\
+	University College London & 15 & 8 & 10 & 101 \\
 	\bottomrule
 	\end{tabular}
 \end{table}
 
-\textcolor{red}{Oxford leads on top-50 breadth (19 of 26 fields), while Stanford leads on outright field leadership with 13 top-10 placements, narrowly ahead of Harvard's 12. Five of the nine broadest institutions (Oxford, Toronto, Berkeley, Cambridge, and Melbourne) place fewer than half their top-50 fields in the top 10, meaning most of their breadth reflects consistent competence across many disciplines rather than dominance of any one. The University of Melbourne (rank 31, $\mathrm{h}_2=92$) is the only institution outside North America and the United Kingdom in this group. The contrast between breadth and depth is illustrated by comparing University College London ($\mathrm{h}_2=101$, 15 top-50 fields) with Oxford ($\mathrm{h}_2=105$, 19 top-50 fields): UCL leads 8 fields outright to Oxford's 5, despite placing in fewer top-50 fields overall. At the other extreme, Imperial College London (rank 21, $\mathrm{h}_2=96$) achieves its overall position with zero top-10 field placements across 8 top-50 fields, through consistent mid-table performance rather than any single-field depth.}
+Oxford leads on top-50 h\textsubscript{2} breadth (19 of 26 fields), while Stanford leads \textcolor{red}{on top-10 field placements with 13 of 26 fields}, narrowly ahead of Harvard's 12. Five of the nine broadest institutions (Oxford, Toronto, Berkeley, Cambridge, and Melbourne) place fewer than half their top-50 fields in the top 10, meaning most of their breadth reflects consistent competence across many disciplines rather than dominance of any one. The University of Melbourne (rank 31, $\mathrm{h}_2=92$) is the only institution outside North America and the United Kingdom in this group. The contrast between breadth and depth is illustrated by comparing University College London ($\mathrm{h}_2=101$, 15 top-50 fields) with Oxford ($\mathrm{h}_2=105$, 19 top-50 fields): UCL \textcolor{red}{places in the top 10 in} 8 fields \textcolor{red}{versus} Oxford's 5, despite placing in fewer top-50 fields overall. At the other extreme, Imperial College London (rank 21, $\mathrm{h}_2=96$) achieves its overall position with zero top-10 field placements across 8 top-50 fields, through consistent mid-table performance rather than any single-field depth.
 
-\subsection{Institution efficiency}
+\subsection{\textcolor{red}{Institution size-adjusted index}}
 \label{subsec:h2-efficiency}
 
 \subsubsection*{Model validation}
-Figure~\ref{fig:h2-vs-size} plots institution-level $\mathrm{h}_2$ against the Egghe-predicted value $\mathrm{S}^{1/\beta_1}$ for all institutions with at least 10 OpenAlex authors. A no-intercept regression, appropriate because $N = 0$ authors forces $\mathrm{h}_2 = 0$, gives slope $c = \textcolor{red}{2.422}$ and uncentered $R^2 = \textcolor{red}{0.909}$: $\mathrm{S}^{1/\beta_1}$ alone explains 91\% of the variance in $\mathrm{h}_2$, confirming that Egghe's power-law functional form describes the data. The efficiency metric $\varepsilon_2 = \mathrm{h}_2 / \mathrm{S}^{1/\beta_1}$ captures each institution's deviation from this overall trend.
+Figure~\ref{fig:h2-vs-size} plots institution-level $\mathrm{h}_2$ against the Egghe-predicted value $\mathrm{S}^{1/\beta_1}$ for all institutions with at least 10 OpenAlex authors. A no-intercept regression, appropriate because $N = 0$ authors forces $\mathrm{h}_2 = 0$, gives slope $c_2 = 2.422$ and uncentered $R^2 = 0.909$ \textcolor{red}{(centered $R^2 = 0.810$)}: \textcolor{red}{the Egghe functional form $\mathrm{h}_2 \propto \mathrm{S}^{1/\beta_1}$ accounts for the large majority of variation in h\textsubscript{2} across institutions.} The size-adjusted index $\varepsilon_2 = \mathrm{h}_2 / (c_2\,\mathrm{S}^{1/\beta_1})$ captures each institution's deviation from this empirical trend\textcolor{red}{; $\varepsilon_2 > 1$ indicates above-average performance relative to the fitted regression line, and $\varepsilon_2 < 1$ below-average.}
+
+\textcolor{red}{As a cross-check, an OLS log-log regression of $\log(\mathrm{h}_2)$ on $\log(S)$ gives slope $b = 0.404$ (implying $\beta \approx 2.47$, centered $R^2 = 0.795$), versus Egghe's $\beta_1 = 2.991$ (implied slope $0.334$), meaning the Egghe-based normalization slightly under-adjusts for size.}
+
+\textcolor{red}{The tail-fit diagnostics (Section~\ref{subsec:methods-efficiency}) are: for $\beta_1$, $x_{\min} = 18$, $n_\text{tail} = 199{,}953$ (2M-point subsample of 13.3M), KS $D = 0.063$, SE($\beta_1$) $\approx 0.004$; a loglikelihood-ratio test comparing power-law vs.\ exponential within the tail gives $R = -25.3$ ($p \approx 0$), favouring the exponential in the extreme upper tail ($\mathrm{h}_1 \geq 18$). For $\beta_2$: $x_{\min} = 18$, $n_\text{tail} = 3{,}918$, KS $D = 0.064$, SE($\beta_2$) $\approx 0.030$; LRT $R = -9.0$ ($p \approx 0$), again favouring the exponential above $\mathrm{h}_2 = 18$. These LRT results indicate that within the extreme upper tail the exponential fits marginally better than a strict power law, while the regression evidence above shows that the power-law functional form for size-scaling is empirically well-supported across the full institution-size range. Institutions with $\mathrm{h}_2 < 18$ lie outside the fitted tail domain.}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.85\textwidth]{figures/h2_vs_size.png}
-\caption{Institution-level h\textsubscript{2} versus $\mathrm{S}^{1/\beta_1}$ (Egghe's predicted scaling, $\beta_1 = \textcolor{red}{2.991}$). No-intercept regression: $\mathrm{h}_2 = \textcolor{red}{2.422}\,\mathrm{S}^{1/\beta_1}$, $R^2 = \textcolor{red}{0.909}$ (uncentered).}
+\caption{Institution-level h\textsubscript{2} versus $\mathrm{S}^{1/\beta_1}$ (Egghe's predicted scaling, $\beta_1 = 2.991$). No-intercept regression: $\mathrm{h}_2 = 2.422\,\mathrm{S}^{1/\beta_1}$, uncentered $R^2 = 0.909$ \textcolor{red}{(centered $R^2 = 0.810$)}.}
 \label{fig:h2-vs-size}
 \end{figure}
 
-The cross-check on Egghe's compounding structure fails sharply, however. Egghe's derivation requires that the Lotka tail exponent of the h\textsubscript{1} distribution equals the product $\alpha_0 \alpha_1$; these separate fits give $\alpha_0 = \textcolor{red}{2.454}$ and $\alpha_1 = \textcolor{red}{2.994}$, whose product is $\textcolor{red}{7.35}$, against the directly-measured $\beta_1 = \textcolor{red}{2.991}$: a discrepancy of $\textcolor{red}{146\%}$. The analogous prediction at the next level ($\beta_2 = \beta_1 \alpha_2$) is similarly violated: $\textcolor{red}{2.991} \times \textcolor{red}{1.987} = \textcolor{red}{5.944}$ against the directly-measured $\beta_2 = \textcolor{red}{2.847}$ ($\textcolor{red}{109\%}$ discrepancy).
+The cross-check on Egghe's compounding structure fails sharply, however. Egghe's derivation requires that the Lotka tail exponent of the h\textsubscript{1} distribution equals the product $\alpha_0 \alpha_1$; these separate fits give $\alpha_0 = 2.454$ and $\alpha_1 = 2.994$, whose product is $7.35$, against the directly-measured $\beta_1 = 2.991$: a discrepancy of $146\%$. The analogous prediction at the next level ($\beta_2 = \beta_1 \alpha_2$) is similarly violated: $2.991 \times 1.987 = 5.944$ against the directly-measured $\beta_2 = 2.847$ ($109\%$ discrepancy).
 
-The failure of the compounding formula does not, however, undermine the efficiency metric. The two claims play different roles. The compounding formula ($\beta_1 = \alpha_0\alpha_1$) is a \emph{theoretical prediction} about the relationship between separately-fitted exponents; it is tested here and found wanting. The power-law scaling $\mathrm{h}_2 \propto \mathrm{S}^{1/\beta_1}$ is an \emph{empirical finding} ($R^2 = \textcolor{red}{0.909}$) that does not depend on the compounding formula being correct. $\beta_1$ is estimated directly from the distribution of $\mathrm{h}_1$ values across authors, not derived from $\alpha_0\alpha_1$, so the \textcolor{red}{146}\% discrepancy in the compounding formula has no bearing on the exponent actually used in $\varepsilon_2$. This is checked against the \textcolor{red}{Scimago Institutions Rankings} later in this subsection.
+The failure of the compounding formula does not, however, undermine the size-adjusted index. The two claims play different roles. The compounding formula ($\beta_1 = \alpha_0\alpha_1$) is a \emph{theoretical prediction} about the relationship between separately-fitted exponents; it is tested here and found wanting. The power-law scaling $\mathrm{h}_2 \propto \mathrm{S}^{1/\beta_1}$ is an \emph{empirical description} (uncentered $R^2 = 0.909$\textcolor{red}{, centered $R^2 = 0.810$}) that does not depend on the compounding formula being correct. $\beta_1$ is estimated directly from the distribution of $\mathrm{h}_1$ values across authors, not derived from $\alpha_0\alpha_1$, so the 146\% discrepancy in the compounding formula has no bearing on the exponent actually used in $\varepsilon_2$. \textcolor{red}{The key assumption linking the pooled $\beta_1$ to each institution's threshold is that institutional author rosters are approximately random draws from the population-wide h\textsubscript{1} distribution. If institutions instead selectively recruit high-h\textsubscript{1} talent, this assumption is violated; the fitted amplitude $c_2 = 2.422$ and the residual size association documented below are consistent with such quality-sorting, though they do not establish it as the cause.}
 
-\subsubsection*{Efficiency rankings}
-The efficiency metric $\varepsilon_2 = \mathrm{h}_2 / \mathrm{S}^{1/\beta_1}$ addresses Mryglod et al.'s~\citeyearpar{mryglod2022} concern: because $\mathrm{S}^{1/\beta_1}$ accounts for 91\% of the variance in $\mathrm{h}_2$, dividing it out isolates the residual variation that is not explained by headcount alone.
+\subsubsection*{\textcolor{red}{Size-adjusted} rankings}
+The \textcolor{red}{size-adjusted} index $\varepsilon_2 = \mathrm{h}_2 / (c_2\,\mathrm{S}^{1/\beta_1})$ addresses Mryglod et al.'s~\citeyearpar{mryglod2022} concern: the Egghe functional form accounts for the large majority of variation in $\mathrm{h}_2$, and dividing it out isolates the residual variation not explained by headcount alone. \textcolor{red}{However, a regression of $\log(\varepsilon_2)$ on $\log(S)$ across institutions with $\geq 100$ authors ($n = 8{,}118$) yields slope $= 0.073$, $R^2 = 0.062$: a small but statistically significant positive residual association with size remains after normalization. Larger institutions still score slightly higher on $\varepsilon_2$ than the regression line predicts. The normalization substantially reduces but does not eliminate the size association; results should be read with this caveat, particularly for comparisons between very small and very large institutions. Field composition and researcher career age are additional uncontrolled confounds. A regression of field-specific $\varepsilon_2$ would be the appropriate next step and is left as future work. Career age is not available in the OpenAlex snapshot columns used here and is likewise acknowledged as a limitation.}
 
-Table~\ref{tab:h2-efficiency-all} lists the top 10 institutions by $\varepsilon_2$ among the \textcolor{red}{8,118} with at least 100 authors. The top of the ranking is dominated by small and highly specialized institutions. Focused research centers and specialized colleges recur throughout the top 20.
+Table~\ref{tab:h2-efficiency-all} lists the top 10 institutions by $\varepsilon_2$ among the 8,118 with at least 100 authors. The top of the ranking is dominated by small and highly specialized institutions. Focused research centers and specialized colleges recur throughout the top 20.
 
 \begin{table}[h]
 	\centering
-	\caption{Top 10 institutions by efficiency $\varepsilon_2 = \mathrm{h}_2 / \mathrm{S}^{1/\beta_1}$ ($\beta_1 = \textcolor{red}{2.991}$) among those with at least 100 authors ($n = \textcolor{red}{8{,}118}$).}
+	\caption{\textcolor{red}{Top 10 institutions by size-adjusted index $\varepsilon_2 = \mathrm{h}_2 / (c_2\,\mathrm{S}^{1/\beta_1})$ ($c_2 = 2.422$, $\beta_1 = 2.991$) among those with at least 100 authors ($n = 8{,}118$).}}
 	\label{tab:h2-efficiency-all}
 	\begin{tabular}{@{}lrrrr@{}}
 	\toprule
 	Institution & $\varepsilon_2$ & h\textsubscript{2} & Authors & h\textsubscript{2} rank \\
 	\midrule
-	\textcolor{red}{University of Minnesota Rochester}                     & \textcolor{red}{7.35} & \textcolor{red}{52} & \textcolor{red}{348}   & \textcolor{red}{503}   \\
-	\textcolor{red}{Kettering University}                                  & \textcolor{red}{6.19} & \textcolor{red}{72} & \textcolor{red}{1,539} & \textcolor{red}{150}   \\
-	\textcolor{red}{Acad\'{e}mie Nationale de M\'{e}decine}               & \textcolor{red}{5.97} & \textcolor{red}{34} & \textcolor{red}{182}   & \textcolor{red}{1,287} \\
-	\textcolor{red}{Center for Astrophysics Harvard \& Smithsonian}        & \textcolor{red}{5.93} & \textcolor{red}{59} & \textcolor{red}{963}   & \textcolor{red}{339}   \\
-	\textcolor{red}{Saint Camillus International Univ.\ of Health Sci.}   & \textcolor{red}{5.91} & \textcolor{red}{35} & \textcolor{red}{204}   & \textcolor{red}{1,253} \\
-	\textcolor{red}{Universit\'{e} Bourgogne Franche-Comt\'{e}}           & \textcolor{red}{5.63} & \textcolor{red}{51} & \textcolor{red}{730}   & \textcolor{red}{525}   \\
-	\textcolor{red}{Stockholm Resilience Centre}                           & \textcolor{red}{5.48} & \textcolor{red}{29} & \textcolor{red}{146}   & \textcolor{red}{1,806} \\
-	\textcolor{red}{University of Antwerp}                                 & \textcolor{red}{5.44} & \textcolor{red}{106} & \textcolor{red}{7,207} & \textcolor{red}{3}     \\
-	\textcolor{red}{Barcelona Institute of Science and Technology}         & \textcolor{red}{5.44} & \textcolor{red}{74} & \textcolor{red}{2,462} & \textcolor{red}{125}   \\
-	\textcolor{red}{Rush University}                                       & \textcolor{red}{5.40} & \textcolor{red}{54} & \textcolor{red}{980}   & \textcolor{red}{451}   \\
+	University of Minnesota Rochester                     & \textcolor{red}{3.03} & 52 & 348   & 503   \\
+	Kettering University                                  & \textcolor{red}{2.56} & 72 & 1,539 & 150   \\
+	Acad\'{emie Nationale de M\'{e}decine}               & \textcolor{red}{2.46} & 34 & 182   & 1,287 \\
+	Center for Astrophysics Harvard \& Smithsonian        & \textcolor{red}{2.45} & 59 & 963   & 339   \\
+	Saint Camillus International Univ.\ of Health Sci.   & \textcolor{red}{2.44} & 35 & 204   & 1,253 \\
+	Universit\'{e Bourgogne Franche-Comt\'{e}}           & \textcolor{red}{2.32} & 51 & 730   & 525   \\
+	Stockholm Resilience Centre                           & \textcolor{red}{2.26} & 29 & 146   & 1,806 \\
+	University of Antwerp                                 & \textcolor{red}{2.25} & 106 & 7,207 & 3     \\
+	Barcelona Institute of Science and Technology         & \textcolor{red}{2.25} & 74 & 2,462 & 125   \\
+	Rush University                                       & \textcolor{red}{2.23} & 54 & 980   & 451   \\
 	\bottomrule
 	\end{tabular}
 \end{table}
 
-\textcolor{red}{The high-efficiency entries are a mix of specialized research institutes (Center for Astrophysics Harvard \& Smithsonian, Stockholm Resilience Centre, Barcelona Institute of Science and Technology), a learned society (Acad\'{e}mie Nationale de M\'{e}decine), medical and health sciences institutions (University of Minnesota Rochester, Saint Camillus), and a comprehensive research university (University of Antwerp). A systematic audit of disambiguation artifacts is beyond the scope of this paper, and the top of this table should be read with appropriate caution.}
+The \textcolor{red}{high-$\varepsilon_2$} entries are a mix of specialized research institutes (Center for Astrophysics Harvard \& Smithsonian, Stockholm Resilience Centre, Barcelona Institute of Science and Technology), a learned society (Acad\'{e}mie Nationale de M\'{e}decine), medical and health sciences institutions (University of Minnesota Rochester, Saint Camillus), and a comprehensive research university (University of Antwerp). A systematic audit of disambiguation artifacts is beyond the scope of this paper, and the top of this table should be read with appropriate caution.
 
-Table~\ref{tab:h2-efficiency} restricts to the \textcolor{red}{629} institutions with at least 5,000 authors. \textcolor{red}{The University of Antwerp leads outright ($\varepsilon_2 = 5.44$, $\mathrm{h}_2 = 106$, h\textsubscript{2} rank 3 among all $\geq$100-author institutions), placing simultaneously in the top 5 on both raw h\textsubscript{2} and efficiency within this subset. The Weizmann Institute of Science ($\varepsilon_2 = 4.22$), Caltech ($\varepsilon_2 = 4.10$, efficiency rank 3), Princeton ($\varepsilon_2 = 4.06$), and Erasmus University Rotterdam ($\varepsilon_2 = 4.02$) follow, all achieving high efficiency relative to their size. Among the elite comprehensive research universities that anchor the raw h\textsubscript{2} top 10, Caltech (efficiency rank 3 in this subset), the University of Geneva (rank 9), and Universit\'{e} Paris-Saclay (rank 69) are the most efficient, each achieving $\mathrm{h}_2 \geq 93$ with under 25,000 authors.}
+Table~\ref{tab:h2-efficiency} restricts to the 629 institutions with at least 5,000 authors. The University of Antwerp leads outright ($\varepsilon_2 = \textcolor{red}{2.25}$, $\mathrm{h}_2 = 106$, h\textsubscript{2} rank 3 among all $\geq$100-author institutions), placing simultaneously in the top 5 on both raw h\textsubscript{2} and \textcolor{red}{size-adjusted index} within this subset. The Weizmann Institute of Science ($\varepsilon_2 = \textcolor{red}{1.74}$), Caltech ($\varepsilon_2 = \textcolor{red}{1.69}$, \textcolor{red}{size-adjusted} rank 3), Princeton ($\varepsilon_2 = \textcolor{red}{1.68}$), and Erasmus University Rotterdam ($\varepsilon_2 = \textcolor{red}{1.66}$) follow, all achieving high \textcolor{red}{size-adjusted index} relative to their size. Among the elite comprehensive research universities that anchor the raw h\textsubscript{2} top 10, Caltech (\textcolor{red}{size-adjusted} rank 3 in this subset), the University of Geneva (rank 9), and Universit\'{e} Paris-Saclay (rank 69) each achieve $\mathrm{h}_2 \geq 93$ with under 25,000 authors.
 
 \begin{table}[h]
 	\centering
-	\caption{Top 10 institutions by efficiency $\varepsilon_2 = \mathrm{h}_2 / \mathrm{S}^{1/\beta_1}$ ($\beta_1 = \textcolor{red}{2.991}$) among those with at least 5,000 authors ($n = \textcolor{red}{629}$).}
+	\caption{\textcolor{red}{Top 10 institutions by size-adjusted index $\varepsilon_2 = \mathrm{h}_2 / (c_2\,\mathrm{S}^{1/\beta_1})$ ($c_2 = 2.422$, $\beta_1 = 2.991$) among those with at least 5,000 authors ($n = 629$).}}
 	\label{tab:h2-efficiency}
 	\begin{tabular}{@{}lrrrr@{}}
 	\toprule
 	Institution & $\varepsilon_2$ & h\textsubscript{2} & Authors & h\textsubscript{2} rank \\
 	\midrule
-	\textcolor{red}{University of Antwerp}                         & \textcolor{red}{5.44} & \textcolor{red}{106} & \textcolor{red}{7,207}  & \textcolor{red}{3}   \\
-	\textcolor{red}{Weizmann Institute of Science}                 & \textcolor{red}{4.22} & \textcolor{red}{76}  & \textcolor{red}{5,711}  & \textcolor{red}{117} \\
-	\textcolor{red}{California Institute of Technology}            & \textcolor{red}{4.10} & \textcolor{red}{93}  & \textcolor{red}{11,348} & \textcolor{red}{26}  \\
-	\textcolor{red}{Princeton University}                          & \textcolor{red}{4.06} & \textcolor{red}{87}  & \textcolor{red}{9,591}  & \textcolor{red}{45}  \\
-	\textcolor{red}{Erasmus University Rotterdam}                  & \textcolor{red}{4.02} & \textcolor{red}{81}  & \textcolor{red}{7,943}  & \textcolor{red}{79}  \\
-	\textcolor{red}{The University of Adelaide}                    & \textcolor{red}{3.97} & \textcolor{red}{91}  & \textcolor{red}{11,671} & \textcolor{red}{34}  \\
-	\textcolor{red}{University of Colorado Anschutz Medical Campus} & \textcolor{red}{3.85} & \textcolor{red}{67}  & \textcolor{red}{5,146}  & \textcolor{red}{208} \\
-	\textcolor{red}{Vrije Universiteit Amsterdam}                  & \textcolor{red}{3.85} & \textcolor{red}{80}  & \textcolor{red}{8,757}  & \textcolor{red}{92}  \\
-	\textcolor{red}{University of Geneva}                          & \textcolor{red}{3.83} & \textcolor{red}{80}  & \textcolor{red}{8,847}  & \textcolor{red}{91}  \\
-	\textcolor{red}{City University of Hong Kong}                  & \textcolor{red}{3.81} & \textcolor{red}{70}  & \textcolor{red}{6,062}  & \textcolor{red}{167} \\
+	University of Antwerp                         & \textcolor{red}{2.25} & 106 & 7,207  & 3   \\
+	Weizmann Institute of Science                 & \textcolor{red}{1.74} & 76  & 5,711  & 117 \\
+	California Institute of Technology            & \textcolor{red}{1.69} & 93  & 11,348 & 26  \\
+	Princeton University                          & \textcolor{red}{1.68} & 87  & 9,591  & 45  \\
+	Erasmus University Rotterdam                  & \textcolor{red}{1.66} & 81  & 7,943  & 79  \\
+	The University of Adelaide                    & \textcolor{red}{1.64} & 91  & 11,671 & 34  \\
+	University of Colorado Anschutz Medical Campus & \textcolor{red}{1.59} & 67  & 5,146  & 208 \\
+	Vrije Universiteit Amsterdam                  & \textcolor{red}{1.59} & 80  & 8,757  & 92  \\
+	University of Geneva                          & \textcolor{red}{1.58} & 80  & 8,847  & 91  \\
+	City University of Hong Kong                  & \textcolor{red}{1.57} & 70  & 6,062  & 167 \\
 	\bottomrule
 	\end{tabular}
 \end{table}
 
 % \subsubsection*{External validation against the Leiden Ranking}
 % \label{subsubsec:leiden-validation}
-% Matching the 1,506 Leiden Ranking Open Edition 2024 universities to OpenAlex's dataset yields \textcolor{red}{1,492} institutions with both an MNCS value and an institution-wide h\textsubscript{2} from OpenAlex. The Spearman rank correlation between raw h\textsubscript{2} and MNCS is $\rho = \textcolor{red}{0.678}$ ($p \approx 0$); between $\varepsilon_2$ and MNCS it is $\rho = \textcolor{red}{0.686}$ ($p \approx 0$)\textcolor{red}{; the two correlations are essentially indistinguishable ($\Delta\rho = 0.008$), so the Leiden comparison does not favor either metric over the other under the revised attribution method}. \textcolor{red}{Because the Leiden Open Edition is itself built on OpenAlex, this agreement is evidence of convergence within a shared data infrastructure rather than independent validation; Subsubsection~\ref{subsubsec:scimago-validation} below repeats the comparison against a source with no OpenAlex dependency.}
+% Matching the 1,506 Leiden Ranking Open Edition 2024 universities to OpenAlex's dataset yields 1,492 institutions with both an MNCS value and an institution-wide h\textsubscript{2} from OpenAlex. The Spearman rank correlation between raw h\textsubscript{2} and MNCS is $\rho = 0.678$ ($p \approx 0$); between $\varepsilon_2$ and MNCS it is $\rho = 0.686$ ($p \approx 0$); the two correlations are essentially indistinguishable ($\Delta\rho = 0.008$), so the Leiden comparison does not favor either metric over the other under the revised attribution method. Because the Leiden Open Edition is itself built on OpenAlex, this agreement is evidence of convergence within a shared data infrastructure rather than independent validation; Subsubsection~\ref{subsubsec:scimago-validation} below repeats the comparison against a source with no OpenAlex dependency.
 
 \subsubsection*{External validation against Scimago Institutions Rankings}
 \label{subsubsec:scimago-validation}
-\textcolor{red}{Joining the Scopus-derived Scimago Institutions Rankings (SIR) 2026 Overall Rank export to Table \ref{tab:h2-efficiency-all} yields 3,571 matched institutions: 33.0\% of SIR's list and 44.0\% of the paper's efficiency table.}
+Joining the Scopus-derived Scimago Institutions Rankings (SIR) 2026 Overall Rank export to Table \ref{tab:h2-efficiency-all} yields 3,571 matched institutions: 33.0\% of SIR's list and 44.0\% of the paper's \textcolor{red}{size-adjusted} table.
 
-\textcolor{red}{On the matched set, the Spearman rank correlation between raw h\textsubscript{2} and SIR's Global Rank is $\rho = \textcolor{red}{0.798}$ ($p \approx 0$); between $\varepsilon_2$ and SIR's Global Rank it is $\rho = \textcolor{red}{0.443}$ ($p \approx \textcolor{red}{10^{-191}}$). Restricting the match to SIR's ``Universities'' sector only (5,491 of SIR's 10,827 institutions, excluding ministries, hospitals, and companies that SIR also ranks) gives essentially the same result ($\rho = \textcolor{red}{0.802}$ raw, $\rho = \textcolor{red}{0.441}$ efficiency, $n = \textcolor{red}{3{,}515}$), so the gap between the two correlations is not an artefact of comparing an academic h\textsubscript{2} ranking against a mixed-sector SIR list.}
+On the matched set, the Spearman rank correlation between raw h\textsubscript{2} and SIR's Global Rank is $\rho = 0.798$ ($p \approx 0$); between $\varepsilon_2$ and SIR's Global Rank it is $\rho = 0.443$ ($p \approx 10^{-191}$). Restricting the match to SIR's ``Universities'' sector only (5,491 of SIR's 10,827 institutions, excluding ministries, hospitals, and companies that SIR also ranks) gives essentially the same result ($\rho = 0.802$ raw, $\rho = 0.441$ \textcolor{red}{size-adjusted}, $n = 3{,}515$), so the gap between the two correlations is not an artefact of comparing an academic h\textsubscript{2} ranking against a mixed-sector SIR list.
 
-\textcolor{red}{Against SIR's composite Global Rank, a source with no shared data infrastructure with OpenAlex, raw h\textsubscript{2} tracks SIR's Global Rank substantially more closely than $\varepsilon_2$ does. I report both comparisons as description rather than as validation of the efficiency normalization; a plausible mechanistic reading of the SIR result is that SIR's Global Rank is a composite that rewards institutional scale and visibility in ways that raw h\textsubscript{2} partially captures and that dividing out size by construction removes.}
+Against SIR's composite Global Rank, a source with no shared data infrastructure with OpenAlex, raw h\textsubscript{2} tracks SIR's Global Rank substantially more closely than $\varepsilon_2$ does. \textcolor{red}{The lower $\varepsilon_2$--SIR correlation neither validates nor invalidates the size adjustment: SIR's Global Rank is a composite that rewards institutional scale and visibility, factors that raw h\textsubscript{2} partially captures and that dividing out size removes by construction.} I report both comparisons as description of what each metric measures relative to SIR's composite.
 
 \subsection{h\textsubscript{3}: country level}
 \label{subsec:h3-country}
@@ -323,16 +328,16 @@ Aggregating institutional h\textsubscript{2} up to the country level via the sam
 	\toprule
 	Country & h\textsubscript{3} & Institutions \\
 	\midrule
-	\textcolor{red}{United States} & \textcolor{red}{68} & \textcolor{red}{3,652} \\
-	\textcolor{red}{China} & \textcolor{red}{53} & \textcolor{red}{1,071} \\
-	\textcolor{red}{Germany} & \textcolor{red}{47} & \textcolor{red}{469} \\
-	\textcolor{red}{United Kingdom} & \textcolor{red}{46} & \textcolor{red}{472} \\
-	\textcolor{red}{Italy} & \textcolor{red}{44} & \textcolor{red}{192} \\
-	\textcolor{red}{Japan} & \textcolor{red}{44} & \textcolor{red}{1,145} \\
-	\textcolor{red}{France} & \textcolor{red}{40} & \textcolor{red}{374} \\
-	\textcolor{red}{Spain} & \textcolor{red}{38} & \textcolor{red}{140} \\
-	\textcolor{red}{Australia} & \textcolor{red}{36} & \textcolor{red}{115} \\
-	\textcolor{red}{South Korea} & \textcolor{red}{35} & \textcolor{red}{332} \\
+	United States & 68 & 3,652 \\
+	China & 53 & 1,071 \\
+	Germany & 47 & 469 \\
+	United Kingdom & 46 & 472 \\
+	Italy & 44 & 192 \\
+	Japan & 44 & 1,145 \\
+	France & 40 & 374 \\
+	Spain & 38 & 140 \\
+	Australia & 36 & 115 \\
+	South Korea & 35 & 332 \\
 	\bottomrule
 	\end{tabular}
 \end{table}
@@ -344,72 +349,78 @@ Aggregating institutional h\textsubscript{2} up to the country level via the sam
 	\label{fig:choropleth}
 \end{figure}
 
-The United States leads by a wide margin, but \textcolor{red}{Italy's 44 on only 192 institutions and Japan's 44 on 1,145} are a first hint that raw h\textsubscript{3} rewards national research-system size as well as depth.
+The United States leads by a wide margin, but Italy's 44 on only 192 institutions and Japan's 44 on 1,145 are a first hint that raw h\textsubscript{3} rewards national research-system size as well as depth.
 
-\subsection{Country efficiency}
+\subsection{\textcolor{red}{Country size-adjusted index}}
 \label{subsec:h3-efficiency}
-Figure~\ref{fig:h3-vs-size} repeats the size-scaling analysis at the country level, plotting $\mathrm{h}_3$ against $\mathrm{R}^{1/\beta_2}$ for each country. The no-intercept fit gives slope $c = \textcolor{red}{3.534}$ and uncentered $R^2 = \textcolor{red}{0.900}$: institution count alone explains \textcolor{red}{90}\% of the variance in $\mathrm{h}_3$ across countries.
+Figure~\ref{fig:h3-vs-size} repeats the size-scaling analysis at the country level, plotting $\mathrm{h}_3$ against $\mathrm{R}^{1/\beta_2}$ for each country. The no-intercept fit gives slope $c_3 = 3.534$ and uncentered $R^2 = 0.900$ \textcolor{red}{(centered $R^2 = 0.753$)}: \textcolor{red}{institution count accounts for the large majority of variation in h\textsubscript{3} across countries.} \textcolor{red}{An OLS log-log regression of $\log(\mathrm{h}_3)$ on $\log(R)$ gives slope $b = 0.502$ (implied $\beta \approx 1.99$, centered $R^2 = 0.795$), versus Egghe's $\beta_2 = 2.847$ (implied slope $0.351$). As at the institution level, Egghe's exponent underestimates the empirical size-scaling; the normalization partially but not fully removes size dependence. A regression of $\log(\varepsilon_3)$ on $\log(R)$ across countries with $\geq 5$ institutions ($n = 150$) yields slope $= 0.151$, $R^2 = 0.260$. Country-level size-adjusted rankings should therefore be interpreted with particular caution.}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.85\textwidth]{figures/h3_vs_size.png}
-\caption{Country-level h\textsubscript{3} versus $\mathrm{R}^{1/\beta_2}$ (Egghe's predicted scaling, $\beta_2 = \textcolor{red}{2.847}$). No-intercept regression: $\mathrm{h}_3 = \textcolor{red}{3.534}\,R^{1/\beta_2}$, $R^2 = \textcolor{red}{0.900}$ (uncentered).}
+\caption{Country-level h\textsubscript{3} versus $\mathrm{R}^{1/\beta_2}$ (Egghe's predicted scaling, $\beta_2 = 2.847$). No-intercept regression: $\mathrm{h}_3 = 3.534\,R^{1/\beta_2}$, uncentered $R^2 = 0.900$ \textcolor{red}{(centered $R^2 = 0.753$)}.}
 \label{fig:h3-vs-size}
 \end{figure}
 
-Table~\ref{tab:h3-efficiency} ranks the 151 countries with at least 5 qualifying institutions by efficiency $\varepsilon_3 = \mathrm{h}_3 / \mathrm{R}^{1/\beta_2}$. The Italy--Japan contrast foreshadowed in Subsection~\ref{subsec:h3-country} is quantified: Italy ($\varepsilon_3 = \textcolor{red}{6.94}$, rank 1) achieves $\mathrm{h}_3 = \textcolor{red}{44}$ from only \textcolor{red}{192} institutions, while Japan (\textcolor{red}{efficiency rank 41, $\varepsilon_3 = 3.71$}) reaches $\mathrm{h}_3 = \textcolor{red}{44}$ from \textcolor{red}{1,145} institutions, the \textcolor{red}{same} headline number but at \textcolor{red}{6$\times$} the institutional scale. Australia (rank 2, $\varepsilon_3 = \textcolor{red}{6.80}$, \textcolor{red}{115} institutions) and Spain (rank 3, $\varepsilon_3 = \textcolor{red}{6.70}$, \textcolor{red}{140} institutions) round out a top tier of countries with \textcolor{red}{compact research systems that place well on this metric}. Germany (rank 6), the United Kingdom (rank 7), and France (rank 8) are the only countries that place in the top 10 on both raw $\mathrm{h}_3$ and efficiency. Saudi Arabia is a notable outlier at \textcolor{red}{5th} by efficiency (h\textsubscript{3}=\textcolor{red}{23} on just 52 institutions, $\varepsilon_3 = \textcolor{red}{5.74}$) despite ranking only \textcolor{red}{21st} by raw h\textsubscript{3}; as flagged in Subsection~\ref{subsec:methods-crossval}, this is plausibly an artifact of high-h-index researchers listing Saudi institutions as secondary affiliations in exchange for funding~\citep{saudi} rather than a genuine concentration of resident research talent.
+Table~\ref{tab:h3-efficiency} ranks the \textcolor{red}{150} countries with at least 5 qualifying institutions by \textcolor{red}{size-adjusted index} $\varepsilon_3 = \mathrm{h}_3 / (c_3\,\mathrm{R}^{1/\beta_2})$. The Italy--Japan contrast foreshadowed in Subsection~\ref{subsec:h3-country} is quantified: Italy ($\varepsilon_3 = \textcolor{red}{1.96}$, rank 1) achieves $\mathrm{h}_3 = 44$ from only 192 institutions, while Japan (\textcolor{red}{size-adjusted} rank 41, $\varepsilon_3 = \textcolor{red}{1.05}$) reaches $\mathrm{h}_3 = 44$ from 1,145 institutions, the same headline number but at 6$\times$ the institutional scale. Australia (rank 2, $\varepsilon_3 = \textcolor{red}{1.92}$, 115 institutions) and Spain (rank 3, $\varepsilon_3 = \textcolor{red}{1.90}$, 140 institutions) round out a top tier of countries with compact research systems that place well on this metric. \textcolor{red}{Italy, Australia, Spain,} Germany (rank \textcolor{red}{6}), the United Kingdom (rank 7), and France (rank \textcolor{red}{9}) \textcolor{red}{are the six countries that place in the top 10 on both raw $\mathrm{h}_3$ and the size-adjusted index.} Saudi Arabia is a notable outlier at 5th by \textcolor{red}{size-adjusted index} (h\textsubscript{3}=23 on just 52 institutions, $\varepsilon_3 = \textcolor{red}{1.62}$) despite ranking only 21st by raw h\textsubscript{3}; \textcolor{red}{prior reporting has documented practices in which high-h-index researchers list Saudi institutions as secondary affiliations in exchange for funding~\citep{saudi}, but this dataset cannot independently confirm that mechanism.}
 
-The United States falls to efficiency rank \textcolor{red}{37} ($\varepsilon_3 = \textcolor{red}{3.812}$) despite its raw lead ($\mathrm{h}_3 = \textcolor{red}{68}$, rank 1). With \textcolor{red}{3,652} qualifying institutions, nearly $\textcolor{red}{8}{\times}$ more than China and $\textcolor{red}{19}{\times}$ more than Italy, even a large absolute $\mathrm{h}_3$ advantage is absorbed by the size denominator. China (rank \textcolor{red}{19}, $\varepsilon_3 = \textcolor{red}{4.571}$, \textcolor{red}{1,071} institutions) is more compact and appears above the US on this metric.% Russia (rank 107, $\varepsilon_3 = 2.89$) and India (rank 83, $\varepsilon_3 = 3.24$) show the converse pattern: large institution counts yielding modest $\mathrm{h}_3$ relative to their scale.
+The United States falls to \textcolor{red}{size-adjusted} rank 37 ($\varepsilon_3 = \textcolor{red}{1.08}$) despite its raw lead ($\mathrm{h}_3 = 68$, rank 1). With 3,652 qualifying institutions, \textcolor{red}{about $3.4{\times}$} more than China and $19{\times}$ more than Italy, even a large absolute $\mathrm{h}_3$ advantage is absorbed by the size denominator. China (rank 19, $\varepsilon_3 = \textcolor{red}{1.29}$, 1,071 institutions) is more compact and appears above the US on this metric.% Russia (rank 107, $\varepsilon_3 = 2.89$) and India (rank 83, $\varepsilon_3 = 3.24$) show the converse pattern: large institution counts yielding modest $\mathrm{h}_3$ relative to their scale.
 
 \begin{table}[h]
 	\centering
-	\caption{Top 10 countries by efficiency $\varepsilon_3 = \mathrm{h}_3 / R^{1/\beta_2}$ ($\beta_2 = \textcolor{red}{2.847}$) among those with at least 5 institutions ($n = \textcolor{red}{150}$).}
+	\caption{\textcolor{red}{Top 10 countries by size-adjusted index $\varepsilon_3 = \mathrm{h}_3 / (c_3\,R^{1/\beta_2})$ ($c_3 = 3.534$, $\beta_2 = 2.847$) among those with at least 5 institutions ($n = 150$).}}
 	\label{tab:h3-efficiency}
 	\begin{tabular}{@{}lrrrr@{}}
 	\toprule
 	Country & $\varepsilon_3$ & h\textsubscript{3} & Institutions & h\textsubscript{3} rank \\
 	\midrule
-	\textcolor{red}{Italy}          & \textcolor{red}{6.94} & \textcolor{red}{44} & \textcolor{red}{192}   & \textcolor{red}{5} \\
-	\textcolor{red}{Australia}      & \textcolor{red}{6.80} & \textcolor{red}{36} & \textcolor{red}{115}   & \textcolor{red}{9} \\
-	\textcolor{red}{Spain}          & \textcolor{red}{6.70} & \textcolor{red}{38} & \textcolor{red}{140}   & \textcolor{red}{8} \\
-	\textcolor{red}{Sweden}         & \textcolor{red}{6.12} & \textcolor{red}{24} & \textcolor{red}{49}    & \textcolor{red}{19} \\
-	\textcolor{red}{Saudi Arabia}   & \textcolor{red}{5.74} & \textcolor{red}{23} & \textcolor{red}{52}    & \textcolor{red}{21} \\
-	\textcolor{red}{Germany}        & \textcolor{red}{5.42} & \textcolor{red}{47} & \textcolor{red}{469}   & \textcolor{red}{3} \\
-	\textcolor{red}{United Kingdom} & \textcolor{red}{5.29} & \textcolor{red}{46} & \textcolor{red}{472}   & \textcolor{red}{4} \\
-	\textcolor{red}{Greece}         & \textcolor{red}{5.04} & \textcolor{red}{21} & \textcolor{red}{58}    & \textcolor{red}{28} \\
-	\textcolor{red}{France}         & \textcolor{red}{4.99} & \textcolor{red}{40} & \textcolor{red}{374}   & \textcolor{red}{7} \\
-	\textcolor{red}{Chile}          & \textcolor{red}{4.81} & \textcolor{red}{22} & \textcolor{red}{76}    & \textcolor{red}{23} \\
+	Italy          & \textcolor{red}{1.96} & 44 & 192   & 5 \\
+	Australia      & \textcolor{red}{1.92} & 36 & 115   & 9 \\
+	Spain          & \textcolor{red}{1.90} & 38 & 140   & 8 \\
+	Sweden         & \textcolor{red}{1.73} & 24 & 49    & 19 \\
+	Saudi Arabia   & \textcolor{red}{1.62} & 23 & 52    & 21 \\
+	Germany        & \textcolor{red}{1.53} & 47 & 469   & 3 \\
+	United Kingdom & \textcolor{red}{1.50} & 46 & 472   & 4 \\
+	Greece         & \textcolor{red}{1.43} & 21 & 58    & 28 \\
+	France         & \textcolor{red}{1.41} & 40 & 374   & 7 \\
+	Chile          & \textcolor{red}{1.36} & 22 & 76    & 23 \\
 	\bottomrule
 	\end{tabular}
 \end{table}
 
 \subsection{Sensitivity to disambiguation error}
 \label{subsec:results-sensitivity}
-Table~\ref{tab:sensitivity} reports, for \textcolor{red}{seven} simulated population-wide error rates spanning $p=1\%$ to a deliberately implausible $p=80\%$ (Subsection~\ref{subsec:methods-sensitivity}), the Spearman rank correlation and top-set overlap between the perturbed and unperturbed rankings, averaged over \textcolor{red}{50} trials, together with how often the paper's \textcolor{red}{three} headline field-leadership claims survive the perturbation intact. The cross-validation sample's own raw outlier fraction (4/30 $\approx 13\%$ across both waves, Subsection~\ref{subsec:results-crossval}) is included as an extra row for reference, though it carries no special status in this analysis.
+Table~\ref{tab:sensitivity} reports, for seven simulated population-wide error rates spanning $p=1\%$ to a deliberately implausible $p=80\%$ (Subsection~\ref{subsec:methods-sensitivity}), the Spearman rank correlation and top-set overlap between the perturbed and unperturbed rankings, averaged over 50 trials, together with how often the paper's three headline field-leadership claims survive the perturbation intact. The cross-validation sample's own raw outlier fraction (4/30 $\approx 13\%$ across both waves, Subsection~\ref{subsec:results-crossval}) is included as an extra row for reference, though it carries no special status in this analysis.
 
-\textcolor{red}{Institution- and country-level rank correlations decline gradually with $p$: Spearman $\rho$(h\textsubscript{2}) falls from 0.9995 at $p=1\%$ to 0.9793 at $p=80\%$; $\rho$(h\textsubscript{3}) from 0.9998 to 0.9946. This follows from how h\textsubscript{2} and h\textsubscript{3} are computed: each is an order statistic, so what matters for a given institution or country is whether a noisy author sits near its own threshold, not how many noisy authors exist elsewhere; and because the perturbation is applied simultaneously to all institutions, individual rank shifts are dampened at the aggregate level. Top-20 institution overlap follows a U-shaped pattern: 95\% at $p=1\%$, declining to a minimum of 44\% near $p=20\%$, then recovering to 83\% at $p=80\%$. This reflects a cancellation effect: at very high error rates, roughly equal numbers of inflation and deflation events accumulate within every institution's author pool, partially restoring the pre-perturbation rank ordering among the top-ranked set.}
+Institution- and country-level rank correlations decline gradually with $p$: Spearman $\rho$(h\textsubscript{2}) falls from 0.9995 at $p=1\%$ to 0.9793 at $p=80\%$; $\rho$(h\textsubscript{3}) from 0.9998 to 0.9946. This follows from how h\textsubscript{2} and h\textsubscript{3} are computed: each is an order statistic, so what matters for a given institution or country is whether a noisy author sits near its own threshold, not how many noisy authors exist elsewhere; and because the perturbation is applied simultaneously to all institutions, individual rank shifts are dampened at the aggregate level. Top-20 institution overlap follows a U-shaped pattern: 95\% at $p=1\%$, declining to a minimum of 44\% near $p=20\%$, then recovering to 83\% at $p=80\%$. This reflects a cancellation effect: at very high error rates, roughly equal numbers of inflation and deflation events accumulate within every institution's author pool, partially restoring the pre-perturbation rank ordering among the top-ranked set.
 
-\textcolor{red}{The field-specific leadership claims differ sharply in sensitivity. UCAS's Environmental Science lead survives all 50 trials at every error rate tested. Carnegie Mellon's Computer Science lead is robust at $p \leq 5\%$ (48/50 trials) but displaced at $p=10\%$ (6/50) and $p=13\%$ (1/50), recovering partially at $p=80\%$ (16/50) as the cancellation effect sets in. Wageningen's Agricultural and Biological Sciences lead is the most sensitive: it holds 50/50 at $p=1\%$ but falls to 36/50 at $p=5\%$, and to 0/50 at $p=10\%$ through $p=40\%$, with partial recovery at $p=80\%$ (1/50). Wageningen's greater sensitivity relative to CMU is consistent with the country-stratified error model: several of Wageningen's main competitors in Agricultural and Biological Sciences are Chinese institutions, which receive 3$\times$ the base error rate and therefore a larger expected perturbation.}
+The field-specific leadership claims differ sharply in sensitivity. UCAS's Environmental Science lead survives all 50 trials at every error rate tested. Carnegie Mellon's Computer Science lead is robust at $p \leq 5\%$ (48/50 trials) but displaced at $p=10\%$ (6/50) and $p=13\%$ (1/50), recovering partially at $p=80\%$ (16/50) as the cancellation effect sets in. Wageningen's Agricultural and Biological Sciences lead is the most sensitive: it holds 50/50 at $p=1\%$ but falls to 36/50 at $p=5\%$, and to 0/50 at $p=10\%$ through $p=40\%$, with partial recovery at $p=80\%$ (1/50). Wageningen's greater sensitivity relative to CMU is consistent with the country-stratified error model: several of Wageningen's main competitors in Agricultural and Biological Sciences are Chinese institutions, which receive 3$\times$ the base error rate and therefore a larger expected perturbation.
 % Italy and Japan remain near-parity in h\textsubscript{3} at plausible error rates ($p \leq 5\%$; both approximately 45); at higher rates, absolute h\textsubscript{3} values increase due to the AM-GM inequality in the bidirectional model ($\tfrac{1}{2}(r + r^{-1}) > 1$ for $r \neq 1$), with Japan's larger institution pool amplifying this upward drift more.
 
-\textcolor{red}{Institution and country rank correlations remain high across all tested rates ($\rho$(h\textsubscript{2})~$\geq 0.979$; $\rho$(h\textsubscript{3})~$\geq 0.994$), and the UCAS Environmental Science claim is similarly stable. The Wageningen Agricultural and Biological Sciences and Carnegie Mellon Computer Science field-leadership claims are sensitive above $p \approx 5\%$ and should be read with correspondingly greater caution as single-institution results. The overall finding is that h\textsubscript{2} and h\textsubscript{3} rankings are structurally determined at population scale. Individual author errors are absorbed across many threshold comparisons, and at very high error rates the bidirectional perturbations increasingly cancel within institutions. This stability under the specific perturbation model tested cannot rule out concentrated or directional bias of the kind that would arise from systematic disambiguation errors targeting a single institution or country; that remains an open limitation.}
+\textcolor{red}{The high Spearman correlation coexisting with low top-set retention ($p = 13\%$, $\rho(\mathrm{h}_2) = 0.9946$ but only 47\% of the top-20 institutions are retained) is not contradictory: the Spearman correlation is dominated by thousands of institutions far from the top-20, where perturbations cause small rank shifts. The top-20 is populated by institutions often separated by only 1--3 h\textsubscript{2} points, making headline rankings sensitive to exactly the threshold-straddling errors the Monte Carlo applies.}
+
+Institution and country rank correlations remain high across all tested rates ($\rho$(h\textsubscript{2})~$\geq 0.979$; $\rho$(h\textsubscript{3})~$\geq 0.994$), and the UCAS Environmental Science claim is similarly stable. The Wageningen Agricultural and Biological Sciences and Carnegie Mellon Computer Science field-leadership claims are sensitive above $p \approx 5\%$ and should be read with correspondingly greater caution as single-institution results. The overall finding is that h\textsubscript{2} and h\textsubscript{3} rankings are structurally determined at population scale. Individual author errors are absorbed across many threshold comparisons, and at very high error rates the bidirectional perturbations increasingly cancel within institutions.
+
+\textcolor{red}{The three additional scenarios from Subsection~\ref{subsec:methods-sensitivity} test the robustness of this picture. Under \emph{directional inflation-only}, the absence of cancellation makes moderate error rates more destructive: top-20 institution overlap falls to 55\% at $p=5\%$ (versus 77\% bidirectional) and Wageningen's Ag\&Bio lead is displaced in all 50 trials at $p=5\%$ (versus 37/50 surviving bidirectional); Carnegie Mellon's Computer Science lead holds in only 2 of 50 trials at $p=5\%$ (versus 47/50). At $p=13\%$, directional and bidirectional converge in top-20 overlap (44\% vs.\ 47\%) because both are already near their minimum: directional lacks the bidirectional recovery at high $p$ up to this point. 
+Under \emph{threshold-concentrated} perturbation, the top-20 overlap stays at or above 95\% across all tested rates including $p=80\%$, and all three field-leadership claims hold in 47--50 of 50 trials through $p=40\%$. This high stability arises because threshold-straddling errors, while in principle the most potent per author, still apply simultaneously to all competing institutions and tend to cancel within each institution's pool under bidirectional perturbation; concentrated unidirectional errors at a \emph{single} institution's threshold would be more damaging. 
+Under the \emph{uniform (non-stratified)} model, top-20 overlap at $p=13\%$ rises to 87\%, and Wageningen holds rank 1 in all 50 trials (CMU in 47/50), confirming that the $3\times$ country multiplier applied to CN/KR/IR/SA institutions is the primary driver of the bidirectional scenario's instability.}
 
 \begin{table}[h]
 	\centering
-	\caption{\textcolor{red}{Sensitivity of h\textsubscript{2} and h\textsubscript{3} rankings to simulated disambiguation error (50 trials per rate; bidirectional perturbation with country-stratified rates for CN/KR/IR/SA; see Subsection~\ref{subsec:methods-sensitivity}). Overlap is computed on the top 20 institutions (by h\textsubscript{2}) and top 10 countries (by h\textsubscript{3}). The last three columns give the fraction of trials in which the named institution keeps rank \#1 in the stated field.}}
+	\caption{Sensitivity of h\textsubscript{2} and h\textsubscript{3} rankings to simulated disambiguation error (50 trials per rate; bidirectional perturbation with country-stratified rates for CN/KR/IR/SA; see Subsection~\ref{subsec:methods-sensitivity}). Overlap is computed on the top 20 institutions (by h\textsubscript{2}) and top 10 countries (by h\textsubscript{3}). The last three columns give the fraction of trials in which the named institution keeps rank \#1 in the stated field.}
 	\label{tab:sensitivity}
 	\footnotesize
 	\begin{tabular}{@{}lccccccc@{}}
 	\toprule
-	$p$ & $\rho$(h\textsubscript{2}) & Top-20 & $\rho$(h\textsubscript{3}) & Top-10 & Wag.\ Ag\&Bio \#1 & \textcolor{red}{UCAS} EnvSci \#1 & CMU CS \#1 \\
+	$p$ & $\rho$(h\textsubscript{2}) & Top-20 & $\rho$(h\textsubscript{3}) & Top-10 & Wag.\ Ag\&Bio \#1 & UCAS EnvSci \#1 & CMU CS \#1 \\
 	\midrule
-	1\%  & \textcolor{red}{0.9995} & \textcolor{red}{95\%} & \textcolor{red}{0.9998} & \textcolor{red}{99\%} & \textcolor{red}{50/50} & \textcolor{red}{50/50} & \textcolor{red}{50/50} \\
-	5\%  & \textcolor{red}{0.9977} & \textcolor{red}{78\%} & \textcolor{red}{0.9992} & \textcolor{red}{99\%} & \textcolor{red}{36/50} & \textcolor{red}{50/50} & \textcolor{red}{48/50} \\
-	10\% & \textcolor{red}{0.9958} & \textcolor{red}{54\%} & \textcolor{red}{0.9986} & \textcolor{red}{97\%} & \textcolor{red}{0/50}  & \textcolor{red}{50/50} & \textcolor{red}{6/50}  \\
-	13\%* & \textcolor{red}{0.9946} & \textcolor{red}{47\%} & \textcolor{red}{0.9983} & \textcolor{red}{96\%} & \textcolor{red}{0/50}  & \textcolor{red}{50/50} & \textcolor{red}{1/50}  \\
-	20\% & \textcolor{red}{0.9922} & \textcolor{red}{44\%} & \textcolor{red}{0.9977} & \textcolor{red}{92\%} & \textcolor{red}{0/50}  & \textcolor{red}{50/50} & \textcolor{red}{0/50}  \\
-	40\% & \textcolor{red}{0.9865} & \textcolor{red}{56\%} & \textcolor{red}{0.9965} & \textcolor{red}{90\%} & \textcolor{red}{0/50}  & \textcolor{red}{50/50} & \textcolor{red}{0/50}  \\
-	80\% & \textcolor{red}{0.9793} & \textcolor{red}{83\%} & \textcolor{red}{0.9946} & \textcolor{red}{90\%} & \textcolor{red}{1/50}  & \textcolor{red}{50/50} & \textcolor{red}{16/50} \\
+	1\%  & 0.9995 & 95\% & 0.9998 & 99\% & 50/50 & 50/50 & 50/50 \\
+	5\%  & 0.9977 & 78\% & 0.9992 & 99\% & 36/50 & 50/50 & 48/50 \\
+	10\% & 0.9958 & 54\% & 0.9986 & 97\% & 0/50  & 50/50 & 6/50  \\
+	13\%* & 0.9946 & 47\% & 0.9983 & 96\% & 0/50  & 50/50 & 1/50  \\
+	20\% & 0.9922 & 44\% & 0.9977 & 92\% & 0/50  & 50/50 & 0/50  \\
+	40\% & 0.9865 & 56\% & 0.9965 & 90\% & 0/50  & 50/50 & 0/50  \\
+	80\% & 0.9793 & 83\% & 0.9946 & 90\% & 1/50  & 50/50 & 16/50 \\
 	\bottomrule
 	\end{tabular}
 	\vspace{2pt}\raggedright *cross-validation sample's raw outlier fraction, included for reference only.
