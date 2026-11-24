@@ -1,6 +1,7 @@
 # Successive H-Indices
 <!-- ![CMU ranks #1 in CS but 159th overall; Wageningen ranks #1 in Agricultural and Biological Sciences but 148th overall; and Shenyang Pharmaceutical University ranks #1 in Pharmacology but 957th overall](https://rupumped.github.io/blog-posts/h2-cover.png) -->
-*To see how your university or country stacks up in the rankings, visit [my blog](https://rupumped.github.io/h2.html)!*
+*To see how your university or country stacks up in the rankings, visit [my blog](https://rupumped.github.io/h2.html).*
+*To learn more about this project, read [my paper in Scientometrics](https://link.springer.com/article/10.1007/s11192-026-05899-1).*
 
 ## Highlights
 1. The overall institution-level ranking is, in substance, a ranking of medical school size: Medicine accounts for 24% of the ranked author pool and structurally dominates any university-wide aggregate. Removing the five core biomedical fields, the University of Antwerp takes first place (non-bio h<sub>2</sub>=105) and Harvard falls to 2nd (non-bio h<sub>2</sub>=100). The table reshuffles dramatically: Paris-Saclay rises to 4th (+10), Berkeley to 5th (+11), Caltech to 8th (+18), ETH Zurich to 9th (+26), while Cambridge falls to 11th (−6) and Oxford to 14th (−8). CMU, USTC (66th overall), and Wageningen are world leaders in their fields but structurally can't reach the top of the aggregate because they lack large medical schools.
@@ -241,22 +242,6 @@ The AWS CLI must also be installed and `aws s3 ls --no-sign-request` must work (
 | `results/cross_validation_sample.csv` | Sample of authors for manual Google Scholar cross-validation |
 | `rankings.json` | Web-serving JSON: all institutions ranked by h<sub>2</sub>, all countries ranked by h<sub>3</sub>, and top-100 institutions and countries per field and subfield (CC0, derived from OpenAlex) |
 
-## Efficiency exponents
-
-Egghe (2008) models successive h-indices as a chain of Lotkaian (power-law) Information Production Processes: citations-per-article (exponent α<sub>0</sub>), articles-per-author (α<sub>1</sub>), authors-per-institution (α<sub>2</sub>), and so on. His eq. 11 gives h<sub>2</sub> = author_count^(1/(α<sub>0</sub>α<sub>1</sub>)) and his eq. 18 gives h<sub>3</sub> = institution_count^(1/(α<sub>0</sub>α<sub>1</sub>α<sub>2</sub>)).
-
-`estimate_alphas.py` fits each exponent as the discrete-MLE power-law tail (Clauset, Shalizi & Newman 2009, via the `powerlaw` package, with x<sub>min</sub> chosen by KS minimization) of the corresponding empirical distribution:
-
-| Exponent | Fit from | Value |
-|---|---|---|
-| α<sub>1</sub> | `works_count` across authors (excluding 46 authors with works_count > 10,000 — an author-disambiguation artifact, see the script's docstring) | 2.994 |
-| α<sub>2</sub> | `author_count` across institutions | 1.987 |
-| β<sub>1</sub> | `h1` (h_index) across authors | 2.991 |
-| β<sub>2</sub> | `h<sub>2</sub>` across institutions | 2.847 |
-| α<sub>0</sub> | `cited_by_count` across a 718,299-work sample from `prefetch_citations.py` | 2.454 |
-
-Egghe's functional form is empirically well-supported: S^(1/β<sub>1</sub>) alone explains 91% of the variance in h<sub>2</sub> (R²=0.909, no-intercept regression across all institutions with ≥10 authors), and R^(1/β<sub>2</sub>) explains 90% of the variance in h<sub>3</sub> across countries. The compounding-exponent cross-check fails sharply, however: α<sub>0</sub>α<sub>1</sub>=2.454×2.994=7.35, against the directly-measured β<sub>1</sub>=2.991 (a 146% discrepancy), and β<sub>1</sub>×α<sub>2</sub>=2.991×1.987=5.944 against the directly-measured β<sub>2</sub>=2.847 (a 109% discrepancy). The model is empirically useful; the underlying theory needs a different reading.
-
 ## Selected results
 
 ### Top institutions overall
@@ -326,3 +311,23 @@ A few things stand out:
 
 ## Future work
 Ranking university departments would be a natural next step. The hierarchy would extend naturally to researcher → department → institution → country, with successive indices h<sub>1</sub> through h<sub>4</sub>. Departments are field-specialized by construction, so the step of inferring each author's modal field from topic weights may become unnecessary at the departmental level. OpenAlex does not currently provide departmental affiliation data; this is the single most valuable addition OpenAlex could make for scientometric work of this kind.
+
+## Citing
+This repository is affiliated with a journal article you can read at https://link.springer.com/article/10.1007/s11192-026-05899-1. Please use the following text to cite this repository:
+
+Selby, N.S. "Successive h-indices using OpenAlex." *Scientometrics* (2026). https://doi.org/10.1007/s11192-026-05899-1
+
+The BibTeX is:
+```
+@article{h2,
+	author={Selby, Nicholas Stearns},
+	title={Successive h-indices using OpenAlex},
+	journal={Scientometrics},
+	year={2026},
+	month={Nov},
+	day={24},
+	issn={1588-2861},
+	doi={10.1007/s11192-026-05899-1},
+	url={https://doi.org/10.1007/s11192-026-05899-1}
+}
+```
